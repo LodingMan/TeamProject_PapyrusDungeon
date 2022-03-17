@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class MapCreate : MonoBehaviour
 {
-    public GameObject[,] mapPos = new GameObject[8, 8]; //?? ???? ???
+
     public GameObject[,] map = new GameObject[8, 8]; //?? prefab
 
     public GameObject nomalRoomPrefab; // ??? ???? ?? ???????
     public GameObject bossRoomPrefab; // ??? ???? ?????? ???????
+    public GameObject passagePrefab;
     public Vector3[,] mapCreatePos = new Vector3[8, 8];// 
 
+    public List<GameObject> passageList;
 
     public int searchX; //?? ?????? ???? ????????? X???
     public int searchY; // ????
@@ -41,6 +43,8 @@ public class MapCreate : MonoBehaviour
             }
         }
         BossRoomCreate();
+
+        PassageCreate();
     }
 
     public void firstSelect()
@@ -293,5 +297,40 @@ public class MapCreate : MonoBehaviour
     }
 
 
+    public void PassageCreate()
+    {
+        for (int i = selectRoom.Count - 1; i > 0; i--) // 버블 오름차순 정렬
+            for (int j = 0; j < i; j++)
+                if (selectRoom[j] > selectRoom[j + 1])
+                    Swap(selectRoom, j, j + 1);
+
+        for (int i = 0; i < selectRoom.Count; i++) // 통로 생성
+        {
+            for (int j = 0; j < selectRoom.Count; j++)
+            {
+                if (selectRoom[i] + 10 == selectRoom[j])
+                {
+                    Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10 , selectRoom[i] % 10] + new Vector3(0,5,0), Quaternion.Euler(0,0,90));
+                }
+                if (selectRoom[i] - 1 == selectRoom[j])
+                {
+                    Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10, selectRoom[i] % 10] + new Vector3(-5, 0, 0), Quaternion.Euler(0, 0, 0));
+
+                }
+                if (selectRoom[i] + 1 == selectRoom[j])
+                {
+                    Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10, selectRoom[i] % 10] + new Vector3(5, 0, 0), Quaternion.Euler(0, 0, 0));
+
+                }
+            }
+        }
+
+    }
+        void Swap(List<int> arr, int num1, int num2)
+        {
+            int tmp = arr[num1];
+            arr[num1] = arr[num2];
+            arr[num2] = tmp;
+        }
 
 }

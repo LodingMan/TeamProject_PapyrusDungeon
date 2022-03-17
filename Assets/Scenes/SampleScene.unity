@@ -330,6 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomalRoomPrefab: {fileID: 6018678090777280012, guid: 9e78b15eec50f0343a6f08ae9b2c4dae, type: 3}
   bossRoomPrefab: {fileID: 9128856817887922140, guid: 235bad1304824954581291c3162ca825, type: 3}
+  passagePrefab: {fileID: 2885974010025107586, guid: e92d33b4a96f17c4b98f6a1e6aa73f01, type: 3}
+  passageList: []
   searchX: 0
   searchY: 0
   selectRoom: 
