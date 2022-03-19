@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2885974010025107615}
   - component: {fileID: 2885974010025107612}
   - component: {fileID: 2885974010025107613}
+  - component: {fileID: -3346203287308326183}
   m_Layer: 0
   m_Name: PassageMap
   m_TagString: Untagged
@@ -96,3 +97,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-3346203287308326183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2885974010025107586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6f625c31487214eb2d78037fea8c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCheckList:
+  - {fileID: 2100000, guid: b23ac1c49a9438049814ce51b0496d52, type: 2}
+  - {fileID: 2100000, guid: d7dc58fae1670e0408124f419a68cc04, type: 2}
+  renderer: {fileID: 0}
+  passageNumber: 0
