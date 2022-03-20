@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class HeroesStats : MonoBehaviour
 {
+    public int hp = 100;
+    public int mp = 50;
+    public int atk = 10;
+    public int def = 5;
+
     private void Awake()
     {
         if (gameObject.tag == "Knight")
         {
-            Status knight = new Status();
-            knight.hp = PlayerPrefs.GetInt("hp");
-            knight.mp = PlayerPrefs.GetInt("mp");
+            this.hp += 100;
+            this.atk += 50;
+            this.def += 50;
 
-            Debug.Log("HP : " + knight.hp + "::" + "MP : " + knight.mp);
+        }
+        else if (gameObject.tag == "Mage")
+        {
+
+            this.mp += 100;
+
         }
         else
         {
-            Status others = new Status();
-            others.hp = PlayerPrefs.GetInt("hp") - 1;
-            others.mp = PlayerPrefs.GetInt("mp") - 1;
 
-            Debug.Log("HP : " + others.hp + "::" + "MP : " + others.mp);
+            this.hp += 10;
         }
 
     }
