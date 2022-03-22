@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class HeroesClass
+public class EnemyClass
 {
     public string name;
     public int lv;
@@ -15,12 +13,8 @@ public class HeroesClass
     public int cri;
     public int acc;
     public int agi;
-    public string weapon;
-    public string armor;
-    //public string skill01;
-    //public string skill02;
 
-    public HeroesClass(string name, int lv, int hp, int mp, int atk, int def, int cri, int acc, int agi, string weapon, string armor)
+    public EnemyClass(string name, int lv, int hp, int mp, int atk, int def, int cri, int acc, int agi)
     {
         this.name = name;
         this.lv = lv;
@@ -31,8 +25,7 @@ public class HeroesClass
         this.cri = cri;
         this.acc = acc;
         this.agi = agi;
-        this.weapon = weapon;
-        this.armor = armor;
     }
+    //public string skill01;
+    //public string skill02;
 }
-
