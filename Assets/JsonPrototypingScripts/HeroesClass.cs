@@ -15,8 +15,10 @@ public class HeroesClass
     public int cri;
     public int acc;
     public int agi;
+    public string weapon;
+    public string armor;
 
-    public HeroesClass(string name, int lv, int hp, int mp, int atk, int def, int cri, int acc, int agi)
+    public HeroesClass(string name, int lv, int hp, int mp, int atk, int def, int cri, int acc, int agi, string weapon, string armor)
     {
         this.name = name;
         this.lv = lv;
@@ -27,6 +29,9 @@ public class HeroesClass
         this.cri = cri;
         this.acc = acc;
         this.agi = agi;
+        this.weapon = weapon;
+        this.armor = armor;
     }
 }
+
 

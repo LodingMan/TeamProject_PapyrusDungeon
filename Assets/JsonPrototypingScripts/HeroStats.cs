@@ -1,48 +1,138 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
-using System.IO;
-
+using UnityEngine.UI;
 public class HeroStats : MonoBehaviour
 {
-    List<HeroesClass> heroData = new List<HeroesClass>();
+    public SaveAndLoadMgr heroStats;
+    public int lv;
+    public int hp;
+    public int mp;
+    public int atk;
+    public int def;
+    public int cri;
+    public int acc;
+    public int agi;
+    public string weapon;
+    public string armor;
 
-    public int[] lv = new int[3];
-    public int[] hp = new int[3];
-    public int[] mp = new int[3];
-    public int[] atk = new int[3];
-    public int[] def = new int[3];
-    public int[] cri = new int[3];
-    public int[] acc = new int[3];
-    public int[] agi = new int[3];
 
 
     void Awake()
     {
-        heroData.Add(new HeroesClass("기사", lv[0], hp[0], mp[0], atk[0], def[0], cri[0], acc[0], agi[0]));
-        heroData.Add(new HeroesClass("마법사", lv[1], hp[1], mp[1], atk[1], def[1], cri[1], acc[1], agi[1]));
-        heroData.Add(new HeroesClass("짐꾼", lv[2], hp[2], mp[2], atk[2], def[2], cri[2], acc[2], agi[2]));
+        heroStats = GameObject.Find("GameMgr").GetComponent<SaveAndLoadMgr>();
+        HeroCheck();
 
     }
-
-    public void _save()
+    void HeroCheck()
     {
-        string jdata = JsonConvert.SerializeObject(heroData);
-        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
-        string format = System.Convert.ToBase64String(bytes);
+        if (gameObject.tag == "Barbarian")
+        {
+            int i = 0;
 
-        File.WriteAllText(Application.dataPath + "/ysg.json", format);
-        Debug.Log("저장 완료");
-    }
+            lv = heroStats.lv[i];
+            hp = heroStats.hp[i];
+            mp = heroStats.mp[i];
+            atk = heroStats.atk[i];
+            def = heroStats.def[i];
+            cri = heroStats.cri[i];
+            acc = heroStats.acc[i];
+            agi = heroStats.agi[i];
+            weapon = heroStats.weapon[i];
+            armor = heroStats.armor[i];
 
-    public void _load()
-    {
-        string jdata = File.ReadAllText(Application.dataPath + "/ysg.json");
-        byte[] bytes = System.Convert.FromBase64String(jdata);
-        string reformat = System.Text.Encoding.UTF8.GetString(bytes);
 
-        heroData = JsonConvert.DeserializeObject<List<HeroesClass>>(reformat);
-        Debug.Log(reformat);
+
+        }
+        else if (gameObject.tag == "Archer")
+        {
+            int i = 1;
+
+            lv = heroStats.lv[i];
+            hp = heroStats.hp[i];
+            mp = heroStats.mp[i];
+            atk = heroStats.atk[i];
+            def = heroStats.def[i];
+            cri = heroStats.cri[i];
+            acc = heroStats.acc[i];
+            agi = heroStats.agi[i];
+            weapon = heroStats.weapon[i];
+            armor = heroStats.armor[i];
+
+
+        }
+        else if (gameObject.tag == "Knight")
+        {
+
+            int i = 2;
+
+            lv = heroStats.lv[i];
+            hp = heroStats.hp[i];
+            mp = heroStats.mp[i];
+            atk = heroStats.atk[i];
+            def = heroStats.def[i];
+            cri = heroStats.cri[i];
+            acc = heroStats.acc[i];
+            agi = heroStats.agi[i];
+            weapon = heroStats.weapon[i];
+            armor = heroStats.armor[i];
+
+
+
+        }
+        else if (gameObject.tag == "Barristan")
+        {
+            int i = 3;
+
+            lv = heroStats.lv[i];
+            hp = heroStats.hp[i];
+            mp = heroStats.mp[i];
+            atk = heroStats.atk[i];
+            def = heroStats.def[i];
+            cri = heroStats.cri[i];
+            acc = heroStats.acc[i];
+            agi = heroStats.agi[i];
+            weapon = heroStats.weapon[i];
+            armor = heroStats.armor[i];
+
+
+        }
+        else if (gameObject.tag == "Mage")
+        {
+            int i = 4;
+
+            lv = heroStats.lv[i];
+            hp = heroStats.hp[i];
+            mp = heroStats.mp[i];
+            atk = heroStats.atk[i];
+            def = heroStats.def[i];
+            cri = heroStats.cri[i];
+            acc = heroStats.acc[i];
+            agi = heroStats.agi[i];
+            weapon = heroStats.weapon[i];
+            armor = heroStats.armor[i];
+
+
+        }
+        else if (gameObject.tag == "Slave")
+        {
+            int i = 5;
+
+            lv = heroStats.lv[i];
+            hp = heroStats.hp[i];
+            mp = heroStats.mp[i];
+            atk = heroStats.atk[i];
+            def = heroStats.def[i];
+            cri = heroStats.cri[i];
+            acc = heroStats.acc[i];
+            agi = heroStats.agi[i];
+            weapon = heroStats.weapon[i];
+            armor = heroStats.armor[i];
+
+
+        }
     }
 }
+
+
+
