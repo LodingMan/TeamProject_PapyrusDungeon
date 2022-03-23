@@ -39,7 +39,6 @@ public class CombatManager : MonoBehaviour
         // 원래라면 CombatStart가 자동으로 실행
     }
 
-
     public void CombatStart()
     {
         speedSetting();
