@@ -6,26 +6,73 @@ using System.IO;
 
 public class HeroStats : MonoBehaviour
 {
-    List<HeroesClass> heroData = new List<HeroesClass>();
+    List<HeroClass> heroData = new List<HeroClass>();
+    public int dataLength;
+    public int[] index;
+    public string[] heroName;
+    public string[] job;
+    public int[] lv;
+    public int[] hp;
+    public int[] mp;
+    public int[] atk;
+    public int[] def;
+    public int[] cri;
+    public int[] acc;
+    public int[] agi;
+    public string[] weapon;
+    public string[] armor;
+    public string[] skill01;
+    public string[] skill02;
+    public string[] skill03;
+    public string[] skill04;
+    public string[] skill05;
 
-    public string[] heroName = new string[3];
-    public int[] lv = new int[3];
-    public int[] hp = new int[3];
-    public int[] mp = new int[3];
-    public int[] atk = new int[3];
-    public int[] def = new int[3];
-    public int[] cri = new int[3];
-    public int[] acc = new int[3];
-    public int[] agi = new int[3];
-    public string[] weapon = new string[3];
-    public string[] armor = new string[3];
-
-
-    void Awake()
+    private void Start()
     {
-        heroData.Add(new HeroesClass(heroName[0], lv[0], hp[0], mp[0], atk[0], def[0], cri[0], acc[0], agi[0], weapon[0], armor[0]));
-        heroData.Add(new HeroesClass(heroName[1], lv[1], hp[1], mp[1], atk[1], def[1], cri[1], acc[1], agi[1], weapon[1], armor[1]));
-        heroData.Add(new HeroesClass(heroName[2], lv[2], hp[2], mp[2], atk[2], def[2], cri[2], acc[2], agi[2], weapon[2], armor[2]));
+        string jdata = File.ReadAllText(Application.dataPath + "/" + "Resources" + "/" + "TotalHeroList.json");
+
+        heroData = JsonConvert.DeserializeObject<List<HeroClass>>(jdata);
+        dataLength = heroData.Count;
+        index = new int[dataLength];
+        heroName = new string[dataLength];
+        job = new string[dataLength];
+        lv = new int[dataLength];
+        hp = new int[dataLength];
+        mp = new int[dataLength];
+        atk = new int[dataLength];
+        def = new int[dataLength];
+        cri = new int[dataLength];
+        acc = new int[dataLength];
+        agi = new int[dataLength];
+        weapon = new string[dataLength];
+        armor = new string[dataLength];
+        skill01 = new string[dataLength];
+        skill02 = new string[dataLength];
+        skill03 = new string[dataLength];
+        skill04 = new string[dataLength];
+        skill05 = new string[dataLength];
+
+
+        for (int i = 0; i < dataLength; i++)
+        {
+            index[i] = heroData[i].index;
+            heroName[i] = heroData[i].name;
+            job[i] = heroData[i].job;
+            lv[i] = heroData[i].lv;
+            hp[i] = heroData[i].hp;
+            mp[i] = heroData[i].mp;
+            atk[i] = heroData[i].atk;
+            def[i] = heroData[i].def;
+            cri[i] = heroData[i].cri;
+            acc[i] = heroData[i].acc;
+            weapon[i] = heroData[i].weapon;
+            armor[i] = heroData[i].armor;
+            skill01[i] = heroData[i].skill01;
+            skill02[i] = heroData[i].skill02;
+            skill03[i] = heroData[i].skill03;
+            skill04[i] = heroData[i].skill04;
+            skill05[i] = heroData[i].skill05;
+        }
 
     }
 
@@ -47,7 +94,7 @@ public class HeroStats : MonoBehaviour
         //string reformat = System.Text.Encoding.UTF8.GetString(bytes);
 
         //heroData = JsonConvert.DeserializeObject<List<HeroesClass>>(reformat);
-        heroData = JsonConvert.DeserializeObject<List<HeroesClass>>(jdata);
+        heroData = JsonConvert.DeserializeObject<List<HeroClass>>(jdata);
         //Debug.Log(reformat);
         Debug.Log(jdata);
     }

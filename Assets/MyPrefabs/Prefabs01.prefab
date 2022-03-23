@@ -457,6 +457,8 @@ GameObject:
   - component: {fileID: 7117889285213947699}
   - component: {fileID: 7117889285213947698}
   - component: {fileID: 870740481919056069}
+  - component: {fileID: 5942772617017579318}
+  - component: {fileID: 6936280776083470082}
   m_Layer: 5
   m_Name: Prefabs01
   m_TagString: Untagged
@@ -538,12 +540,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826dd2bb48646224a896add8e21917e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   heroStats: {fileID: 0}
   textHeroName: {fileID: 0}
   textHeroLv: {fileID: 0}
   textHeroIndex: {fileID: 0}
   createHeroPrefabs: {fileID: 0}
+  hiringHeroList: {fileID: 0}
+  hireBtn: {fileID: 0}
+  hiredHeroScrollView: {fileID: 0}
+--- !u!114 &5942772617017579318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117889285213947708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e207637106a26c43ab15373746250aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroStats: {fileID: 0}
   index: 0
+  heroName: 
+  job: 
+  lv: 0
+  hp: 0
+  mp: 0
+  atk: 0
+  def: 0
+  cri: 0
+  acc: 0
+  agi: 0
+  weapon: 
+  armor: 
+  skill01: 
+  skill02: 
+  skill03: 
+  skill04: 
+  skill05: 
+--- !u!114 &6936280776083470082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117889285213947708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7c16f7dcbd29e4cae674c99be794ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroStatsLoad: {fileID: 0}
+  equipSL: {fileID: 0}
+  weapon: 
+  isWeapon: 0
+  w_Lv: 0
+  w_Atk: 0
+  w_Def: 0
+  w_Cri: 0
+  w_Acc: 0
+  w_Agi: 0
+  armor: 
+  isArmor: 0
+  a_Lv: 0
+  a_Atk: 0
+  a_Def: 0
+  a_Cri: 0
+  a_Acc: 0
+  a_Agi: 0
 --- !u!1 &7117889285459332191
 GameObject:
   m_ObjectHideFlags: 0

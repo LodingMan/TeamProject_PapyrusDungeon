@@ -5,6 +5,10 @@ using UnityEngine;
 public class HeroStatsLoad : MonoBehaviour
 {
     public HeroStats heroStats;
+    public HeroPrefabInfo heroPrefabInfo;
+    public int index;
+    public string heroName;
+    public string job;
     public int lv;
     public int hp;
     public int mp;
@@ -15,50 +19,40 @@ public class HeroStatsLoad : MonoBehaviour
     public int agi;
     public string weapon;
     public string armor;
-    
-    void Awake()
+    public string skill01;
+    public string skill02;
+    public string skill03;
+    public string skill04;
+    public string skill05;
+
+    private void Start()
     {
         heroStats = GameObject.Find("GameMgr").GetComponent<HeroStats>();
-
-        if (gameObject.name == "Knight")
-        {
-            lv = heroStats.lv[0];
-            hp = heroStats.hp[0];
-            mp = heroStats.mp[0];
-            atk = heroStats.atk[0];
-            def = heroStats.def[0];
-            cri = heroStats.cri[0];
-            acc = heroStats.acc[0];
-            agi = heroStats.agi[0];
-            weapon = heroStats.weapon[0];
-            armor = heroStats.armor[0];
-        }
-        else if (gameObject.name == "Magician")
-        {
-            lv = heroStats.lv[1];
-            hp = heroStats.hp[1];
-            mp = heroStats.mp[1];
-            atk = heroStats.atk[1];
-            def = heroStats.def[1];
-            cri = heroStats.cri[1];
-            acc = heroStats.acc[1];
-            agi = heroStats.agi[1];
-            weapon = heroStats.weapon[1];
-            armor = heroStats.armor[1];
-        }
-        else if (gameObject.name == "Porter")
-        {
-            lv = heroStats.lv[2];
-            hp = heroStats.hp[2];
-            mp = heroStats.mp[2];
-            atk = heroStats.atk[2];
-            def = heroStats.def[2];
-            cri = heroStats.cri[2];
-            acc = heroStats.acc[2];
-            agi = heroStats.agi[2];
-            weapon = heroStats.weapon[2];
-            armor = heroStats.armor[2];
-        }
+        heroPrefabInfo = GetComponent<HeroPrefabInfo>();
+        //int rnd = Random.Range(0, heroStats.dataLength); // 랜덤 돌려서 index에 맞는걸 찾음.
+        InitStat(heroPrefabInfo.index);
+    }
+    
+    public void InitStat(int cnt)
+    {
+        gameObject.name = heroStats.heroName[cnt];
+        index = heroStats.index[cnt];
+        heroName = heroStats.heroName[cnt];
+        job = heroStats.job[cnt];
+        lv = heroStats.lv[cnt];
+        hp = heroStats.hp[cnt];
+        mp = heroStats.mp[cnt];
+        atk = heroStats.atk[cnt];
+        def = heroStats.def[cnt];
+        cri = heroStats.cri[cnt];
+        agi = heroStats.agi[cnt];
+        weapon = heroStats.weapon[cnt];
+        armor = heroStats.armor[cnt];
+        skill01 = heroStats.skill01[cnt];
+        skill02 = heroStats.skill02[cnt];
+        skill03 = heroStats.skill03[cnt];
+        skill04 = heroStats.skill04[cnt];
+        skill05 = heroStats.skill05[cnt];
     }
 
 }
