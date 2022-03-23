@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Right
-  - Up
-  - Room
-  - Enemy
+
+
   layers:
   - Default
   - TransparentFX
