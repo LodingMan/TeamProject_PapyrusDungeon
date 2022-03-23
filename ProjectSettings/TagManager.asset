@@ -4,14 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Knight
-  - Mage
-  - Prisoner
-  - Sword
-  - Wood
-  - Bow
-  - Knuckle
-  - BuyBtn
+
+
   layers:
   - Default
   - TransparentFX
