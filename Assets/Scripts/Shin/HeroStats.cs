@@ -7,6 +7,8 @@ using System.IO;
 public class HeroStats : MonoBehaviour
 {
     List<HeroClass> heroData = new List<HeroClass>();
+    public List<SkillClass> heroSkills = new List<SkillClass>();
+
     public int dataLength;
     public int[] index;
     public string[] heroName;
@@ -30,8 +32,11 @@ public class HeroStats : MonoBehaviour
     private void Start()
     {
         string jdata = File.ReadAllText(Application.dataPath + "/" + "Resources" + "/" + "TotalHeroList.json");
+        string skillData = File.ReadAllText(Application.dataPath + "/" + "Resources" + "/" + "Skill.json");
 
         heroData = JsonConvert.DeserializeObject<List<HeroClass>>(jdata);
+        heroSkills = JsonConvert.DeserializeObject<List<SkillClass>>(skillData);
+
         dataLength = heroData.Count;
         index = new int[dataLength];
         heroName = new string[dataLength];
