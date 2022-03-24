@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62c428d51f576f74e804c8e6e1b98b00, type: 2}
+  - {fileID: 2100000, guid: 3df4a970a8c815e44aa1f08274abc4b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,6 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroStats: {fileID: 0}
+  heroPrefabInfo: {fileID: 0}
+  index: 0
+  heroName: 
+  job: 
   lv: 0
   hp: 0
   mp: 0
@@ -120,6 +124,11 @@ MonoBehaviour:
   agi: 0
   weapon: Nothing
   armor: Nothing
+  skill01: 
+  skill02: 
+  skill03: 
+  skill04: 
+  skill05: 
 --- !u!114 &3376405995244567097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,19 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916b695dba196c740bed11b4cdab6628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 0}
+  heroSkillData: {fileID: 0}
   skillDmg: 0
   skillMp: 0
+  skillCoolTime: 0
   curTime: 0
-  who: 
-  skills:
-  - 
-  - 
-  - 
-  - 
-  - 
-  isActive: 0
-  isListenersinit: 0
+  heroName: 
   skillBtn:
   - {fileID: 0}
   - {fileID: 0}

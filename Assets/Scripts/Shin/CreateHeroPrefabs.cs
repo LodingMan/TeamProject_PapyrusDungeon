@@ -14,6 +14,7 @@ public class CreateHeroPrefabs : MonoBehaviour
     int[] exist;
     int i, k;
 
+
     // Start is called before the first frame update
 
     private void Start()
@@ -49,7 +50,7 @@ public class CreateHeroPrefabs : MonoBehaviour
         {
             CreatePrefabs();
         }
-        else // �ߺ��� �ƴϸ�
+        else
         {
             prefabList[i++] = Instantiate(prefab, gameObject.transform) as GameObject;
             exist[k++] = index;

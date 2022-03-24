@@ -7,17 +7,19 @@ public class CreateHiredPrefabs : MonoBehaviour
     public GameObject prefab;
     public int prefabCnt;
     public GameObject[] prefabList;
-    public HeroStats heroStats;
-    int i = 0;
+    public HeroClass heroData;
+    
+    public int i = 0;
+    public int cnt;
 
     private void Start()
     {
-        heroStats = GameObject.Find("GameMgr").GetComponent<HeroStats>();
         prefabList = new GameObject[prefabCnt];
     }
-    public void CreatePrefabs()
+    public void CreatePrefabs(HeroClass heroClass)
     {
-        // 정보 넣기
-        prefabList[i++] = Instantiate(prefab, gameObject.transform) as GameObject;
+        heroData = heroClass; // 정보 넣기.
+        prefabList[i] = Instantiate(prefab, gameObject.transform) as GameObject; // 이 때 prefablist[i]가 생성되면서 HiredPrefabInfo의 start가 실행.
+        i++; cnt++;
     }
 }
