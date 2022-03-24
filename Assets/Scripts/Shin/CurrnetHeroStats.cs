@@ -31,8 +31,6 @@ public class CurrnetHeroStats : MonoBehaviour
         createHiredPrefabs = GameObject.Find("HiredHireList").GetComponent<CreateHiredPrefabs>();
         heroData = createHiredPrefabs.heroData;
 
-        heroData.index = 0;
-        heroData.name = "아무개"; // 얘 자체를 건드려도 되고
         InitStat();
     }
 

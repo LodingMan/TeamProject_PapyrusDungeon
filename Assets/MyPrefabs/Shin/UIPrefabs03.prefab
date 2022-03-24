@@ -144,8 +144,6 @@ GameObject:
   - component: {fileID: 1421878477564586463}
   - component: {fileID: 1421878477564586449}
   - component: {fileID: 1421878477564586448}
-  - component: {fileID: 6098790581573531465}
-  - component: {fileID: -6358113893188598578}
   m_Layer: 5
   m_Name: UIPrefabs03
   m_TagString: Untagged
@@ -215,62 +213,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6098790581573531465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421878477564586462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08b42d511e62c5640bf4b19c9f7e0688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  createHiredPrefabs: {fileID: 0}
-  hireBtn: {fileID: 0}
-  textHeroName: {fileID: 0}
-  textHeroLv: {fileID: 0}
-  textHeroIndex: {fileID: 0}
-  HeroPrefab:
-  - {fileID: 457157857900921893, guid: 36dae3291ae4967439599c67e362da1a, type: 3}
-  - {fileID: 8613024028201658001, guid: f2de4ebb8d439a94b9312a3f8e61cbd7, type: 3}
-  - {fileID: 7901134047186232661, guid: af4e74fb39f12564598bacbecfcf6b12, type: 3}
-  - {fileID: 2146317813498365732, guid: f997ff51a2a5cad47bec53ac30ee1be6, type: 3}
-  - {fileID: 7550585057495808809, guid: 7f91b940cd8d0964fad936a2e87d12dd, type: 3}
-  - {fileID: 2032992761793735297, guid: 09c8eed7732e6684590e2af1aaac5a86, type: 3}
---- !u!114 &-6358113893188598578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421878477564586462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 704dd11f7ea208242b1fb82f62f0247a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hiredPrefabInfo: {fileID: 0}
-  index: 0
-  heroName: 
-  job: 
-  lv: 0
-  hp: 0
-  mp: 0
-  atk: 0
-  def: 0
-  cri: 0
-  acc: 0
-  agi: 0
-  weapon: 
-  armor: 
-  skill01: 
-  skill02: 
-  skill03: 
-  skill04: 
-  skill05: 
 --- !u!1 &1421878478367810237
 GameObject:
   m_ObjectHideFlags: 0
