@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 457157857900921897}
   - component: {fileID: 457157857900921896}
   - component: {fileID: 457157857900921899}
-  - component: {fileID: 457157857900921898}
-  - component: {fileID: 175505961203045624}
+  - component: {fileID: -6493781290976084272}
   m_Layer: 0
   m_Name: Barbarian
   m_TagString: Barbarian
@@ -62,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62c428d51f576f74e804c8e6e1b98b00, type: 2}
+  - {fileID: 2100000, guid: 3df4a970a8c815e44aa1f08274abc4b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &457157857900921898
+--- !u!114 &-6493781290976084272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,48 +105,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 457157857900921893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e207637106a26c43ab15373746250aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d859551556138f42acbb494a4f7d513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroStats: {fileID: 0}
-  lv: 0
-  hp: 0
-  mp: 0
-  atk: 0
-  def: 0
-  cri: 0
-  acc: 0
-  agi: 0
-  weapon: Nothing
-  armor: Nothing
---- !u!114 &175505961203045624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457157857900921893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 916b695dba196c740bed11b4cdab6628, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillData: {fileID: 0}
-  skillDmg: 0
-  skillMp: 0
-  curTime: 0
-  who: 
-  skills:
-  - 
-  - 
-  - 
-  - 
-  - 
-  isActive: 0
-  isListenersinit: 0
-  skillBtn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
