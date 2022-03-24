@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class HeroPrefabInfo : MonoBehaviour
-{
+public class HeroPrefabInfo : MonoBehaviour  //UI상에서 고용할 수 있는 영웅에 대한 정보
+{                                            // 고용되면 고용된 영웅 리스트에 HeroClass형으로 자료가 들어가고 이 컴포넌트가 달린 인포창은 제거됨
     public int index;
     public HeroStats heroStats;
     public Text textHeroName;
     public Text textHeroLv;
     public Text textHeroIndex;
-    public CreateHeroPrefabs createHeroPrefabs;
+    public CreateHeroPrefabs createHeroPrefabs;  //createHeroUIPrefab으로 변경희망
     public Button hireBtn;
     public CreateHiredPrefabs hiredHeroScrollView;
     public HiredHeroMgr hiredHeroMgr;
+
+    public GameObject createHeroPrefab;
+    public GameObject currentSelectHeroPrefab;
 
     void Awake()
     {
@@ -46,6 +49,12 @@ public class HeroPrefabInfo : MonoBehaviour
         //hiredHeroMgr._HiredHeroSave(); // json 저장.
 
         hiredHeroScrollView.CreatePrefabs();
+
+        currentSelectHeroPrefab = Instantiate(createHeroPrefab);
+
+        currentSelectHeroPrefab.GetComponent<HeroStatsLoad>().InitStat(index);
+
+
 
         gameObject.SetActive(false);
         Destroy(gameObject);

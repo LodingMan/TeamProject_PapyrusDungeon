@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-
+  - Room
+  - Up
+  - Right
   layers:
   - Default
   - TransparentFX

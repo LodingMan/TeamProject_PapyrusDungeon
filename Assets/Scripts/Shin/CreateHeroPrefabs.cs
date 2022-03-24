@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreateHeroPrefabs : MonoBehaviour
+public class CreateHeroPrefabs : MonoBehaviour //현재 고용중인 영웅UI를 생성하는 함수를 담고 있음
 {
     public GameObject prefab;
     public int prefabCnt;
@@ -26,7 +26,7 @@ public class CreateHeroPrefabs : MonoBehaviour
         for (int i = 0; i < prefabList.Length; i++)
         {
             index = Random.Range(0, maxIndex);
-            prefabList[i] = Instantiate(prefab, gameObject.transform) as GameObject;
+            prefabList[i] = Instantiate(prefab, gameObject.transform) as GameObject; // 이 이후 prefabList[i]에 의 컴포넌트  
         }
         
     }

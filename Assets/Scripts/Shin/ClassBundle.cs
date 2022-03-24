@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerClass
 {
     public int gold;
@@ -16,7 +12,7 @@ public class PlayerClass
     }
 }
 
-public class HeroClass
+public class HeroClass //Hero오브젝트 생성시 가지게 될 파라미터
 {
     public int index;
     public string name;
@@ -37,7 +33,7 @@ public class HeroClass
     public string skill04;
     public string skill05;
 
-    public HeroClass(int index, string name, string job, int lv, int hp, int mp, int atk, int def, int cri, int acc, int agi, 
+    public HeroClass(int index, string name, string job, int lv, int hp, int mp, int atk, int def, int cri, int acc, int agi,
         string weapon, string armor, string skill01, string skill02, string skill03, string skill04, string skill05)
     {
         this.index = index;
@@ -85,7 +81,7 @@ public class EquipClass
     }
 }
 
-public class EnemyClass
+public class EnemyClass // Enemy생성시 가지게 될 파라미터
 {
     public string name;
     public int lv;

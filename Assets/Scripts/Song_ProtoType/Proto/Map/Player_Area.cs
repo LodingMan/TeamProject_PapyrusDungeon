@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScript_Proto : MonoBehaviour
+public class Player_Area : MonoBehaviour
 {
     public int currentPlayers=0;
     public int PreviousPlayers;
@@ -13,15 +13,9 @@ public class PlayerScript_Proto : MonoBehaviour
     public RoomController RC;
 
 
-    void Start()
-    {
-
-    }
-
     public void PlayerWarp(int roomnumber)
     {
         PreviousPlayers = currentPlayers;
-
         switch (roomnumber)
         {
             case 1:
@@ -83,9 +77,15 @@ public class PlayerScript_Proto : MonoBehaviour
     public void StartWarp(int roomnumber)
     {
         currentPlayers = roomnumber;
-        currentPlayerText.text = "" + currentPlayers;
-        //RC.RoomCheck(currentPlayers);
+        //currentPlayerText.text = "" + currentPlayers;
+     //   StartCoroutine(StartDlay());
+        
+     //   RC.RoomCheck(currentPlayers);
 
+    }
+    IEnumerator StartDlay()
+    {
+        yield return new WaitForSeconds(1);
     }
     public void Warp()
     {

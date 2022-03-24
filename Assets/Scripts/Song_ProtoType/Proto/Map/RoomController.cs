@@ -7,14 +7,11 @@ public class RoomController : MonoBehaviour
     public MapCreate mapCreate;
     public List<GameObject> RoomList;
     public List<GameObject> PassageList;
-    public PlayerScript_Proto players;
+    public Player_Area players;
     public RoomScript roomScript;
     public PassageScript passageScript;
 
 
-    private void Start()
-    {
-    }
 
 
     public void RoomCheck(int roomnumber)

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroStatsLoad : MonoBehaviour
-{
-    public HeroStats heroStats;
-    public HeroPrefabInfo heroPrefabInfo;
-    public int index;
+public class HeroStatsLoad : MonoBehaviour  //GameMgr에 존재하는 HeroStat을 가져와 HeroStat의 모든 값의 index를 활용해 
+{                                           //InitStat함수로 HeroStat의 값을 가져올 수 있다. 
+    public HeroStats heroStats;             //이 스크립트를 달고 있는 오브젝트는 이후에 고용한 영웅의 HeroClass안의 값을 넣어주기 위해
+    public HeroPrefabInfo heroPrefabInfo;   // 변수로 HeroClass 내부 변수와 같은 형태의 변수들이 선언되어있다. 
+    public int index;                          
     public string heroName;
     public string job;
     public int lv;
@@ -28,7 +28,7 @@ public class HeroStatsLoad : MonoBehaviour
     private void Start()
     {
         heroStats = GameObject.Find("GameMgr").GetComponent<HeroStats>();
-        heroPrefabInfo = GetComponent<HeroPrefabInfo>();
+       heroPrefabInfo = GetComponent<HeroPrefabInfo>();
         //int rnd = Random.Range(0, heroStats.dataLength); // 랜덤 돌려서 index에 맞는걸 찾음.
         InitStat(heroPrefabInfo.index);
     }

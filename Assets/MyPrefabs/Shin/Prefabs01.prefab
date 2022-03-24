@@ -546,9 +546,11 @@ MonoBehaviour:
   textHeroLv: {fileID: 0}
   textHeroIndex: {fileID: 0}
   createHeroPrefabs: {fileID: 0}
-  hiringHeroList: {fileID: 0}
   hireBtn: {fileID: 0}
   hiredHeroScrollView: {fileID: 0}
+  hiredHeroMgr: {fileID: 0}
+  createHeroPrefab: {fileID: 5423755553438910842, guid: 5777c94362a6dac46ad385c984ec7d13, type: 3}
+  currentSelectHeroPrefab: {fileID: 0}
 --- !u!114 &5942772617017579318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroStats: {fileID: 0}
+  heroPrefabInfo: {fileID: 0}
   index: 0
   heroName: 
   job: 

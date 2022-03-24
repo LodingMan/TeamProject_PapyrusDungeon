@@ -17,6 +17,7 @@ public class EnemyStats : MonoBehaviour
     public int[] cri = new int[3];
     public int[] acc = new int[3];
     public int[] agi = new int[3];
+    public int[] speed = new int[3];
     
     void Start()
     {

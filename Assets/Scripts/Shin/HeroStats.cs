@@ -4,11 +4,11 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 
-public class HeroStats : MonoBehaviour
-{
-    List<HeroClass> heroData = new List<HeroClass>();
-    public int dataLength;
-    public int[] index;
+public class HeroStats : MonoBehaviour //처음 클라이언트에 존재하는 Json파일의 값을 가져온다. 
+{                                      // 가져온 값을 HeroStats의 알맞는 변수에 넣어준다. 
+    List<HeroClass> heroData = new List<HeroClass>();      //이 변수들은 heroData 클래스와 내용이 동일.
+    public int dataLength;                                  //결과적으로 이 스크립트를 컴포넌트로 담고있는 관리자는 HeroJson의 모든 값을 가지고 있다. 
+    public int[] index;                                     //클라이언트에 존재하는 Json파일은 HeroClass 형태로 존재하므로 Json을 읽어올때 Hero클래스로 읽어온다.
     public string[] heroName;
     public string[] job;
     public int[] lv;

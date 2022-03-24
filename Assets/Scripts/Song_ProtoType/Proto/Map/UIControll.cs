@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIControll : MonoBehaviour
 {
 
-    public PlayerScript_Proto players;
+    public Player_Area players;
 
     public void LeftMove()
     {
