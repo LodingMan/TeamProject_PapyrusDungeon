@@ -16,7 +16,7 @@ public class CreateHiredPrefabs : MonoBehaviour
     {
         prefabList = new GameObject[prefabCnt];
     }
-    public void CreatePrefabs(HeroClass heroClass)
+    public void CreatePrefabs(HeroClass heroClass) // 고용된 영웅 UI 프리팹 생성.
     {
         heroData = heroClass; // 정보 넣기.
         prefabList[i] = Instantiate(prefab, gameObject.transform) as GameObject; // 이 때 prefablist[i]가 생성되면서 HiredPrefabInfo의 start가 실행.

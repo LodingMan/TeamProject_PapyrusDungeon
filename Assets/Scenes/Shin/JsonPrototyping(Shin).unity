@@ -3013,9 +3013,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1421878477564586462, guid: 6332f6f14cdc2b84c9872505c572f30d, type: 3}
-  prefabCnt: 50
+  prefabCnt: 30
   prefabList: []
-  heroStats: {fileID: 0}
+  i: 0
+  cnt: 0
 --- !u!1 &1768398598
 GameObject:
   m_ObjectHideFlags: 0

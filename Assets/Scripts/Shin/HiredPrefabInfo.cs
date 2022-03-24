@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class HiredPrefabInfo : MonoBehaviour
 {
-    public int index;
     public CreateHiredPrefabs createHiredPrefabs;
     public Button hireBtn;
     public Text textHeroName;
     public Text textHeroLv;
     public Text textHeroIndex;
-    public HeroClass heroData; // 자체적으로 HeroClass를 가지고 있어야 됨.
-
-    void Awake()
+    public HeroClass heroData; // 이 스크립트에 저장해놓을 heroClass 데이터.
+    public GameObject[] HeroPrefab;
+    public GameObject hero;
+    int a = -1;
+    void Start()
     {
         createHiredPrefabs = transform.parent.GetComponent<CreateHiredPrefabs>();
         hireBtn = transform.GetChild(0).GetComponent<Button>();
@@ -28,7 +29,33 @@ public class HiredPrefabInfo : MonoBehaviour
         textHeroLv.text = "Lv : " + heroData.lv;
         textHeroName.text = heroData.name;
 
-        // heroClass받아온걸로 여기서 오브젝트프리팹 생성.
+        switch (heroData.job)
+        {
+            case "Babarian":
+                a = 0;
+                break;
+            case "Archer":
+                a = 1;
+                break;
+            case "Knight":
+                a = 2;
+                break;
+            case "Barristan":
+                a = 3;
+                break;
+            case "Mage":
+                a = 4;
+                break;
+            case "Porter":
+                a = 5;
+                break;
+            default:
+                break;
+        }
+
+        hero = Instantiate(HeroPrefab[a]);
+        hero.name = heroData.name;
+        // heroData를 토대로 받아온걸로 여기서 오브젝트프리팹 생성.
     }
 
 

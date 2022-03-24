@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1999411136472101217}
   - component: {fileID: 5929373292816379350}
   - component: {fileID: 6517489994918272648}
-  - component: {fileID: 2195845964177065153}
-  - component: {fileID: -7741950819561567863}
+  - component: {fileID: 5420442680787957480}
   m_Layer: 0
   m_Name: Barristan
   m_TagString: Barristan
@@ -97,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2195845964177065153
+--- !u!114 &5420442680787957480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,50 +105,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2146317813498365732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e207637106a26c43ab15373746250aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d859551556138f42acbb494a4f7d513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroStats: {fileID: 0}
-  heroPrefabInfo: {fileID: 0}
-  index: 0
-  heroName: 
-  job: 
-  lv: 0
-  hp: 0
-  mp: 0
-  atk: 0
-  def: 0
-  cri: 0
-  acc: 0
-  agi: 0
-  weapon: Nothing
-  armor: Nothing
-  skill01: 
-  skill02: 
-  skill03: 
-  skill04: 
-  skill05: 
---- !u!114 &-7741950819561567863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146317813498365732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 916b695dba196c740bed11b4cdab6628, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heroSkillData: {fileID: 0}
-  skillDmg: 0
-  skillMp: 0
-  skillCoolTime: 0
-  curTime: 0
-  heroName: 
-  skillBtn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
