@@ -26,7 +26,7 @@ namespace Song
         public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[3];
 
 
-        int JobSkillStartIndex;
+        int JobSkillStartIndex; // 0이면 0~4번 인덱스 , 5라면 5번부터 9번까지의 인덱스를 for문으로 돌려서 스킬값을 대입함, 하단 for문 참조
 
         void Start()
         {
@@ -43,7 +43,7 @@ namespace Song
             switch (HeroJobName)
             {
                 case "Mage":
-                    initStat = new Stat(0, "ani", "Mage", 9, 9, 5, 5, 2, 2, 3); //초기 마법사의 스텟
+                    initStat = new Stat(0, "ani", "Mage", 9, 9, 5, 5, 2, 2, 3,5); //초기 마법사의 스텟
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; //마법사 생성
                     JobSkillStartIndex = 0; //스킬의 0번 인덱스부터5번까지 대입 (하단 for문 참조) 
 
@@ -59,6 +59,7 @@ namespace Song
             #region //값 대입 
             CurrentCreateHero.GetComponent<StatScript>().Index = initStat.Index; //생성한 히어로 오브젝트의 StatScript의 스텟
             CurrentCreateHero.GetComponent<StatScript>().Name = initStat.Name;
+            CurrentCreateHero.GetComponent<StatScript>().Job = initStat.Job;
             CurrentCreateHero.GetComponent<StatScript>().HP = initStat.HP;
             CurrentCreateHero.GetComponent<StatScript>().MP = initStat.MP;
             CurrentCreateHero.GetComponent<StatScript>().Atk = initStat.Atk;
@@ -66,6 +67,7 @@ namespace Song
             CurrentCreateHero.GetComponent<StatScript>().Cri = initStat.Cri;
             CurrentCreateHero.GetComponent<StatScript>().Acc = initStat.Acc;
             CurrentCreateHero.GetComponent<StatScript>().Agi = initStat.Agi;
+            CurrentCreateHero.GetComponent<StatScript>().Speed = initStat.Speed;
             #endregion
 
             //해당 직업에 맞는 스킬을 각 SkillScript에 대입
@@ -75,7 +77,8 @@ namespace Song
             }
             
             //현재 게임에 오브젝트로 등장한 Hero오브젝트 리스트
-            CurrentHeroList.Add(CurrentCreateHero);
+            CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
+
 
         }
 
@@ -102,11 +105,7 @@ namespace Song
 
         }
 
-
-
     }
-
-
 
 }
 

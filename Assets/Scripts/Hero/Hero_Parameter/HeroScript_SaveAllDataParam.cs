@@ -25,6 +25,7 @@ public class HeroScript_SaveAllDataParam : MonoBehaviour
         heroSavingData.Acc = gameObject.GetComponent<StatScript>().Acc;
         heroSavingData.Agi = gameObject.GetComponent<StatScript>().Agi;
         heroSavingData.skills = gameObject.GetComponent<SkillScript>().skills;
+        heroSavingData.Speed = gameObject.GetComponent<StatScript>().Speed;
         #endregion
     }
 

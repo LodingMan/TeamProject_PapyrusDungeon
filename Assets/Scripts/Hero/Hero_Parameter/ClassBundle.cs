@@ -14,8 +14,9 @@ public class Stat
     public int Cri;
     public int Acc;
     public int Agi;
+    public int Speed;
     
-    public Stat(int index, string name, string job, int hp, int mp, int atk, int def, int cri, int acc, int agi)
+    public Stat(int index, string name, string job, int hp, int mp, int atk, int def, int cri, int acc, int agi, int speed)
     {
         this.Index = index;
         this.Name = name;
@@ -27,6 +28,7 @@ public class Stat
         this.Cri = cri;
         this.Acc = acc;
         this.Agi = agi;
+        this.Speed = speed;
 
     }
 }
@@ -71,6 +73,7 @@ public class HeroSavingData
     public int Cri;
     public int Acc;
     public int Agi;
+    public int Speed;
 
     public Stat stat;
     public skill[] skills;
