@@ -6,7 +6,6 @@ public class HeroStatsLoad : MonoBehaviour
 {
     public HeroStats heroStats;
     public HeroPrefabInfo heroPrefabInfo;
-
     public int index;
     public string heroName;
     public string job;
