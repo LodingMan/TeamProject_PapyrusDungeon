@@ -35,7 +35,6 @@ namespace Song
         public void MageCreate()
         {
             FirstHeroCreate("Mage");
-
         }
 
 
@@ -44,7 +43,7 @@ namespace Song
             switch (HeroJobName)
             {
                 case "Mage":
-                    initStat = new Stat(0, "ani", "Mage", 10, 20, 5, 5, 2, 2, 3);
+                    initStat = new Stat(0, "ani", "Mage", 9, 9, 5, 5, 2, 2, 3);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
                     JobSkillStartIndex = 0;
 
@@ -77,8 +76,9 @@ namespace Song
 
         }
 
-        public void LoadHeroCreate()
+        public void LoadHeroCreate(HeroSavingData djnks)
         {
+
 
         }
 

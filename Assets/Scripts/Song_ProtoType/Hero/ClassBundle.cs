@@ -72,6 +72,12 @@ public class HeroSavingData
     public int Acc;
     public int Agi;
 
+    public Stat stat;
     public skill[] skills;
 
+}
+public class Equip
+{
+    int Atk;
+    int Def;
 }
