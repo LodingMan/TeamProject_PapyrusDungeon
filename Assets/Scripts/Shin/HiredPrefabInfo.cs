@@ -24,12 +24,12 @@ public class HiredPrefabInfo : MonoBehaviour
 
         heroData = createHiredPrefabs.heroData;
 
-        gameObject.name = heroData.name;
+        gameObject.name = heroData.stats.name;
         textHeroIndex.text = "Index : " + heroData.index;
-        textHeroLv.text = "Lv : " + heroData.lv;
-        textHeroName.text = heroData.name;
+        textHeroLv.text = "Lv : " + heroData.stats.lv;
+        textHeroName.text = heroData.stats.name;
 
-        switch (heroData.job)
+        switch (heroData.stats.job)
         {
             case "Babarian":
                 a = 0;
@@ -54,7 +54,7 @@ public class HiredPrefabInfo : MonoBehaviour
         }
 
         hero = Instantiate(HeroPrefab[a]);
-        hero.name = heroData.name;
+        hero.name = heroData.stats.name;
         // heroData를 토대로 받아온걸로 여기서 오브젝트프리팹 생성.
     }
 

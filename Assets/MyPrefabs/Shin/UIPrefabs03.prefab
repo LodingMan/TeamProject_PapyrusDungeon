@@ -144,6 +144,8 @@ GameObject:
   - component: {fileID: 1421878477564586463}
   - component: {fileID: 1421878477564586449}
   - component: {fileID: 1421878477564586448}
+  - component: {fileID: -1078292620962294901}
+  - component: {fileID: -3069889088174234256}
   m_Layer: 5
   m_Name: UIPrefabs03
   m_TagString: Untagged
@@ -213,6 +215,58 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-1078292620962294901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421878477564586462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264ef72f4c9ab1a458f1ec502ff0ac9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHeroPrefabs: {fileID: 0}
+  hiredHeroMgr: {fileID: 0}
+  index: 0
+  heroName: 
+  job: 
+  lv: 0
+  hp: 0
+  mp: 0
+  atk: 0
+  def: 0
+  cri: 0
+  acc: 0
+  agi: 0
+  weapon: 
+  armor: 
+  skill01: 
+  skill02: 
+  skill03: 
+  skill04: 
+  skill05: 
+--- !u!114 &-3069889088174234256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421878477564586462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d2c7b33d07839418fadb9e012017d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  heroStats: {fileID: 0}
+  textHeroName: {fileID: 0}
+  textHeroLv: {fileID: 0}
+  textHeroIndex: {fileID: 0}
+  currentHeroStats02: {fileID: 0}
+  hireBtn: {fileID: 0}
+  hiredHeroMgr: {fileID: 0}
 --- !u!1 &1421878478367810237
 GameObject:
   m_ObjectHideFlags: 0

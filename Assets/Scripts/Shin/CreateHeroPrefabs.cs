@@ -8,7 +8,7 @@ public class CreateHeroPrefabs : MonoBehaviour
     public GameObject prefab;
     public int prefabCnt;
     public GameObject[] prefabList;
-    public HeroStats heroStats;
+    public TotalHeroMgr heroStats;
     
     public int index;
     int[] exist;
@@ -19,8 +19,8 @@ public class CreateHeroPrefabs : MonoBehaviour
 
     private void Start()
     {
-        heroStats = GameObject.Find("GameMgr").GetComponent<HeroStats>();
-        prefabCnt = heroStats.dataLength;
+        heroStats = GameObject.Find("GameMgr").GetComponent<TotalHeroMgr>();
+        prefabCnt = heroStats.heroData.Count;
         prefabList = new GameObject[prefabCnt];
 
         exist = new int[prefabCnt];

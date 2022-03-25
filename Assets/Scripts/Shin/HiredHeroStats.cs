@@ -33,21 +33,14 @@ public class HiredHeroStats : MonoBehaviour
     public void InitStat()
     {
         index = hiredPrefabInfo.heroData.index;
-        heroName = hiredPrefabInfo.heroData.name;
-        job = hiredPrefabInfo.heroData.job;
-        lv = hiredPrefabInfo.heroData.lv;
-        hp = hiredPrefabInfo.heroData.hp;
-        mp = hiredPrefabInfo.heroData.mp;
-        atk = hiredPrefabInfo.heroData.atk;
-        def = hiredPrefabInfo.heroData.def;
-        cri = hiredPrefabInfo.heroData.cri;
-        agi = hiredPrefabInfo.heroData.agi;
-        weapon = hiredPrefabInfo.heroData.weapon;
-        armor = hiredPrefabInfo.heroData.armor;
-        skill01 = hiredPrefabInfo.heroData.skill01;
-        skill02 = hiredPrefabInfo.heroData.skill02;
-        skill03 = hiredPrefabInfo.heroData.skill03;
-        skill04 = hiredPrefabInfo.heroData.skill04;
-        skill05 = hiredPrefabInfo.heroData.skill05;
+        heroName = hiredPrefabInfo.heroData.stats.name;
+        job = hiredPrefabInfo.heroData.stats.job;
+        lv = hiredPrefabInfo.heroData.stats.lv;
+        hp = hiredPrefabInfo.heroData.stats.hp;
+        mp = hiredPrefabInfo.heroData.stats.mp;
+        atk = hiredPrefabInfo.heroData.stats.atk;
+        def = hiredPrefabInfo.heroData.stats.def;
+        cri = hiredPrefabInfo.heroData.stats.cri;
+        agi = hiredPrefabInfo.heroData.stats.agi;
     }
 }

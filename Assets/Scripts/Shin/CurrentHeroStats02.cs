@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrnetHeroStats : MonoBehaviour
+public class CurrentHeroStats02 : MonoBehaviour
 {
-    CreateHiredPrefabs createHiredPrefabs;
+    public CurrentHeroPrefabs currentHeroPrefabs;
     public HeroClass heroData;
-
+    public HiredHeroMgr hiredHeroMgr;
     public int index;
     public string heroName;
     public string job;
@@ -18,24 +18,19 @@ public class CurrnetHeroStats : MonoBehaviour
     public int cri;
     public int acc;
     public int agi;
-    public string weapon;
-    public string armor;
-    public string skill01;
-    public string skill02;
-    public string skill03;
-    public string skill04;
-    public string skill05;
 
+    
     void Start()
     {
-        createHiredPrefabs = GameObject.Find("HiredHireList").GetComponent<CreateHiredPrefabs>();
-        heroData = createHiredPrefabs.heroData;
-
+        currentHeroPrefabs = transform.parent.GetComponent<CurrentHeroPrefabs>();
+        hiredHeroMgr = GameObject.Find("HiredHeroMgr").GetComponent<HiredHeroMgr>();
         InitStat();
-    }
 
+    }
     public void InitStat()
     {
+        if (CurrentHeroPrefabs.j >= hiredHeroMgr.HiredheroData.Count) return;
+        heroData = hiredHeroMgr.HiredheroData[CurrentHeroPrefabs.j++];
         index = heroData.index;
         heroName = heroData.stats.name;
         job = heroData.stats.job;
@@ -47,5 +42,4 @@ public class CurrnetHeroStats : MonoBehaviour
         cri = heroData.stats.cri;
         agi = heroData.stats.agi;
     }
-
 }
