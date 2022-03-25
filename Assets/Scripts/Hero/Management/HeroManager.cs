@@ -98,7 +98,7 @@ namespace Song
             string jdata = File.ReadAllText(Application.dataPath + "/Stat.Json");
             CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //불러온 savingdata를 LoadHeroCreate함수를 사용해 heroObject생성
         // 테스트용으로 사용한거라 List를 넣지않고 배열의 내용물 하나만 대입함. 
-            Debug.Log(CurrentHeroDataList[0]);
+            Debug.Log(CurrentHeroDataList[0].HP);
 
         }
 
