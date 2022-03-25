@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SKillTable : MonoBehaviour
 {
-
+   //모든 스킬들의 값 관리, 0~4번인덱스까지 마법사의 스킬이다. 
     public Dictionary<int, skill> initSkill = new Dictionary<int, skill>();
 
     void Start()

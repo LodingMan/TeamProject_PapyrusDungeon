@@ -14,4 +14,6 @@ public class StatScript : MonoBehaviour
     public int Cri;
     public int Acc;
     public int Agi;
+
+
 }

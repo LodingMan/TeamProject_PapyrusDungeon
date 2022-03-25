@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroScript : MonoBehaviour
+public class HeroScript_SaveAllDataParam : MonoBehaviour
 {
-    public HeroSavingData heroSavingData = new HeroSavingData();
+    public HeroSavingData heroSavingData = new HeroSavingData(); //이 오브젝트가 json으로 파일이 저장될때 사용할 데이터
 
     void Start()
     {
         #region // 영웅 자신의 능력치 저장
+
+
         heroSavingData.Name = gameObject.GetComponent<StatScript>().Name;
         heroSavingData.Index = gameObject.GetComponent<StatScript>().Index;
         heroSavingData.Job = gameObject.GetComponent<StatScript>().Job;
