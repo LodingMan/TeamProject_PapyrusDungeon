@@ -765,7 +765,6 @@ GameObject:
   m_Component:
   - component: {fileID: 663041007}
   - component: {fileID: 663041006}
-  - component: {fileID: 663041008}
   m_Layer: 0
   m_Name: HeroManager
   m_TagString: Untagged
@@ -785,7 +784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bc0ccb5b7bccc46a8bd058495469e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillTable: {fileID: 663041008}
   HeroPrefabs:
   - {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
   CurrentCreateHero: {fileID: 0}
@@ -804,18 +802,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &663041008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 663041005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9802e6a4bb57a7458b18af4e07f1c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &701319183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,8 +1322,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 663041006}
-        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
-        m_MethodName: MageCreate
+        m_TargetAssemblyTypeName: Song.HeroManager, Assembly-CSharp
+        m_MethodName: RandomHeroCreate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
