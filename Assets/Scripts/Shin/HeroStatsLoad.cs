@@ -29,9 +29,20 @@ public class HeroStatsLoad : MonoBehaviour
     
     public void InitStat(int cnt)
     {
-        gameObject.name = hero.heroData[index].stats.name;
-        
-        
+        gameObject.name = hero.heroData[cnt].stats.name;
+        index = hero.heroData[cnt].index;
+        heroName = hero.heroData[cnt].stats.name;
+        job = hero.heroData[cnt].stats.job;
+        lv = hero.heroData[cnt].stats.lv;
+        hp = hero.heroData[cnt].stats.hp;
+        mp = hero.heroData[cnt].stats.mp;
+        atk = hero.heroData[cnt].stats.atk;
+        def = hero.heroData[cnt].stats.def;
+        cri = hero.heroData[cnt].stats.cri;
+        acc = hero.heroData[cnt].stats.acc;
+        agi = hero.heroData[cnt].stats.agi;
+
+
     }
 
 }

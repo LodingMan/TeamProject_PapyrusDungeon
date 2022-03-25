@@ -10,7 +10,7 @@ public class TotalHeroMgr : MonoBehaviour
 
     private void Start()
     {
-        string jdata = File.ReadAllText(Application.dataPath + "/" + "Resources" + "/" + "TotalHeroList.json");
+        string jdata = File.ReadAllText(Application.dataPath + "/" + "Resources" + "/" + "TotalHero.json");
 
         heroData = JsonConvert.DeserializeObject<List<HeroClass>>(jdata);
     }
