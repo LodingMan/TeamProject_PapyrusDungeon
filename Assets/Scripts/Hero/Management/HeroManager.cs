@@ -10,7 +10,6 @@ namespace Song
     {
         public Stat initStat; //생성할 오브젝트의 스텟을 임시로 저장하기위한 클래스
 
-
         public Item initItem; //아직 미사용
 
         public SKillTable skillTable = new SKillTable(); // 모든 스킬 정보
@@ -28,7 +27,6 @@ namespace Song
 
 
         int JobSkillStartIndex; // 0이면 0~4번 인덱스 , 5라면 5번부터 9번까지의 인덱스를 for문으로 돌려서 스킬값을 대입함, 하단 for문 참조
-
 
 
         public void RandomHeroCreate() //Name_JobTable의 JobTable를 랜덤으로 돌려 랜덤한 영웅 생성할 예정
@@ -66,7 +64,8 @@ namespace Song
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; 
                     CurrentCreateHero.name = initStat.Name; 
 
-                    JobSkillStartIndex = 10;  
+                    JobSkillStartIndex = 10;
+
                     break;
                 case "Knight:":
 

@@ -111,6 +111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7276095279d984ba7c4fc7c07286fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myStat:
+    Index: 0
+    Name: 
+    Job: 
+    HP: 0
+    MP: 0
+    Atk: 0
+    Def: 0
+    Cri: 0
+    Acc: 0
+    Agi: 0
+    Speed: 0
 --- !u!114 &-2699553418229954572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +135,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9dfb67d7b090b4997b721f42aab8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skills:
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
 --- !u!114 &3039379264659664217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +195,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455e8c98d0437ac428fcfe091295f64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myEquip:
+  - Index: 0
+    Name: 
+    Atk: 0
+    Def: 0
+  - Index: 0
+    Name: 
+    Atk: 0
+    Def: 0
