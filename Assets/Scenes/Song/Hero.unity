@@ -784,6 +784,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bc0ccb5b7bccc46a8bd058495469e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initStat:
+    Index: 0
+    Name: 
+    Job: 
+    HP: 0
+    MP: 0
+    Atk: 0
+    Def: 0
+    Cri: 0
+    Acc: 0
+    Agi: 0
+    Speed: 0
   HeroPrefabs:
   - {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
   CurrentCreateHero: {fileID: 0}
