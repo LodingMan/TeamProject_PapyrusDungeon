@@ -7,6 +7,8 @@ public class Guild_ExampleUI : MonoBehaviour      //예시클래스이므로 실제로 사용
 
 {
     public Text ClassJob;
+    public EquipTable equipTable = new EquipTable();
+
 
     public Song.HeroManager heroManager;
     public void TestFunc()
@@ -15,6 +17,7 @@ public class Guild_ExampleUI : MonoBehaviour      //예시클래스이므로 실제로 사용
         // CurrentHeroList에 오브젝트가 이미 생성되어있어야 한다. 
         ClassJob.text = heroManager.CurrentHeroList[0].GetComponent<StatScript>().myStat.Job; //heroManager의 현재 영웅리스트의
                                                                                               //맴버 오브젝트의 스텟에서 직업 문자열을 가져옴
+        heroManager.CurrentHeroList[0].GetComponent<EquipScript>().myEquip[0] = equipTable.initEquip[0];
 
     }
 
