@@ -5,6 +5,8 @@ using UnityEngine;
 public class StatScript : MonoBehaviour
 {
     public Stat myStat;
+
+
     #region // 파라미터 변경. 상세내용은 ClassBundle.cs 66참조
     //public int Index;
     //public string Name;

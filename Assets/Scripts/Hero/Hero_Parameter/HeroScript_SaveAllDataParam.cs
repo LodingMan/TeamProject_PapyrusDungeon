@@ -27,6 +27,7 @@ public class HeroScript_SaveAllDataParam : MonoBehaviour
         #endregion
         heroSavingData.stat = gameObject.GetComponent<StatScript>().myStat; // 영웅 자신의 능력치 저장
         heroSavingData.skills = gameObject.GetComponent<SkillScript>().skills; //스킬 저장
+        heroSavingData.equips = gameObject.GetComponent<EquipScript>().myEquip; //장비저장
     }
 
 }
