@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //해당 스크립트파일은 Enemy도 사용하므로 Param폴더를 따로 생성해 옮겨놓을 예정 -> 송하늘 03/26
+
+[System.Serializable]
 public class Stat
 {
+
     public int Index;
     public string Name;
     public string Job;

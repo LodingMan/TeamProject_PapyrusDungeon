@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2699553418229954572}
   - component: {fileID: 3039379264659664217}
   - component: {fileID: 1594039723282811739}
+  - component: {fileID: -5527544293212134565}
   m_Layer: 0
   m_Name: HeroObject
   m_TagString: Untagged
@@ -111,6 +112,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7276095279d984ba7c4fc7c07286fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myStat:
+    Index: 0
+    Name: 
+    Job: 
+    HP: 0
+    MP: 0
+    Atk: 0
+    Def: 0
+    Cri: 0
+    Acc: 0
+    Agi: 0
+    Speed: 0
 --- !u!114 &-2699553418229954572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +160,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455e8c98d0437ac428fcfe091295f64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5527544293212134565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171114485774513217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56294e67120763b4ab07978224b9fe49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Index: 0000000000000000000000000000000000000000
+  Name:
+  - 
+  - 
+  - 
+  - 
+  - 
+  LV: 0000000000000000000000000000000000000000
+  ATK: 0000000000000000000000000000000000000000
+  DEF: 0000000000000000000000000000000000000000
+  MyPosition: 0000000000000000000000000000000000000000
+  EnemyPosition: 0000000000000000000000000000000000000000
