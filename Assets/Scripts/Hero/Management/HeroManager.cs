@@ -10,7 +10,6 @@ namespace Song
     {
         public Stat initStat; //생성할 오브젝트의 스텟을 임시로 저장하기위한 클래스
 
-
         public Item initItem; //아직 미사용
 
         public SKillTable skillTable = new SKillTable(); // 모든 스킬 정보

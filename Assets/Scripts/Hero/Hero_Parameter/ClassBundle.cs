@@ -65,7 +65,7 @@ public class Item // Item은 이후 상점에서 별도로 쓰일 가능성이 있을거 같아 일단 
     public string Name;   //체력물약
     public int Pram = -30;
     public int cost;
-    public string TargetStatus = "HP";
+    public string TargetStatus;
 
 
     public Item(int index, string name, int pram, int cost, string targetStatus)
