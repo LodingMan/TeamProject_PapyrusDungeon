@@ -6,3 +6,7 @@
 히어로 오브젝트 생성시 랜덤으로 이름부여, 
 SkillTable데이터 최적화, 
 StatScript의 맴버변수 Stat클래스 하나로 통합
+
+# 3/ 26 스킬 시스템 구현 - 윤성근
+UI -> SkillFunc_ysg.cs
+변경할 내용: 같은 태그 중복처리
