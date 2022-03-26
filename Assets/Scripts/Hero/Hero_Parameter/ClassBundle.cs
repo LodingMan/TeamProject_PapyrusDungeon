@@ -4,11 +4,9 @@ using UnityEngine;
 using System;
 
 //해당 스크립트파일은 Enemy도 사용하므로 Param폴더를 따로 생성해 옮겨놓을 예정 -> 송하늘 03/26
-
 [System.Serializable]
 public class Stat
 {
-
     public int Index;
     public string Name;
     public string Job;
@@ -20,7 +18,7 @@ public class Stat
     public int Acc;
     public int Agi;
     public int Speed;
-    
+
     public Stat(int index, string name, string job, int hp, int mp, int atk, int def, int cri, int acc, int agi, int speed)
     {
         this.Index = index;
@@ -37,6 +35,7 @@ public class Stat
 
     }
 }
+[System.Serializable]
 public class skill // 03-26 Lv 추가
 {
     public int Index;
@@ -62,6 +61,7 @@ public class skill // 03-26 Lv 추가
 
 public class Item // Item은 이후 상점에서 별도로 쓰일 가능성이 있을거 같아 일단 장비는 Equip클래스를 사용하겠습니다 -> 송하늘 03-25
 {
+
 }
 
 public class HeroSavingData
@@ -85,6 +85,7 @@ public class HeroSavingData
     public Equip[] equips;
 
 }
+[System.Serializable]
 public class Equip
 {
     public int Index;
