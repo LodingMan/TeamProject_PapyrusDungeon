@@ -61,11 +61,11 @@ public class skill // 03-26 Lv 추가
 [System.Serializable]
 public class Item // Item은 이후 상점에서 별도로 쓰일 가능성이 있을거 같아 일단 장비는 Equip클래스를 사용하겠습니다 -> 송하늘 03-25
 {
-    public int Index;
+    public int Index; 
     public string Name;   //체력물약
-    public int Pram;
-    public int cost;
-    public string TargetStatus;
+    public int Pram = -30; // Ex) TargetStatus가 "HP"라면 대상의 HP를 -30.  "MP" 라면 MP를 -30. Switch문으로 제어할 예정 
+    public int cost; //가격
+    public string TargetStatus = "HP"; // 아이템이 대상에게 영향을 미칠 스테이터스 
 
 
     public Item(int index, string name, int pram, int cost, string targetStatus)
