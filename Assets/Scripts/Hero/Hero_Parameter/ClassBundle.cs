@@ -61,7 +61,21 @@ public class skill // 03-26 Lv 추가
 
 public class Item // Item은 이후 상점에서 별도로 쓰일 가능성이 있을거 같아 일단 장비는 Equip클래스를 사용하겠습니다 -> 송하늘 03-25
 {
+    public int Index;
+    public string Name;   //체력물약
+    public int Pram = -30;
+    public int cost;
+    public string TargetStatus = "HP";
 
+
+    public Item(int index, string name, int pram, int cost, string targetStatus)
+    {
+        this.Index = index;
+        this.Name = name;
+        this.Pram = pram;
+        this.cost = cost;
+        this.TargetStatus = targetStatus;
+    }
 }
 
 public class HeroSavingData

@@ -26,7 +26,6 @@ public class SkillFunc_ysg : MonoBehaviour
         }
 
     }
-
     private void Update()
     {
 
