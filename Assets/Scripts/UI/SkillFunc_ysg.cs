@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class SkillFunc_ysg : MonoBehaviour
 {
 
-    public int Index;
-    public string Name;
     public int LV;
     public int ATK;
     public int DEF;
@@ -22,7 +20,10 @@ public class SkillFunc_ysg : MonoBehaviour
 
     void Start()
     {
-
+        for (int i = 0; i < skillBtn.Length; i++)
+        {
+            skillBtn[i] = GameObject.Find("SkillBtn" + i).GetComponent<Button>();
+        }
 
     }
 
@@ -44,6 +45,13 @@ public class SkillFunc_ysg : MonoBehaviour
                     heroName = name;
                     isActive = true;
                     HeroCheck();
+                }
+                else
+                {
+                    isActive = false;
+                    ATK = 0;
+                    DEF = 0;
+                    SkillBtnClear();
                 }
                 }
             }
@@ -122,7 +130,9 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barbarian":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
+                        int i = 0;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
                         Debug.Log("바바리안 1번 스킬");
                         SkillBtnClear();
                         isActive = false;
@@ -133,7 +143,9 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Archer":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
+                        int i = 0;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
                         Debug.Log("아처 1번 스킬");
                         SkillBtnClear();
@@ -144,6 +156,9 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Knight":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 0;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
                         Debug.Log("기사 1번 스킬");
                         SkillBtnClear();
@@ -154,6 +169,9 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barristan":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 0;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
                         Debug.Log("중보병 1번 스킬");
                         SkillBtnClear();
@@ -164,6 +182,9 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Mage":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 0;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
                         Debug.Log("마법사 1번 스킬");
                         SkillBtnClear();
@@ -174,6 +195,9 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Porter":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 0;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
                         Debug.Log("짐꾼 1번 스킬");
                         SkillBtnClear();
@@ -198,8 +222,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barbarian":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
-                        Debug.Log("바바리안 1번 스킬");
+                        int i = 1;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("바바리안 2번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -209,9 +235,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Archer":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
+                        int i = 1;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
-                        Debug.Log("아처 1번 스킬");
+                        Debug.Log("아처 2번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -220,8 +248,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Knight":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 1;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
-                        Debug.Log("기사 1번 스킬");
+                        Debug.Log("기사 2번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -230,8 +261,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barristan":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 1;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
-                        Debug.Log("중보병 1번 스킬");
+                        Debug.Log("중보병 2번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -240,8 +274,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Mage":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 1;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
-                        Debug.Log("마법사 1번 스킬");
+                        Debug.Log("마법사 2번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -250,8 +287,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Porter":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 1;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
-                        Debug.Log("짐꾼 1번 스킬");
+                        Debug.Log("짐꾼 2번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -262,6 +302,7 @@ public class SkillFunc_ysg : MonoBehaviour
                     break;
             }
         }
+    
     }
     public void playerSkill3()
     {
@@ -273,8 +314,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barbarian":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
-                        Debug.Log("바바리안 1번 스킬");
+                        int i = 2;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("바바리안 3번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -284,9 +327,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Archer":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
-
-                        Debug.Log("아처 1번 스킬");
+                        int i = 2;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("아처 3번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -295,8 +339,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Knight":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("기사 1번 스킬");
+                        int i = 2;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("기사 3번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -305,8 +351,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barristan":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("중보병 1번 스킬");
+                        int i = 2;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("중보병 3번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -315,8 +363,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Mage":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("마법사 1번 스킬");
+                        int i = 2;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("마법사 3번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -325,8 +375,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Porter":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("짐꾼 1번 스킬");
+                        int i = 2;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("짐꾼 3번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -349,8 +401,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barbarian":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
-                        Debug.Log("바바리안 1번 스킬");
+                        int i = 3;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("바바리안 4번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -360,9 +414,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Archer":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
 
-                        Debug.Log("아처 1번 스킬");
+                        int i = 3;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("아처 4번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -371,8 +427,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Knight":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("기사 1번 스킬");
+                        int i = 3;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("기사 4번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -381,8 +439,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barristan":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("중보병 1번 스킬");
+                        int i = 3;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("중보병 4번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -391,8 +451,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Mage":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("마법사 1번 스킬");
+                        int i = 3;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("마법사 4번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -401,8 +463,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Porter":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("짐꾼 1번 스킬");
+                        int i = 3;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("짐꾼 4번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -424,8 +488,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barbarian":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
-                        Debug.Log("바바리안 1번 스킬");
+                        int i = 4;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("바바리안 5번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -435,9 +501,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Archer":
                     if (heroName == gameObject.tag)
                     {
-                        //스킬
-
-                        Debug.Log("아처 1번 스킬");
+                        int i = 4;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("아처 5번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -446,8 +513,11 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Knight":
                     if (heroName == gameObject.tag)
                     {
+                        int i = 4;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
 
-                        Debug.Log("기사 1번 스킬");
+                        Debug.Log("기사 5번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -456,8 +526,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Barristan":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("중보병 1번 스킬");
+                        int i = 4;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("중보병 5번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -466,8 +538,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Mage":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("마법사 1번 스킬");
+                        int i = 4;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("마법사 5번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
@@ -476,8 +550,10 @@ public class SkillFunc_ysg : MonoBehaviour
                 case "Porter":
                     if (heroName == gameObject.tag)
                     {
-
-                        Debug.Log("짐꾼 1번 스킬");
+                        int i = 4;
+                        ATK = gameObject.GetComponent<SkillScript>().skills[i].ATK;
+                        DEF = gameObject.GetComponent<SkillScript>().skills[i].DEF;
+                        Debug.Log("짐꾼 5번 스킬");
                         SkillBtnClear();
                         isActive = false;
                     }
