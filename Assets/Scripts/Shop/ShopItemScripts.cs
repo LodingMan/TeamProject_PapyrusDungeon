@@ -1,0 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ShopItemScripts : MonoBehaviour // 상점에 나타나는 아이템 스크립트입니다. 03-27 윤성근
+{
+    public ItemTable itemTable = new ItemTable();
+    public List<GameObject> hasItemList;
+
+    public ShopManager uiManager;
+    public GameObject inventory;
+    public int itemIdx;
+    public Button BuyBtn;
+
+
+    public void Start() //아이템 생성시 필요한 정보를 가져오는 코드입니다.
+    {
+        uiManager = GameObject.Find("UIManager").GetComponent<ShopManager>();
+        inventory = uiManager.inventory;
+        hasItemList = uiManager.hasItemList;
+        BuyBtn = gameObject.transform.GetChild(0).GetComponent<Button>();
+        ItemCheck();
+    }
+
+
+
+    public void ItemCheck() // 생성되는 아이템의 이름을 변경 해주며, itemIdx에 현재 아이템의 인덱스 번호를 대입합니다.
+    {
+        switch (gameObject.name)
+        {
+            case "HP_POTION_SHOP(Clone)":
+                itemIdx = itemTable.Item_Dictionary[0].Index;
+                gameObject.name = itemTable.Item_Dictionary[0].Name + "_Shop";
+                break;
+
+            case "MP_POTION_SHOP(Clone)":
+                itemIdx = itemTable.Item_Dictionary[1].Index;
+                gameObject.name = itemTable.Item_Dictionary[1].Name + "_Shop";
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void BuyItem() 
+    {
+        switch (itemIdx) // 대입한 인덱스 번호에 맞게 프리팹을 생성하는 함수를 호출합니다.
+        {
+            case 0:
+                ItemInstantiate();
+
+                break;
+            case 1:
+                ItemInstantiate();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+
+
+    public void ItemInstantiate() //아이템 구매 시 인벤토리에 프리팹을 생성합니다.
+    {
+        GameObject buyItem = Instantiate(uiManager.itemList[itemIdx]);
+        hasItemList.Add(buyItem);
+        buyItem.transform.SetParent(inventory.transform);
+        buyItem.transform.localPosition = inventory.transform.localPosition;
+        buyItem.transform.localScale = new Vector3(1, 1, 1);
+        Destroy(gameObject);
+    }
+}
