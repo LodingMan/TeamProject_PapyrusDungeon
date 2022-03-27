@@ -45,6 +45,7 @@ namespace Shin
                     equipScript.myEquip = heroManager.CurrentHeroDataList[i].equips;
                 }
             }
+
             text_Name.text = "이름 : " + statScript.myStat.Name;
             text_Job.text = "직업 : " + statScript.myStat.Job;
 
