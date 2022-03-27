@@ -31,7 +31,7 @@ public class ShopItemScripts : MonoBehaviour // 상점에 나타나는 아이템 스크립트�
         {
             case "HP_POTION_SHOP(Clone)":
                 itemIdx = itemTable.Item_Dictionary[0].Index;
-                gameObject.name = itemTable.Item_Dictionary[0].Name + "_Shop";
+                gameObject.name = itemTable.Item_Dictionary[0].Name + "_Shop"; //_Shop 이 붙는 오브젝트는 상점에 나타나는 오브젝트입니다.
                 break;
 
             case "MP_POTION_SHOP(Clone)":

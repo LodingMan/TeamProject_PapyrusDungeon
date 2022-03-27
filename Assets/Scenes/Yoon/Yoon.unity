@@ -1286,6 +1286,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586943913}
   m_CullTransparentMesh: 1
+--- !u!1001 &616480789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.HP
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.Job
+      value: Barbarian
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.Name
+      value: cho
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_Name
+      value: player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298836803496808127, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d7dc58fae1670e0408124f419a68cc04, type: 2}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
 --- !u!1 &626223531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +2006,9 @@ MonoBehaviour:
     Name: 
     Job: 
     HP: 0
+    MAXHP: 0
     MP: 0
+    MAXMP: 0
     Atk: 0
     Def: 0
     Cri: 0
@@ -1943,7 +2026,7 @@ MonoBehaviour:
   CurrentCreateHero: {fileID: 0}
   unemployedHeroList: []
   CurrentHeroList: []
-  guildScript: {fileID: 0}
+  guildManager: {fileID: 0}
 --- !u!4 &976341397
 Transform:
   m_ObjectHideFlags: 0
@@ -3008,21 +3091,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.HP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.Job
+      value: Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565267755258349164, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: myStat.Name
+      value: woo
+      objectReference: {fileID: 0}
     - target: {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
       propertyPath: m_Name
-      value: HeroObject
+      value: player1
       objectReference: {fileID: 0}
+    - target: {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298836803496808127, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3df4a970a8c815e44aa1f08274abc4b0, type: 2}
     - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.321
       objectReference: {fileID: 0}
     - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 9100187150094190840, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4279,7 +4382,7 @@ MonoBehaviour:
   - {fileID: 1541910748025531950, guid: ea7b7eaeab60b724884e9506b3202a44, type: 3}
   itemList:
   - {fileID: 1437876566852177027, guid: 6122c401c46124e44ba56149e2f37adf, type: 3}
-  - {fileID: 6853339036901859854, guid: 57a74f1d921ad9f4b8488220b4a312fb, type: 3}
+  - {fileID: 8373294464524749567, guid: 57a74f1d921ad9f4b8488220b4a312fb, type: 3}
   hasItemList: []
   inventory: {fileID: 1073883395}
   shopPanel: {fileID: 481834716}
@@ -4300,7 +4403,9 @@ MonoBehaviour:
     Name: 
     Job: 
     HP: 0
+    MAXHP: 0
     MP: 0
+    MAXMP: 0
     Atk: 0
     Def: 0
     Cri: 0
@@ -4308,6 +4413,8 @@ MonoBehaviour:
     Agi: 0
     Speed: 0
   heroName: 
+  isActive: 0
+  isSelect: 0
 --- !u!1 &2105117948
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,15 +6,15 @@ using System.IO;
 
 public class ShopManager : MonoBehaviour
 {
-    public Item[] item = new Item[10];
+    public List<Item> item = new List<Item>(); //동적 크기 할당을 위해 배열에서 리스트로 바꿨습니다. 03-27 윤성근
     public ItemScripts itemScripts;
     public GameObject itemPrefab;
     public List<GameObject> ShopItemList = new List<GameObject>(); //상점에 나타나는 아이템 프리팹 리스트
     public List<GameObject> itemList = new List<GameObject>(); //인벤토리에 들어올 아이템 프리팹 리스트
-    public List<GameObject> hasItemList = new List<GameObject>(); //가지고 있는 아이템 리스트입니다. 데이터 저장 할때 필요
+    public List<GameObject> hasItemList = new List<GameObject>(); //가지고 있는 아이템 리스트입니다. 데이터 저장 할때 필요합니다.
 
-    public GameObject inventory;
-    public GameObject shopPanel;
+    public GameObject inventory; // 인벤토리 패널 위치
+    public GameObject shopPanel; // 상점 패널 위치
 
 
     public void ItemSpawn() //상점 버튼을 눌렀을 시 아이템을 생성합니다. (나중에 랜덤으로 바꿀 예정) 03-27 윤성근
@@ -27,7 +27,9 @@ public class ShopManager : MonoBehaviour
     {
         for (int i = 0; i < hasItemList.Count; i++)
         {
-            item[i] = hasItemList[i].GetComponent<ItemScripts>().item;
+
+                item[i] = hasItemList[i].GetComponent<ItemScripts>().item;
+
         }
 
         string jdata = JsonConvert.SerializeObject(item);
@@ -38,9 +40,9 @@ public class ShopManager : MonoBehaviour
     {
         switch (LodingItemSavingData.Name)
         {
-            case "체력물약":
+            case "체력물약": 
                 itemPrefab = Instantiate(itemList[0]);
-                itemPrefab.transform.SetParent(inventory.transform);
+                itemPrefab.transform.SetParent(inventory.transform); // 인벤토리 위치에 생성을 합니다.
                 itemPrefab.transform.localPosition = inventory.transform.localPosition;
                 itemPrefab.transform.localScale = new Vector3(1, 1, 1);
                 break;
@@ -55,18 +57,18 @@ public class ShopManager : MonoBehaviour
                 break;
         }
 
-        hasItemList.Add(itemPrefab);
+        hasItemList.Add(itemPrefab); // 아이템을 인벤토리 리스트에 추가합니다.
 
     }
 
-    public void ItemLoad() // Json파일을 불러온 다음 LoadItemCreate 함수를 실행 시키빈다.
+    public void ItemLoad() // Json파일을 불러온 다음 LoadItemCreate 함수를 실행 시킵니다.
     {
-        string jdata = File.ReadAllText(Application.dataPath + "/ItemSave.Json");
-        item = JsonConvert.DeserializeObject<Item[]>(jdata);
+        string jdata = File.ReadAllText(Application.dataPath + "/ItemSave.Json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
+        item = JsonConvert.DeserializeObject<List<Item>>(jdata);
 
-        for (int i = 0; i < item.Length; i++)
+        for (int i = 0; i < item.Count; i++)
         {
-            if (item[i] == null)
+            if (item[i].Name == "" ) // item이 배열이였을때 빈 공간까지 아이템으로 채워지는 오류가 있어서 리스트로 바꾸고, 아이템 Name에 공백이 있으면 스킵하는 방식으로 수정 하였습니다.
             {
                 break;
             }
