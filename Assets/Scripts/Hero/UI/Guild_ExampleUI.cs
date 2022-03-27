@@ -9,8 +9,9 @@ public class Guild_ExampleUI : MonoBehaviour      //예시클래스이므로 실제로 사용
     public Text ClassJob;
     public EquipTable equipTable = new EquipTable();
 
-
     public Song.HeroManager heroManager;
+
+
     public void TestFunc()
     {
         // 함수 사용시 UI상의 텍스트가 현재 생성되어있는 히어로 오브젝트의 직업으로 변경

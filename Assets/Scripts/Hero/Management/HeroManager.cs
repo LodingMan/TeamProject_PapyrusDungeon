@@ -18,6 +18,8 @@ namespace Song
 
         public GameObject CurrentCreateHero; //막 생성된 히어로 오브젝트에 값을 대입하기 위해 선언.
 
+        public List<GameObject> unemployedHeroList; //생성은 됐지만 미고용 상태인 영웅 리스트. 고용하면 해당 리스트에서 CurrentHeroList로 옮겨진다.  
+
         public List<GameObject> CurrentHeroList; // 현재 생성된 히어로
 
         public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //생성된 HeroObject의 SavingData를 한번에 담아서 Save하기 위함
@@ -25,20 +27,30 @@ namespace Song
 
         public Name_JobTable name_JobTable = new Name_JobTable(); //랜덤한 영어이름 배열과 , 직업이름 배열이 들어있는 클래스
 
+<<<<<<< Updated upstream
         
 
+=======
+>>>>>>> Stashed changes
         int JobSkillStartIndex; // 0이면 0~4번 인덱스 , 5라면 5번부터 9번까지의 인덱스를 for문으로 돌려서 스킬값을 대입함, 하단 for문 참조
 
+        public GuildManager guildScript;
 
-        public void RandomHeroCreate() //Name_JobTable의 JobTable를 랜덤으로 돌려 랜덤한 영웅 생성할 예정
+
+        public void RandomHeroCreate()
         {
-            FirstHeroCreate("Babarian");
+            for (int i = 0; i < guildScript.oneDayCreateHeroCount; i++) // 현재 길드가 허용하는 생성 수만큼 랜덤생성
+            {
+                string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //랜덤한 직업 이름 가져옴
+                FirstHeroCreate(rndJob);
+            }
+
         }
 
 
         public void FirstHeroCreate(string HeroJobName)  //랜덤으로 초기값의 HeroObject를 생성하는 함수. 
         {
-            string RandomName = name_JobTable.RandomNameTable[Random.Range(0, name_JobTable.RandomNameTable.Length + 1)]; //생성할 오브젝트의 랜덤한 이름 만들기
+            string RandomName = name_JobTable.RandomNameTable[Random.Range(0, name_JobTable.RandomNameTable.Length)]; //생성할 오브젝트의 랜덤한 이름 만들기
 
             #region //직업의 종류별로 스탯 부여 오브젝트 생성, 스킬 인덱스 부여
             switch (HeroJobName)
@@ -61,14 +73,14 @@ namespace Song
                     break;
                 case "Babarian":
 
-                    initStat = new Stat(2, RandomName, "Babarian", 9, 9, 5, 5, 2, 2, 3, 5); 
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; 
-                    CurrentCreateHero.name = initStat.Name; 
+                    initStat = new Stat(2, RandomName, "Babarian", 9, 9, 5, 5, 2, 2, 3, 5);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
+                    CurrentCreateHero.name = initStat.Name;
 
                     JobSkillStartIndex = 10;
 
                     break;
-                case "Knight:":
+                case "Knight":
 
                     initStat = new Stat(3, RandomName, "Knight", 9, 9, 5, 5, 2, 2, 3, 5);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
@@ -84,7 +96,7 @@ namespace Song
 
                     JobSkillStartIndex = 20;
                     break;
-                case "Porter:":
+                case "Porter":
 
                     initStat = new Stat(5, RandomName, "Porter", 9, 9, 5, 5, 2, 2, 3, 5);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
@@ -98,19 +110,6 @@ namespace Song
             }
             #endregion
 
-            #region // 파라미터 변경. 상세내용은 ClassBundle.cs 66참조
-            //CurrentCreateHero.GetComponent<StatScript>().Index = initStat.Index; //생성한 히어로 오브젝트의 StatScript의 스텟
-            //CurrentCreateHero.GetComponent<StatScript>().Name = initStat.Name;
-            //CurrentCreateHero.GetComponent<StatScript>().Job = initStat.Job;
-            //CurrentCreateHero.GetComponent<StatScript>().HP = initStat.HP;
-            //CurrentCreateHero.GetComponent<StatScript>().MP = initStat.MP;
-            //CurrentCreateHero.GetComponent<StatScript>().Atk = initStat.Atk;
-            //CurrentCreateHero.GetComponent<StatScript>().Def = initStat.Def;
-            //CurrentCreateHero.GetComponent<StatScript>().Cri = initStat.Cri;
-            //CurrentCreateHero.GetComponent<StatScript>().Acc = initStat.Acc;
-            //CurrentCreateHero.GetComponent<StatScript>().Agi = initStat.Agi;
-            //CurrentCreateHero.GetComponent<StatScript>().Speed = initStat.Speed;
-            #endregion
             //해당 직업에 맞는 스텟을 각 StatScript에 대입
             CurrentCreateHero.GetComponent<StatScript>().myStat = initStat;
 
@@ -123,13 +122,19 @@ namespace Song
             //Equip의 경우는 처음 생성될때 빈손으로 시작한다 가정하고 넣지 않음. 
             //각 Hero오브젝트의 EquipScript의 Equip는 선언만 되어있을뿐 값이 들어있지 않음.
 
+
+
+            unemployedHeroList.Add(CurrentCreateHero); //길드에서 해당 리스트를 받아 고용할 영웅 리스트를 출력한다. 
+
+
             //현재 게임에 오브젝트로 등장한 Hero오브젝트 리스트
-            CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
+           // CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
                                                     // 현재는 생성하자마나 CurrentCreateHero리스트에 들어가게 되지만 
                                                     // 게임 진행 흐름상 영웅을 고용한 후에야 CurrentHeroList에 들어가야 하기 때문에
                                                     // 일단 생성한 오브젝트를 '고용할' 영웅 리스트에 넣어두고 UI를 출력 후,
                                                     // 고용하면 '고용한' 영웅 리스트에 옮겨 준 후 UI업데이트하는 방법이 있다고 생각함  -> 송하늘
-
+                                                    //03-27 수정. CurrentHeroList는 HeroManager에 선언되어있지만 리스트의 맴버를 추가하는 역할은 길드에서 진행함. 
+                                                    //CurrentHeroList가 선언되는곳은 여전히 HeroManager에 있으므로 사용하는데 변함은 없다. 
 
         }
 
@@ -189,7 +194,6 @@ namespace Song
         {
             string jdata = File.ReadAllText(Application.dataPath + "/Stat.Json");
             CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //불러온 savingdata를 LoadHeroCreate함수를 사용해 heroObject생성
-                                                                                          // 테스트용으로 사용한거라 List를 넣지않고 배열의 내용물 하나만 대입함. 
 
             for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList의 길이가 30 이므로 30번 반복됨.
             {
@@ -199,8 +203,13 @@ namespace Song
                 }
                 LoadHeroCreate(CurrentHeroDataList[i]);
             }
+<<<<<<< Updated upstream
+=======
+            Debug.Log(CurrentHeroDataList[0].stat.HP);
+>>>>>>> Stashed changes
         }
     }
+
 
 }
 
