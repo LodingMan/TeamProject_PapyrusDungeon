@@ -16,27 +16,69 @@ public class GuildManager : MonoBehaviour
     public GameObject unemployedHero_UI_Prefab;
 
     public Song.HeroManager heroManager; // inspector창에 HeroManager넣었음
+    public List<Button> Init_CurrentHeroList_Buttons;
+    public List<string> unemployeHeroNames;
+
+    public List<GameObject> unemployedHero; //함수의 매개변수를 전역으로 저장.
+    
+    public GameObject Current_UI_Prefab;
 
 
-
-    public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> unemployedHero)
+    public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
     {
-        GameObject Current_UI_Prefab;
+        unemployedHero = UnemployedHero;
 
-        for (int i = 0; i < unemployedHero.Count; i++)
+        for (int i = 0; i < UnemployedHero.Count; i++)
         {
             Current_UI_Prefab = Instantiate(unemployedHero_UI_Prefab);
+            Current_UI_Prefab.name = "" + i;
             Current_UI_Prefab.transform.parent = unemployedHero_UI_Prefabs_Create_Point.transform;
-            Current_UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = "Name : " + unemployedHero[i].GetComponent<StatScript>().myStat.Name;
-            Current_UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + unemployedHero[i].GetComponent<StatScript>().myStat.Job;
-
-
+            Current_UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = "Name : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Name;
+            Current_UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
         }
 
     }
 
-    private void Start()
+    #region //생성되는 모든 버튼의 기능을 달리하기 위해 그냥 함수 10개 갖다 박음
+    public void ListBtn0()
     {
-
+        heroManager.CurrentHeroList.Add(unemployedHero[0]);
     }
+    public void ListBtn1()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[1]);
+    }
+    public void ListBtn2()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[2]);
+    }
+    public void ListBtn3()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[3]);
+    }
+    public void ListBtn4()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[4]);
+    }
+    public void ListBtn5()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[5]);
+    }
+    public void ListBtn6()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[6]);
+    }
+    public void ListBtn7()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[7]);
+    }
+    public void ListBtn8()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[8]);
+    }
+    public void ListBtn9()
+    {
+        heroManager.CurrentHeroList.Add(unemployedHero[9]);
+    }
+    #endregion
 }
