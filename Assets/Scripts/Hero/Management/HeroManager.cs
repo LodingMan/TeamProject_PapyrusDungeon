@@ -173,7 +173,7 @@ namespace Song
                 CurrentCreateHero.GetComponent<EquipScript>().myEquip = LodingHeroSavingData.equips;
             }
 
-           // CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
+            CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
 
         }
 
