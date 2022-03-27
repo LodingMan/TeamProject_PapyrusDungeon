@@ -25,20 +25,24 @@ namespace Song
         public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //생성된 HeroObject의 SavingData를 한번에 담아서 Save하기 위함
                                                                               // Save시에 List로 저장하고 싶었으나 에러남, 이유를 아시거나 알게되신분은 정보공유좀... -> 송하늘 03/26
 
+
         public Name_JobTable name_JobTable = new Name_JobTable(); //랜덤한 영어이름 배열과 , 직업이름 배열이 들어있는 클래스
 
         int JobSkillStartIndex; // 0이면 0~4번 인덱스 , 5라면 5번부터 9번까지의 인덱스를 for문으로 돌려서 스킬값을 대입함, 하단 for문 참조
 
-        public GuildManager guildScript;
+
+        public GuildManager guildManager;
 
 
         public void RandomHeroCreate()
         {
-            for (int i = 0; i < guildScript.oneDayCreateHeroCount; i++) // 현재 길드가 허용하는 생성 수만큼 랜덤생성
+            for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) // 현재 길드가 허용하는 생성 수만큼 랜덤생성
             {
                 string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //랜덤한 직업 이름 가져옴
                 FirstHeroCreate(rndJob);
             }
+
+            guildManager.UnemployedHero_UI_Prefabs_UpLoad(unemployedHeroList);
 
         }
 
@@ -121,7 +125,6 @@ namespace Song
 
             unemployedHeroList.Add(CurrentCreateHero); //길드에서 해당 리스트를 받아 고용할 영웅 리스트를 출력한다. 
 
-
             //현재 게임에 오브젝트로 등장한 Hero오브젝트 리스트
            // CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
                                                     // 현재는 생성하자마나 CurrentCreateHero리스트에 들어가게 되지만 
@@ -170,7 +173,7 @@ namespace Song
                 CurrentCreateHero.GetComponent<EquipScript>().myEquip = LodingHeroSavingData.equips;
             }
 
-            CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
+           // CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
 
         }
 
