@@ -17,11 +17,11 @@ namespace Shin
         public Text text_Job;
         public Button btn;
 
-        public static int healingCnt;
+        public static int healingCnt; // 회복중인 영웅 리스트 순서에 사용할 static int
         private void Awake()
         {
             btn = GetComponent<Button>();
-            btn.onClick.AddListener(Create_EmployedHero_UI_Prefab); // 버튼이 눌리면
+            btn.onClick.AddListener(Create_EmployedHero_UI_Prefab); // 버튼이 눌리면 함수 실행.
 
         }
 
@@ -32,6 +32,7 @@ namespace Shin
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
+            //초기화
 
             for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // 리스트 길이만큼.
             {
@@ -53,12 +54,13 @@ namespace Shin
             Destroy(gameObject);
 
             uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform);
-            uI_ChurchManager.employedHero_UI.name = gameObject.name;
-
+            // 오브젝트 생성.
+            uI_ChurchManager.employedHero_UI.name = gameObject.name; // 이름 변경.
+            
             employedHeroData.stat = statScript.myStat;
             employedHeroData.skills = skillScript.skills;
             employedHeroData.equips = equipScript.myEquip;
-
+            // 값 대입.
 
         }
 
