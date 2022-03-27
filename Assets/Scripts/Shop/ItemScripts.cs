@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemScripts : MonoBehaviour //인벤토리 아이템에 달리는 스크립트입니다. 03-27 윤성근
 {                                        //아이템 사용 눌렀을 시 이벤트 생성 예정입니다.
     public Item item;
+    public ItemUseManager itemUseManager;
     public ItemTable itemTable = new ItemTable();
     public int itemIndex; // 오브젝트를 구별하기 위해 넣은 변수입니다.
+    public Button useBtn;
 
 
     private void Start()
     {
+        itemUseManager = GameObject.Find("UIManager").GetComponent<ItemUseManager>();
+        useBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
 
         switch (gameObject.name) // 현재 오브젝트의 이름을 찾아서 그에 맞는 함수를 호출합니다.
         {
@@ -43,6 +48,24 @@ public class ItemScripts : MonoBehaviour //인벤토리 아이템에 달리는 스크립트입니
         gameObject.name = item.Name;
     }
 
+    public void UseItem()
+    {
+        if (itemUseManager.name != "0")
+        {
+            switch (item.TargetStatus)
+            {
+                case "HP":
+                    itemUseManager.stats.HP += item.Pram;
 
+                    break;
+                case "MP":
+                    itemUseManager.stats.MP += item.Pram;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
 
 }
