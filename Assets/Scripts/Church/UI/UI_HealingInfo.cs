@@ -52,8 +52,6 @@ namespace Shin
             gameObject.SetActive(false);
             Destroy(gameObject);
 
-            //uI_ChurchManager.employedHero_UI[healingCnt] = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform);
-            //uI_ChurchManager.employedHero_UI[healingCnt].name = gameObject.name;
             uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform);
             uI_ChurchManager.employedHero_UI.name = gameObject.name;
 
