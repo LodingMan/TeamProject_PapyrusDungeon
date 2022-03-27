@@ -123,7 +123,7 @@ namespace Song
 
 
             //현재 게임에 오브젝트로 등장한 Hero오브젝트 리스트
-           // CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
+            //CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
                                                     // 현재는 생성하자마나 CurrentCreateHero리스트에 들어가게 되지만 
                                                     // 게임 진행 흐름상 영웅을 고용한 후에야 CurrentHeroList에 들어가야 하기 때문에
                                                     // 일단 생성한 오브젝트를 '고용할' 영웅 리스트에 넣어두고 UI를 출력 후,
