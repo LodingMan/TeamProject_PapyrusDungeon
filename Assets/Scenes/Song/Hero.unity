@@ -796,10 +796,18 @@ MonoBehaviour:
     Acc: 0
     Agi: 0
     Speed: 0
+  initItem:
+    Index: 0
+    Name: 
+    Pram: 0
+    cost: 0
+    TargetStatus: 
   HeroPrefabs:
   - {fileID: 7171114485774513217, guid: 2f39240acf6e5334a8ade01f3d9a3db3, type: 3}
   CurrentCreateHero: {fileID: 0}
+  unemployedHeroList: []
   CurrentHeroList: []
+  guildScript: {fileID: 0}
 --- !u!4 &663041007
 Transform:
   m_ObjectHideFlags: 0

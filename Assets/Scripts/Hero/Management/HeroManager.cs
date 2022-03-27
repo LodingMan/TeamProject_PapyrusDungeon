@@ -31,15 +31,14 @@ namespace Song
 
         public GuildManager guildScript;
 
-
         public void RandomHeroCreate()
         {
-            for (int i = 0; i < guildScript.oneDayCreateHeroCount; i++) // 현재 길드가 허용하는 생성 수만큼 랜덤생성
+            /*for (int i = 0; i < guildScript.oneDayCreateHeroCount; i++) // 현재 길드가 허용하는 생성 수만큼 랜덤생성
             {
-                string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //랜덤한 직업 이름 가져옴
-                FirstHeroCreate(rndJob);
-            }
-
+                
+            }*/
+            string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //랜덤한 직업 이름 가져옴
+            FirstHeroCreate(rndJob);
         }
 
 
@@ -123,7 +122,7 @@ namespace Song
 
 
             //현재 게임에 오브젝트로 등장한 Hero오브젝트 리스트
-           // CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
+           CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
                                                     // 현재는 생성하자마나 CurrentCreateHero리스트에 들어가게 되지만 
                                                     // 게임 진행 흐름상 영웅을 고용한 후에야 CurrentHeroList에 들어가야 하기 때문에
                                                     // 일단 생성한 오브젝트를 '고용할' 영웅 리스트에 넣어두고 UI를 출력 후,
