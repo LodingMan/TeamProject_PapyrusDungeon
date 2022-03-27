@@ -27,11 +27,6 @@ namespace Song
 
         public Name_JobTable name_JobTable = new Name_JobTable(); //랜덤한 영어이름 배열과 , 직업이름 배열이 들어있는 클래스
 
-<<<<<<< Updated upstream
-        
-
-=======
->>>>>>> Stashed changes
         int JobSkillStartIndex; // 0이면 0~4번 인덱스 , 5라면 5번부터 9번까지의 인덱스를 for문으로 돌려서 스킬값을 대입함, 하단 for문 참조
 
         public GuildManager guildScript;
@@ -203,10 +198,7 @@ namespace Song
                 }
                 LoadHeroCreate(CurrentHeroDataList[i]);
             }
-<<<<<<< Updated upstream
-=======
             Debug.Log(CurrentHeroDataList[0].stat.HP);
->>>>>>> Stashed changes
         }
     }
 
