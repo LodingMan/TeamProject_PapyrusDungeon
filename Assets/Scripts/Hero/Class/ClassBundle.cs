@@ -11,7 +11,9 @@ public class Stat
     public string Name;
     public string Job;
     public int HP;
+    public int MAXHP;
     public int MP;
+    public int MAXMP;
     public int Atk;
     public int Def;
     public int Cri;
@@ -19,13 +21,15 @@ public class Stat
     public int Agi;
     public int Speed;
 
-    public Stat(int index, string name, string job, int hp, int mp, int atk, int def, int cri, int acc, int agi, int speed)
+    public Stat(int index, string name, string job, int hp, int maxhp, int mp, int maxmp, int atk, int def, int cri, int acc, int agi, int speed)
     {
         this.Index = index;
         this.Name = name;
         this.Job = job;
         this.HP = hp;
+        this.MAXHP = maxhp;
         this.MP = mp;
+        this.MAXMP = maxmp;
         this.Atk = atk;
         this.Def = def;
         this.Cri = cri;
