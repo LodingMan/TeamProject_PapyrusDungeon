@@ -35,6 +35,7 @@ namespace Shin
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
+            // 초기화
 
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
@@ -64,11 +65,11 @@ namespace Shin
             healingHeroData.skills = skillScript.skills;
             healingHeroData.equips = equipScript.myEquip;
 
-            uI_ChurchManager.healingHeroDataList.Add(healingHeroData);
+            uI_ChurchManager.healingHeroDataList.Add(healingHeroData); // healingHeroDataList 리스트에 ADD
 
-            Debug.Log(uI_ChurchManager.healingHeroDataList[EmployedCnt].stat.Name);
+            Debug.Log(uI_ChurchManager.healingHeroDataList[EmployedCnt].stat.Name); // 잘 들어갔는지 이름 확인.
 
-            EmployedCnt++;
+            EmployedCnt++; // healingHeroDataList[순서]에 사용할 static 변수.
         }
     }
 }
