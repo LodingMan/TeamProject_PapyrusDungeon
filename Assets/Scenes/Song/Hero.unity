@@ -207,7 +207,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 663041006}
-        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Example_HeroStatCreator, Assembly-CSharp
         m_MethodName: _Load
         m_Mode: 1
         m_Arguments:
@@ -781,7 +781,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 663041005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9bc0ccb5b7bccc46a8bd058495469e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 37c4ec43f9597304ab364f6a7b220054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initStat:
@@ -1342,7 +1342,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 663041006}
-        m_TargetAssemblyTypeName: Song.HeroManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Example_HeroStatCreator, Assembly-CSharp
         m_MethodName: RandomHeroCreate
         m_Mode: 1
         m_Arguments:
@@ -1475,7 +1475,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 663041006}
-        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Example_HeroStatCreator, Assembly-CSharp
         m_MethodName: _Save
         m_Mode: 1
         m_Arguments:
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClassJob: {fileID: 524428193}
-  heroManager: {fileID: 663041006}
+  heroManager: {fileID: 0}
 --- !u!4 &1467999600
 Transform:
   m_ObjectHideFlags: 0
