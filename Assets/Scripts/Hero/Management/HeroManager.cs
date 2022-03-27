@@ -56,7 +56,7 @@ namespace Song
             {
                 case "Mage":
 
-                    initStat = new Stat(0, RandomName, "Mage", 9, 9, 5, 5, 2, 2, 3, 5); //초기 마법사의 스텟
+                    initStat = new Stat(0, RandomName, "Mage", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5); //초기 마법사의 스텟
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; //마법사 생성
                     CurrentCreateHero.name = initStat.Name; // 생성될 오브젝트의 고유 이름
 
@@ -64,7 +64,7 @@ namespace Song
                     break;
                 case "Archer":
 
-                    initStat = new Stat(1, RandomName, "Archer", 10, 10, 10, 3, 9, 7, 6, 10); //초기 궁수의 스텟
+                    initStat = new Stat(1, RandomName, "Archer", 10 , 10 , 10 , 10, 10, 3, 9, 7, 6, 10); //초기 궁수의 스텟
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; //궁수 생성
                     CurrentCreateHero.name = initStat.Name; // 생성될 오브젝트의 고유 이름
 
@@ -72,7 +72,7 @@ namespace Song
                     break;
                 case "Babarian":
 
-                    initStat = new Stat(2, RandomName, "Babarian", 9, 9, 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(2, RandomName, "Babarian", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
@@ -81,7 +81,7 @@ namespace Song
                     break;
                 case "Knight":
 
-                    initStat = new Stat(3, RandomName, "Knight", 9, 9, 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(3, RandomName, "Knight", 9, 9 , 5 , 5 , 5, 5, 2, 2, 3, 5);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
@@ -89,7 +89,7 @@ namespace Song
                     break;
                 case "Barristan":
 
-                    initStat = new Stat(4, RandomName, "Barristan", 9, 9, 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(4, RandomName, "Barristan", 9 , 9 , 9, 9 , 5, 5, 2, 2, 3, 5);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
@@ -97,7 +97,7 @@ namespace Song
                     break;
                 case "Porter":
 
-                    initStat = new Stat(5, RandomName, "Porter", 9, 9, 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(5, RandomName, "Porter", 9, 9 , 9, 9 , 5, 5, 2, 2, 3, 5);
                     CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
