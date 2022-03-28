@@ -33,6 +33,11 @@ namespace Song
 
         public GuildManager guildManager;
 
+        public NaviMeshMgr naviMeshMgr;
+        private void Start()
+        {
+            naviMeshMgr = GameObject.Find("NaviMeshMgr").GetComponent<NaviMeshMgr>();
+        }
 
         public void RandomHeroCreate()
         {
@@ -174,7 +179,7 @@ namespace Song
             }
 
             CurrentHeroList.Add(CurrentCreateHero); // 이 리스트를 기준으로 UI생성및 히어로 컨트롤 
-
+            naviMeshMgr.CurrentHero[NaviMeshMgr.num++] = CurrentCreateHero;
         }
 
 
@@ -193,6 +198,7 @@ namespace Song
             string jdata = File.ReadAllText(Application.dataPath + "/Stat.Json");
             CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //불러온 savingdata를 LoadHeroCreate함수를 사용해 heroObject생성
 
+            naviMeshMgr.CurrentHero = new GameObject[CurrentHeroDataList.Length];
             for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList의 길이가 30 이므로 30번 반복됨.
             {
                 if (CurrentHeroDataList[i] == null)  //배열이라 남은공간은 null이 되어버리므로 null을 만나면 for문을 멈춤
