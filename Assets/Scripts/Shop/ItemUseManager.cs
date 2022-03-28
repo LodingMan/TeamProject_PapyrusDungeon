@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//==================================================================================================//
+// 전체적인 아이템, 장비 사용 및 착용 시 필요한 스크립트 입니다. 03-28 윤성근
+//==================================================================================================//
 public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟을 바꾸는 스크립트입니다. 03-27윤성근
 {
     public Stat stats;
@@ -12,23 +14,23 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
     void Update()
     {
-            if (Input.GetMouseButtonDown(0)) // 오브젝트 클릭 시 정보 가져오는 스크립트입니다. 추후에 터치로 바꿀 예정입니다.
+        if (Input.GetMouseButtonDown(0)) // 오브젝트 클릭 시 정보 가져오는 스크립트입니다. 추후에 터치로 바꿀 예정입니다.
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray.origin, ray.direction, out hit))
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray.origin, ray.direction, out hit))
-                {
-                    if (hit.transform.gameObject.tag == "Player") // 레이를 쏴서 태그가 Player이면 그 오브젝트의 정보를 가져옵니다.
-                    {                                             // 그 후에 ItemScripts에 있는 함수에 따라서 정보를 변경합니다.
-                        isActive = true;
-                        stats = hit.transform.gameObject.GetComponent<StatScript>().myStat;
-                        equips = hit.transform.gameObject.GetComponent<EquipScript>().myEquip;
-                        heroName = hit.transform.gameObject.name;
-                        Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
-                    }
-
+                if (hit.transform.gameObject.tag == "Player") // 레이를 쏴서 태그가 Player이면 그 오브젝트의 정보를 가져옵니다.
+                {                                             // 그 후에 ItemScripts에 있는 함수에 따라서 정보를 변경합니다.
+                    isActive = true;
+                    stats = hit.transform.gameObject.GetComponent<StatScript>().myStat;
+                    equips = hit.transform.gameObject.GetComponent<EquipScript>().myEquip;
+                    heroName = hit.transform.gameObject.name;
+                    Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
                 }
+
             }
+        }
 
     }
 
