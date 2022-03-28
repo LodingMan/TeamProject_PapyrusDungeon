@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+//=================================================================//
+//해당 스크립트는 고용되지않은 UI Prefab에서 사용되는 컴포넌트 입니다. //
+//================================================================//
 public class Guild_UI : MonoBehaviour
 {
     GuildManager guildManager;
@@ -64,10 +67,4 @@ public class Guild_UI : MonoBehaviour
 
 
     }
-
-    public void DestroyMine()
-    {
-    }
-
-
 }
