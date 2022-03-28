@@ -36,7 +36,7 @@ namespace Song
         public NaviMeshMgr naviMeshMgr;
         private void Start()
         {
-            naviMeshMgr = GameObject.Find("NaviMeshMgr").GetComponent<NaviMeshMgr>();
+            //naviMeshMgr = GameObject.Find("NaviMeshMgr").GetComponent<NaviMeshMgr>();
         }
 
         public void RandomHeroCreate()

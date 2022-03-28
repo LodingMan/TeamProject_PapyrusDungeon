@@ -29,6 +29,7 @@ public class GuildManager : MonoBehaviour
     public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
     {
 
+        Current_UI_Prefabs.Clear();
         Array.Clear(unemployedHero, 0, unemployedHero.Length); //나중에 전투로 넘어가면 이걸로 unemploydHero배열 비울거임
 
         for (int i = 0; i < UnemployedHero.Count; i++)

@@ -25003,6 +25003,7 @@ MonoBehaviour:
   unemployedHeroList: []
   CurrentHeroList: []
   guildManager: {fileID: 2140480640}
+  naviMeshMgr: {fileID: 0}
 --- !u!1001 &672977853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30929,7 +30930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93, y: 15.3756}
+  m_AnchoredPosition: {x: 279, y: 15.3756}
   m_SizeDelta: {x: 510.8817, y: 939.2488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816517184
@@ -59651,7 +59652,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -607, y: 15.3756}
+  m_AnchoredPosition: {x: -303, y: 15.3756}
   m_SizeDelta: {x: 510.8817, y: 939.2488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1485368691
