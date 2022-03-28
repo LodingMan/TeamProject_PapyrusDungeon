@@ -4,10 +4,12 @@ using UnityEngine.UI;
 //=================================================================//
 //해당 스크립트는 고용되지않은 UI Prefab에서 사용되는 컴포넌트 입니다. //
 //================================================================//
-public class Guild_UI : MonoBehaviour
+public class Unemployed_Hero_UI_Script : MonoBehaviour
 {
     GuildManager guildManager;
     GameObject UI_Prefab;
+    public GameObject This_Prefab_Object; //내가 무슨 오브젝트를 가리키고 있나
+    static int Current_Hero_Prefab_Count = 0;
     private void Start()
     {
         guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
@@ -56,9 +58,12 @@ public class Guild_UI : MonoBehaviour
         }
         //  transform.parent = guildManager.CurrentHero_UI_Prefabs_Create_Point.transform;
         UI_Prefab = Instantiate(guildManager.currentHero_UI_Prefab);
+        UI_Prefab.name = "" + Current_Hero_Prefab_Count;
+        Current_Hero_Prefab_Count++;
         UI_Prefab.transform.parent = guildManager.currentHero_UI_Prefabs_Create_Point.transform;
         UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = gameObject.transform.GetChild(0).GetComponent<Text>().text;
         UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
+        UI_Prefab.GetComponent<Current_Hero_UI_Script>().This_Prefab_Object = This_Prefab_Object; //고용전 영웅에서 고용된 영웅 프리팹으로 넘어가면서 오브젝트 인수인계
         Destroy(gameObject);
 
         gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(false);

@@ -2,12 +2,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems;
 
 //========================================================================================//
 // 해당 스크립트는 길드의 수치와 UI를 한번에 관리하며 CurrentHeroList의 맴버는 여기서 정해집니다//
 //========================================================================================//
 public class GuildManager : MonoBehaviour
 {
+
+    public void OnDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+
+    }
     public int guildLv = 1;
     public int oneDayCreateHeroCount = 3; // 주차가 넘어갔을 떄 생성할 Hero의 수. 길드가 레벨업하게 된다면 해당 수가 증가해 하루에 고용할 수 있는 영웅의 수가 증가한다. 
 
@@ -56,6 +77,7 @@ public class GuildManager : MonoBehaviour
             Current_UI_Prefabs[i].transform.parent = unemployedHero_UI_Prefabs_Create_Point.transform;
             Current_UI_Prefabs[i].transform.GetChild(0).GetComponent<Text>().text = "Name : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Name;
             Current_UI_Prefabs[i].transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
+            Current_UI_Prefabs[i].GetComponent<Unemployed_Hero_UI_Script>().This_Prefab_Object = UnemployedHero[i];
         }
         UnemployedHero.Clear();
     }
@@ -70,6 +92,8 @@ public class GuildManager : MonoBehaviour
             currentPrefab.transform.parent = currentHero_UI_Prefabs_Create_Point.transform;
             currentPrefab.transform.GetChild(0).GetComponent<Text>().text = "Name : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Name;
             currentPrefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Job;
+            currentPrefab.GetComponent<Current_Hero_UI_Script>().This_Prefab_Object = heroManager.CurrentHeroList[i];
+            currentPrefab.name = "" + i;
         }
 
 
@@ -131,5 +155,7 @@ public class GuildManager : MonoBehaviour
         heroManager.CurrentHeroList.Add(unemployedHero[9]);
         unemployedHero[9] = null;
     }
+
+
     #endregion
 }
