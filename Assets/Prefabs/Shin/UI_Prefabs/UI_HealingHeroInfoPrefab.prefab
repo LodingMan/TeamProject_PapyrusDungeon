@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -115, y: -27}
+  m_AnchoredPosition: {x: -115, y: 28}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6375537932930849975
@@ -113,7 +113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -115, y: 28}
+  m_AnchoredPosition: {x: -115, y: -16.25}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6375537933230837346
@@ -300,6 +300,7 @@ MonoBehaviour:
   statScript: {fileID: 0}
   skillScript: {fileID: 0}
   equipScript: {fileID: 0}
+  heroScript_Current_State: {fileID: 0}
   text_Name: {fileID: 6375537932930849968}
   text_Job: {fileID: 6375537933230837347}
   btn: {fileID: 0}

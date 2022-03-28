@@ -28,7 +28,7 @@ namespace Shin
 
         void Start()
         {
-            uI_ChurchManager = GameObject.Find("UI_ChurchManager").GetComponent<Shin.UI_ChurchManager>();
+            uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
@@ -54,37 +54,39 @@ namespace Shin
 
         public void Create_EmployedHero_UI_Prefab()
         {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-            Debug.Log(uI_ChurchManager.healingHeroDataList.Count);
-            for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // search
-            {
-                Debug.Log(uI_ChurchManager.healingHeroDataList[i].stat.Name);
-                /*if (gameObject.name == uI_ChurchManager.healingHeroDataList[i].stat.Name) //name search
-                {
-                    uI_ChurchManager.healingHeroDataList.RemoveAt(i); // healingHeroDataList removeat
-                }*/
-            }
+            // UI 프리팹 생성.
+            uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform); // 오브젝트 생성.
+            uI_ChurchManager.employedHero_UI.name = gameObject.name; // 이름 변경.
+
+            employedHeroData.stat = statScript.myStat;
+            employedHeroData.skills = skillScript.skills;
+            employedHeroData.equips = equipScript.myEquip;
+            // 값 대입.
 
 
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // search
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // name search
                 {
-                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false;
-                    // heromanager에 있는 CurrentHeroList의 ishealing = false
+                    //교회에서 나올때 회복해야하니까 여기에 작성.
+                    heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.HP = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MAXHP; // hp회복
+                    heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MAXMP; // mp회복
+                    
+                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false; // heromanager에 있는 CurrentHeroList의 ishealing = false 
+
                 }
             }
 
-            uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform);
-            // 오브젝트 생성.
-            uI_ChurchManager.employedHero_UI.name = gameObject.name; // 이름 변경.
-            
-            employedHeroData.stat = statScript.myStat;
-            employedHeroData.skills = skillScript.skills;
-            employedHeroData.equips = equipScript.myEquip;
-            // 값 대입.
-
+            for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // search
+            {
+                if (gameObject.name == uI_ChurchManager.healingHeroDataList[i].stat.Name) //name search
+                {
+                    uI_ChurchManager.healingHeroDataList.RemoveAt(i); // healingHeroDataList removeat
+                }
+            }
+            //Debug.Log(uI_ChurchManager.healingHeroDataList.Count); // 회복 리스트에 몇 개 들어가 있는지 확인용
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
     }

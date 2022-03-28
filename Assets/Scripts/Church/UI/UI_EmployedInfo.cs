@@ -32,7 +32,7 @@ namespace Shin
         }
         private void Start()
         {
-            uI_ChurchManager = GameObject.Find("UI_ChurchManager").GetComponent<Shin.UI_ChurchManager>();
+            uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
@@ -42,11 +42,11 @@ namespace Shin
 
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                if (gameObject.name == heroManager.CurrentHeroDataList[i].stat.Name) // 이름으로 비교해서 찾고
+                if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고
                 {
-                    statScript.myStat = heroManager.CurrentHeroDataList[i].stat; // 대입.
-                    skillScript.skills = heroManager.CurrentHeroDataList[i].skills;
-                    equipScript.myEquip = heroManager.CurrentHeroDataList[i].equips;
+                    statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // 대입.
+                    skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
+                    equipScript.myEquip = heroManager.CurrentHeroList[i].GetComponent<EquipScript>().myEquip;
                 }
             }
 
@@ -57,9 +57,6 @@ namespace Shin
 
         public void Create_HealingHero_UI_Prefab() // 버튼 클릭시 실행.
         {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-
             uI_ChurchManager.healingHero_UI = Instantiate(uI_ChurchManager.healingHero_UI_Prefab, uI_ChurchManager.healing_List_UI_Content.transform); // UI 생성.
             uI_ChurchManager.healingHero_UI.name = gameObject.name; // UI 네이밍.
 
@@ -78,11 +75,12 @@ namespace Shin
             healingHeroData.equips = equipScript.myEquip;
 
             uI_ChurchManager.healingHeroDataList.Add(healingHeroData); // healingHeroDataList 리스트에 ADD
-            // 요게 문제네 
-
-            Debug.Log(uI_ChurchManager.healingHeroDataList[EmployedCnt].stat.Name); // 잘 들어갔는지 이름 확인.
+            //Debug.Log(uI_ChurchManager.healingHeroDataList.Count); // 회복 리스트에 몇 개 들어가 있는지 확인용
 
             EmployedCnt++; // healingHeroDataList[순서]에 사용할 static 변수.
+
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

@@ -10,5 +10,6 @@ public class StartLoadCurrentHeroData : MonoBehaviour
     {
         heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
         heroManager._Load();
+
     }
 }
