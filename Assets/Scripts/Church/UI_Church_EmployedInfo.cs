@@ -6,10 +6,10 @@ using UnityEngine.UI;
 namespace Shin
 {
     // 고용중인 영웅 버튼 클릭에 달려 있음.
-    public class UI_EmployedInfo : MonoBehaviour
+    public class UI_Church_EmployedInfo : MonoBehaviour
     {
-        Shin.UI_ChurchManager uI_ChurchManager;
         Song.HeroManager heroManager;
+        Shin.UI_ChurchManager uI_ChurchManager;
 
         public HeroSavingData healingHeroData = new HeroSavingData();
         public StatScript statScript;

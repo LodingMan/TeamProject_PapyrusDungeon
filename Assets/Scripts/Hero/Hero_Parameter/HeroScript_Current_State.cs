@@ -13,7 +13,7 @@ public class HeroScript_Current_State : MonoBehaviour
 
     public bool isDead = false;
 
-    public bool isPaty = false;
+    public bool isParty = false;
 
-
+    public bool isTraining = false;
 }
