@@ -138,7 +138,6 @@ namespace Song
                                                     // 고용하면 '고용한' 영웅 리스트에 옮겨 준 후 UI업데이트하는 방법이 있다고 생각함  -> 송하늘
                                                     //03-27 수정. CurrentHeroList는 HeroManager에 선언되어있지만 리스트의 맴버를 추가하는 역할은 길드에서 진행함. 
                                                     //CurrentHeroList가 선언되는곳은 여전히 HeroManager에 있으므로 사용하는데 변함은 없다. 
-
         }
 
 

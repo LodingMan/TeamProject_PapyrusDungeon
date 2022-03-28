@@ -4,66 +4,69 @@ using UnityEngine.UI;
 public class Guild_UI : MonoBehaviour
 {
     GuildManager guildManager;
+    GameObject UI_Prefab;
     private void Start()
     {
         guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
+        gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(BtnFunc);
+        gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(true);
+
+    }
+
+
+    public void BtnFunc()
+    {
         switch (gameObject.name)
         {
             case "0":
-                gameObject.transform.GetChild(2).gameObject.SetActive(true);
-                gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn0);
-
+                guildManager.ListBtn0();
                 break;
             case "1":
-                gameObject.transform.GetChild(3).gameObject.SetActive(true);
-                gameObject.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn1);
+                guildManager.ListBtn1();
                 break;
             case "2":
-                gameObject.transform.GetChild(4).gameObject.SetActive(true);
-                gameObject.transform.GetChild(4).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn2);
+                guildManager.ListBtn2();
                 break;
             case "3":
-                gameObject.transform.GetChild(5).gameObject.SetActive(true);
-                gameObject.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn3);
+                guildManager.ListBtn3();
                 break;
-
             case "4":
-                gameObject.transform.GetChild(6).gameObject.SetActive(true);
-                gameObject.transform.GetChild(6).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn4);
+                guildManager.ListBtn4();
                 break;
-
             case "5":
-                gameObject.transform.GetChild(7).gameObject.SetActive(true);
-                gameObject.transform.GetChild(7).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn5);
+                guildManager.ListBtn5();
                 break;
-
             case "6":
-                gameObject.transform.GetChild(8).gameObject.SetActive(true);
-                gameObject.transform.GetChild(8).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn6);
+                guildManager.ListBtn6();
                 break;
-
             case "7":
-                gameObject.transform.GetChild(9).gameObject.SetActive(true);
-                gameObject.transform.GetChild(9).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn7);
+                guildManager.ListBtn7();
                 break;
-
             case "8":
-                gameObject.transform.GetChild(10).gameObject.SetActive(true);
-                gameObject.transform.GetChild(10).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn8);
+                guildManager.ListBtn8();
                 break;
-
             case "9":
-                gameObject.transform.GetChild(11).gameObject.SetActive(true);
-                gameObject.transform.GetChild(11).GetComponent<Button>().onClick.AddListener(guildManager.ListBtn9);
+                guildManager.ListBtn9();
                 break;
             default:
                 break;
         }
+        //  transform.parent = guildManager.CurrentHero_UI_Prefabs_Create_Point.transform;
+        UI_Prefab = Instantiate(guildManager.currentHero_UI_Prefab);
+        UI_Prefab.transform.parent = guildManager.currentHero_UI_Prefabs_Create_Point.transform;
+        UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = gameObject.transform.GetChild(0).GetComponent<Text>().text;
+        UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
+        Destroy(gameObject);
+
+        gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(false);
+
+
+
+
     }
 
     public void DestroyMine()
     {
-        Destroy(gameObject);
     }
 
 

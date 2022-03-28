@@ -84,19 +84,6 @@ public class Item // Item은 이후 상점에서 별도로 쓰일 가능성이 있을거 같아 일단 
 
 public class HeroSavingData
 {
-    #region //03-25 스텟 파라미터 수정// 사유 : 재훈씨 말대로 두번 사용할 이유가 없음
-    //public int Index;
-    //public string Name;
-    //public string Job;
-    //public int HP;
-    //public int MP;
-    //public int Atk;
-    //public int Def;
-    //public int Cri;
-    //public int Acc;
-    //public int Agi;
-    //public int Speed;
-    #endregion
 
     public Stat stat;
     public skill[] skills;

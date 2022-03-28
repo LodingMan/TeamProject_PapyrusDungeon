@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2699553418229954572}
   - component: {fileID: 3039379264659664217}
   - component: {fileID: 1594039723282811739}
+  - component: {fileID: 8539345149019748678}
   m_Layer: 0
   m_Name: HeroObject
   m_TagString: Untagged
@@ -206,3 +207,18 @@ MonoBehaviour:
     Name: 
     Atk: 0
     Def: 0
+--- !u!114 &8539345149019748678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171114485774513217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839b4b335a198ce4f92f6983361c7e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHealing: 0
+  isDead: 0
+  isPaty: 0
