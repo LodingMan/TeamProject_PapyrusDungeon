@@ -55,8 +55,8 @@ namespace Shin
         public void Create_EmployedHero_UI_Prefab()
         {
             // UI 프리팹 생성.
-            uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform); // 오브젝트 생성.
-            uI_ChurchManager.employedHero_UI.name = gameObject.name; // 이름 변경.
+            /*uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform); // 오브젝트 생성.
+            uI_ChurchManager.employedHero_UI.name = gameObject.name; // 이름 변경.*/
 
             employedHeroData.stat = statScript.myStat;
             employedHeroData.skills = skillScript.skills;
@@ -86,7 +86,7 @@ namespace Shin
             }
             //Debug.Log(uI_ChurchManager.healingHeroDataList.Count); // 회복 리스트에 몇 개 들어가 있는지 확인용
             gameObject.SetActive(false);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

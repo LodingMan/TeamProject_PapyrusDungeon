@@ -78,9 +78,8 @@ namespace Shin
             //Debug.Log(uI_ChurchManager.healingHeroDataList.Count); // 회복 리스트에 몇 개 들어가 있는지 확인용
 
             EmployedCnt++; // healingHeroDataList[순서]에 사용할 static 변수.
-
             gameObject.SetActive(false);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

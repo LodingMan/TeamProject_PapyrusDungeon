@@ -61172,6 +61172,7 @@ MonoBehaviour:
   healingHero_UI_Prefab: {fileID: 4512954966655475406, guid: a698acc3e1678024c9c982e1e4357a10, type: 3}
   employedHero_UI: {fileID: 0}
   healingHero_UI: {fileID: 0}
+  childList: []
 --- !u!4 &1495560872
 Transform:
   m_ObjectHideFlags: 0
@@ -77523,6 +77524,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1495560871}
+        m_TargetAssemblyTypeName: Shin.UI_ChurchManager, Assembly-CSharp
+        m_MethodName: Destroy_EmployedHero_UI
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

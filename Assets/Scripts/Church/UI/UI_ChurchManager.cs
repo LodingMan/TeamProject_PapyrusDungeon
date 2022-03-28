@@ -17,7 +17,7 @@ namespace Shin {
         public Button healingHero_UI;
         
         public List<HeroSavingData> healingHeroDataList; // 회복중인 영웅 리스트
-
+        public Button[] childList;
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
@@ -29,12 +29,26 @@ namespace Shin {
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                employedHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
-                employedHero_UI.name = heroManager.CurrentHeroList[i].name;
+                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing == false)
+                {
+                    employedHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
+                    employedHero_UI.name = heroManager.CurrentHeroList[i].name;
+                }
+            }
+            childList = employer_List_UI_Content.GetComponentsInChildren<Button>();
+        }
+        public void Destroy_EmployedHero_UI()
+        {
+            //employer_List_UI_Content의 child를 검색해서 전부 파괴.
+            
+            if (childList != null)
+            {
+                for (int i = 0; i < childList.Length; i++)
+                {
+                    Destroy(childList[i].gameObject);
+                }
             }
         }
-
-        
         
     }
 }
