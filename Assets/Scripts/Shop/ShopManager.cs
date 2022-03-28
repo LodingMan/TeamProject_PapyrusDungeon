@@ -37,9 +37,23 @@ public class ShopManager : MonoBehaviour
         Instantiate(ShopItemList[0], shopPanel.transform);
         Instantiate(ShopItemList[1], shopPanel.transform);
     }
-    public void CloseTab()
+    public void CloseTab() // 상점이나 인벤토리 탭을 닫으면 아이템의 사용 버튼을 숨겨줍니다.
     {
         isShop = false;
+        for (int i = 0; i < hasItemList.Count; i++)
+        {
+            if (hasItemList != null)
+            {
+                hasItemList[i].transform.GetChild(1).gameObject.SetActive(false);
+            }
+        }
+        for (int i = 0; i < hasEquipList.Count; i++)
+        {
+            if (hasEquipList != null)
+            {
+                hasEquipList[i].transform.GetChild(1).gameObject.SetActive(false);
+            }
+        }
     }
 
     public void ItemSave() // item 배열에 있는 정보를 Json에 저장합니다.

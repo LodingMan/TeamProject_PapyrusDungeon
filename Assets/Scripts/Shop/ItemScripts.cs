@@ -57,6 +57,18 @@ public class ItemScripts : MonoBehaviour
 
 
     }
+
+    public void TextChange()
+    {
+        if (!shopManager.isShop)
+        {
+            useBtn.transform.GetChild(0).GetComponent<Text>().text = "사용";
+        }
+        else
+        {
+            useBtn.transform.GetChild(0).GetComponent<Text>().text = "판매";
+        }
+    }
     public void ItemParamInit() //itemTable에 있는 정보를 가져옵니다. 정보는 itemIndex에 있는 Index를 기반으로 가져옵니다.
     {
         item.Index = itemTable.Item_Dictionary[itemIndex].Index;
