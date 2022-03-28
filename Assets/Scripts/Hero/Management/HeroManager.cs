@@ -197,7 +197,11 @@ namespace Song
                     break;
                 }
                 LoadHeroCreate(CurrentHeroDataList[i]);
+
+
             }
+            guildManager.Load_Guild_UI_Prefabs();
+
             //Debug.Log(CurrentHeroDataList[0].stat.HP);
         }
     }

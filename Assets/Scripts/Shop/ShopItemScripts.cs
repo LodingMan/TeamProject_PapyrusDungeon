@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopItemScripts : MonoBehaviour // »óÁ¡¿¡ ³ªÅ¸³ª´Â ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù. 03-27 À±¼º±Ù
+//==================================================================================================//
+// »óÁ¡¿¡ ³ªÅ¸³ª´Â ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù. 03-28 À±¼º±Ù
+//==================================================================================================//
+
+public class ShopItemScripts : MonoBehaviour 
 {
     public ItemTable itemTable = new ItemTable();
     public List<GameObject> hasItemList;
 
-    public ShopManager uiManager;
+    public ShopManager shopManager;
     public GameObject inventory;
     public int itemIdx;
     public Button BuyBtn;
@@ -16,10 +20,12 @@ public class ShopItemScripts : MonoBehaviour // »óÁ¡¿¡ ³ªÅ¸³ª´Â ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®À
 
     public void Start() //¾ÆÀÌÅÛ »ý¼º½Ã ÇÊ¿äÇÑ Á¤º¸¸¦ °¡Á®¿À´Â ÄÚµåÀÔ´Ï´Ù.
     {
-        uiManager = GameObject.Find("UIManager").GetComponent<ShopManager>();
-        inventory = uiManager.inventory;
-        hasItemList = uiManager.hasItemList;
-        BuyBtn = gameObject.transform.GetChild(0).GetComponent<Button>();
+        shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
+        inventory = shopManager.inventory;
+        hasItemList = shopManager.hasItemList;
+        BuyBtn = shopManager.BuyBtn;
+
+
         ItemCheck();
     }
 
@@ -43,7 +49,7 @@ public class ShopItemScripts : MonoBehaviour // »óÁ¡¿¡ ³ªÅ¸³ª´Â ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®À
         }
     }
 
-    public void BuyItem() 
+    public void BuyItem()
     {
         switch (itemIdx) // ´ëÀÔÇÑ ÀÎµ¦½º ¹øÈ£¿¡ ¸Â°Ô ÇÁ¸®ÆÕÀ» »ý¼ºÇÏ´Â ÇÔ¼ö¸¦ È£ÃâÇÕ´Ï´Ù.
         {
@@ -60,6 +66,15 @@ public class ShopItemScripts : MonoBehaviour // »óÁ¡¿¡ ³ªÅ¸³ª´Â ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®À
         }
     }
 
+    public void BuyBtnConnect()
+    {
+        if (BuyBtn != null)
+        {
+            BuyBtn.onClick.RemoveAllListeners();
+        }
+        BuyBtn.onClick.AddListener(BuyItem);
+    }
+
 
 
 
@@ -67,7 +82,7 @@ public class ShopItemScripts : MonoBehaviour // »óÁ¡¿¡ ³ªÅ¸³ª´Â ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®À
     {                                       // ¾ÆÀÌÅÛ ±¸¸Å ½Ã ÀÎº¥Åä¸® »çÀÌÁî¿¡ ¸Â°Ô ±¸¸Å °¡´ÉÇÏ°Ô º¯°æ ÇÏ¿´½À´Ï´Ù. 03-28 À±¼º±Ù
         if (hasItemList.Count < 10)
         {
-            GameObject buyItem = Instantiate(uiManager.itemList[itemIdx]);
+            GameObject buyItem = Instantiate(shopManager.itemList[itemIdx]);
             hasItemList.Add(buyItem);
             buyItem.transform.SetParent(inventory.transform);
             buyItem.transform.localPosition = inventory.transform.localPosition;
