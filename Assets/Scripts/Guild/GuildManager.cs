@@ -25,6 +25,8 @@ public class GuildManager : MonoBehaviour
 
     public List<GameObject> Current_UI_Prefabs;  //해당 주차에 존재하는 고용 전 영웅 UI Prefab이다 
 
+
+
     public GameObject[] Party_Member_UI_Prefabs = new GameObject[3];
     public GameObject[] Party_MemberArray = new GameObject[3]; 
 
@@ -56,7 +58,19 @@ public class GuildManager : MonoBehaviour
             Current_UI_Prefabs[i].transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
         }
         UnemployedHero.Clear();
+    }
 
+    public void Load_Guild_UI_Prefabs()
+    {
+        GameObject currentPrefab;
+
+        for(int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+        {
+            currentPrefab = Instantiate(currentHero_UI_Prefab);
+            currentPrefab.transform.parent = currentHero_UI_Prefabs_Create_Point.transform;
+            currentPrefab.transform.GetChild(0).GetComponent<Text>().text = "Name : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Name;
+            currentPrefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Job;
+        }
 
 
 
