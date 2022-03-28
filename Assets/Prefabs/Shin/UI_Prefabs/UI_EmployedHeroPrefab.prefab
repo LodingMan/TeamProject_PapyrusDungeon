@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: -3906129296527274666}
   - component: {fileID: -3569249636491544832}
   - component: {fileID: 5153799253809030684}
+  - component: {fileID: 7812423451466261334}
   m_Layer: 5
   m_Name: UI_EmployedHeroPrefab
   m_TagString: Untagged
@@ -311,6 +312,7 @@ MonoBehaviour:
   statScript: {fileID: 0}
   skillScript: {fileID: 0}
   equipScript: {fileID: 0}
+  heroScript_Current_State: {fileID: 0}
   text_Name: {fileID: 6375537932930849968}
   text_Job: {fileID: 6375537933230837347}
   btn: {fileID: 0}
@@ -331,7 +333,9 @@ MonoBehaviour:
     Name: 
     Job: 
     HP: 0
+    MAXHP: 0
     MP: 0
+    MAXMP: 0
     Atk: 0
     Def: 0
     Cri: 0
@@ -407,3 +411,18 @@ MonoBehaviour:
     Name: 
     Atk: 0
     Def: 0
+--- !u!114 &7812423451466261334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375537934540642707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839b4b335a198ce4f92f6983361c7e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHealing: 0
+  isDead: 0
+  isPaty: 0

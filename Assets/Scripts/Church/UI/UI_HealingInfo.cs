@@ -13,6 +13,7 @@ namespace Shin
         public StatScript statScript;
         public SkillScript skillScript;
         public EquipScript equipScript;
+        public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
         public Text text_Job;
         public Button btn;
@@ -32,6 +33,7 @@ namespace Shin
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
+            heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             //초기화
 
             for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // 리스트 길이만큼.
@@ -41,17 +43,38 @@ namespace Shin
                     statScript.myStat = uI_ChurchManager.healingHeroDataList[i].stat; // 대입.
                     skillScript.skills = uI_ChurchManager.healingHeroDataList[i].skills;
                     equipScript.myEquip = uI_ChurchManager.healingHeroDataList[i].equips;
+                    heroScript_Current_State.isHealing = true; // 회복 중!
                 }
             }
 
             text_Name.text = "이름 : " + statScript.myStat.Name;
             text_Job.text = "직업 : " + statScript.myStat.Job;
+
         }
 
         public void Create_EmployedHero_UI_Prefab()
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
+            Debug.Log(uI_ChurchManager.healingHeroDataList.Count);
+            for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // search
+            {
+                Debug.Log(uI_ChurchManager.healingHeroDataList[i].stat.Name);
+                /*if (gameObject.name == uI_ChurchManager.healingHeroDataList[i].stat.Name) //name search
+                {
+                    uI_ChurchManager.healingHeroDataList.RemoveAt(i); // healingHeroDataList removeat
+                }*/
+            }
+
+
+            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // search
+            {
+                if (gameObject.name == heroManager.CurrentHeroList[i].name) // name search
+                {
+                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false;
+                    // heromanager에 있는 CurrentHeroList의 ishealing = false
+                }
+            }
 
             uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform);
             // 오브젝트 생성.
