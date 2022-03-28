@@ -17,24 +17,40 @@ namespace Shin {
         public Button healingHero_UI;
         
         public List<HeroSavingData> healingHeroDataList; // 회복중인 영웅 리스트
-
+        public Button[] childList;
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             healingHeroDataList = new List<HeroSavingData>(); // 초기화
             
         }
-
-        public void Create_EmployedHero_UI()
+        private void Update()
+        {
+            childList = employer_List_UI_Content.GetComponentsInChildren<Button>();
+        }
+        public void Create_EmployedHero_UI() // 교회 버튼 클릭 시 실행.
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                employedHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
-                employedHero_UI.name = heroManager.CurrentHeroList[i].name;
+                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing == false) // 회복중이 아니어야 프리팹 생성
+                {
+                    employedHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
+                    employedHero_UI.name = heroManager.CurrentHeroList[i].name;
+                }
             }
         }
-
-        
+        public void Destroy_EmployedHero_UI() // 교회 패널의 닫기 버튼 클릭 시 실행.
+        {
+            
+            //employer_List_UI_Content의 child를 검색해서 전부 파괴.            
+            if (childList != null)
+            {
+                for (int i = 0; i < childList.Length; i++)
+                {
+                    Destroy(childList[i].gameObject);
+                }
+            }
+        }
         
     }
 }
