@@ -64,12 +64,19 @@ public class ShopItemScripts : MonoBehaviour // 상점에 나타나는 아이템 스크립트�
 
 
     public void ItemInstantiate() //아이템 구매 시 인벤토리에 프리팹을 생성합니다.
-    {
-        GameObject buyItem = Instantiate(uiManager.itemList[itemIdx]);
-        hasItemList.Add(buyItem);
-        buyItem.transform.SetParent(inventory.transform);
-        buyItem.transform.localPosition = inventory.transform.localPosition;
-        buyItem.transform.localScale = new Vector3(1, 1, 1);
-        Destroy(gameObject);
+    {                                       // 아이템 구매 시 인벤토리 사이즈에 맞게 구매 가능하게 변경 하였습니다. 03-28 윤성근
+        if (hasItemList.Count < 10)
+        {
+            GameObject buyItem = Instantiate(uiManager.itemList[itemIdx]);
+            hasItemList.Add(buyItem);
+            buyItem.transform.SetParent(inventory.transform);
+            buyItem.transform.localPosition = inventory.transform.localPosition;
+            buyItem.transform.localScale = new Vector3(1, 1, 1);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("인벤토리가 다 찼습니다.");
+        }
     }
 }
