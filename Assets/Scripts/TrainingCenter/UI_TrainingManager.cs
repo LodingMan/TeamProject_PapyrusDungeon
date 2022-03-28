@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
 
 namespace Shin
@@ -12,16 +13,13 @@ namespace Shin
 
         public Button employedHero_UI_Prefab;
         public Button employedHero_UI;
+        public RectTransform heroInfoPopup;
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
+            heroInfoPopup = GameObject.Find("Training_HeroInfo").GetComponent<RectTransform>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
         public void Create_EmployedHero_UI() // 훈련소 버튼 클릭 시 실행 // Onclick
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
@@ -33,6 +31,16 @@ namespace Shin
                 }
             }
         }
+
+        public void DoTweenLeftToRight()
+        {
+            heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        }
+        public void DoTweenRightToLeft()
+        {
+            heroInfoPopup.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+        }
+
     }
 }
 

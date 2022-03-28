@@ -67,7 +67,7 @@ public class GuildManager : MonoBehaviour
         for(int i = 0; i < heroManager.CurrentHeroList.Count; i++)
         {
             currentPrefab = Instantiate(currentHero_UI_Prefab);
-            currentPrefab.transform.parent = currentHero_UI_Prefabs_Create_Point.transform;
+            currentPrefab.transform.SetParent(currentHero_UI_Prefabs_Create_Point.transform); 
             currentPrefab.transform.GetChild(0).GetComponent<Text>().text = "Name : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Name;
             currentPrefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Job;
         }

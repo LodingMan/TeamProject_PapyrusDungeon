@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
 public class UI_Training_EmployedInfo : MonoBehaviour
 {
@@ -14,12 +15,15 @@ public class UI_Training_EmployedInfo : MonoBehaviour
     public Button btn;
     public Text text_Name;
     public Text text_Job;
+    public RectTransform heroInfoPopup;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
+        heroInfoPopup = GameObject.Find("Training_HeroInfo").GetComponent<RectTransform>();
         btn = GetComponent<Button>();
-        //btn.onClick.AddListener(함수이름); // 버튼이 눌리면
-
+        btn.onClick.AddListener(DoTweenLeftToRight); // 버튼이 눌리면
     }
     void Start()
     {
@@ -42,10 +46,11 @@ public class UI_Training_EmployedInfo : MonoBehaviour
         text_Name.text = "이름 : " + statScript.myStat.Name;
         text_Job.text = "직업 : " + statScript.myStat.Job;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void DoTweenLeftToRight()
     {
-        
+        heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);
     }
+
+
+
 }
