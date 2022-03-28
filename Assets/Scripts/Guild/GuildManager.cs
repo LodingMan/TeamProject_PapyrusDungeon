@@ -23,11 +23,24 @@ public class GuildManager : MonoBehaviour
 
     public GameObject[] unemployedHero = new GameObject[9]; //함수의 매개변수를 전역으로 저장.
 
-    public List<GameObject> Current_UI_Prefabs;
+    public List<GameObject> Current_UI_Prefabs;  //해당 주차에 존재하는 고용 전 영웅 UI Prefab이다 
+
+    public GameObject[] Party_Member_UI_Prefabs = new GameObject[3];
+    public GameObject[] Party_MemberArray = new GameObject[3]; 
 
 
     public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
     {
+
+        if (Current_UI_Prefabs.Count > 0)
+        {
+            Debug.Log("Test");
+            for (int j = 0; j < Current_UI_Prefabs.Count; j++)
+            {
+                Destroy(Current_UI_Prefabs[j].gameObject);
+                Destroy(unemployedHero[j]);
+            }
+        }
 
         Current_UI_Prefabs.Clear();
         Array.Clear(unemployedHero, 0, unemployedHero.Length); //나중에 전투로 넘어가면 이걸로 unemploydHero배열 비울거임
@@ -42,6 +55,10 @@ public class GuildManager : MonoBehaviour
             Current_UI_Prefabs[i].transform.GetChild(0).GetComponent<Text>().text = "Name : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Name;
             Current_UI_Prefabs[i].transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
         }
+        UnemployedHero.Clear();
+
+
+
 
     }
 
@@ -51,53 +68,54 @@ public class GuildManager : MonoBehaviour
     #region //생성되는 모든 버튼의 기능을 달리하기 위해 그냥 함수 10개 갖다 박음
     public void ListBtn0()
     {
-        heroManager.CurrentHeroList.Add(unemployedHero[0]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[0]);
+        heroManager.CurrentHeroList.Add(unemployedHero[0]); // CurrentHeroList의 맴버 결정됨
+        unemployedHero[0] = null;
+        //heroManager.unemployedHeroList.Remove(unemployedHero[0]);
     }
     public void ListBtn1()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[1]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[1]);
+        unemployedHero[1] = null;
     }
     public void ListBtn2()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[2]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[2]);
+        unemployedHero[2] = null;
     }
     public void ListBtn3()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[3]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[3]);
+        unemployedHero[3] = null;
     }
     public void ListBtn4()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[4]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[4]);
+        unemployedHero[4] = null;
     }
     public void ListBtn5()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[5]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[5]);
+        unemployedHero[5] = null;
     }
     public void ListBtn6()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[6]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[6]);
+        unemployedHero[6] = null;
     }
     public void ListBtn7()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[7]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[7]);
+        unemployedHero[7] = null;
     }
     public void ListBtn8()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[8]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[8]);
+        unemployedHero[8] = null;
     }
     public void ListBtn9()
     {
         heroManager.CurrentHeroList.Add(unemployedHero[9]);
-        heroManager.unemployedHeroList.Remove(unemployedHero[9]);
+        unemployedHero[9] = null;
     }
     #endregion
 }
