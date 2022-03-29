@@ -9,9 +9,9 @@ public class EquipTable
 {
     public Dictionary<int, Equip> initEquip = new Dictionary<int, Equip>()
     {
-        { 0, new Equip(0, "Sword", 10, 0) }, //Equip의 맴버변수는 ClassBundle확인
-        { 1, new Equip(1, "Shield", 0, 10) },
-        { 2, new Equip(2, "EquipName3", 0, 10) }
+        { 0, new Equip(0, "Sword", 1, 10, 0) }, //Equip의 맴버변수는 ClassBundle확인
+        { 1, new Equip(1, "Shield", 1, 0, 10) },
+        { 2, new Equip(2, "EquipName3", 1, 0, 10) }
     };
 
 
