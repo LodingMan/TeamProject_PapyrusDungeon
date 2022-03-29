@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2551799333454409068}
   - component: {fileID: 4543897005791721689}
   m_Layer: 5
-  m_Name: JobText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107.9, y: 69.10005}
+  m_AnchoredPosition: {x: 95, y: 69}
   m_SizeDelta: {x: 659.7442, y: 125.4321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2551799333454409068
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Class  : '
+  m_Text: 'Name  : '
 --- !u!1 &3616982715253050241
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5454505343490441089}
   - component: {fileID: 8350155040372795582}
   m_Layer: 5
-  m_Name: HPText
+  m_Name: JobText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60.999977, y: 1.8000488}
-  m_SizeDelta: {x: 205.4956, y: 127.7902}
+  m_AnchoredPosition: {x: 107.73252, y: 10}
+  m_SizeDelta: {x: 729.449, y: 127.7902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5454505343490441089
 CanvasRenderer:
@@ -252,29 +252,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 6
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: -2039681391940583100}
           m_TargetAssemblyTypeName: PartyMember_UI_Script, Assembly-CSharp
-          m_MethodName: Pointer_Enter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: -2039681391940583100}
-          m_TargetAssemblyTypeName: PartyMember_UI_Script, Assembly-CSharp
-          m_MethodName: Pointer_Exit
+          m_MethodName: Pointer_Up
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -296,8 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b44e1a73df68264c81ea0ea566c4c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPointerEnter: 0
   This_Prefab_Object: {fileID: 0}
+  uI_Central: {fileID: 0}
+  isParty_Hero_In: 0
 --- !u!1 &6272948311268362402
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +295,7 @@ GameObject:
   - component: {fileID: 914437330198855236}
   - component: {fileID: 7584444164710461519}
   m_Layer: 5
-  m_Name: MPText
+  m_Name: HPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,8 +317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61, y: -73}
-  m_SizeDelta: {x: 205.4956, y: 127.7902}
+  m_AnchoredPosition: {x: 103.16504, y: -57.611}
+  m_SizeDelta: {x: 707.235, y: 127.7902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &914437330198855236
 CanvasRenderer:

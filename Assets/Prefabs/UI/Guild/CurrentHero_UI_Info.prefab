@@ -91,8 +91,8 @@ GameObject:
   - component: {fileID: 6508762787867474229}
   - component: {fileID: 6508762787867474230}
   - component: {fileID: -3910261836371232726}
-  - component: {fileID: -7962780101543301554}
   - component: {fileID: 2814269097480952290}
+  - component: {fileID: -1656295401134663052}
   m_Layer: 5
   m_Name: CurrentHero_UI_Info
   m_TagString: Untagged
@@ -172,7 +172,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   This_Prefab_Object: {fileID: 0}
---- !u!114 &-7962780101543301554
+  uI_Central: {fileID: 0}
+--- !u!225 &2814269097480952290
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508762787867474232}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &-1656295401134663052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,22 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: -3910261836371232726}
-          m_TargetAssemblyTypeName: Current_Hero_UI_Script, Assembly-CSharp
-          m_MethodName: Pointer_Down
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -217,18 +214,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!225 &2814269097480952290
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6508762787867474232}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -3910261836371232726}
+          m_TargetAssemblyTypeName: Current_Hero_UI_Script, Assembly-CSharp
+          m_MethodName: Pointer_Down
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7022446984162056968
 GameObject:
   m_ObjectHideFlags: 0
