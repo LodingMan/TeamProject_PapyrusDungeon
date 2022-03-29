@@ -61,12 +61,12 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < hasItemList.Count; i++)
         {
 
-            item[i] = hasItemList[i].GetComponent<ItemScripts>().item;
+            item.Add(hasItemList[i].GetComponent<ItemScripts>().item);
 
         }
         for (int i = 0; i < hasEquipList.Count; i++)
         {
-            equip[i] = hasEquipList[i].GetComponent<EquipScripts_ysg>().equip;
+            equip.Add(hasEquipList[i].GetComponent<EquipScripts_ysg>().equip);
         }
 
         string jdata = JsonConvert.SerializeObject(item);

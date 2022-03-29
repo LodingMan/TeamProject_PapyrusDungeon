@@ -14305,7 +14305,7 @@ GameObject:
   - component: {fileID: 305433768}
   - component: {fileID: 305433767}
   m_Layer: 5
-  m_Name: SmithButton (1)
+  m_Name: SaveInvenButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64547,7 +64547,7 @@ GameObject:
   - component: {fileID: 1454158207}
   - component: {fileID: 1454158206}
   m_Layer: 5
-  m_Name: SmithButton (2)
+  m_Name: LoadInvenButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
