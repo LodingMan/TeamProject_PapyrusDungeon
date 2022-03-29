@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 4970392771317332007}
   - component: {fileID: 4970392771317332004}
   - component: {fileID: 8217575457387256555}
+  - component: {fileID: -2199994453624744715}
   m_Layer: 5
   m_Name: Shield
   m_TagString: Untagged
@@ -451,15 +452,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 0
-    Name: 
-    Lv: 0
+    Index: 1
+    Name: Shield
+    Lv: 1
     Atk: 0
-    Def: 0
+    Def: 10
   itemUseManager: {fileID: 0}
+  itemData: {fileID: 0}
   smithManager: {fileID: 0}
   equipIndex: 0
   isEquip: 0
   isSmith: 0
   equipBtn: {fileID: 0}
   smithSlot: {fileID: 0}
+--- !u!114 &-2199994453624744715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970392771317332003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057cc86844a6c7c43bb48e6e5a9c717e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipSavingData:
+    equip:
+      Index: 1
+      Name: Shield
+      Lv: 1
+      Atk: 0
+      Def: 10

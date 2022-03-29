@@ -108,3 +108,9 @@ public class Equip
         Def = def;
     }
 }
+
+[System.Serializable]
+public class EquipSavingData
+{
+    public Equip equip;
+}

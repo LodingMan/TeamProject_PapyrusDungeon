@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 8089705297315667258}
   - component: {fileID: 8089705297315667257}
   - component: {fileID: 5094900112104652790}
+  - component: {fileID: -4910982017995984728}
   m_Layer: 5
   m_Name: Sword
   m_TagString: Untagged
@@ -452,14 +453,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equip:
     Index: 0
-    Name: 
-    Lv: 0
-    Atk: 0
+    Name: Sword
+    Lv: 1
+    Atk: 10
     Def: 0
   itemUseManager: {fileID: 0}
+  itemData: {fileID: 0}
   smithManager: {fileID: 0}
   equipIndex: 0
   isEquip: 0
   isSmith: 0
   equipBtn: {fileID: 0}
   smithSlot: {fileID: 0}
+--- !u!114 &-4910982017995984728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089705297315667262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057cc86844a6c7c43bb48e6e5a9c717e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipSavingData:
+    equip:
+      Index: 0
+      Name: Sword
+      Lv: 1
+      Atk: 10
+      Def: 0
