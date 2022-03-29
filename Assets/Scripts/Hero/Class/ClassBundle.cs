@@ -95,14 +95,16 @@ public class Equip
 {
     public int Index;
     public string Name;
+    public int Lv;
     public int Atk;
     public int Def;
-    
-    public Equip(int index, string name, int atk, int def)
+
+    public Equip(int index, string name, int lv, int atk, int def)
     {
-        this.Index = index;
-        this.Name = name;
-        this.Atk = atk;
-        this.Def = def;
+        Index = index;
+        Name = name;
+        Lv = lv;
+        Atk = atk;
+        Def = def;
     }
 }
