@@ -20,26 +20,28 @@ namespace Shin
 
         public RectTransform heroInfoPopup;
         Button btn;
-        public Button btn_Training_Start;
 
-        // Start is called before the first frame update
         private void Awake()
         {
             heroInfoPopup = GameObject.Find("Training_HeroInfo").GetComponent<RectTransform>();
-            btn = GetComponent<Button>();
-            btn_Training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
-
-            btn.onClick.AddListener(DoTweenLeftToRight); // 버튼이 눌리면
-        }
-        void Start()
-        {
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+            btn = GetComponent<Button>();
 
+            btn.onClick.AddListener(DoTweenLeftToRight); // 버튼이 눌리면
+            btn.onClick.AddListener(uI_trainingManager.Destroy_UI);
+        }
+        private void Update()
+        {
+            Init_UI();
+        }
+
+        public void Init_UI()
+        {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고
@@ -47,12 +49,13 @@ namespace Shin
                     statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // 대입.
                     skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
                     equipScript.myEquip = heroManager.CurrentHeroList[i].GetComponent<EquipScript>().myEquip;
-                    heroScript_Current_State = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>();
+                    heroScript_Current_State.isTraining = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining;
                 }
             }
             text_Name.text = "이름 : " + statScript.myStat.Name;
             text_Job.text = "직업 : " + statScript.myStat.Job;
         }
+
         public void DoTweenLeftToRight()
         {
             heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);
