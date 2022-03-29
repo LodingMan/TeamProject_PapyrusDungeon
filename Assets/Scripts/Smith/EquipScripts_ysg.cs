@@ -182,7 +182,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UpgradeEquips()
     {
-        if (!smithManager.isSlotFull)
+        if (!smithManager.isSlotFull && smithManager.isActive)
         {
                 smithManager.isSlotFull = true;
                 smithManager.equip.Index = equip.Index;

@@ -37,7 +37,6 @@ public class SmithManager : MonoBehaviour
 
     public void Upgrade()
     {
-
         if (equip.Name != "")
         {
             upgradeChance = 100;
