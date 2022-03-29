@@ -36,14 +36,14 @@ namespace Shin
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             //초기화
 
-            for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // 리스트 길이만큼.
+            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // 리스트 길이만큼.
             {
-                if (gameObject.name == uI_ChurchManager.healingHeroDataList[i].stat.Name) // 회복중인영웅리스트에서 이름으로 비교해서 찾고
+                if (gameObject.name == heroManager.CurrentHeroList[i].name) // 회복중인영웅리스트에서 이름으로 비교해서 찾고
                 {
-                    statScript.myStat = uI_ChurchManager.healingHeroDataList[i].stat; // 대입.
-                    skillScript.skills = uI_ChurchManager.healingHeroDataList[i].skills;
-                    equipScript.myEquip = uI_ChurchManager.healingHeroDataList[i].equips;
-                    heroScript_Current_State.isHealing = true; // 회복 중!
+                    statScript = heroManager.CurrentHeroList[i].GetComponent<StatScript>(); // 대입.
+                    skillScript= heroManager.CurrentHeroList[i].GetComponent<SkillScript>();
+                    equipScript = heroManager.CurrentHeroList[i].GetComponent<EquipScript>();
+                    heroScript_Current_State = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>();
                 }
             }
 
@@ -63,28 +63,6 @@ namespace Shin
             employedHeroData.equips = equipScript.myEquip;
             // 값 대입.
 
-
-            /*for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // search
-            {
-                if (gameObject.name == heroManager.CurrentHeroList[i].name) // name search
-                {
-                    //교회에서 나올때 회복해야하니까 여기에 작성.
-                    heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.HP = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MAXHP; // hp회복
-                    heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MAXMP; // mp회복
-                    
-                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false; // heromanager에 있는 CurrentHeroList의 ishealing = false 
-
-                }
-            }*/
-
-            for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // search
-            {
-                if (gameObject.name == uI_ChurchManager.healingHeroDataList[i].stat.Name) //name search
-                {
-                    uI_ChurchManager.healingHeroDataList.RemoveAt(i); // healingHeroDataList removeat
-                }
-            }
-            //Debug.Log(uI_ChurchManager.healingHeroDataList.Count); // 회복 리스트에 몇 개 들어가 있는지 확인용
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
