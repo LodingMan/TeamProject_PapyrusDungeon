@@ -98,14 +98,16 @@ public class Equip
     public int Lv;
     public int Atk;
     public int Def;
+    public int Cost;
 
-    public Equip(int index, string name, int lv, int atk, int def)
+    public Equip(int index, string name, int lv, int atk, int def, int cost)
     {
         Index = index;
         Name = name;
         Lv = lv;
         Atk = atk;
         Def = def;
+        Cost = cost;
     }
 }
 
