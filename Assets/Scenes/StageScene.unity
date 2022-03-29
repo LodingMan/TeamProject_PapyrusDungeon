@@ -57180,6 +57180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoneIndex: {fileID: 1265952137}
+  Catch_Hero_Object: {fileID: 0}
 --- !u!1001 &1352059599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86895,7 +86896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6508762787867474230, guid: 0588afa9479709f46a60993b4a947802, type: 3}
       propertyPath: m_Color.a
-      value: 0.3137255
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6508762787867474230, guid: 0588afa9479709f46a60993b4a947802, type: 3}
       propertyPath: m_Maskable
