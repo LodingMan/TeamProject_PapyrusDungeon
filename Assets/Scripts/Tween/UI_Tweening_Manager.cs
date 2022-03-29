@@ -10,11 +10,13 @@ using UnityEngine.UI;
 public class UI_Tweening_Manager : MonoBehaviour
 {
     public RectTransform UI_guildPanelPos;
+    public RectTransform UI_StatusPanelPos;
     public RectTransform UI_churchPanelPos;
     public RectTransform UI_trainingPanelPos;
     bool UI_isGuildPanel_On = false;
     bool UI_isChurchPanel_On = false;
     bool UI_isTrainingPanel_On = false;
+    public bool UI_isStatusPanel_On = false;
 
 
 
@@ -31,6 +33,19 @@ public class UI_Tweening_Manager : MonoBehaviour
         {
             UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UI_isGuildPanel_On = true;
+        }
+    }
+    public void UI_StatusPanel_On_Off()
+    {
+        if(UI_isStatusPanel_On)
+        {
+            UI_StatusPanelPos.DOAnchorPos(new Vector2(0,2170), 1f);
+            UI_isStatusPanel_On = false;
+        }
+        else
+        {
+            UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+            UI_isStatusPanel_On = true;
         }
     }
 
