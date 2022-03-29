@@ -9,6 +9,7 @@ public class EquipScripts_ysg : MonoBehaviour
 {
     public Equip equip;
     public ItemUseManager itemUseManager;
+    public ShopManager itemData;
     public EquipTable equipTable = new EquipTable();
     public SmithManager smithManager;
 
@@ -28,17 +29,18 @@ public class EquipScripts_ysg : MonoBehaviour
         itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
         smithManager = GameObject.Find("SmithManager").GetComponent<SmithManager>();
         smithSlot = smithManager.smithSlot;
+        itemData = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         equipBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
 
         switch (gameObject.name) //현재 게임오브젝트의 이름에 맞는 함수를 출력합니다.
         {
-            case "Sword":
+            case "Sword(Clone)":
                 equipIndex = 0;
                 EquipParamInit();
 
                 break;
 
-            case "Shield":
+            case "Shield(Clone)":
                 equipIndex = 1;
                 EquipParamInit();
 
@@ -49,11 +51,11 @@ public class EquipScripts_ysg : MonoBehaviour
     }
     public void EquipParamInit() //EquipTable에 있는 정보를 가져옵니다. 정보는 equipIndex에 있는 Index를 기반으로 가져옵니다.
     {
-        equip.Index = equipTable.initEquip[equipIndex].Index;
-        equip.Name = equipTable.initEquip[equipIndex].Name;
-        equip.Lv = equipTable.initEquip[equipIndex].Lv;
-        equip.Atk = equipTable.initEquip[equipIndex].Atk;
-        equip.Def = equipTable.initEquip[equipIndex].Def;
+        //equip.Index = equipTable.initEquip[equipIndex].Index;
+        //equip.Name = equipTable.initEquip[equipIndex].Name;
+        //equip.Lv = equipTable.initEquip[equipIndex].Lv;
+        //equip.Atk = equipTable.initEquip[equipIndex].Atk;
+        //equip.Def = equipTable.initEquip[equipIndex].Def;
         gameObject.name = equip.Name;
     }
 

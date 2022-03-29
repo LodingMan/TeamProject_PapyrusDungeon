@@ -23,6 +23,8 @@ public class ShopManager : MonoBehaviour
     public List<GameObject> equipList = new List<GameObject>(); //인벤토리에 들어올 장비 프리팹 리스트
     public List<GameObject> hasItemList = new List<GameObject>(); //가지고 있는 아이템 리스트입니다. 데이터 저장 할때 필요합니다.
     public List<GameObject> hasEquipList = new List<GameObject>(); //가지고 있는 장비 리스트입니다. 데이터 저장 할때 필요합니다.
+    public List<EquipSavingData> equipSavingDatas = new List<EquipSavingData>();
+
 
     public GameObject inventory; // 인벤토리 패널 위치
     public GameObject shopPanel; // 상점 패널 위치
@@ -37,6 +39,14 @@ public class ShopManager : MonoBehaviour
         Instantiate(ShopItemList[0], shopPanel.transform);
         Instantiate(ShopItemList[1], shopPanel.transform);
     }
+    public void EquipTake()
+    {
+
+        Instantiate(equipList[0], inventory.transform);
+        Instantiate(equipList[1], inventory.transform);
+    }
+
+
     public void CloseTab() // 상점이나 인벤토리 탭을 닫으면 아이템의 사용 버튼을 숨겨줍니다.
     {
         isShop = false;
@@ -51,6 +61,7 @@ public class ShopManager : MonoBehaviour
         {
             if (hasEquipList != null)
             {
+
                 hasEquipList[i].transform.GetChild(1).gameObject.SetActive(false);
             }
         }
@@ -66,11 +77,11 @@ public class ShopManager : MonoBehaviour
         }
         for (int i = 0; i < hasEquipList.Count; i++)
         {
-            equip.Add(hasEquipList[i].GetComponent<EquipScripts_ysg>().equip);
+            equipSavingDatas.Add(hasEquipList[i].GetComponent<EquipDataSave>().equipSavingData);
         }
 
         string jdata = JsonConvert.SerializeObject(item);
-        string jdata2 = JsonConvert.SerializeObject(equip);
+        string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
         File.WriteAllText(Application.dataPath + "/ItemSave.Json", jdata);
         File.WriteAllText(Application.dataPath + "/EquipSave.Json", jdata2);
 
@@ -100,9 +111,9 @@ public class ShopManager : MonoBehaviour
         hasItemList.Add(itemPrefab); // 아이템을 인벤토리 리스트에 추가합니다.
 
     }
-    public void LoadEquipCreate(Equip LodingEquipSavingData) // 이름에 맞게 아이템을 인벤토리에 생성합니다.
+    public void LoadEquipCreate(EquipSavingData LodingEquipSavingData) // 이름에 맞게 아이템을 인벤토리에 생성합니다.
     {
-        switch (LodingEquipSavingData.Name)
+        switch (LodingEquipSavingData.equip.Name)
         {
             case "Sword":
                 equipPrefab = Instantiate(equipList[0]);
@@ -121,6 +132,10 @@ public class ShopManager : MonoBehaviour
                 break;
         }
 
+        equipPrefab.GetComponent<EquipDataSave>().equipSavingData.equip = LodingEquipSavingData.equip;
+        equipPrefab.GetComponent<EquipScripts_ysg>().equip = LodingEquipSavingData.equip;
+
+
         hasEquipList.Add(equipPrefab); // 아이템을 인벤토리 리스트에 추가합니다.
 
     }
@@ -130,7 +145,7 @@ public class ShopManager : MonoBehaviour
         string jdata = File.ReadAllText(Application.dataPath + "/ItemSave.Json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
         string jdata2 = File.ReadAllText(Application.dataPath + "/EquipSave.Json");
         item = JsonConvert.DeserializeObject<List<Item>>(jdata);
-        equip = JsonConvert.DeserializeObject<List<Equip>>(jdata2);
+        equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(jdata2);
 
         for (int i = 0; i < item.Count; i++)
         {
@@ -140,13 +155,13 @@ public class ShopManager : MonoBehaviour
             }
             LoadItemCreate(item[i]);
         }
-        for (int i = 0; i < equip.Count; i++)
+        for (int i = 0; i < equipSavingDatas.Count; i++)
         {
-            if (equip[i].Name == "")
+            if (equipSavingDatas[i].equip.Name == "")
             {
                 break;
             }
-            LoadEquipCreate(equip[i]);
+            LoadEquipCreate(equipSavingDatas[i]);
         }
     }
 }
