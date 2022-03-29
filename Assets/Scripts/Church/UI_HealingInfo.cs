@@ -64,7 +64,7 @@ namespace Shin
             // 값 대입.
 
 
-            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // search
+            /*for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // search
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // name search
                 {
@@ -75,7 +75,7 @@ namespace Shin
                     heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false; // heromanager에 있는 CurrentHeroList의 ishealing = false 
 
                 }
-            }
+            }*/
 
             for (int i = 0; i < uI_ChurchManager.healingHeroDataList.Count; i++) // search
             {

@@ -17,41 +17,98 @@ namespace Shin {
         public Button healingHero_UI;
         
         public List<HeroSavingData> healingHeroDataList; // 회복중인 영웅 리스트
-        public Button[] childList;
+        public Button[] employedList;
+        public Button[] healingList;
+        public Button btn_HealStart; // 회복 버튼. 직접 하이어라키에서 넣어줌.
+        public Button btn_HealEnd;
+        private void Awake()
+        {
+            btn_HealStart.onClick.AddListener(HealingStart);
+            btn_HealEnd.onClick.AddListener(HealingEnd);
+        }
+
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             healingHeroDataList = new List<HeroSavingData>(); // 초기화
-            
         }
         private void Update()
         {
-            childList = employer_List_UI_Content.GetComponentsInChildren<Button>();
+            employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
+            healingList = healing_List_UI_Content.GetComponentsInChildren<Button>();
         }
-        public void Create_EmployedHero_UI() // 교회 버튼 클릭 시 실행.
+        public void Init_UI() // 교회 버튼 클릭 시 실행.
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing == false) // 회복중이 아니어야 프리팹 생성
+                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing
+                    || heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining)
+                    continue;
+                employedHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
+                employedHero_UI.name = heroManager.CurrentHeroList[i].name;
+            }
+
+            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+            {
+                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing)
                 {
-                    employedHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
-                    employedHero_UI.name = heroManager.CurrentHeroList[i].name;
+                    healingHero_UI = Instantiate(healingHero_UI_Prefab, healing_List_UI_Content.transform);
+                    healingHero_UI.name = heroManager.CurrentHeroList[i].name;
                 }
             }
         }
-        public void Destroy_EmployedHero_UI() // 교회 패널의 닫기 버튼 클릭 시 실행.
+        public void Destroy_UI() // 교회 패널의 닫기 버튼 클릭 시 실행.
         {
             
             //employer_List_UI_Content의 child를 검색해서 전부 파괴.            
-            if (childList != null)
+            if (employedList != null)
             {
-                for (int i = 0; i < childList.Length; i++)
+                for (int i = 0; i < employedList.Length; i++)
                 {
-                    Destroy(childList[i].gameObject);
+                    Destroy(employedList[i].gameObject);
+                }
+            }
+            if (healingList != null)
+            {
+                for (int i = 0; i < healingList.Length; i++)
+                {
+                    Destroy(healingList[i].gameObject);
                 }
             }
         }
-        
+
+        public void HealingStart()
+        {
+            for (int i = 0; i < healingList.Length; i++)
+            {
+                for (int j = 0; j < heroManager.CurrentHeroList.Count; j++)
+                {
+                    if (healingList[i].name == heroManager.CurrentHeroList[j].name)
+                    { heroManager.CurrentHeroList[j].GetComponent<HeroScript_Current_State>().isHealing = true; }
+                }
+            }
+            Destroy_UI();
+            Init_UI();
+        }
+
+        public void HealingEnd()
+        {
+            for (int i = 0; i < healingList.Length; i++)
+            {
+                for (int j = 0; j < heroManager.CurrentHeroList.Count; j++)
+                {
+                    if (healingList[i].name == heroManager.CurrentHeroList[j].name)
+                    {
+                        heroManager.CurrentHeroList[j].GetComponent<HeroScript_Current_State>().isHealing = false;
+                        // 회복이 종료될 때 회복되도록.
+                        heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.HP = heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MAXHP; // hp회복
+                        heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MAXMP; // mp회복
+                    }
+                }
+            }
+            Destroy_UI();
+            Init_UI();
+        }
     }
 }
 
