@@ -15,8 +15,11 @@ namespace Shin
         public SkillScript skillScript;
         public EquipScript equipScript;
         public HeroScript_Current_State heroScript_Current_State;
+        public Image heroInfo;
         public Text text_Name;
         public Text text_Job;
+        public Text testText00;
+        public Text testText01;
 
         public RectTransform heroInfoPopup;
         Button btn;
@@ -30,9 +33,14 @@ namespace Shin
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+
+            heroInfo = heroInfoPopup.GetChild(0).GetComponent<Image>();
+            testText00 = heroInfoPopup.GetChild(0).GetChild(0).GetComponent<Text>();
+            testText01 = heroInfoPopup.GetChild(0).GetChild(1).GetComponent<Text>();
             btn = GetComponent<Button>();
 
             btn.onClick.AddListener(DoTweenLeftToRight); // 버튼이 눌리면
+            btn.onClick.AddListener(ShowHeroDetail);
             btn.onClick.AddListener(uI_trainingManager.Destroy_UI);
         }
         private void Update()
@@ -55,7 +63,12 @@ namespace Shin
             text_Name.text = "이름 : " + statScript.myStat.Name;
             text_Job.text = "직업 : " + statScript.myStat.Job;
         }
-
+        void ShowHeroDetail()
+        {
+            testText00.text = statScript.myStat.Name;
+            testText01.text = statScript.myStat.Job;
+            heroInfo.name = testText00.text;
+        }
         public void DoTweenLeftToRight()
         {
             heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);

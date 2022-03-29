@@ -175,7 +175,6 @@ GameObject:
   - component: {fileID: -3569249636491544832}
   - component: {fileID: 5153799253809030684}
   - component: {fileID: 7812423451466261334}
-  - component: {fileID: 5969540337466789712}
   m_Layer: 5
   m_Name: Training_EmployedHeroPrefab
   m_TagString: Untagged
@@ -314,9 +313,11 @@ MonoBehaviour:
   skillScript: {fileID: 0}
   equipScript: {fileID: 0}
   heroScript_Current_State: {fileID: 0}
-  btn: {fileID: 0}
+  heroInfo: {fileID: 0}
   text_Name: {fileID: 6375537932930849968}
   text_Job: {fileID: 6375537933230837347}
+  testText00: {fileID: 0}
+  testText01: {fileID: 0}
   heroInfoPopup: {fileID: 0}
 --- !u!114 &-3906129296527274666
 MonoBehaviour:
@@ -407,10 +408,12 @@ MonoBehaviour:
   myEquip:
   - Index: 0
     Name: 
+    Lv: 0
     Atk: 0
     Def: 0
   - Index: 0
     Name: 
+    Lv: 0
     Atk: 0
     Def: 0
 --- !u!114 &7812423451466261334
@@ -429,15 +432,3 @@ MonoBehaviour:
   isDead: 0
   isParty: 0
   isTraining: 0
---- !u!114 &5969540337466789712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375537934540642707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a11429660bddb14aaf998a04ab6a222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
