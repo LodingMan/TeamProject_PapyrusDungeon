@@ -76394,6 +76394,7 @@ MonoBehaviour:
   - {fileID: 4970392771317332003, guid: 7541d1d7ccdadd746a66d77574877bd8, type: 3}
   hasItemList: []
   hasEquipList: []
+  equipSavingDatas: []
   inventory: {fileID: 433690432}
   shopPanel: {fileID: 1124050489}
   isShop: 0
@@ -81353,6 +81354,8 @@ MonoBehaviour:
     Def: 0
   smithSlot: {fileID: 1701882445}
   inventory: {fileID: 433690433}
+  upgradeChance: 100
+  shopManager: {fileID: 0}
   isActive: 0
   isSlotFull: 0
 --- !u!1001 &1784365626
@@ -82087,7 +82090,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 710935815}
         m_TargetAssemblyTypeName: Shin.UI_TrainingManager, Assembly-CSharp
-        m_MethodName: Destroy_EmployedHero_UI
+        m_MethodName: Destroy_UI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
