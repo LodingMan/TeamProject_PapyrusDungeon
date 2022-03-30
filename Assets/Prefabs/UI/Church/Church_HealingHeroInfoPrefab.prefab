@@ -172,8 +172,6 @@ GameObject:
   - component: {fileID: 4512954966655475406}
   - component: {fileID: 2221870476471778282}
   - component: {fileID: -7065470010307888517}
-  - component: {fileID: -3111790910455748208}
-  - component: {fileID: 8993486785483167932}
   - component: {fileID: -5866999746268011533}
   m_Layer: 5
   m_Name: Church_HealingHeroInfoPrefab
@@ -298,8 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statScript: {fileID: 0}
-  skillScript: {fileID: 0}
-  equipScript: {fileID: 0}
   heroScript_Current_State: {fileID: 0}
   text_Name: {fileID: 6375537932930849968}
   text_Job: {fileID: 6375537933230837347}
@@ -330,75 +326,6 @@ MonoBehaviour:
     Acc: 0
     Agi: 0
     Speed: 0
---- !u!114 &-3111790910455748208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375537934540642707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9dfb67d7b090b4997b721f42aab8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skills:
-  - Index: 0
-    Name: 
-    LV: 0
-    ATK: 0
-    DEF: 0
-    MyPosition: 
-    EnemyPosition: 
-  - Index: 0
-    Name: 
-    LV: 0
-    ATK: 0
-    DEF: 0
-    MyPosition: 
-    EnemyPosition: 
-  - Index: 0
-    Name: 
-    LV: 0
-    ATK: 0
-    DEF: 0
-    MyPosition: 
-    EnemyPosition: 
-  - Index: 0
-    Name: 
-    LV: 0
-    ATK: 0
-    DEF: 0
-    MyPosition: 
-    EnemyPosition: 
-  - Index: 0
-    Name: 
-    LV: 0
-    ATK: 0
-    DEF: 0
-    MyPosition: 
-    EnemyPosition: 
---- !u!114 &8993486785483167932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375537934540642707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455e8c98d0437ac428fcfe091295f64d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myEquip:
-  - Index: 0
-    Name: 
-    Atk: 0
-    Def: 0
-  - Index: 0
-    Name: 
-    Atk: 0
-    Def: 0
 --- !u!114 &-5866999746268011533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,4 +340,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHealing: 0
   isDead: 0
-  isPaty: 0
+  isParty: 0
+  isTraining: 0

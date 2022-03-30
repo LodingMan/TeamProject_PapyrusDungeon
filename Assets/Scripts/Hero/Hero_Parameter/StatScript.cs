@@ -7,5 +7,4 @@ public class StatScript : MonoBehaviour
     public Stat myStat;
 
 
-
 }

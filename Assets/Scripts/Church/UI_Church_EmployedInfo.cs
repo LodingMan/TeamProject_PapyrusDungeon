@@ -11,10 +11,9 @@ namespace Shin
         Song.HeroManager heroManager;
         Shin.UI_ChurchManager uI_ChurchManager;
 
-        public HeroSavingData healingHeroData = new HeroSavingData();
+        //public HeroSavingData healingHeroData = new HeroSavingData();
+
         public StatScript statScript;
-        public SkillScript skillScript;
-        public EquipScript equipScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
         public Text text_Job;
@@ -22,7 +21,7 @@ namespace Shin
         
         public Button btn; // 자기 자신의 버튼.
         int num;
-        static public int EmployedCnt = 0;
+        //static public int EmployedCnt = 0;
 
         private void Awake()
         {
@@ -35,8 +34,6 @@ namespace Shin
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             statScript = GetComponent<StatScript>();
-            skillScript = GetComponent<SkillScript>();
-            equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             // 초기화
 
@@ -45,8 +42,6 @@ namespace Shin
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고
                 {
                     statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // 대입.
-                    skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
-                    equipScript.myEquip = heroManager.CurrentHeroList[i].GetComponent<EquipScript>().myEquip;
                 }
             }
 
@@ -61,13 +56,13 @@ namespace Shin
             uI_ChurchManager.healingHero_UI.name = gameObject.name; // UI 네이밍.
             
             // parameter input
-            healingHeroData.stat = statScript.myStat;
+            /*healingHeroData.stat = statScript.myStat;
             healingHeroData.skills = skillScript.skills;
-            healingHeroData.equips = equipScript.myEquip;
+            healingHeroData.equips = equipScript.myEquip;*/
 
             //uI_ChurchManager.healingHeroDataList.Add(healingHeroData); // healingHeroDataList 리스트에 ADD
 
-            EmployedCnt++; // healingHeroDataList[순서]에 사용할 static 변수.
+            //EmployedCnt++; // healingHeroDataList[순서]에 사용할 static 변수.
             Destroy(gameObject);
         }
     }

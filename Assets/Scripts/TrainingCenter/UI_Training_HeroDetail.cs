@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Shin {
-    public class UI_Training_HeroDetail : MonoBehaviour
+    public class UI_Training_HeroDetail : MonoBehaviour // 이 스크립트에서 Training_HeroInfo 패널 관리
     {
         public Shin.UI_Training_EmployedInfo uI_Training_EmployedInfo;
         public RectTransform heroInfoPopup;
