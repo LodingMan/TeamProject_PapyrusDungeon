@@ -68,6 +68,7 @@ namespace Song
             UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = gameObject.transform.GetChild(0).GetComponent<Text>().text;
             UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
             UI_Prefab.GetComponent<Song.Current_Hero_UI_Script>().This_Prefab_Object = This_Prefab_Object; //고용전 영웅에서 고용된 영웅 프리팹으로 넘어가면서 오브젝트 인수인계
+            guildManager.Current_Hero_UI_List.Add(UI_Prefab);
             Destroy(gameObject);
 
             gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(false);
