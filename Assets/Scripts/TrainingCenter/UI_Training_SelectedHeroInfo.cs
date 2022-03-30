@@ -16,11 +16,27 @@ namespace Shin
 
         public Button training_Start;
 
+        public Text heroName;
+        public Text heroJob;
+        public Image heroImage;
+
+        public Image detail_Image;
+        public Text detail_Text;
+        public Text detail_Before;
+        public Text detail_After;
+        public Button[] Skill_Btn;
+
         private void Awake()
         {
+            
             training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
             training_Start.onClick.AddListener(TrainingStart);
-            
+
+            Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
+            Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
+            Skill_Btn[2].onClick.AddListener(Click_Btn_Skill02);
+            // Skill_Btn().onClick.AddListener를 이용해 누른 버튼에 따라 우측 정보칸의 스킬아이콘 변경. // 스킬설명도 .
+            // 스킬 before,after도.
         }
         void Start()
         {
@@ -30,17 +46,17 @@ namespace Shin
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+            heroName = transform.GetChild(0).GetComponent<Text>();
+            heroJob = transform.GetChild(1).GetComponent<Text>();
+            heroImage = transform.GetChild(2).GetComponent<Image>();
             
         }
-        private void Update()
-        {
-            InitHeroInfo();
-        }
+
         public void InitHeroInfo()
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고
+                if (statScript.myStat.Name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고
                 {
                     statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // 값 넣기.
                     skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
@@ -50,6 +66,11 @@ namespace Shin
                     heroScript_Current_State.isHealing = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining;
                 }
             }
+            heroName.text = statScript.myStat.Name;
+            heroJob.text = statScript.myStat.Job;
+
+
+            Skill_IndexInit();
         }
 
         public void TrainingStart()
@@ -66,6 +87,27 @@ namespace Shin
             uI_trainingManager.Init_UI();
         }
 
+        public void Skill_IndexInit()
+        {
+            for (int i = 0; i < Skill_Btn.Length; i++)
+            {
+                Skill_Btn[i].name = skillScript.mySkills[i].Index.ToString();
+            }
+        }
+
+        public void Click_Btn_Skill00()
+        {
+            detail_Text.text = Skill_Btn[0].name + "번의 설명입니다";
+            
+        }
+        public void Click_Btn_Skill01()
+        {
+            detail_Text.text = Skill_Btn[1].name + "번의 설명입니다";
+        }
+        public void Click_Btn_Skill02()
+        {
+            detail_Text.text = Skill_Btn[2].name + "번의 설명입니다";
+        }
     }
 
 }

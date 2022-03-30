@@ -73,16 +73,6 @@ namespace Shin
                 }
             }
         }
-
-        
-        public void DoTweenLeftToRight()
-        {
-            heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        }
-        public void DoTweenRightToLeft()
-        {
-            heroInfoPopup.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
-        }
     }
 }
 
