@@ -439,6 +439,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8217575457387256555}
+        m_TargetAssemblyTypeName: EquipScripts_ysg, Assembly-CSharp
+        m_MethodName: EquipSell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &8217575457387256555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,12 +469,14 @@ MonoBehaviour:
     Lv: 1
     Atk: 0
     Def: 10
+    Cost: 0
   itemUseManager: {fileID: 0}
   itemData: {fileID: 0}
   smithManager: {fileID: 0}
   equipIndex: 0
   isEquip: 0
   isSmith: 0
+  isSelled: 0
   equipBtn: {fileID: 0}
   smithSlot: {fileID: 0}
 --- !u!114 &-2199994453624744715
@@ -484,3 +498,4 @@ MonoBehaviour:
       Lv: 1
       Atk: 0
       Def: 10
+      Cost: 0

@@ -29,6 +29,7 @@ public class ShopManager : MonoBehaviour
     public GameObject inventory; // 인벤토리 패널 위치
     public GameObject shopPanel; // 상점 패널 위치
 
+    public int money = 0;
     public bool isShop = false; // 상점이 열려있는지 확인하는 bool값입니다.
 
     public Button BuyBtn; // 구매 버튼
