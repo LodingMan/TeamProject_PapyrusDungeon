@@ -78,8 +78,8 @@ public class ShopManager : MonoBehaviour
 
         string jdata = JsonConvert.SerializeObject(item);
         string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
-        File.WriteAllText(Application.dataPath + "/ItemSave.Json", jdata);
-        File.WriteAllText(Application.dataPath + "/EquipSave.Json", jdata2);
+        File.WriteAllText(Application.persistentDataPath + "/ItemSave.json", jdata);
+        File.WriteAllText(Application.persistentDataPath + "/EquipSave.json", jdata2);
 
     }
 
@@ -138,8 +138,8 @@ public class ShopManager : MonoBehaviour
 
     public void ItemLoad() // Json파일을 불러온 다음 LoadItemCreate 함수를 실행 시킵니다.
     {
-        string jdata = File.ReadAllText(Application.dataPath + "/ItemSave.Json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
-        string jdata2 = File.ReadAllText(Application.dataPath + "/EquipSave.Json");
+        string jdata = File.ReadAllText(Application.persistentDataPath + "/ItemSave.json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
+        string jdata2 = File.ReadAllText(Application.persistentDataPath + "/EquipSave.json");
         item = JsonConvert.DeserializeObject<List<Item>>(jdata);
         equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(jdata2);
 
