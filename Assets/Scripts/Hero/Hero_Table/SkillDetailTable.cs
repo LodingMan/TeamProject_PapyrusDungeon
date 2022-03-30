@@ -13,7 +13,6 @@ namespace Shin {
             {
                 skilldetails.Add(new SkillDetail(i, "SkillName" + (i+1), i + "번 스킬 설명입니다"));
             }
-            
         }
 
     }
