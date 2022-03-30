@@ -113,7 +113,7 @@ public class EquipScripts_ysg : MonoBehaviour
     }
 
 
-    public void EquipWeapon()
+    public void EquipWeapon() // 무기 착용 시 실행되는 함수입니다.
     {
         if (itemUseManager.isActive) // 영웅이 선택 되었다면 실행합니다.
         {
@@ -129,7 +129,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
         }
     }
-    public void EquipArmor()
+    public void EquipArmor() // 장비 착용 시 실행되는 함수입니다.
     {
         if (itemUseManager.isActive)
         {
@@ -146,7 +146,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UnEquipWeapon()
+    public void UnEquipWeapon() //무기 해제 함수입니다.
     {
         if (isEquip && itemUseManager.isActive)
         {
@@ -163,7 +163,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UnEquipArmor()
+    public void UnEquipArmor() // 장비 해제 함수입니다.
     {
         if (isEquip && itemUseManager.isActive)
         {
@@ -180,7 +180,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UpgradeEquips()
+    public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
         if (!smithManager.isSlotFull && smithManager.isActive)
         {

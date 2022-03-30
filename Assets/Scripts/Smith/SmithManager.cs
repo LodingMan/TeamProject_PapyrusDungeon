@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//==================================================================================================//
+// 대장간 스크립트입니다. 장비 강화 및 강화 수치 반환을 담당합니다. 03-29 윤성근
+//==================================================================================================//
 public class SmithManager : MonoBehaviour
 {
     public Equip equip;

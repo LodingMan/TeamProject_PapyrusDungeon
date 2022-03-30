@@ -13,9 +13,16 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_StatusPanelPos;
     public RectTransform UI_churchPanelPos;
     public RectTransform UI_trainingPanelPos;
+    public RectTransform UI_shopPanelPos;
+    public RectTransform UI_inventoryPanelPos;
+    public RectTransform UI_smithPanelPos;
+
     bool UI_isGuildPanel_On = false;
     bool UI_isChurchPanel_On = false;
     bool UI_isTrainingPanel_On = false;
+    bool UI_isShopPanel_On = false;
+    bool UI_isInventoryPanel_On = false;
+    bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
 
 
@@ -74,6 +81,50 @@ public class UI_Tweening_Manager : MonoBehaviour
         {
             UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UI_isTrainingPanel_On = true;
+        }
+    }
+
+    public void UI_Shop_PanelPos_On_Off()
+    {
+        if (UI_isShopPanel_On)
+        {
+            UI_shopPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+            UI_isShopPanel_On = false;
+
+        }
+        else
+        {
+            UI_shopPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UI_isShopPanel_On = true;
+        }
+    }
+
+    public void UI_Inventory_PanelPos_On_Off()
+    {
+        if (UI_isInventoryPanel_On)
+        {
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+            UI_isInventoryPanel_On = false;
+
+        }
+        else
+        {
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UI_isInventoryPanel_On = true;
+        }
+    }
+
+    public void UI_Smith_PanelPos_On_Off()
+    {
+        if (UI_isSmithPanel_On)
+        {
+            UI_smithPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+            UI_isSmithPanel_On = false;
+        }
+        else
+        {
+            UI_smithPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UI_isSmithPanel_On = true;
         }
     }
 }
