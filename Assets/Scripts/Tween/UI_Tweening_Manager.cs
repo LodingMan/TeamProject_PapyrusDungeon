@@ -97,6 +97,18 @@ public class UI_Tweening_Manager : MonoBehaviour
         UIStack[StackCount] = UI_trainingSecPanelPos;
         StackCount++;
     }
+    public void UI_TrainingSecPanel_Off()
+    {
+        if (StackCount > 0)
+        {
+            if (UIStack[StackCount - 1] != null)
+            {
+                UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1] = null;
+                StackCount--;
+            }
+        } 
+    }
 
     public void UI_Shop_PanelPos_On_Off()
     {

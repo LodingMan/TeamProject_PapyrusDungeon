@@ -9,6 +9,7 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_TrainingManager uI_trainingManager;
+        UI_Tweening_Manager uI_Tweening_Manager;
         public StatScript statScript;
         public SkillScript skillScript;
         public EquipScript equipScript;
@@ -28,9 +29,10 @@ namespace Shin
 
         private void Awake()
         {
-            
             training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
+            uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
             training_Start.onClick.AddListener(TrainingStart);
+            
 
             Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
             Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
@@ -52,6 +54,13 @@ namespace Shin
             
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                uI_trainingManager.Init_UI();
+            }
+        }
         public void InitHeroInfo()
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
@@ -83,6 +92,7 @@ namespace Shin
                     heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining = heroScript_Current_State.isTraining;
                 }
             }
+            uI_Tweening_Manager.UI_TrainingSecPanel_Off();
             uI_trainingManager.Destroy_UI();
             uI_trainingManager.Init_UI();
         }
