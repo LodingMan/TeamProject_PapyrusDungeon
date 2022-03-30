@@ -22,6 +22,8 @@ public class UI_Tweening_Manager : MonoBehaviour
     bool UI_isInventoryPanel_On = false;
     bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
+    public bool isShopOn = false;
+    public bool isSmithOn = false;
 
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
@@ -106,16 +108,19 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Shop_PanelPos_On_Off()
     {
-        if (UI_isShopPanel_On)
+        if (UI_isShopPanel_On && isShopOn)
         {
-            UI_shopPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+            UI_shopPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             UI_isShopPanel_On = false;
+            isShopOn = false;
 
         }
-        else
+        else if(!isShopOn && !isSmithOn)
         {
             UI_shopPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UI_isShopPanel_On = true;
+            isShopOn = true;
+
         }
     }
 
@@ -123,7 +128,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     {
         if (UI_isInventoryPanel_On)
         {
-            UI_inventoryPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             UI_isInventoryPanel_On = false;
 
         }
@@ -138,13 +143,16 @@ public class UI_Tweening_Manager : MonoBehaviour
     {
         if (UI_isSmithPanel_On)
         {
-            UI_smithPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
+            UI_smithPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             UI_isSmithPanel_On = false;
+            isSmithOn = false;
         }
-        else
+        else if(!isSmithOn && !isShopOn)
         {
             UI_smithPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UI_isSmithPanel_On = true;
+            isSmithOn = true;
+
         }
     }
 }
