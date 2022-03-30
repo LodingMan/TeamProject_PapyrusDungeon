@@ -43,6 +43,18 @@ public class UI_DungeonSelect_Manager : MonoBehaviour
             buttons[i].SetActive(true);
         }
         isDungeonSelect = false;
+    }
+
+    public void DungeonSelect1()
+    {
+        
+    }
+    public void DungeonSelect2()
+    {
+
+    }
+    public void DungeonSelect3()
+    {
 
     }
 }

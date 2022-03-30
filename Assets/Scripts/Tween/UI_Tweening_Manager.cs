@@ -18,8 +18,8 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     bool UI_isGuildPanel_On = false;
     bool UI_isChurchPanel_On = false;
-    bool UI_isTrainingPanel_On = false;
-    bool UI_isTrainingSecPanel_On = false;
+    //bool UI_isTrainingPanel_On = false;
+    //bool UI_isTrainingSecPanel_On = false;
     bool UI_isShopPanel_On = false;
     bool UI_isInventoryPanel_On = false;
     bool UI_isSmithPanel_On = false;
@@ -98,6 +98,18 @@ public class UI_Tweening_Manager : MonoBehaviour
         UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_trainingSecPanelPos;
         StackCount++;
+    }
+    public void UI_TrainingSecPanel_Off()
+    {
+        if (StackCount > 0)
+        {
+            if (UIStack[StackCount - 1] != null)
+            {
+                UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1] = null;
+                StackCount--;
+            }
+        } 
     }
 
     public void UI_Shop_PanelPos_On_Off()

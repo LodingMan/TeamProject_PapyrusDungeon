@@ -230,7 +230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cf1462bc694c3c249831ad8ac5293aa2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -310,14 +310,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statScript: {fileID: 0}
   skillScript: {fileID: 0}
-  equipScript: {fileID: 0}
   heroScript_Current_State: {fileID: 0}
   heroInfo: {fileID: 0}
   text_Name: {fileID: 6375537932930849968}
   text_Job: {fileID: 6375537933230837347}
-  testText00: {fileID: 0}
-  testText01: {fileID: 0}
-  heroInfoPopup: {fileID: 0}
 --- !u!114 &-3906129296527274666
 MonoBehaviour:
   m_ObjectHideFlags: 0

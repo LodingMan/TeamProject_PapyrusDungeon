@@ -10,6 +10,7 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_TrainingManager uI_trainingManager;
+        UI_Tweening_Manager uI_Tweening_Manager;
         public StatScript statScript;
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
@@ -17,24 +18,23 @@ namespace Shin
         public Text text_Name;
         public Text text_Job;
 
-        public RectTransform heroInfoPopup;
+        
         Button btn;
 
         private void Awake()
         {
-            heroInfoPopup = GameObject.Find("Training_HeroInfo").GetComponent<RectTransform>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+            uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
-            heroInfo = heroInfoPopup.GetChild(0).GetComponent<Image>();
+            heroInfo = GameObject.Find("Training_HeroInfo").transform.GetChild(0).GetComponent<Image>();
             btn = GetComponent<Button>();
 
-            btn.onClick.AddListener(DoTweenLeftToRight); // 버튼이 눌리면
+            btn.onClick.AddListener(uI_Tweening_Manager.UI_TrainingSecPanel_On); // 버튼이 눌리면
             btn.onClick.AddListener(ShowHeroDetail);
-            btn.onClick.AddListener(uI_trainingManager.Destroy_UI);
         }
         private void Update()
         {
@@ -59,12 +59,8 @@ namespace Shin
         }
         void ShowHeroDetail()
         {
-            heroInfo.GetComponent<StatScript>().myStat.Name = statScript.myStat.Name;
+            heroInfo.name = statScript.myStat.Name;
             heroInfo.GetComponent<UI_Training_SelectedHeroInfo>().InitHeroInfo();
-        }
-        public void DoTweenLeftToRight()
-        {
-            heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);
         }
 
     }
