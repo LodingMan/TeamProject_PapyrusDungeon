@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
+using UnityEngine;
 
 //==================================================================================================//
 //UI의 움직임을 Tween으로 컨트롤 할때 TweenManager오브젝트의 이 컴포넌트에 넣고 제어 (Stage 씬에서만 사용)//
@@ -11,6 +8,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 {
     public RectTransform UI_guildPanelPos;
     public RectTransform UI_StatusPanelPos;
+    public RectTransform UI_DungeonSelectPanelPos;
     public RectTransform UI_churchPanelPos;
     public RectTransform UI_trainingPanelPos;
     public RectTransform UI_shopPanelPos;
@@ -25,36 +23,58 @@ public class UI_Tweening_Manager : MonoBehaviour
     bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
 
+    public RectTransform[] UIStack = new RectTransform[4];
+    public int StackCount = 0;
 
 
-
-    public void UI_GuildPanel_On_Off()
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (StackCount > 0)
+            {
+                if (UIStack[StackCount - 1] != null)
+                {
+                    UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                    UIStack[StackCount - 1] = null;
+                    StackCount--;
+                }
+            }
 
-        if(UI_isGuildPanel_On)
-        {
-            UI_guildPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-            UI_isGuildPanel_On = false;
-        }
-        else
-        {
-            UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UI_isGuildPanel_On = true;
         }
     }
-    public void UI_StatusPanel_On_Off()
+
+
+    public void UI_GuildPanel_On()
     {
-        if(UI_isStatusPanel_On)
-        {
-            UI_StatusPanelPos.DOAnchorPos(new Vector2(0,2170), 1f);
-            UI_isStatusPanel_On = false;
-        }
-        else
-        {
-            UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
-            UI_isStatusPanel_On = true;
-        }
+        UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_guildPanelPos;
+        StackCount++;
+        //if(UI_isGuildPanel_On)
+        //{
+        //    UI_guildPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+        //    UI_isGuildPanel_On = false;
+        //}
+        //else
+        //{
+        //    UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        //    UI_isGuildPanel_On = true;
+        //}
     }
+    public void UI_StatusPanel_On()
+    {
+        UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UIStack[StackCount] = UI_StatusPanelPos;
+        StackCount++;
+    }
+
+    public void UI_DungeonSelectPanel_On()
+    {
+        UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UIStack[StackCount] = UI_DungeonSelectPanelPos;
+        StackCount++;
+    }
+
 
     public void UI_churchPanelPos_On_Off()
     {
