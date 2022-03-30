@@ -19,6 +19,8 @@ public class ItemScripts : MonoBehaviour
     public int itemIndex; // 오브젝트를 구별하기 위해 넣은 변수입니다.
     public bool isUsed = false;
 
+    public int sell = 0;
+
 
 
     private void Start()
@@ -127,44 +129,85 @@ public class ItemScripts : MonoBehaviour
                     break;
             }
         }
+        //else
+        //{
+        //    switch (item.TargetStatus)
+        //    {
+        //        case "HP":
+        //                isUsed = true;
+                    
+        //                itemUseManager.isActive = false;
+        //                itemUseManager.stats = null;
+        //                shopManager.money += item.cost;
+        //            for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
+        //                {
+        //                    if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)
+        //                    {
+        //                        shopManager.hasItemList.RemoveAt(i);
+        //                    }
+        //                }
+        //                Destroy(gameObject);
+        //            break;
+        //        case "MP":
+        //             isUsed = true;
+        //            itemUseManager.isActive = false;
+        //            itemUseManager.stats = null;
+        //            shopManager.money += item.cost;
+        //            for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--)
+        //                {
+        //                    if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)
+        //                    {
+        //                        shopManager.hasItemList.RemoveAt(i);
+        //                    }
+        //                }
+        //                Destroy(gameObject);
+
+
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
+
+    }
+
+    public void ItemSell()
+    {
+        if (shopManager.isShop)
+        {
+            useBtn.gameObject.SetActive(false);
+            sell++;
+
+            if (sell == 2)
+            {
+                isUsed = true;
+                shopManager.money += item.cost;
+                for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
+                {
+                    if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)
+                    {
+                        shopManager.hasItemList.RemoveAt(i);
+                    }
+                }
+                useBtn.gameObject.SetActive(false);
+                Debug.Log("판매 완료");
+                Destroy(gameObject);
+
+            }
+
+        }
         else
         {
-            switch (item.TargetStatus)
-            {
-                case "HP":
-                        isUsed = true;
-                        itemUseManager.isActive = false;
-                        itemUseManager.stats = null;
-                    for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
-                        {
-                            if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)
-                            {
-                                shopManager.hasItemList.RemoveAt(i);
-                            }
-                        }
-                        Destroy(gameObject);
-                    break;
-                case "MP":
-                     isUsed = true;
-                    itemUseManager.isActive = false;
-                    itemUseManager.stats = null;
-                    for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--)
-                        {
-                            if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)
-                            {
-                                shopManager.hasItemList.RemoveAt(i);
-                            }
-                        }
-                        Destroy(gameObject);
-
-
-                    break;
-                default:
-                    break;
-            }
+            SellCancel();
         }
+    }
 
 
+    public void SellCancel()
+    {
+        sell = 0;
+        isUsed = false;
     }
 
 }

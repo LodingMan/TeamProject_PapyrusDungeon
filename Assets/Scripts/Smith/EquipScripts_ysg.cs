@@ -14,9 +14,11 @@ public class EquipScripts_ysg : MonoBehaviour
     public SmithManager smithManager;
 
     public int equipIndex;
+    public int sell = 0;
 
     public bool isEquip = false; // 현재 무기or장비가 장착 되었는지 확인 하는 bool 값입니다.
     public bool isSmith = false;
+    public bool isSelled = false;
 
     public Button equipBtn;
     public Transform smithSlot;
@@ -26,11 +28,14 @@ public class EquipScripts_ysg : MonoBehaviour
 
     void Start()
     {
+
         itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
         smithManager = GameObject.Find("SmithManager").GetComponent<SmithManager>();
         smithSlot = smithManager.smithSlot;
         itemData = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         equipBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
+        itemData.hasEquipList.Add(gameObject);
+
 
         switch (gameObject.name) //현재 게임오브젝트의 이름에 맞는 함수를 출력합니다.
         {
@@ -51,12 +56,8 @@ public class EquipScripts_ysg : MonoBehaviour
     }
     public void EquipParamInit() //EquipTable에 있는 정보를 가져옵니다. 정보는 equipIndex에 있는 Index를 기반으로 가져옵니다.
     {
-        //equip.Index = equipTable.initEquip[equipIndex].Index;
-        //equip.Name = equipTable.initEquip[equipIndex].Name;
-        //equip.Lv = equipTable.initEquip[equipIndex].Lv;
-        //equip.Atk = equipTable.initEquip[equipIndex].Atk;
-        //equip.Def = equipTable.initEquip[equipIndex].Def;
         gameObject.name = equip.Name;
+        equip.Cost = equipTable.initEquip[equipIndex].Cost;
     }
 
     public void Equip() // 장비를 장착 or 해제 했을때 호출되는 함수입니다. 
@@ -110,9 +111,42 @@ public class EquipScripts_ysg : MonoBehaviour
 
 
 
+
     }
 
+    public void EquipSell()
+    {
 
+        if (itemData.isShop)
+        {
+            equipBtn.gameObject.SetActive(false);
+            sell++;
+
+            if (sell == 2)
+            {
+                isSelled = true;
+                itemData.money += equip.Cost;
+                for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-30 윤성근
+                {
+                    if (itemData.hasEquipList[i].GetComponent<EquipScripts_ysg>().isSelled)
+                    {
+                        itemData.hasEquipList.RemoveAt(i);
+                    }
+                }
+                equipBtn.gameObject.SetActive(false);
+                Debug.Log("판매 완료");
+                Destroy(gameObject);
+
+            }
+
+        }
+        else
+        {
+            SellCancel();
+        }
+
+
+    }
     public void EquipWeapon() // 무기 착용 시 실행되는 함수입니다.
     {
         if (itemUseManager.isActive) // 영웅이 선택 되었다면 실행합니다.
@@ -200,6 +234,13 @@ public class EquipScripts_ysg : MonoBehaviour
         }
 
 
+    }
+
+
+    public void SellCancel()
+    {
+        sell = 0;
+        isSelled = false;
     }
 
 
