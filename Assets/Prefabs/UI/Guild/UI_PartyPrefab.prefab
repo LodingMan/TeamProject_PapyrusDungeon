@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Name  : '
+  m_Text: 
 --- !u!1 &3616982715253050241
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP :'
+  m_Text: 
 --- !u!1 &5710394525089996160
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,8 +257,40 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: -2039681391940583100}
-          m_TargetAssemblyTypeName: PartyMember_UI_Script, Assembly-CSharp
-          m_MethodName: Pointer_Up
+          m_TargetAssemblyTypeName: Song.PartyMember_UI_Script, Assembly-CSharp
+          m_MethodName: Pointer_Drop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -2039681391940583100}
+          m_TargetAssemblyTypeName: Song.PartyMember_UI_Script, Assembly-CSharp
+          m_MethodName: PointerDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -2039681391940583100}
+          m_TargetAssemblyTypeName: Song.PartyMember_UI_Script, Assembly-CSharp
+          m_MethodName: PointerUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -283,6 +315,8 @@ MonoBehaviour:
   This_Prefab_Object: {fileID: 0}
   uI_Central: {fileID: 0}
   isParty_Hero_In: 0
+  isPointerDown: 0
+  downTime: 0
 --- !u!1 &6272948311268362402
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +395,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'MP : '
+  m_Text: 
 --- !u!1 &6935318055749955411
 GameObject:
   m_ObjectHideFlags: 0

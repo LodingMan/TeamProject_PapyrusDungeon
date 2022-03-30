@@ -12,6 +12,7 @@ namespace Song
         public UI_Tweening_Manager uI_Tweening_Manger;
         public Text[] Status_Texts = new Text[13];
         public GameObject This_Prefab_Object;
+        public HeroManager heroManager;
 
 
         private void Start()
@@ -55,6 +56,11 @@ namespace Song
             Status_Texts[11].text = "SKILL2 : " + Target_Hero.GetComponent<SkillScript>().skills[1].Name;
             Status_Texts[12].text = "SKILL3 : " + Target_Hero.GetComponent<SkillScript>().skills[2].Name;
 
+        }
+
+        public void MemberUpdate() //ÇØ°í
+        {
+          //  This_Prefab_Object
         }
     }
 }
