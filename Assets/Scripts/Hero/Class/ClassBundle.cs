@@ -116,3 +116,20 @@ public class EquipSavingData
 {
     public Equip equip;
 }
+
+namespace Shin
+{
+    public class SkillDetail
+    {
+        public int skillindex;
+        public string skillname;
+        public string skilldetail;
+
+        public SkillDetail(int skillindex, string skillname, string skilldetail)
+        {
+            this.skillindex = skillindex;
+            this.skillname = skillname;
+            this.skilldetail = skilldetail;
+        }
+    }
+}

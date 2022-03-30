@@ -17,14 +17,13 @@ namespace Shin
         public Button employedHero_UI;
         public Button trainingHero_UI;
 
-        public RectTransform heroInfoPopup;
+        public GameObject heroInfo;
         public Button[] employedList;
         public Button[] trainingList;
 
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            heroInfoPopup = GameObject.Find("Training_HeroInfo").GetComponent<RectTransform>();
         }
         private void Update()
         {
@@ -33,7 +32,11 @@ namespace Shin
 
             if(Input.GetKeyDown(KeyCode.Escape))
             {
-                Destroy_UI();
+                if (heroInfo.activeSelf == false)
+                {
+                    Destroy_UI();
+                    heroInfo.SetActive(false);
+                }
             }
         }
         public void Init_UI() // 훈련소 버튼 클릭 시 실행.
@@ -67,7 +70,6 @@ namespace Shin
             {
                 for (int i = 0; i < employedList.Length; i++)
                 {
-                    Debug.Log(employedList.Length);
                     Destroy(employedList[i].gameObject);
                 }
             }
