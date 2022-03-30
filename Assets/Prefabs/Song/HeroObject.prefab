@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8539345149019748678}
   - component: {fileID: -6471178836264138482}
   - component: {fileID: -7899975800108126740}
+  - component: {fileID: 919965224480213933}
   m_Layer: 0
   m_Name: HeroObject
   m_TagString: Untagged
@@ -176,6 +177,29 @@ MonoBehaviour:
     DEF: 0
     MyPosition: 
     EnemyPosition: 
+  SkillIndex: 000000000000000000000000
+  mySkills:
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
 --- !u!114 &3039379264659664217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,12 +227,16 @@ MonoBehaviour:
   myEquip:
   - Index: 0
     Name: 
+    Lv: 0
     Atk: 0
     Def: 0
+    Cost: 0
   - Index: 0
     Name: 
+    Lv: 0
     Atk: 0
     Def: 0
+    Cost: 0
 --- !u!114 &8539345149019748678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHealing: 0
   isDead: 0
-  isPaty: 0
+  isParty: 0
+  isTraining: 0
 --- !u!195 &-6471178836264138482
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -264,3 +293,17 @@ MonoBehaviour:
   isMove: 0
   curTime: 0
   coolTime: 0
+  pointCnt: 0
+--- !u!114 &919965224480213933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171114485774513217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fc13bdf409dea419b62c79223c6674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillScript: {fileID: 0}

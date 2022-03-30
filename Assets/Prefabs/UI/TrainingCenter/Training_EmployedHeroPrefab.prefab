@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 8985510771396878180}
   - component: {fileID: -3906129296527274666}
   - component: {fileID: -3569249636491544832}
-  - component: {fileID: 5153799253809030684}
   - component: {fileID: 7812423451466261334}
   m_Layer: 5
   m_Name: Training_EmployedHeroPrefab
@@ -393,29 +392,29 @@ MonoBehaviour:
     DEF: 0
     MyPosition: 
     EnemyPosition: 
---- !u!114 &5153799253809030684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375537934540642707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455e8c98d0437ac428fcfe091295f64d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myEquip:
+  SkillIndex: 000000000000000000000000
+  mySkills:
   - Index: 0
     Name: 
-    Lv: 0
-    Atk: 0
-    Def: 0
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
   - Index: 0
     Name: 
-    Lv: 0
-    Atk: 0
-    Def: 0
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
 --- !u!114 &7812423451466261334
 MonoBehaviour:
   m_ObjectHideFlags: 0

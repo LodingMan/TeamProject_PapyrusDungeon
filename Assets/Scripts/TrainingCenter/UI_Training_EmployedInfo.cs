@@ -13,7 +13,6 @@ namespace Shin
 
         public StatScript statScript;
         public SkillScript skillScript;
-        public EquipScript equipScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Image heroInfo;
         public Text text_Name;
@@ -31,7 +30,6 @@ namespace Shin
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
-            equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
             heroInfo = heroInfoPopup.GetChild(0).GetComponent<Image>();
@@ -56,7 +54,8 @@ namespace Shin
                 {
                     statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // ¥Î¿‘.
                     skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
-                    equipScript.myEquip = heroManager.CurrentHeroList[i].GetComponent<EquipScript>().myEquip;
+                    skillScript.SkillIndex = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().SkillIndex;
+                    skillScript.mySkills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().mySkills;
                     heroScript_Current_State.isTraining = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining;
                 }
             }

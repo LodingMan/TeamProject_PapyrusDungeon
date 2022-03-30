@@ -166,6 +166,11 @@ GameObject:
   - component: {fileID: 2180541785759617669}
   - component: {fileID: 2180541785759617675}
   - component: {fileID: 2180541785759617668}
+  - component: {fileID: 5759997969633744781}
+  - component: {fileID: 7333040637846998196}
+  - component: {fileID: 6327171265536765840}
+  - component: {fileID: 2714440347833657770}
+  - component: {fileID: -8254890889937639130}
   m_Layer: 5
   m_Name: Training_TrainingHeroPrefab
   m_TagString: Untagged
@@ -232,6 +237,192 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5759997969633744781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180541785759617670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2180541785759617668}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7333040637846998196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180541785759617670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0039669002a39a44b749f1972a705e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statScript: {fileID: 0}
+  skillScript: {fileID: 0}
+  equipScript: {fileID: 0}
+  heroScript_Current_State: {fileID: 0}
+  btn: {fileID: 0}
+--- !u!114 &6327171265536765840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180541785759617670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7276095279d984ba7c4fc7c07286fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStat:
+    Index: 0
+    Name: 
+    Job: 
+    HP: 0
+    MAXHP: 0
+    MP: 0
+    MAXMP: 0
+    Atk: 0
+    Def: 0
+    Cri: 0
+    Acc: 0
+    Agi: 0
+    Speed: 0
+--- !u!114 &2714440347833657770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180541785759617670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9dfb67d7b090b4997b721f42aab8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skills:
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  SkillIndex: 000000000000000000000000
+  mySkills:
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+  - Index: 0
+    Name: 
+    LV: 0
+    ATK: 0
+    DEF: 0
+    MyPosition: 
+    EnemyPosition: 
+--- !u!114 &-8254890889937639130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180541785759617670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839b4b335a198ce4f92f6983361c7e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHealing: 0
+  isDead: 0
+  isParty: 0
+  isTraining: 0
 --- !u!1 &7689897599182003145
 GameObject:
   m_ObjectHideFlags: 0
