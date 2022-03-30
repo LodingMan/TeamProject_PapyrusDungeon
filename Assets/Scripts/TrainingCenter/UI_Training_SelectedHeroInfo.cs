@@ -65,7 +65,7 @@ namespace Shin
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                if (statScript.myStat.Name == heroManager.CurrentHeroList[i].name) // �̸����� ���ؼ� ã��
+                if (gameObject.name == heroManager.CurrentHeroList[i].name) // �̸����� ���ؼ� ã��
                 {
                     statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // �� �ֱ�.
                     skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;

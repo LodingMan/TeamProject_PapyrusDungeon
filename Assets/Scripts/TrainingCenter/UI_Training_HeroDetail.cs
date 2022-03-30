@@ -7,7 +7,6 @@ namespace Shin {
     public class UI_Training_HeroDetail : MonoBehaviour // 이 스크립트에서 Training_HeroInfo 패널 관리
     {
         public Shin.UI_Training_EmployedInfo uI_Training_EmployedInfo;
-        public RectTransform heroInfoPopup;
         public Image heroInfo;
         public Text testText00;
         public Text testText01;
@@ -21,10 +20,9 @@ namespace Shin {
         void Start()
         {
             uI_Training_EmployedInfo = GetComponent<Shin.UI_Training_EmployedInfo>();
-            heroInfoPopup = uI_Training_EmployedInfo.heroInfoPopup;
-            heroInfo = uI_Training_EmployedInfo.heroInfoPopup.GetChild(0).GetComponent<Image>();
-            testText00 = heroInfoPopup.GetChild(0).GetChild(0).GetComponent<Text>();
-            testText01 = heroInfoPopup.GetChild(0).GetChild(1).GetComponent<Text>();
+            heroInfo = uI_Training_EmployedInfo.heroInfo;
+            testText00 = heroInfo.transform.GetChild(0).GetComponent<Text>();
+            testText01 = heroInfo.transform.GetChild(1).GetComponent<Text>();
         }
 
         void ShowHeroDetail()
