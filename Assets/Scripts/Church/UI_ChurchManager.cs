@@ -40,6 +40,11 @@ namespace Shin {
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             healingList = healing_List_UI_Content.GetComponentsInChildren<Button>();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy_UI();
+            }
         }
         public void Init_UI() // 교회 버튼 클릭 시 실행.
         {

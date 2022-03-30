@@ -11,6 +11,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_DungeonSelectPanelPos;
     public RectTransform UI_churchPanelPos;
     public RectTransform UI_trainingPanelPos;
+    public RectTransform UI_trainingSecPanelPos;
     public RectTransform UI_shopPanelPos;
     public RectTransform UI_inventoryPanelPos;
     public RectTransform UI_smithPanelPos;
@@ -18,6 +19,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     bool UI_isGuildPanel_On = false;
     bool UI_isChurchPanel_On = false;
     bool UI_isTrainingPanel_On = false;
+    bool UI_isTrainingSecPanel_On = false;
     bool UI_isShopPanel_On = false;
     bool UI_isInventoryPanel_On = false;
     bool UI_isSmithPanel_On = false;
@@ -75,33 +77,25 @@ public class UI_Tweening_Manager : MonoBehaviour
         StackCount++;
     }
 
-
-    public void UI_churchPanelPos_On_Off()
+    public void UI_ChurchPanel_On()
     {
-        if (UI_isChurchPanel_On)
-        {
-            UI_churchPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
-            UI_isChurchPanel_On = false;
-        }
-        else
-        {
-            UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UI_isChurchPanel_On = true;
-        }
+        UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_churchPanelPos;
+        StackCount++;
     }
 
-    public void UI_Training_PanelPos_On_Off()
+    public void UI_TrainingPanel_On()
     {
-        if (UI_isTrainingPanel_On)
-        {
-            UI_trainingPanelPos.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
-            UI_isTrainingPanel_On = false;
-        }
-        else
-        {
-            UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UI_isTrainingPanel_On = true;
-        }
+        UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_trainingPanelPos;
+        StackCount++;
+    }
+
+    public void UI_TrainingSecPanel_On()
+    {
+        UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_trainingSecPanelPos;
+        StackCount++;
     }
 
     public void UI_Shop_PanelPos_On_Off()

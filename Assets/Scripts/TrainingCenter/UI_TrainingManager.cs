@@ -30,6 +30,11 @@ namespace Shin
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             trainingList = training_List_UI_Content.GetComponentsInChildren<Button>();
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy_UI();
+            }
         }
         public void Init_UI() // 훈련소 버튼 클릭 시 실행.
         {

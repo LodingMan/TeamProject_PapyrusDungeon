@@ -97,16 +97,16 @@ namespace Shin
 
         public void Click_Btn_Skill00()
         {
-            detail_Text.text = Skill_Btn[0].name + "���� �����Դϴ�";
+            detail_Text.text = Skill_Btn[0].name + "번 스킬입니다.";
             
         }
         public void Click_Btn_Skill01()
         {
-            detail_Text.text = Skill_Btn[1].name + "���� �����Դϴ�";
+            detail_Text.text = Skill_Btn[1].name + "번 스킬입니다.";
         }
         public void Click_Btn_Skill02()
         {
-            detail_Text.text = Skill_Btn[2].name + "���� �����Դϴ�";
+            detail_Text.text = Skill_Btn[2].name + "번 스킬입니다.";
         }
     }
 
