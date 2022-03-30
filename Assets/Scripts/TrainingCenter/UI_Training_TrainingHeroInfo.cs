@@ -60,8 +60,8 @@ namespace Shin
                 }
             }
             // 변경사항이 있으니 다시 UI 파괴&생성
-            uI_trainingManager.Destroy_UI();
-            uI_trainingManager.Init_UI();
+            //uI_trainingManager.Destroy_UI();
+            //uI_trainingManager.Init_UI();
         }
     }
 }

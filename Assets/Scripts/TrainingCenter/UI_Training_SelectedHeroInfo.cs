@@ -54,13 +54,6 @@ namespace Shin
             
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                uI_trainingManager.Init_UI();
-            }
-        }
         public void InitHeroInfo()
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
@@ -108,15 +101,17 @@ namespace Shin
         public void Click_Btn_Skill00()
         {
             detail_Text.text = Skill_Btn[0].name + "번 스킬입니다.";
-            
+            detail_Image.sprite = Skill_Btn[0].image.sprite;
         }
         public void Click_Btn_Skill01()
         {
             detail_Text.text = Skill_Btn[1].name + "번 스킬입니다.";
+            detail_Image.sprite = Skill_Btn[1].image.sprite;
         }
         public void Click_Btn_Skill02()
         {
             detail_Text.text = Skill_Btn[2].name + "번 스킬입니다.";
+            detail_Image.sprite = Skill_Btn[2].image.sprite;
         }
     }
 

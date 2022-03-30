@@ -50,7 +50,7 @@ namespace Shin
                 employedHero_UI.name = heroManager.CurrentHeroList[i].name;
             }
 
-            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+            for (int i  = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining == true)
                 {
@@ -67,6 +67,7 @@ namespace Shin
             {
                 for (int i = 0; i < employedList.Length; i++)
                 {
+                    Debug.Log(employedList.Length);
                     Destroy(employedList[i].gameObject);
                 }
             }
