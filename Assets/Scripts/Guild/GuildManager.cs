@@ -73,6 +73,8 @@ namespace Song
                 currentPrefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Job;
                 currentPrefab.GetComponent<Current_Hero_UI_Script>().This_Prefab_Object = heroManager.CurrentHeroList[i];
                 currentPrefab.name = "" + i;
+                Current_Hero_UI_List.Add(currentPrefab);
+
             }
         }
         #region //생성되는 모든 버튼의 기능을 달리하기 위해 그냥 함수 10개 갖다 박음
