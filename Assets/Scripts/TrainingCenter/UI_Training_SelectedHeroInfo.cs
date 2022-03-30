@@ -16,11 +16,27 @@ namespace Shin
 
         public Button training_Start;
 
+        public Text heroName;
+        public Text heroJob;
+        public Image heroImage;
+
+        public Image detail_Image;
+        public Text detail_Text;
+        public Text detail_Before;
+        public Text detail_After;
+        public Button[] Skill_Btn;
+
         private void Awake()
         {
+            
             training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
             training_Start.onClick.AddListener(TrainingStart);
-            
+
+            Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
+            Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
+            Skill_Btn[2].onClick.AddListener(Click_Btn_Skill02);
+            // Skill_Btn().onClick.AddListenerï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. // ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ .
+            // ï¿½ï¿½Å³ before,afterï¿½ï¿½.
         }
         void Start()
         {
@@ -30,19 +46,19 @@ namespace Shin
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+            heroName = transform.GetChild(0).GetComponent<Text>();
+            heroJob = transform.GetChild(1).GetComponent<Text>();
+            heroImage = transform.GetChild(2).GetComponent<Image>();
             
         }
-        private void Update()
-        {
-            //InitHeroInfo();
-        }
+
         public void InitHeroInfo()
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                if (gameObject.name == heroManager.CurrentHeroList[i].name) // ÀÌ¸§À¸·Î ºñ±³ÇØ¼­ Ã£°í
+                if (statScript.myStat.Name == heroManager.CurrentHeroList[i].name) // ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Ã£ï¿½ï¿½
                 {
-                    statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // °ª ³Ö±â.
+                    statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // ï¿½ï¿½ ï¿½Ö±ï¿½.
                     skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
                     skillScript.SkillIndex = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().SkillIndex;
                     skillScript.mySkills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().mySkills;
@@ -50,11 +66,16 @@ namespace Shin
                     heroScript_Current_State.isHealing = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining;
                 }
             }
+            heroName.text = statScript.myStat.Name;
+            heroJob.text = statScript.myStat.Job;
+
+
+            Skill_IndexInit();
         }
 
         public void TrainingStart()
         {
-            heroScript_Current_State.isTraining = true; // ÈÆ·Ã »óÅÂ on
+            heroScript_Current_State.isTraining = true; // ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ on
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name)
@@ -66,6 +87,27 @@ namespace Shin
             uI_trainingManager.Init_UI();
         }
 
+        public void Skill_IndexInit()
+        {
+            for (int i = 0; i < Skill_Btn.Length; i++)
+            {
+                Skill_Btn[i].name = skillScript.mySkills[i].Index.ToString();
+            }
+        }
+
+        public void Click_Btn_Skill00()
+        {
+            detail_Text.text = Skill_Btn[0].name + "ë²ˆ ìŠ¤í‚¬ìž…ë‹ˆë‹¤.";
+            
+        }
+        public void Click_Btn_Skill01()
+        {
+            detail_Text.text = Skill_Btn[1].name + "ë²ˆ ìŠ¤í‚¬ìž…ë‹ˆë‹¤.";
+        }
+        public void Click_Btn_Skill02()
+        {
+            detail_Text.text = Skill_Btn[2].name + "ë²ˆ ìŠ¤í‚¬ìž…ë‹ˆë‹¤.";
+        }
     }
 
 }

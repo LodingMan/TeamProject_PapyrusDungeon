@@ -30,6 +30,11 @@ namespace Shin
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             trainingList = training_List_UI_Content.GetComponentsInChildren<Button>();
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy_UI();
+            }
         }
         public void Init_UI() // 훈련소 버튼 클릭 시 실행.
         {
@@ -72,16 +77,6 @@ namespace Shin
                     Destroy(trainingList[i].gameObject);
                 }
             }
-        }
-
-        
-        public void DoTweenLeftToRight()
-        {
-            heroInfoPopup.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        }
-        public void DoTweenRightToLeft()
-        {
-            heroInfoPopup.DOAnchorPos(new Vector2(-1950, 0), 0.5f);
         }
     }
 }

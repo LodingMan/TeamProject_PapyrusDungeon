@@ -10,15 +10,12 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_TrainingManager uI_trainingManager;
-
         public StatScript statScript;
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Image heroInfo;
         public Text text_Name;
         public Text text_Job;
-        public Text testText00;
-        public Text testText01;
 
         public RectTransform heroInfoPopup;
         Button btn;
@@ -33,8 +30,6 @@ namespace Shin
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
             heroInfo = heroInfoPopup.GetChild(0).GetComponent<Image>();
-            testText00 = heroInfoPopup.GetChild(0).GetChild(0).GetComponent<Text>();
-            testText01 = heroInfoPopup.GetChild(0).GetChild(1).GetComponent<Text>();
             btn = GetComponent<Button>();
 
             btn.onClick.AddListener(DoTweenLeftToRight); // 버튼이 눌리면
@@ -64,9 +59,8 @@ namespace Shin
         }
         void ShowHeroDetail()
         {
-            testText00.text = statScript.myStat.Name;
-            testText01.text = statScript.myStat.Job;
-            heroInfo.name = testText00.text;
+            heroInfo.GetComponent<StatScript>().myStat.Name = statScript.myStat.Name;
+            heroInfo.GetComponent<UI_Training_SelectedHeroInfo>().InitHeroInfo();
         }
         public void DoTweenLeftToRight()
         {

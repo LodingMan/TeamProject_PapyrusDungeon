@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 589531363705110277}
   - component: {fileID: 4565267755258349164}
   - component: {fileID: -2699553418229954572}
-  - component: {fileID: 3039379264659664217}
   - component: {fileID: 1594039723282811739}
   - component: {fileID: 8539345149019748678}
   - component: {fileID: -6471178836264138482}
   - component: {fileID: -7899975800108126740}
+  - component: {fileID: 3039379264659664217}
   - component: {fileID: 919965224480213933}
   m_Layer: 0
   m_Name: HeroObject
@@ -200,18 +200,6 @@ MonoBehaviour:
     DEF: 0
     MyPosition: 
     EnemyPosition: 
---- !u!114 &3039379264659664217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7171114485774513217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12664be65fdd2584daa7d4a0eef04c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1594039723282811739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +282,18 @@ MonoBehaviour:
   curTime: 0
   coolTime: 0
   pointCnt: 0
+--- !u!114 &3039379264659664217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171114485774513217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12664be65fdd2584daa7d4a0eef04c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &919965224480213933
 MonoBehaviour:
   m_ObjectHideFlags: 0
