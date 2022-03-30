@@ -13,7 +13,6 @@ namespace Song
         Transform root;
         public UI_Central uI_Central;
         Song.Current_Hero_UI_Script current_Hero_UI;
-        Song.GuildManager guildManager;
         public bool isParty_Hero_In = false;
         public bool isPointerDown = false;
         public float downTime;
@@ -101,10 +100,6 @@ namespace Song
             }
         }
 
-        public void FireFunc() //ÇØ°í
-        {
-            guildManager.UpdateMember(This_Prefab_Object);
-        }
 
     }
 }

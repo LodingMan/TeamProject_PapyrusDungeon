@@ -29,7 +29,7 @@ namespace Song
         public List<GameObject> Current_UI_Prefabs;  //해당 주차에 존재하는 고용 전 영웅 UI Prefab이다 
 
         public List<GameObject> Current_Hero_UI_List; //얘는 생성되면 담아지고
-        public List<GameObject> Party_Hero_UI_List; // 얘는 이미 생성되어있으므로 inspector에서 담음
+        public List<PartyMember_UI_Script> Party_Hero_UI_List; // 얘는 이미 생성되어있으므로 inspector에서 담음
 
         public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
         {
@@ -136,8 +136,30 @@ namespace Song
                 if (Current_Hero_UI_List[i].GetComponent<Current_Hero_UI_Script>().This_Prefab_Object == member)
                 {
                     Destroy(Current_Hero_UI_List[i]);
+                    Current_Hero_UI_List.RemoveAt(i);
                 }
-                
+            }
+            for(int j = 0; j < Party_Hero_UI_List.Count; j++)
+            {
+                if(Party_Hero_UI_List[j].This_Prefab_Object == member)
+                {
+                    Party_Hero_UI_List[j].This_Prefab_Object = null;
+
+                    Party_Hero_UI_List[j].isParty_Hero_In = true;
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(0).GetComponent<Text>().text = "";
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(2).GetComponent<Text>().text = "";
+                }
+            }
+            for(int k = 0; k < heroManager.CurrentHeroList.Count; k++)
+            {
+                if(heroManager.CurrentHeroList[k] == member)
+                {
+                    Destroy(heroManager.CurrentHeroList[k]);
+                    heroManager.CurrentHeroList.RemoveAt(k);
+                    
+                }
+
             }
 
 

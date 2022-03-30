@@ -35,8 +35,8 @@ namespace Shin
             Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
             Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
             Skill_Btn[2].onClick.AddListener(Click_Btn_Skill02);
-            // Skill_Btn().onClick.AddListener¸¦ ÀÌ¿ëÇØ ´©¸¥ ¹öÆ°¿¡ µû¶ó ¿ìÃø Á¤º¸Ä­ÀÇ ½ºÅ³¾ÆÀÌÄÜ º¯°æ. // ½ºÅ³¼³¸íµµ .
-            // ½ºÅ³ before,afterµµ.
+            // Skill_Btn().onClick.AddListenerï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. // ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ .
+            // ï¿½ï¿½Å³ before,afterï¿½ï¿½.
         }
         void Start()
         {
@@ -56,9 +56,9 @@ namespace Shin
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
-                if (statScript.myStat.Name == heroManager.CurrentHeroList[i].name) // ÀÌ¸§À¸·Î ºñ±³ÇØ¼­ Ã£°í
+                if (statScript.myStat.Name == heroManager.CurrentHeroList[i].name) // ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Ã£ï¿½ï¿½
                 {
-                    statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // °ª ³Ö±â.
+                    statScript.myStat = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat; // ï¿½ï¿½ ï¿½Ö±ï¿½.
                     skillScript.skills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().skills;
                     skillScript.SkillIndex = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().SkillIndex;
                     skillScript.mySkills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().mySkills;
@@ -75,7 +75,7 @@ namespace Shin
 
         public void TrainingStart()
         {
-            heroScript_Current_State.isTraining = true; // ÈÆ·Ã »óÅÂ on
+            heroScript_Current_State.isTraining = true; // ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ on
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name)
@@ -97,16 +97,16 @@ namespace Shin
 
         public void Click_Btn_Skill00()
         {
-            detail_Text.text = Skill_Btn[0].name + "¹øÀÇ ¼³¸íÀÔ´Ï´Ù";
+            detail_Text.text = Skill_Btn[0].name + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½";
             
         }
         public void Click_Btn_Skill01()
         {
-            detail_Text.text = Skill_Btn[1].name + "¹øÀÇ ¼³¸íÀÔ´Ï´Ù";
+            detail_Text.text = Skill_Btn[1].name + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½";
         }
         public void Click_Btn_Skill02()
         {
-            detail_Text.text = Skill_Btn[2].name + "¹øÀÇ ¼³¸íÀÔ´Ï´Ù";
+            detail_Text.text = Skill_Btn[2].name + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½";
         }
     }
 

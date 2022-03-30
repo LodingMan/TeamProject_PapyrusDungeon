@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 namespace Song
 {
-
-
     public class Hero_Status_UI_Script : MonoBehaviour
     {
         public UI_Tweening_Manager uI_Tweening_Manger;
+        public Song.GuildManager guildManager;
         public Text[] Status_Texts = new Text[13];
         public GameObject This_Prefab_Object;
         public HeroManager heroManager;
@@ -32,7 +31,7 @@ namespace Song
             {
                 if (uI_Tweening_Manger.UI_isStatusPanel_On)
                 {
-                    uI_Tweening_Manger.UI_StatusPanel_On_Off();
+                    uI_Tweening_Manger.UI_StatusPanel_On();
                 }
             }
         }
@@ -40,7 +39,8 @@ namespace Song
         public void Open_Status_UI(GameObject Target_Hero)
         {
             Debug.Log("UIOpne");
-            uI_Tweening_Manger.UI_StatusPanel_On_Off();
+            uI_Tweening_Manger.UI_StatusPanel_On();
+            This_Prefab_Object = Target_Hero;
 
             Status_Texts[0].text = Target_Hero.GetComponent<StatScript>().myStat.Name;
             Status_Texts[1].text = "Class : " + Target_Hero.GetComponent<StatScript>().myStat.Job;
@@ -58,9 +58,9 @@ namespace Song
 
         }
 
-        public void MemberUpdate() //ÇØ°í
+        public void FireFunc()     
         {
-          //  This_Prefab_Object
+            guildManager.UpdateMember(This_Prefab_Object);
         }
     }
 }
