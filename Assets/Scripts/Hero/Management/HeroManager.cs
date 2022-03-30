@@ -182,12 +182,17 @@ namespace Song
                 CurrentHeroDataList[i] = CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData; // 각 hero의 savingdata저장
             }
 
+            if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
+            }
+
             string jdata = JsonConvert.SerializeObject(CurrentHeroDataList);
-            File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", jdata);
+            File.WriteAllText(Application.persistentDataPath + "/Resources/Stat.Json", jdata);
         }
         public void _Load()
         {
-            string jdata = File.ReadAllText(Application.dataPath + "/Resources/Stat.Json");
+            string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/Stat.Json");
             CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //불러온 savingdata를 LoadHeroCreate함수를 사용해 heroObject생성
 
             for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList의 길이가 30 이므로 30번 반복됨.
