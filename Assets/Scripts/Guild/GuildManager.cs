@@ -28,11 +28,8 @@ namespace Song
 
         public List<GameObject> Current_UI_Prefabs;  //해당 주차에 존재하는 고용 전 영웅 UI Prefab이다 
 
-
-
-        public GameObject[] Party_Member_UI_Prefabs = new GameObject[3];
-        public GameObject[] Party_MemberArray = new GameObject[3];
-
+        public List<GameObject> Current_Hero_UI_List; //얘는 생성되면 담아지고
+        public List<GameObject> Party_Hero_UI_List; // 얘는 이미 생성되어있으므로 inspector에서 담음
 
         public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
         {
@@ -131,7 +128,23 @@ namespace Song
             unemployedHero[9] = null;
         }
 
-
         #endregion
+        public void UpdateMember(GameObject member)//firefunc가 사람 해고하면 받음.
+        {
+            for(int i = 0; i< Current_Hero_UI_List.Count; i++)
+            {
+                if (Current_Hero_UI_List[i].GetComponent<Current_Hero_UI_Script>().This_Prefab_Object == member)
+                {
+                    Destroy(Current_Hero_UI_List[i]);
+                }
+                
+            }
+
+
+        }
+
     }
+
+
+
 }
