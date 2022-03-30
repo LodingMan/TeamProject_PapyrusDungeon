@@ -34,7 +34,7 @@ namespace Shin
         }
         private void Update()
         {
-            InitHeroInfo();
+            //InitHeroInfo();
         }
         public void InitHeroInfo()
         {
