@@ -415,10 +415,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1717607395308999086}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5094900112104652790}
+        m_TargetAssemblyTypeName: EquipScripts_ysg, Assembly-CSharp
+        m_MethodName: ShowBtnOnlyDungeon
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -473,6 +473,7 @@ MonoBehaviour:
   itemUseManager: {fileID: 0}
   itemData: {fileID: 0}
   smithManager: {fileID: 0}
+  dgSelectMgr: {fileID: 0}
   equipIndex: 0
   sell: 0
   isEquip: 0

@@ -15,6 +15,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_shopPanelPos;
     public RectTransform UI_inventoryPanelPos;
     public RectTransform UI_smithPanelPos;
+    public CameraMoving camMove;
 
     bool UI_isGuildPanel_On = false;
     bool UI_isChurchPanel_On = false;
@@ -42,7 +43,14 @@ public class UI_Tweening_Manager : MonoBehaviour
                     UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
                     UIStack[StackCount - 1] = null;
                     StackCount--;
+                    isShopOn = false;
+                    isSmithOn = false;
                 }
+            }
+
+            if (StackCount == 0)
+            {
+                camMove.ReturnToOrigin();
             }
 
         }
@@ -114,17 +122,11 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Shop_PanelPos_On_Off()
     {
-        if (UI_isShopPanel_On && isShopOn)
-        {
-            UI_shopPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-            UI_isShopPanel_On = false;
-            isShopOn = false;
-
-        }
-        else if(!isShopOn && !isSmithOn)
+        if(!isShopOn && !isSmithOn)
         {
             UI_shopPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UI_isShopPanel_On = true;
+            UIStack[StackCount] = UI_shopPanelPos;
+            StackCount++;
             isShopOn = true;
 
         }
@@ -132,31 +134,18 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Inventory_PanelPos_On_Off()
     {
-        if (UI_isInventoryPanel_On)
-        {
-            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-            UI_isInventoryPanel_On = false;
-
-        }
-        else
-        {
-            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UI_isInventoryPanel_On = true;
-        }
+        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_inventoryPanelPos;
+        StackCount++;
     }
 
     public void UI_Smith_PanelPos_On_Off()
     {
-        if (UI_isSmithPanel_On)
-        {
-            UI_smithPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-            UI_isSmithPanel_On = false;
-            isSmithOn = false;
-        }
-        else if(!isSmithOn && !isShopOn)
+        if(!isSmithOn && !isShopOn)
         {
             UI_smithPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UI_isSmithPanel_On = true;
+            UIStack[StackCount] = UI_smithPanelPos;
+            StackCount++;
             isSmithOn = true;
 
         }
