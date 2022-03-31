@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4236516488888510964}
   - component: {fileID: 455079149658532761}
   - component: {fileID: 8179005291173974843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BossMap
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -106,14 +106,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9128856817887922140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880f43ebc27e1954695e661fdacde7cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 198b2e527f512df4e8064dda60257cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCheckList:
-  - {fileID: 2100000, guid: b23ac1c49a9438049814ce51b0496d52, type: 2}
-  - {fileID: 2100000, guid: d7dc58fae1670e0408124f419a68cc04, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   childernPassage:
   - {fileID: 0}
   - {fileID: 0}
-  renderer: {fileID: 0}
+  Renderer: {fileID: 0}
   roomNumber: 0

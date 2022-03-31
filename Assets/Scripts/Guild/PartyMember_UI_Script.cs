@@ -10,6 +10,7 @@ namespace Song
     public class PartyMember_UI_Script : MonoBehaviour//, IDropHandler
     {
         public GameObject This_Prefab_Object;
+        public Song.GuildManager guildManager;
         Transform root;
         public UI_Central uI_Central;
         Song.Current_Hero_UI_Script current_Hero_UI;
@@ -20,6 +21,7 @@ namespace Song
 
         private void Start()
         {
+            guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
             root = transform.root;
         }
@@ -62,6 +64,15 @@ namespace Song
             gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
             gameObject.transform.GetChild(2).GetComponent<Text>().text = "";
 
+            for(int i = 0; i < guildManager.Party_Hero_Member.Length; i++)
+            {
+
+                if(guildManager.Party_Hero_Member[i] == This_Prefab_Object)
+                {
+                    guildManager.Party_Hero_Member[i] = null;
+                }
+
+            }
 
             This_Prefab_Object = null;
         }
@@ -83,8 +94,7 @@ namespace Song
                         gameObject.transform.GetChild(1).GetComponent<Text>().text = "Class : " + This_Prefab_Object.GetComponent<StatScript>().myStat.Job;
                         gameObject.transform.GetChild(2).GetComponent<Text>().text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP;
 
-
-
+                        guildManager.Party_Hero_Member[int.Parse(gameObject.name)] = This_Prefab_Object;
 
                     }
                     else

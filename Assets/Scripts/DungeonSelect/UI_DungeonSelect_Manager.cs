@@ -3,58 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_DungeonSelect_Manager : MonoBehaviour
+namespace Song
 {
-    public List<GameObject> buttons;  //원래 있던버튼 싹다 비활성화 시켜주기
-    public UI_Tweening_Manager uI_Tweening_Manager;
-    public bool isDungeonSelect = false;
 
-    private void Start()
+
+    public class UI_DungeonSelect_Manager : MonoBehaviour
     {
-        uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+        public List<GameObject> buttons;  //원래 있던버튼 싹다 비활성화 시켜주기
+        public UI_Tweening_Manager uI_Tweening_Manager;
+        public bool isDungeonSelect = false;
+        public int DungeonType;
+        public GuildManager guildManager;
 
-    }
-
-    private void Update()
-    {
-        if(isDungeonSelect)
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+
+        }
+
+        private void Update()
+        {
+            if (isDungeonSelect)
             {
-                DungeonSelect_Off();
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    DungeonSelect_Off();
+                }
             }
-        }
 
-    }
-    public void DungeonSelect_On()
-    {
-        //카메라 이동
-        for( int i = 0; i < buttons.Count; i++)
+        }
+        public void DungeonSelect_On()
         {
-            buttons[i].SetActive(false);//기존 버튼 비활성
+            for(int i =0; i < 3; i++)
+            {
+                if (guildManager.Party_Hero_Member[i] == null)
+                {
+                    Debug.Log("영웅3명을 파티에 넣어주세요");
+                    return;
+                }
+            }
+            //카메라 이동
+            for (int i = 0; i < buttons.Count; i++)
+                {
+                    buttons[i].SetActive(false);//기존 버튼 비활성
+                }
+            uI_Tweening_Manager.UI_DungeonSelectPanel_On(); // 사용할 패널 내려옴
+            isDungeonSelect = true;
         }
-        uI_Tweening_Manager.UI_DungeonSelectPanel_On(); // 사용할 패널 내려옴
-        isDungeonSelect = true;
-    }
-    public void DungeonSelect_Off()
-    {
-        for (int i = 0; i < buttons.Count; i++)
+        public void DungeonSelect_Off()
         {
-            buttons[i].SetActive(true);
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                buttons[i].SetActive(true);
+            }
+            isDungeonSelect = false;
         }
-        isDungeonSelect = false;
-    }
 
-    public void DungeonSelect1()
-    {
-        
-    }
-    public void DungeonSelect2()
-    {
-
-    }
-    public void DungeonSelect3()
-    {
-
+        public void DungeonSelect1()
+        {
+            DungeonType = 1;
+        }
+        public void DungeonSelect2()
+        {
+            DungeonType = 2;
+        }
+        public void DungeonSelect3()
+        {
+            DungeonType= 3;
+        }
     }
 }

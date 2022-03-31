@@ -12,7 +12,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public ShopManager itemData;
     public EquipTable equipTable = new EquipTable();
     public SmithManager smithManager;
-    public UI_DungeonSelect_Manager dgSelectMgr;
+    public Song.UI_DungeonSelect_Manager dgSelectMgr;
     public UI_Tweening_Manager twMgr;
 
     public int equipIndex;
@@ -36,7 +36,7 @@ public class EquipScripts_ysg : MonoBehaviour
         smithSlot = smithManager.smithSlot;
         itemData = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         equipBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
-        dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<UI_DungeonSelect_Manager>();
+        dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
         itemData.hasEquipList.Add(gameObject);
 
