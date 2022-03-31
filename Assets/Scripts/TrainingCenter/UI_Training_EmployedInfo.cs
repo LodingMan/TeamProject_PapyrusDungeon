@@ -35,6 +35,7 @@ namespace Shin
 
             btn.onClick.AddListener(uI_Tweening_Manager.UI_TrainingSecPanel_On); // 버튼이 눌리면
             btn.onClick.AddListener(ShowHeroDetail);
+            
         }
         private void Update()
         {
@@ -59,6 +60,11 @@ namespace Shin
         }
         void ShowHeroDetail()
         {
+            if (heroInfo.gameObject.activeSelf == false)
+            {
+                heroInfo.gameObject.SetActive(true);
+            }
+            
             heroInfo.name = statScript.myStat.Name;
             heroInfo.GetComponent<UI_Training_SelectedHeroInfo>().InitHeroInfo();
         }

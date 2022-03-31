@@ -9,6 +9,7 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_TrainingManager uI_trainingManager;
+        Shin.SkillDetailTable skillDetailTable;
         UI_Tweening_Manager uI_Tweening_Manager;
         public StatScript statScript;
         public SkillScript skillScript;
@@ -44,6 +45,7 @@ namespace Shin
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+            skillDetailTable = GameObject.Find("SkillDetailManager").GetComponent<Shin.SkillDetailTable>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
@@ -51,7 +53,18 @@ namespace Shin
             heroName = transform.GetChild(0).GetComponent<Text>();
             heroJob = transform.GetChild(1).GetComponent<Text>();
             heroImage = transform.GetChild(2).GetComponent<Image>();
-            
+
+            gameObject.SetActive(false);
+        }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (gameObject.activeSelf)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
         }
 
         public void InitHeroInfo()
@@ -71,7 +84,6 @@ namespace Shin
             heroName.text = statScript.myStat.Name;
             heroJob.text = statScript.myStat.Job;
 
-
             Skill_IndexInit();
         }
 
@@ -88,6 +100,7 @@ namespace Shin
             uI_Tweening_Manager.UI_TrainingSecPanel_Off();
             uI_trainingManager.Destroy_UI();
             uI_trainingManager.Init_UI();
+            gameObject.SetActive(false);
         }
 
         public void Skill_IndexInit()
@@ -96,22 +109,47 @@ namespace Shin
             {
                 Skill_Btn[i].name = skillScript.mySkills[i].Index.ToString();
             }
+            Click_Btn_Skill00();
         }
 
         public void Click_Btn_Skill00()
         {
-            detail_Text.text = Skill_Btn[0].name + "번 스킬입니다.";
             detail_Image.sprite = Skill_Btn[0].image.sprite;
+            for (int i = 0; i < skillDetailTable.skilldetails.Count; i++)
+            {
+                if (Skill_Btn[0].name == skillDetailTable.skilldetails[i].skillindex.ToString())
+                {
+                    detail_Text.text = skillDetailTable.skilldetails[i].skillindex.ToString();
+                    detail_Before.text = skillDetailTable.skilldetails[i].skillname;
+                    detail_After.text = skillDetailTable.skilldetails[i].skilldetail;
+                }
+            }
         }
         public void Click_Btn_Skill01()
         {
-            detail_Text.text = Skill_Btn[1].name + "번 스킬입니다.";
             detail_Image.sprite = Skill_Btn[1].image.sprite;
+            for (int i = 0; i < skillDetailTable.skilldetails.Count; i++)
+            {
+                if (Skill_Btn[1].name == skillDetailTable.skilldetails[i].skillindex.ToString())
+                {
+                    detail_Text.text = skillDetailTable.skilldetails[i].skillindex.ToString();
+                    detail_Before.text = skillDetailTable.skilldetails[i].skillname;
+                    detail_After.text = skillDetailTable.skilldetails[i].skilldetail;
+                }
+            }
         }
         public void Click_Btn_Skill02()
         {
-            detail_Text.text = Skill_Btn[2].name + "번 스킬입니다.";
             detail_Image.sprite = Skill_Btn[2].image.sprite;
+            for (int i = 0; i < skillDetailTable.skilldetails.Count; i++)
+            {
+                if (Skill_Btn[2].name == skillDetailTable.skilldetails[i].skillindex.ToString())
+                {
+                    detail_Text.text = skillDetailTable.skilldetails[i].skillindex.ToString();
+                    detail_Before.text = skillDetailTable.skilldetails[i].skillname;
+                    detail_After.text = skillDetailTable.skilldetails[i].skilldetail;
+                }
+            }
         }
     }
 

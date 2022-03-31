@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SKillTable //: MonoBehaviour  03-25 수정
 {                       // 수정 사유 : 데이터를 가져오는데 사용되는 메모리를 줄이기 위해 Monobehaviour를 지우고 HeroManager에서 SkillTable를 초기화 해서 값을 사용함. 
-                        // 여기에 있는 값을 다른 스크립트에서 사용하려면 SkillTable skillTable = new SkillTable(); 사용하면 이 클래스에 있는 값을 가져갈 수 있다.  
+                        // 여기에 있는 값을 다른 스크립트에서 사용하려면 SkillTable skillTable = new SkillTable(); 사용하면 이 클래스에 있는 값을 가져갈 수 있다.
+
     public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv 추가
     {
         //Mage
