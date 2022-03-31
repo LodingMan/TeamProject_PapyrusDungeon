@@ -10,6 +10,8 @@ namespace Shin
         Song.HeroManager heroManager;
         Shin.UI_TrainingManager uI_trainingManager;
         Shin.SkillDetailTable skillDetailTable;
+        Shin.HeroImageTable heroImageTable;
+
         UI_Tweening_Manager uI_Tweening_Manager;
         public StatScript statScript;
         public SkillScript skillScript;
@@ -46,6 +48,7 @@ namespace Shin
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
             skillDetailTable = GameObject.Find("SkillDetailManager").GetComponent<Shin.SkillDetailTable>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
@@ -84,7 +87,7 @@ namespace Shin
             heroName.text = statScript.myStat.Name;
             heroJob.text = statScript.myStat.Job;
 
-            Skill_IndexInit();
+            IndexInit();
         }
 
         public void TrainingStart()
@@ -103,16 +106,40 @@ namespace Shin
             gameObject.SetActive(false);
         }
 
-        public void Skill_IndexInit()
+        public void IndexInit()
         {
             for (int i = 0; i < Skill_Btn.Length; i++)
             {
                 Skill_Btn[i].name = skillScript.mySkills[i].Index.ToString();
                 Skill_Btn[i].image.sprite = skillDetailTable.sprite[skillScript.mySkills[i].Index];
             }
+            switch (heroJob.text)
+            {
+                case "Babarian":
+                    heroImage.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroImage.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroImage.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroImage.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroImage.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroImage.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
+
             Click_Btn_Skill00();
         }
-
+    
         public void Click_Btn_Skill00()
         {
             detail_Image.sprite = Skill_Btn[0].image.sprite;

@@ -16,8 +16,12 @@ namespace Shin
         public float curTime, coolTime;
         string nodeName;
         public int pointCnt;
+
+        public Animator anim;
+
         void Start()
         {
+            anim = transform.GetChild(0).GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>();
             point = new Transform[pointCnt = 11];
 
@@ -50,6 +54,14 @@ namespace Shin
                 }
             }
 
+            if(isMove)
+            {
+                anim.SetBool("isMove", true);// 애니메이션 WALK
+            }
+            else
+            {
+                anim.SetBool("isMove", false);// 애니메이션 IDLE
+            }
         }
 
         public void InitNaviPoint() // Hierarchy에서 NaviPoint검색해서 point에 할당.
