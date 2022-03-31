@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Shin {
+    // SkillDetailManager에 달아 놓고, 스킬 설명과 스킬 이미지 저장용.
     public class SkillDetailTable : MonoBehaviour
     {
         public List<SkillDetail> skilldetails = new List<SkillDetail>();
