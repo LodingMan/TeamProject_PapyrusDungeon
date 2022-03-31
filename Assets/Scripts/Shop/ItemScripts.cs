@@ -16,6 +16,8 @@ public class ItemScripts : MonoBehaviour
     public ShopManager shopManager;
     public ItemTable itemTable = new ItemTable();
     public Button useBtn;
+    public UI_DungeonSelect_Manager dgSelectMgr;
+    public UI_Tweening_Manager twMgr;
     public int itemIndex; // 오브젝트를 구별하기 위해 넣은 변수입니다.
     public bool isUsed = false;
 
@@ -28,6 +30,8 @@ public class ItemScripts : MonoBehaviour
         itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         useBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
+        dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<UI_DungeonSelect_Manager>();
+        twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
 
         switch (gameObject.name) // 현재 오브젝트의 이름을 찾아서 그에 맞는 정보를 가져오는 함수를 실행합니다.
@@ -174,7 +178,7 @@ public class ItemScripts : MonoBehaviour
 
     public void ItemSell()
     {
-        if (shopManager.isShop)
+        if (shopManager.isShop && twMgr.isShopOn)
         {
             useBtn.gameObject.SetActive(false);
             sell++;
@@ -208,6 +212,22 @@ public class ItemScripts : MonoBehaviour
     {
         sell = 0;
         isUsed = false;
+    }
+
+    public void ShowBtnOnlyDungeon()
+    {
+        if (dgSelectMgr.isDungeonSelect)
+        {
+            if (!useBtn)
+            {
+                useBtn.gameObject.SetActive(true);
+            }
+            else
+            {
+                useBtn.gameObject.SetActive(false);
+            }
+        }
+
     }
 
 }

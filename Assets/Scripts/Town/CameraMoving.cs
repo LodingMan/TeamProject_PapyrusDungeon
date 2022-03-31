@@ -144,6 +144,8 @@ public class CameraMoving : MonoBehaviour
             default:
                 break;
         }
+
     }
+
 
 }
