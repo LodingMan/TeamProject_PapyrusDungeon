@@ -108,6 +108,7 @@ namespace Shin
             for (int i = 0; i < Skill_Btn.Length; i++)
             {
                 Skill_Btn[i].name = skillScript.mySkills[i].Index.ToString();
+                Skill_Btn[i].image.sprite = skillDetailTable.sprite[skillScript.mySkills[i].Index];
             }
             Click_Btn_Skill00();
         }
