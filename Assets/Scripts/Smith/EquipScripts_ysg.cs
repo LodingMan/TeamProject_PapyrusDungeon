@@ -138,7 +138,6 @@ public class EquipScripts_ysg : MonoBehaviour
                     }
                 }
                 equipBtn.gameObject.SetActive(false);
-                Debug.Log("판매 완료");
                 Destroy(gameObject);
 
             }
