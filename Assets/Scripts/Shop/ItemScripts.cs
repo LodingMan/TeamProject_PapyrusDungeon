@@ -16,7 +16,7 @@ public class ItemScripts : MonoBehaviour
     public ShopManager shopManager;
     public ItemTable itemTable = new ItemTable();
     public Button useBtn;
-    public UI_DungeonSelect_Manager dgSelectMgr;
+    public Song.UI_DungeonSelect_Manager dgSelectMgr;
     public UI_Tweening_Manager twMgr;
     public int itemIndex; // 오브젝트를 구별하기 위해 넣은 변수입니다.
     public bool isUsed = false;
@@ -30,7 +30,7 @@ public class ItemScripts : MonoBehaviour
         itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         useBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
-        dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<UI_DungeonSelect_Manager>();
+        dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
 

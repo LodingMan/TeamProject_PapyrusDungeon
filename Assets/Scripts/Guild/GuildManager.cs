@@ -30,6 +30,7 @@ namespace Song
 
         public List<GameObject> Current_Hero_UI_List; //얘는 생성되면 담아지고
         public List<PartyMember_UI_Script> Party_Hero_UI_List; // 얘는 이미 생성되어있으므로 inspector에서 담음
+        public GameObject[] Party_Hero_Member = new GameObject[3]; // 전투에 입장할 3마리
 
         public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
         {
