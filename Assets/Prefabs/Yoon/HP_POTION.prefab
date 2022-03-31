@@ -267,6 +267,7 @@ MonoBehaviour:
   shopManager: {fileID: 0}
   useBtn: {fileID: 0}
   dgSelectMgr: {fileID: 0}
+  twMgr: {fileID: 0}
   itemIndex: 0
   isUsed: 0
   sell: 0
