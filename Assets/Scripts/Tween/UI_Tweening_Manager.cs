@@ -17,13 +17,13 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_smithPanelPos;
     public CameraMoving camMove;
 
-    bool UI_isGuildPanel_On = false;
-    bool UI_isChurchPanel_On = false;
+    //bool UI_isGuildPanel_On = false;
+    //bool UI_isChurchPanel_On = false;
     //bool UI_isTrainingPanel_On = false;
     //bool UI_isTrainingSecPanel_On = false;
-    bool UI_isShopPanel_On = false;
-    bool UI_isInventoryPanel_On = false;
-    bool UI_isSmithPanel_On = false;
+    //bool UI_isShopPanel_On = false;
+    //bool UI_isInventoryPanel_On = false;
+    //bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
     public bool isShopOn = false;
     public bool isSmithOn = false;
