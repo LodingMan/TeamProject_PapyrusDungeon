@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Barbarian
   - Item
+  - Room
+  - Up
+  - Right
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - MinimapObject
   - Water
   - UI
   - 

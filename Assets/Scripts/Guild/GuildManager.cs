@@ -30,13 +30,14 @@ namespace Song
 
         public List<GameObject> Current_Hero_UI_List; //얘는 생성되면 담아지고
         public List<PartyMember_UI_Script> Party_Hero_UI_List; // 얘는 이미 생성되어있으므로 inspector에서 담음
+        public GameObject[] Party_Hero_Member = new GameObject[3]; // 전투에 입장할 3마리
 
         public void UnemployedHero_UI_Prefabs_UpLoad(List<GameObject> UnemployedHero)
         {
 
             if (Current_UI_Prefabs.Count > 0)
             {
-                Debug.Log("Test");
+                //Debug.Log("Test");
                 for (int j = 0; j < Current_UI_Prefabs.Count; j++)
                 {
                     Destroy(Current_UI_Prefabs[j].gameObject);
@@ -53,7 +54,7 @@ namespace Song
 
                 Current_UI_Prefabs.Add(Instantiate(unemployedHero_UI_Prefab));
                 Current_UI_Prefabs[i].name = "" + i;
-                Current_UI_Prefabs[i].transform.parent = unemployedHero_UI_Prefabs_Create_Point.transform;
+                Current_UI_Prefabs[i].transform.SetParent(unemployedHero_UI_Prefabs_Create_Point.transform);
                 Current_UI_Prefabs[i].transform.GetChild(0).GetComponent<Text>().text = "Name : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Name;
                 Current_UI_Prefabs[i].transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
                 Current_UI_Prefabs[i].GetComponent<Song.Unemployed_Hero_UI_Script>().This_Prefab_Object = UnemployedHero[i];
