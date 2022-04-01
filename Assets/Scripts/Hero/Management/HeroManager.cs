@@ -66,7 +66,7 @@ namespace Song
                 case "Archer":
 
                     initStat = new Stat(1, RandomName, "Archer", 10 , 10 , 10 , 10, 10, 3, 9, 7, 6, 10); //초기 궁수의 스텟
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; //궁수 생성
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color+4]) as GameObject; //궁수 생성
                     CurrentCreateHero.name = initStat.Name; // 생성될 오브젝트의 고유 이름
 
                     JobSkillStartIndex = 5; //스킬의 5번 인덱스부터9번까지 대입 (하단 for문[cs:77] 참조) 
@@ -74,7 +74,7 @@ namespace Song
                 case "Babarian":
 
                     initStat = new Stat(2, RandomName, "Babarian", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5);
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color+8]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
                     JobSkillStartIndex = 10;
@@ -83,7 +83,7 @@ namespace Song
                 case "Knight":
 
                     initStat = new Stat(3, RandomName, "Knight", 9, 9 , 5 , 5 , 5, 5, 2, 2, 3, 5);
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color+12]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
                     JobSkillStartIndex = 15;
@@ -91,7 +91,7 @@ namespace Song
                 case "Barristan":
 
                     initStat = new Stat(4, RandomName, "Barristan", 9 , 9 , 9, 9 , 5, 5, 2, 2, 3, 5);
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color+16]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
                     JobSkillStartIndex = 20;
@@ -99,7 +99,7 @@ namespace Song
                 case "Porter":
 
                     initStat = new Stat(5, RandomName, "Porter", 9, 9 , 9, 9 , 5, 5, 2, 2, 3, 5);
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject;
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color+20]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
                     JobSkillStartIndex = 25;
@@ -112,6 +112,7 @@ namespace Song
 
             //해당 직업에 맞는 스텟을 각 StatScript에 대입
             CurrentCreateHero.GetComponent<StatScript>().myStat = initStat;
+            CurrentCreateHero.GetComponent<HeroScript_SaveAllDataParam>().heroSavingData.ColorType = color;
 
             //해당 직업에 맞는 스킬을 각 SkillScript에 대입
             for (int skillIndex = JobSkillStartIndex; skillIndex < JobSkillStartIndex + 5; skillIndex++)
@@ -142,22 +143,22 @@ namespace Song
             switch (LodingHeroSavingData.stat.Job) //가져온 데이터의 직업 검사 후 알맞은 오브젝트 생성
             {
                 case "Mage": //각자 맞는 HeroPrefabs의 맴버가 들어가갸 함.
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType]);
                     break;
                 case "Archer":
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType+4]);
                     break;
                 case "Babarian":
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType+8]);
                     break;
                 case "Knight":
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType + 12]);
                     break;
                 case "Barristan":
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType + 16]);
                     break;
                 case "Porter":
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]);
+                    CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType + 20]);
                     break;
                 default:
                     break;
