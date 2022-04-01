@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 919965224480213933}
   m_Layer: 0
   m_Name: HeroObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: a572833a6beb88f40a49d1ea88f5fbc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: a572833a6beb88f40a49d1ea88f5fbc3, type: 3}
       propertyPath: m_LocalPosition.z
