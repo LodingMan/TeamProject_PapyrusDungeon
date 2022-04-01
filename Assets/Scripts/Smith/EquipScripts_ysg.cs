@@ -21,6 +21,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public bool isEquip = false; // 현재 무기or장비가 장착 되었는지 확인 하는 bool 값입니다.
     public bool isSmith = false;
     public bool isSelled = false;
+    public bool isDungeon = false;
 
     public Button equipBtn;
     public Transform smithSlot;
@@ -250,12 +251,14 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (dgSelectMgr.isDungeonSelect)
         {
-            if (!equipBtn)
+            if (!isDungeon)
             {
+                isDungeon = true;
                 equipBtn.gameObject.SetActive(true);
             }
             else
             {
+                isDungeon = false;
                 equipBtn.gameObject.SetActive(false);
             }
         }

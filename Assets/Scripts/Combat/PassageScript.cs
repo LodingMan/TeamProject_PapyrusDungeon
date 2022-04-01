@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PassageScript : MonoBehaviour
 {
-    public MeshRenderer renderer;
+    public new MeshRenderer renderer;
     public int passageNumber = 0;
     void Start()
     {

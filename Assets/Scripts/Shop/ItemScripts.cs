@@ -16,10 +16,11 @@ public class ItemScripts : MonoBehaviour
     public ShopManager shopManager;
     public ItemTable itemTable = new ItemTable();
     public Button useBtn;
-    public Song.UI_DungeonSelect_Manager dgSelectMgr;
+    public Song.UI_DungeonSelect_Manager dgMgr;
     public UI_Tweening_Manager twMgr;
     public int itemIndex; // 오브젝트를 구별하기 위해 넣은 변수입니다.
     public bool isUsed = false;
+    public bool isDungeon = false;
 
     public int sell = 0;
 
@@ -29,8 +30,8 @@ public class ItemScripts : MonoBehaviour
     {
         itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
+        dgMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         useBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
-        dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
 
@@ -56,7 +57,7 @@ public class ItemScripts : MonoBehaviour
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "사용";
         }
-        else
+        else if(shopManager.isShop)
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "판매";
         }
@@ -70,10 +71,12 @@ public class ItemScripts : MonoBehaviour
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "사용";
         }
-        else
+        else if(shopManager.isShop)
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "판매";
         }
+
+
     }
     public void ItemParamInit() //itemTable에 있는 정보를 가져옵니다. 정보는 itemIndex에 있는 Index를 기반으로 가져옵니다.
     {
@@ -216,14 +219,16 @@ public class ItemScripts : MonoBehaviour
 
     public void ShowBtnOnlyDungeon()
     {
-        if (dgSelectMgr.isDungeonSelect)
+        if (dgMgr.isDungeonSelect)
         {
-            if (!useBtn)
+            if (!isDungeon)
             {
+                isDungeon = true;
                 useBtn.gameObject.SetActive(true);
             }
             else
             {
+                isDungeon = false;
                 useBtn.gameObject.SetActive(false);
             }
         }
