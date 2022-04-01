@@ -26,7 +26,7 @@ public class SmithManager : MonoBehaviour
 
 
 
-    public void SmithSetting()
+    public void SmithSetting() // 대장간이 켜져있는지 체크
     {
         if (isActive)
         {
@@ -38,7 +38,7 @@ public class SmithManager : MonoBehaviour
         }
     }
 
-    public void Upgrade()
+    public void Upgrade() // 장비 강화 함수입니다.
     {
         if (equip.Name != "")
         {

@@ -240,13 +240,13 @@ public class EquipScripts_ysg : MonoBehaviour
     }
 
 
-    public void SellCancel()
+    public void SellCancel() //상점이 닫혔으면 초기화 시킵니다.
     {
         sell = 0;
         isSelled = false;
     }
 
-    public void ShowBtnOnlyDungeon()
+    public void ShowBtnOnlyDungeon() // 던전에 입장 시 버튼 표시를 합니다.
     {
         if (dgSelectMgr.isDungeonSelect)
         {
