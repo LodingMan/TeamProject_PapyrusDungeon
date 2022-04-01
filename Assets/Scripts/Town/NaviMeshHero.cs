@@ -18,12 +18,15 @@ namespace Shin
         public int pointCnt;
 
         public Animator anim;
-
+        public GameObject canvas_Town;
+        public GameObject canvas_Tent;
         void Start()
         {
             anim = transform.GetChild(0).GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>();
             point = new Transform[pointCnt = 11];
+            //canvas_Town = GameObject.Find("Canvas").GetComponent<GameObject>();
+            //canvas_Tent = GameObject.Find("Canvas_Tent").GetComponent<GameObject>();
 
             InitNaviPoint(); // hierarchy에 있는 NaviPoint를 point에 배정하는 함수.
             
@@ -35,23 +38,31 @@ namespace Shin
 
         void Update()
         {
-            dist = Vector3.Distance(transform.position, target.position);
-            if (dist > 1.1f)
+            /*if (canvas_Town.activeSelf)
             {
-                isMove = true;
-                agent.SetDestination(target.position);
-                coolTime = Random.Range(1.5f, 2.5f);
+                dist = Vector3.Distance(transform.position, target.position);
+                if (dist > 1.1f)
+                {
+                    isMove = true;
+                    agent.SetDestination(target.position);
+                    coolTime = Random.Range(1.5f, 2.5f);
+                }
+                else
+                {
+                    isMove = false;
+                    curTime += Time.deltaTime;
+                    if (curTime > coolTime)
+                    {
+                        curTime = 0;
+                        rnd_target = Random.Range(0, point.Length);
+                        target = point[rnd_target];
+                    }
+                }
+
             }
-            else
+            if (canvas_Tent.activeSelf)
             {
                 isMove = false;
-                curTime += Time.deltaTime;
-                if (curTime > coolTime)
-                {
-                    curTime = 0;
-                    rnd_target = Random.Range(0, point.Length);
-                    target = point[rnd_target];
-                }
             }
 
             if(isMove)
@@ -61,7 +72,7 @@ namespace Shin
             else
             {
                 anim.SetBool("isMove", false);// 애니메이션 IDLE
-            }
+            }*/
         }
 
         public void InitNaviPoint() // Hierarchy에서 NaviPoint검색해서 point에 할당.
