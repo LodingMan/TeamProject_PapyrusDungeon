@@ -14,6 +14,7 @@ namespace Shin
         public GameObject camera_Town;
         public GameObject canvas_Tent;        
         public GameObject camera_Tent;
+        public GameObject camfire;
         public GuildManager guildMgr;
         public Transform[] tentPos = new Transform[3];
 
@@ -42,6 +43,7 @@ namespace Shin
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = false;
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
+                guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
             }
 
 
