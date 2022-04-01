@@ -38,7 +38,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6490790516353803716}
+  - {fileID: 5917905876868435726}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillScript: {fileID: 2547879120970336075}
---- !u!1001 &552047444080929027
+--- !u!1001 &1124228264262730697
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -366,8 +366,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbfd45a709d0a134ea265f97011aa18c, type: 3}
---- !u!4 &6490790516353803716 stripped
+--- !u!4 &5917905876868435726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6753903744551029959, guid: bbfd45a709d0a134ea265f97011aa18c, type: 3}
-  m_PrefabInstance: {fileID: 552047444080929027}
+  m_PrefabInstance: {fileID: 1124228264262730697}
   m_PrefabAsset: {fileID: 0}
