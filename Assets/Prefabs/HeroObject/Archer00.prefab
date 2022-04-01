@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 547463367457261639}
   - component: {fileID: 4267103001893110459}
   - component: {fileID: 2060411747551776256}
-  - component: {fileID: 8213667768889524154}
   - component: {fileID: 5082793913062524627}
   - component: {fileID: 2547879120970336075}
   - component: {fileID: 8056247425272531940}
@@ -22,7 +21,7 @@ GameObject:
   - component: {fileID: 8437211915347757842}
   m_Layer: 0
   m_Name: Archer00
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,19 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8213667768889524154
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897786029668791550}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5082793913062524627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +282,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12664be65fdd2584daa7d4a0eef04c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroSavingData:
+    stat:
+      Index: 0
+      Name: 
+      Job: 
+      HP: 0
+      MAXHP: 0
+      MP: 0
+      MAXMP: 0
+      Atk: 0
+      Def: 0
+      Cri: 0
+      Acc: 0
+      Agi: 0
+      Speed: 0
+    skills: []
+    equips: []
+    ColorType: 0
 --- !u!114 &8437211915347757842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: a572833a6beb88f40a49d1ea88f5fbc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: a572833a6beb88f40a49d1ea88f5fbc3, type: 3}
       propertyPath: m_LocalPosition.z
