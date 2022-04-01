@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 8437211915347757842}
   m_Layer: 0
   m_Name: Barristan03
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,8 +102,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &5082793913062524627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: bbfd45a709d0a134ea265f97011aa18c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: bbfd45a709d0a134ea265f97011aa18c, type: 3}
       propertyPath: m_LocalPosition.z
