@@ -29,6 +29,7 @@ namespace Song
         public Name_JobTable name_JobTable = new Name_JobTable(); //랜덤한 영어이름 배열과 , 직업이름 배열이 들어있는 클래스
 
         int JobSkillStartIndex; // 0이면 0~4번 인덱스 , 5라면 5번부터 9번까지의 인덱스를 for문으로 돌려서 스킬값을 대입함, 하단 for문 참조
+        public int HeroColor;
 
 
         public GuildManager guildManager;
@@ -38,7 +39,8 @@ namespace Song
             for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) // 현재 길드가 허용하는 생성 수만큼 랜덤생성
             {
                 string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //랜덤한 직업 이름 가져옴
-                FirstHeroCreate(rndJob);
+                int rndColor = Random.Range(0, 4);
+                FirstHeroCreate(rndJob, rndColor);
             }
 
             guildManager.UnemployedHero_UI_Prefabs_UpLoad(unemployedHeroList);
@@ -46,7 +48,7 @@ namespace Song
         }
 
 
-        public void FirstHeroCreate(string HeroJobName)  //랜덤으로 초기값의 HeroObject를 생성하는 함수. 
+        public void FirstHeroCreate(string HeroJobName, int color)  //랜덤으로 초기값의 HeroObject를 생성하는 함수. 
         {
             string RandomName = name_JobTable.RandomNameTable[Random.Range(0, name_JobTable.RandomNameTable.Length)]; //생성할 오브젝트의 랜덤한 이름 만들기
 
@@ -56,7 +58,7 @@ namespace Song
                 case "Mage":
 
                     initStat = new Stat(0, RandomName, "Mage", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5); //초기 마법사의 스텟
-                    CurrentCreateHero = Instantiate(HeroPrefabs[0]) as GameObject; //마법사 생성
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color]) as GameObject; //마법사 생성
                     CurrentCreateHero.name = initStat.Name; // 생성될 오브젝트의 고유 이름
 
                     JobSkillStartIndex = 0; //스킬의 0번 인덱스부터4번까지 대입 (하단 for문[cs:77] 참조) 

@@ -88,6 +88,7 @@ public class HeroSavingData
     public Stat stat;
     public skill[] skills;
     public Equip[] equips;
+    public int ColorType;
 
 }
 [System.Serializable]

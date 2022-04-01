@@ -13,6 +13,39 @@ public class RoomController : MonoBehaviour
 
     public void RoomCheck(int roomnumber)
     {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region º¸Çè
         //Debug.Log(roomnumber);
         //if (players.isRoom)
         //{ 
@@ -54,8 +87,9 @@ public class RoomController : MonoBehaviour
         //        }
         //    }
         //}
+        #endregion
 
-        
+
     }
 
 

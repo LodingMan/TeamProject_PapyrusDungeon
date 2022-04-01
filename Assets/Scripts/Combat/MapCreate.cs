@@ -73,7 +73,7 @@ public class MapCreate : MonoBehaviour
         map[6, rnd].transform.SetParent(MinimapBundle.transform);
 
         selectRoom.Add((6 * 10) + rnd);
-      //  RC.RoomList.Add(map[6, rnd]);
+        RC.RoomList.Add(map[6, rnd]);
 
         startRoomNumber = selectRoom[0];
 
@@ -128,7 +128,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                        //     RC.RoomList.Add(map[searchY,searchX]);
+                             RC.RoomList.Add(map[searchY,searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 
@@ -240,7 +240,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                        //RC.RoomList.Add(map[searchY, searchX]);
+                        RC.RoomList.Add(map[searchY, searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 
@@ -297,7 +297,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                        //  RC.RoomList.Add(map[searchY, searchX]);
+                          RC.RoomList.Add(map[searchY, searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 
@@ -329,11 +329,11 @@ public class MapCreate : MonoBehaviour
         bossX = selectRoom[selectRoom.Count - 1] % 10;
         bossY = selectRoom[selectRoom.Count - 1] / 10;
         Destroy(map[bossY, bossX]);
-      //  RC.RoomList.RemoveAt(RC.RoomList.Count-1);
+        RC.RoomList.RemoveAt(RC.RoomList.Count-1);
         map[bossY, bossX] = Instantiate(bossRoomPrefab, mapCreatePos[bossY, bossX], transform.rotation) as GameObject;
         map[bossY, bossX].transform.SetParent(MinimapBundle.transform);
 
-        // RC.RoomList.Add(map[bossY, bossX]);
+         RC.RoomList.Add(map[bossY, bossX]);
 
 
         map[bossY, bossX].GetComponent<RoomScript>().InitRoomNumber((bossY * 10) + bossX);// 방에게 현재 방번호 부여
@@ -363,7 +363,7 @@ public class MapCreate : MonoBehaviour
 
                     Passage.name = "" + selectRoom[i] + "Up";
                     Passage.tag = "Up";
-                    // RC.PassageList.Add(Passage);
+                     RC.RoomList.Add(Passage);
 
                     Passage.GetComponent<RoomScript>().roomNumber = selectRoom[i] + 200;
 
@@ -375,7 +375,7 @@ public class MapCreate : MonoBehaviour
 
                     Passage.name = "" + selectRoom[i] + "Right";
                     Passage.tag = "Right";
-                    //  RC.PassageList.Add(Passage);
+                      RC.RoomList.Add(Passage);
 
                     Passage.GetComponent<RoomScript>().roomNumber = selectRoom[i] + 100;
 
