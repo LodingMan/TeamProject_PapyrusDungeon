@@ -363,11 +363,9 @@ public class MapCreate : MonoBehaviour
 
                     Passage.name = "" + selectRoom[i] + "Up";
                     Passage.tag = "Up";
-                    map[selectRoom[i] / 10, selectRoom[i] % 10].GetComponent<RoomScript>().initPassage(Passage);
-                   // RC.PassageList.Add(Passage);
+                    // RC.PassageList.Add(Passage);
 
-                    Passage.GetComponent<PassageScript>().InitPassageNumber(selectRoom[i]);
-                    passageRoom.Add(selectRoom[i] + 200);
+                    Passage.GetComponent<RoomScript>().roomNumber = selectRoom[i] + 200;
 
                 }
                 if (selectRoom[i] + 1 == selectRoom[j])
@@ -377,11 +375,9 @@ public class MapCreate : MonoBehaviour
 
                     Passage.name = "" + selectRoom[i] + "Right";
                     Passage.tag = "Right";
-                    map[selectRoom[i] / 10, selectRoom[i] % 10].GetComponent<RoomScript>().initPassage(Passage);
-                  //  RC.PassageList.Add(Passage);
+                    //  RC.PassageList.Add(Passage);
 
-                    Passage.GetComponent<PassageScript>().InitPassageNumber(selectRoom[i]);
-                    passageRoom.Add(selectRoom[i] + 100);
+                    Passage.GetComponent<RoomScript>().roomNumber = selectRoom[i] + 100;
 
                 }
             }
