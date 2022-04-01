@@ -28,9 +28,11 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool UI_isStatusPanel_On = false;
     public bool isShopOn = false;
     public bool isSmithOn = false;
+    public ShopManager shopMgr;
 
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
+
 
 
     private void Update()
@@ -46,6 +48,8 @@ public class UI_Tweening_Manager : MonoBehaviour
                     StackCount--;
                     isShopOn = false;
                     isSmithOn = false;
+                    shopMgr.isShop = false;
+                    
                 }
             }
 
