@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7750419162253192531}
   - component: {fileID: 6051900710505557478}
   - component: {fileID: 8437211915347757842}
+  - component: {fileID: 2301908579780261409}
   m_Layer: 0
   m_Name: Archer00
   m_TagString: Player
@@ -313,6 +314,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillScript: {fileID: 2547879120970336075}
+--- !u!65 &2301908579780261409
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897786029668791550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &4029328316737085457
 PrefabInstance:
   m_ObjectHideFlags: 0
