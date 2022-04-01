@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 333848543266947974}
   - component: {fileID: 4845661113979060061}
   - component: {fileID: 907718297928959901}
-  - component: {fileID: 5043303898119979149}
   m_Layer: 5
   m_Name: Skill_Btn
   m_TagString: Untagged
@@ -197,15 +196,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5043303898119979149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6223855108750903198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5428608b93f85543b447441d2e1a4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
