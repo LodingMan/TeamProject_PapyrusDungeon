@@ -55,11 +55,15 @@ public class InGame_Player_Script : MonoBehaviour
 
     public void KeepGoing()
     {
-        currentPlayers = NextPlayers;
+        //PreviousPlayers = currentPlayers;
+        //currentPlayers = NextPlayers;
+        RC.RoomCheck(NextPlayers);
     }
     public void TurningBack()
     {
-        currentPlayers = PreviousPlayers;
+        //PreviousPlayers = currentPlayers;
+        //currentPlayers = PreviousPlayers;
+        RC.RoomCheck(PreviousPlayers);
     }
     public void StartWarp(int roomnumber)
     {
