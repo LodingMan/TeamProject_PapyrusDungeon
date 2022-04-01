@@ -11,6 +11,8 @@ public class CameraMoving : MonoBehaviour
     public Animator camAnim;
     public CamState camState;
     public int camStateChecker = 0;
+
+
     
     public enum CamState
     {
