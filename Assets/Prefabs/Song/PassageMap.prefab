@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b23ac1c49a9438049814ce51b0496d52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,11 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963ee50d8181a2945afb0d8d1310efab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCheckList:
-  - {fileID: 0}
-  - {fileID: 0}
-  childernPassage:
-  - {fileID: 0}
-  - {fileID: 0}
   Renderer: {fileID: 0}
   roomNumber: 0
