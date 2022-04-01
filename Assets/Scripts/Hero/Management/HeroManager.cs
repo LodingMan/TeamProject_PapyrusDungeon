@@ -201,7 +201,7 @@ namespace Song
 
             for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList의 길이가 30 이므로 30번 반복됨.
             {
-                if (CurrentHeroDataList[i].stat.Name == "")
+                if (CurrentHeroDataList[i] == null)
                 {
                     break;
                 }
