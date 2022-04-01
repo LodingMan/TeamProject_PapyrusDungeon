@@ -26,7 +26,7 @@ namespace Shin
             btn.onClick.AddListener(OnClickBtn);
         }
 
-        public void OnClickBtn()
+        public void OnClickBtn() // 이 버튼이 눌리면 town off, tent on.    
         {
             if (camera_Town.enabled)
             {
@@ -41,7 +41,6 @@ namespace Shin
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
-                // 코루틴 함수 호출해서 로딩패널 1초 정도
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().herostate = Shin.NaviMeshHero.HEROSTATE.IDLE;
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().anim.SetInteger("herostate", (int)Shin.NaviMeshHero.HEROSTATE.IDLE);
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = false;
