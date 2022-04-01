@@ -106,7 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2885974010025107586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d063a2ce31615ec4781f2a8b5b13a24f, type: 3}
+  m_Script: {fileID: 11500000, guid: f4b381bc9f56de34cbba91b1e0625d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCheckList:
