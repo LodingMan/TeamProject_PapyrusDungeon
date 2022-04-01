@@ -10,12 +10,14 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Equip[] equips = new Equip[2];
     public string heroName; //현재 선택된 오브젝트의 이름
     public bool isActive = false; // 중복 클릭 방지를 위한 bool값 입니다.
+    public Song.UI_DungeonSelect_Manager dgMgr;
     public GameObject tentCam;
+    public quick_outline.quick_outline outline;
     
 
     void Update()
     {
-        if (tentCam.activeSelf)
+        if (dgMgr.isDungeonSelect)
         {
             if (Input.GetMouseButtonDown(0)) // 오브젝트 클릭 시 정보 가져오는 스크립트입니다. 추후에 터치로 바꿀 예정입니다.
             {
@@ -29,7 +31,17 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         stats = hit.transform.gameObject.GetComponent<StatScript>().myStat;
                         equips = hit.transform.gameObject.GetComponent<EquipScript>().myEquip;
                         heroName = hit.transform.gameObject.name;
+                        outline = hit.transform.gameObject.GetComponent<quick_outline.quick_outline>();
+                        outline.enabled = true;
                         Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
+                    }
+                    else
+                    {
+                        isActive = false;
+                        stats = null;
+                        equips = null;
+                        heroName = null;
+                        outline.enabled = false;
                     }
 
                 }
