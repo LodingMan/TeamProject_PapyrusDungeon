@@ -41,10 +41,14 @@ namespace Shin
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
+                // 코루틴 함수 호출해서 로딩패널 1초 정도
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().herostate = Shin.NaviMeshHero.HEROSTATE.IDLE;
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().anim.SetInteger("herostate", (int)Shin.NaviMeshHero.HEROSTATE.IDLE);
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = false;
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
                 guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
+                
             }
 
 
