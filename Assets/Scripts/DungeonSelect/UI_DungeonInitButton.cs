@@ -40,28 +40,37 @@ namespace Shin
         {
             loadingPanel.DOAnchorPos(new Vector2(0, 0), 0.5f);
 
+            for (int i = 0; i < shopMgr.hasItemList.Count; i++)
+            {
+                shopMgr.hasItemList[i].transform.SetParent(inventory.transform);
+                shopMgr.hasItemList[i].transform.localPosition = inventory.transform.localPosition;
+                shopMgr.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
+            }
+            for (int i = 0; i < shopMgr.hasEquipList.Count; i++)
+            {
+                shopMgr.hasEquipList[i].transform.SetParent(inventory.transform);
+                shopMgr.hasEquipList[i].transform.localPosition = inventory.transform.localPosition;
+                shopMgr.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
+            }
+
             if (canvas_Town.enabled)
             {
                 canvas_Town.enabled = false;
-                //canvas_Tent.enabled = true;
             }
-            StartCoroutine(TweenLoadingPanel());
-
-            
-
-            
+            StartCoroutine(TweenLoadingPanel()); 
         }
+
         IEnumerator TweenLoadingPanel()
         {
             yield return new WaitForSeconds(2f);
             if (camera_Town.enabled)
             {
                 camera_Town.enabled = false;
-                //camera_Tent.enabled = true;
             }
             
             if (!camera_Town.enabled) camera_Tent.enabled = true;
             if (!canvas_Town.enabled) canvas_Tent.enabled = true;
+
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().herostate = Shin.NaviMeshHero.HEROSTATE.IDLE;
@@ -70,20 +79,9 @@ namespace Shin
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
                 guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
+            }
 
-            }
-			for (int i = 0; i < shopMgr.hasItemList.Count; i++)
-            {
-	                shopMgr.hasItemList[i].transform.SetParent(inventory.transform);
-	                shopMgr.hasItemList[i].transform.localPosition = inventory.transform.localPosition;
-	                shopMgr.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
-            }
-            for (int i = 0; i < shopMgr.hasEquipList.Count; i++)
-            {
-	                shopMgr.hasEquipList[i].transform.SetParent(inventory.transform);
-	                shopMgr.hasEquipList[i].transform.localPosition = inventory.transform.localPosition;
-	                shopMgr.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
-            }
+			
             loadingPanel.DOAnchorPos(new Vector2(1930, 0), 0.5f);
             
             
