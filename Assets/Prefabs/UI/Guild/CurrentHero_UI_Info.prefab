@@ -149,7 +149,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 43a7d98bd4222b64e933596512dc09ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   This_Prefab_Object: {fileID: 0}
   uI_Central: {fileID: 0}
+  hero_Status_UI_Script: {fileID: 0}
 --- !u!225 &2814269097480952290
 CanvasGroup:
   m_ObjectHideFlags: 0

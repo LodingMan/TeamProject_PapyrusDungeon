@@ -84,7 +84,7 @@ namespace Shin
             }
 
 			
-            loadingPanel.DOAnchorPos(new Vector2(1930, 0), 0.5f);
+            loadingPanel.DOAnchorPos(new Vector2(1290, 0), 0.5f);
             
             
         }
