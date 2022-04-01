@@ -15,13 +15,16 @@ namespace Shin
         public Canvas canvas_Tent;        
         public Camera camera_Tent;
         public GameObject camfire;
-        
+        public GameObject inventory;
+        public ShopManager shopMgr;
+
         public GuildManager guildMgr;
         public Transform[] tentPos = new Transform[3];
 
         private void Awake()
         {
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
+            shopMgr = GameObject.Find("ShopManager").GetComponent<ShopManager>();
             btn = GetComponent<Button>();
             btn.onClick.AddListener(OnClickBtn);
             tentPos[0].position = new Vector3(-32f, 0.95f, -132);
@@ -41,6 +44,19 @@ namespace Shin
             {
                 canvas_Town.enabled = false;
                 canvas_Tent.enabled = true;
+            }
+
+            for (int i = 0; i < shopMgr.hasItemList.Count; i++)
+            {
+                shopMgr.hasItemList[i].transform.SetParent(inventory.transform);
+                shopMgr.hasItemList[i].transform.localPosition = inventory.transform.localPosition;
+                shopMgr.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
+            }
+            for (int i = 0; i < shopMgr.hasEquipList.Count; i++)
+            {
+                shopMgr.hasEquipList[i].transform.SetParent(inventory.transform);
+                shopMgr.hasEquipList[i].transform.localPosition = inventory.transform.localPosition;
+                shopMgr.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
             }
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
