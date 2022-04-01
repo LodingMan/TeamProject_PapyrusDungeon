@@ -2095,7 +2095,7 @@ GameObject:
   - component: {fileID: 6753903744551029959}
   - component: {fileID: 6753903744560390915}
   m_Layer: 0
-  m_Name: _Babarian04
+  m_Name: _Babarian00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12013,7 +12013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6753903744551030219
 Transform:
   m_ObjectHideFlags: 0
@@ -12175,7 +12175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6753903744551030223
 Transform:
   m_ObjectHideFlags: 0
