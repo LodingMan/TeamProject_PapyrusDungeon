@@ -24,6 +24,10 @@ namespace Shin
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             btn = GetComponent<Button>();
             btn.onClick.AddListener(OnClickBtn);
+            tentPos[0].position = new Vector3(-32f, 0.95f, -132);
+            tentPos[1].position = new Vector3(-32.12f, 0.95f, -135.43f);
+            tentPos[2].position = new Vector3(-35.29f, 0.95f, -135.98f);
+
         }
 
         public void OnClickBtn() // 이 버튼이 눌리면 town off, tent on.    
