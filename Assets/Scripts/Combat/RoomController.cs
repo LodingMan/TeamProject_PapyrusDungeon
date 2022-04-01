@@ -7,7 +7,7 @@ public class RoomController : MonoBehaviour
     public MapCreate mapCreate;
     public List<GameObject> RoomList;
     public RoomScript roomScript;
-    public PlayerScript_Proto inGamePlayerScript;
+    public InGame_Player_Script inGamePlayerScript;
     public List<Material> RoomColors;
 
 
@@ -20,7 +20,7 @@ public class RoomController : MonoBehaviour
         {
             if (RoomList[i].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.currentPlayers)
             {
-             //   RoomList[i].GetComponent<MeshRenderer>().material = 
+                RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
             }
         }
 
