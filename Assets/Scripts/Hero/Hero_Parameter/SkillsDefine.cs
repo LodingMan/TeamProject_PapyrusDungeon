@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillsDefine : MonoBehaviour {
-    public SkillScript skillScript;
-
-    private void Start()
+namespace Shin
+{
+    public class SkillsDefine : MonoBehaviour
     {
-        skillScript = gameObject.GetComponent<SkillScript>();
-        for (int i = 0; i < 3; i++)
+        public SkillScript skillScript;
+
+        private void Start()
         {
-            skillScript.SkillIndex[i] = Random.Range(0, 5);
-            skillScript.mySkills[i] = skillScript.skills[skillScript.SkillIndex[i]];
-            for (int j = i; j > 0; j--)
+            skillScript = gameObject.GetComponent<SkillScript>();
+            for (int i = 0; i < 3; i++)
             {
-                if (skillScript.SkillIndex[i] == skillScript.SkillIndex[j - 1])
+                skillScript.SkillIndex[i] = Random.Range(0, 5);
+                skillScript.mySkills[i] = skillScript.skills[skillScript.SkillIndex[i]];
+                for (int j = i; j > 0; j--)
                 {
-                    i--;
+                    if (skillScript.SkillIndex[i] == skillScript.SkillIndex[j - 1])
+                    {
+                        i--;
+                    }
                 }
             }
         }

@@ -6,29 +6,29 @@ using UnityEngine;
 
 namespace Song
 {
-    public class HeroManager : MonoBehaviour //½ºÀ§Ä¡ ¹®¿¡ ¸Â´Â »õ·Î¿î Hero »ý¼º , ÀúÀåÇÑ È÷¾î·Î µ¥ÀÌÅÍ¸¦ ÂüÁ¶ÇØ¼­ »ç¿ëÇß´ø HeroÀç»ý¼º
+    public class HeroManager : MonoBehaviour //ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Hero ï¿½ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ß´ï¿½ Heroï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        public Stat initStat; //»ý¼ºÇÒ ¿ÀºêÁ§Æ®ÀÇ ½ºÅÝÀ» ÀÓ½Ã·Î ÀúÀåÇÏ±âÀ§ÇÑ Å¬·¡½º
+        public Stat initStat; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 
-        public Item initItem; //¾ÆÁ÷ ¹Ì»ç¿ë
+        public Item initItem; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½
 
-        public SKillTable skillTable = new SKillTable(); // ¸ðµç ½ºÅ³ Á¤º¸
+        public SKillTable skillTable = new SKillTable(); // ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
 
-        public List<GameObject> HeroPrefabs; //HeroManager¿¡¼­ »ý¼º ÇÒ ¼öÀÖ´Â HeroObject¸ñ·Ï
+        public List<GameObject> HeroPrefabs; //HeroManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ HeroObjectï¿½ï¿½ï¿½
 
-        public GameObject CurrentCreateHero; //¸· »ý¼ºµÈ È÷¾î·Î ¿ÀºêÁ§Æ®¿¡ °ªÀ» ´ëÀÔÇÏ±â À§ÇØ ¼±¾ð.
+        public GameObject CurrentCreateHero; //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-        public List<GameObject> unemployedHeroList; //»ý¼ºÀº µÆÁö¸¸ ¹Ì°í¿ë »óÅÂÀÎ ¿µ¿õ ¸®½ºÆ®. °í¿ëÇÏ¸é ÇØ´ç ¸®½ºÆ®¿¡¼­ CurrentHeroList·Î ¿Å°ÜÁø´Ù.  
+        public List<GameObject> unemployedHeroList; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®. ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ CurrentHeroListï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½.  
 
-        public List<GameObject> CurrentHeroList; // ÇöÀç »ý¼ºµÈ È÷¾î·Î
+        public List<GameObject> CurrentHeroList; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
-        public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //»ý¼ºµÈ HeroObjectÀÇ SavingData¸¦ ÇÑ¹ø¿¡ ´ã¾Æ¼­ SaveÇÏ±â À§ÇÔ
-                                                                              // Save½Ã¿¡ List·Î ÀúÀåÇÏ°í ½Í¾úÀ¸³ª ¿¡·¯³², ÀÌÀ¯¸¦ ¾Æ½Ã°Å³ª ¾Ë°ÔµÇ½ÅºÐÀº Á¤º¸°øÀ¯Á»... -> ¼ÛÇÏ´Ã 03/26
+        public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ HeroObjectï¿½ï¿½ SavingDataï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ Saveï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
+                                                                              // Saveï¿½Ã¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ½Ã°Å³ï¿½ ï¿½Ë°ÔµÇ½Åºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½... -> ï¿½ï¿½ï¿½Ï´ï¿½ 03/26
 
 
-        public Name_JobTable name_JobTable = new Name_JobTable(); //·£´ýÇÑ ¿µ¾îÀÌ¸§ ¹è¿­°ú , Á÷¾÷ÀÌ¸§ ¹è¿­ÀÌ µé¾îÀÖ´Â Å¬·¡½º
+        public Name_JobTable name_JobTable = new Name_JobTable(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½è¿­ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 
-        int JobSkillStartIndex; // 0ÀÌ¸é 0~4¹ø ÀÎµ¦½º , 5¶ó¸é 5¹øºÎÅÍ 9¹ø±îÁöÀÇ ÀÎµ¦½º¸¦ for¹®À¸·Î µ¹·Á¼­ ½ºÅ³°ªÀ» ´ëÀÔÇÔ, ÇÏ´Ü for¹® ÂüÁ¶
+        int JobSkillStartIndex; // 0ï¿½Ì¸ï¿½ 0~4ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ , 5ï¿½ï¿½ï¿½ 5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ forï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ï´ï¿½ forï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public int HeroColor;
 
 
@@ -36,9 +36,9 @@ namespace Song
 
         public void RandomHeroCreate()
         {
-            for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) // ÇöÀç ±æµå°¡ Çã¿ëÇÏ´Â »ý¼º ¼ö¸¸Å­ ·£´ý»ý¼º
+            for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
-                string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //·£´ýÇÑ Á÷¾÷ ÀÌ¸§ °¡Á®¿È
+                string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 int rndColor = Random.Range(0, 4);
                 FirstHeroCreate(rndJob, rndColor);
             }
@@ -48,28 +48,28 @@ namespace Song
         }
 
 
-        public void FirstHeroCreate(string HeroJobName, int color)  //·£´ýÀ¸·Î ÃÊ±â°ªÀÇ HeroObject¸¦ »ý¼ºÇÏ´Â ÇÔ¼ö. 
+        public void FirstHeroCreate(string HeroJobName, int color)  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±â°ªï¿½ï¿½ HeroObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½. 
         {
-            string RandomName = name_JobTable.RandomNameTable[Random.Range(0, name_JobTable.RandomNameTable.Length)]; //»ý¼ºÇÒ ¿ÀºêÁ§Æ®ÀÇ ·£´ýÇÑ ÀÌ¸§ ¸¸µé±â
+            string RandomName = name_JobTable.RandomNameTable[Random.Range(0, name_JobTable.RandomNameTable.Length)]; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
-            #region //Á÷¾÷ÀÇ Á¾·ùº°·Î ½ºÅÈ ºÎ¿© ¿ÀºêÁ§Æ® »ý¼º, ½ºÅ³ ÀÎµ¦½º ºÎ¿©
+            #region //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å³ ï¿½Îµï¿½ï¿½ï¿½ ï¿½Î¿ï¿½
             switch (HeroJobName)
             {
                 case "Mage":
 
-                    initStat = new Stat(0, RandomName, "Mage", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5); //ÃÊ±â ¸¶¹ý»çÀÇ ½ºÅÝ
-                    CurrentCreateHero = Instantiate(HeroPrefabs[color]) as GameObject; //¸¶¹ý»ç »ý¼º
-                    CurrentCreateHero.name = initStat.Name; // »ý¼ºµÉ ¿ÀºêÁ§Æ®ÀÇ °íÀ¯ ÀÌ¸§
+                    initStat = new Stat(0, RandomName, "Mage", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5); //ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color]) as GameObject; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    CurrentCreateHero.name = initStat.Name; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 
-                    JobSkillStartIndex = 0; //½ºÅ³ÀÇ 0¹ø ÀÎµ¦½ººÎÅÍ4¹ø±îÁö ´ëÀÔ (ÇÏ´Ü for¹®[cs:77] ÂüÁ¶) 
+                    JobSkillStartIndex = 0; //ï¿½ï¿½Å³ï¿½ï¿½ 0ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ï´ï¿½ forï¿½ï¿½[cs:77] ï¿½ï¿½ï¿½ï¿½) 
                     break;
                 case "Archer":
 
-                    initStat = new Stat(1, RandomName, "Archer", 10 , 10 , 10 , 10, 10, 3, 9, 7, 6, 10); //ÃÊ±â ±Ã¼öÀÇ ½ºÅÝ
-                    CurrentCreateHero = Instantiate(HeroPrefabs[color+4]) as GameObject; //±Ã¼ö »ý¼º
-                    CurrentCreateHero.name = initStat.Name; // »ý¼ºµÉ ¿ÀºêÁ§Æ®ÀÇ °íÀ¯ ÀÌ¸§
+                    initStat = new Stat(1, RandomName, "Archer", 10 , 10 , 10 , 10, 10, 3, 9, 7, 6, 10); //ï¿½Ê±ï¿½ ï¿½Ã¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    CurrentCreateHero = Instantiate(HeroPrefabs[color+4]) as GameObject; //ï¿½Ã¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    CurrentCreateHero.name = initStat.Name; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 
-                    JobSkillStartIndex = 5; //½ºÅ³ÀÇ 5¹ø ÀÎµ¦½ººÎÅÍ9¹ø±îÁö ´ëÀÔ (ÇÏ´Ü for¹®[cs:77] ÂüÁ¶) 
+                    JobSkillStartIndex = 5; //ï¿½ï¿½Å³ï¿½ï¿½ 5ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ï´ï¿½ forï¿½ï¿½[cs:77] ï¿½ï¿½ï¿½ï¿½) 
                     break;
                 case "Babarian":
 
@@ -110,39 +110,39 @@ namespace Song
             }
             #endregion
 
-            //ÇØ´ç Á÷¾÷¿¡ ¸Â´Â ½ºÅÝÀ» °¢ StatScript¿¡ ´ëÀÔ
+            //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ StatScriptï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             CurrentCreateHero.GetComponent<StatScript>().myStat = initStat;
             CurrentCreateHero.GetComponent<HeroScript_SaveAllDataParam>().heroSavingData.ColorType = color;
 
-            //ÇØ´ç Á÷¾÷¿¡ ¸Â´Â ½ºÅ³À» °¢ SkillScript¿¡ ´ëÀÔ
+            //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ SkillScriptï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             for (int skillIndex = JobSkillStartIndex; skillIndex < JobSkillStartIndex + 5; skillIndex++)
             {
                 CurrentCreateHero.GetComponent<SkillScript>().skills[skillIndex - JobSkillStartIndex] = skillTable.skillTable_Dictionary[skillIndex];
             }
 
-            //EquipÀÇ °æ¿ì´Â Ã³À½ »ý¼ºµÉ¶§ ºó¼ÕÀ¸·Î ½ÃÀÛÇÑ´Ù °¡Á¤ÇÏ°í ³ÖÁö ¾ÊÀ½. 
-            //°¢ Hero¿ÀºêÁ§Æ®ÀÇ EquipScriptÀÇ Equip´Â ¼±¾ð¸¸ µÇ¾îÀÖÀ»»Ó °ªÀÌ µé¾îÀÖÁö ¾ÊÀ½.
+            //Equipï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
+            //ï¿½ï¿½ Heroï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ EquipScriptï¿½ï¿½ Equipï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 
 
-            unemployedHeroList.Add(CurrentCreateHero); //±æµå¿¡¼­ ÇØ´ç ¸®½ºÆ®¸¦ ¹Þ¾Æ °í¿ëÇÒ ¿µ¿õ ¸®½ºÆ®¸¦ Ãâ·ÂÇÑ´Ù. 
+            unemployedHeroList.Add(CurrentCreateHero); //ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
 
-            //ÇöÀç °ÔÀÓ¿¡ ¿ÀºêÁ§Æ®·Î µîÀåÇÑ Hero¿ÀºêÁ§Æ® ¸®½ºÆ®
-            //CurrentHeroList.Add(CurrentCreateHero); // ÀÌ ¸®½ºÆ®¸¦ ±âÁØÀ¸·Î UI»ý¼º¹× È÷¾î·Î ÄÁÆ®·Ñ 
-                                                    // ÇöÀç´Â »ý¼ºÇÏÀÚ¸¶³ª CurrentCreateHero¸®½ºÆ®¿¡ µé¾î°¡°Ô µÇÁö¸¸ 
-                                                    // °ÔÀÓ ÁøÇà Èå¸§»ó ¿µ¿õÀ» °í¿ëÇÑ ÈÄ¿¡¾ß CurrentHeroList¿¡ µé¾î°¡¾ß ÇÏ±â ¶§¹®¿¡
-                                                    // ÀÏ´Ü »ý¼ºÇÑ ¿ÀºêÁ§Æ®¸¦ '°í¿ëÇÒ' ¿µ¿õ ¸®½ºÆ®¿¡ ³Ö¾îµÎ°í UI¸¦ Ãâ·Â ÈÄ,
-                                                    // °í¿ëÇÏ¸é '°í¿ëÇÑ' ¿µ¿õ ¸®½ºÆ®¿¡ ¿Å°Ü ÁØ ÈÄ UI¾÷µ¥ÀÌÆ®ÇÏ´Â ¹æ¹ýÀÌ ÀÖ´Ù°í »ý°¢ÇÔ  -> ¼ÛÇÏ´Ã
-                                                    //03-27 ¼öÁ¤. CurrentHeroList´Â HeroManager¿¡ ¼±¾ðµÇ¾îÀÖÁö¸¸ ¸®½ºÆ®ÀÇ ¸É¹ö¸¦ Ãß°¡ÇÏ´Â ¿ªÇÒÀº ±æµå¿¡¼­ ÁøÇàÇÔ. 
-                                                    //CurrentHeroList°¡ ¼±¾ðµÇ´Â°÷Àº ¿©ÀüÈ÷ HeroManager¿¡ ÀÖÀ¸¹Ç·Î »ç¿ëÇÏ´Âµ¥ º¯ÇÔÀº ¾ø´Ù. 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Heroï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ®
+            //CurrentHeroList.Add(CurrentCreateHero); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ 
+                                                    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ CurrentCreateHeroï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+                                                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½å¸§ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ï¿½ï¿½ CurrentHeroListï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                                                    // ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 'ï¿½ï¿½ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½Î°ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½,
+                                                    // ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 'ï¿½ï¿½ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ ï¿½ï¿½ UIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  -> ï¿½ï¿½ï¿½Ï´ï¿½
+                                                    //03-27 ï¿½ï¿½ï¿½ï¿½. CurrentHeroListï¿½ï¿½ HeroManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½É¹ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
+                                                    //CurrentHeroListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ HeroManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
         }
 
 
-        public void LoadHeroCreate(HeroSavingData LodingHeroSavingData) // 03-26 Json¿¡ ÀúÀåµÇ¾îÀÖ´Â HeroSavingData¸¦ ´Ù½Ã Object·Î »ý¼ºÇÑ´Ù.  
+        public void LoadHeroCreate(HeroSavingData LodingHeroSavingData) // 03-26 Jsonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ö´ï¿½ HeroSavingDataï¿½ï¿½ ï¿½Ù½ï¿½ Objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.  
         {
-            switch (LodingHeroSavingData.stat.Job) //°¡Á®¿Â µ¥ÀÌÅÍÀÇ Á÷¾÷ °Ë»ç ÈÄ ¾Ë¸ÂÀº ¿ÀºêÁ§Æ® »ý¼º
+            switch (LodingHeroSavingData.stat.Job) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             {
-                case "Mage": //°¢ÀÚ ¸Â´Â HeroPrefabsÀÇ ¸É¹ö°¡ µé¾î°¡°¼ ÇÔ.
+                case "Mage": //ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ HeroPrefabsï¿½ï¿½ ï¿½É¹ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½.
                     CurrentCreateHero = Instantiate(HeroPrefabs[LodingHeroSavingData.ColorType]);
                     break;
                 case "Archer":
@@ -164,17 +164,17 @@ namespace Song
                     break;
             }
 
-            //LoadingHeroSavingData¿¡¼­ »ý¼ºÇÑ ¿ÀºêÁ§Æ®¿¡ °ª ´ëÀÔ
+            //LoadingHeroSavingDataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             CurrentCreateHero.name = LodingHeroSavingData.stat.Name;
             CurrentCreateHero.GetComponent<StatScript>().myStat = LodingHeroSavingData.stat;
             CurrentCreateHero.GetComponent<SkillScript>().skills = LodingHeroSavingData.skills;
 
-            if (LodingHeroSavingData.equips != null) // ºÒ·¯¿À´Â Hero°¡ ¸Ç¼ÕÀÏ °æ¿ì¿¡´Â if¹® ¾ÈÀÇ ¹®ÀåÀ» ½ÇÇàÇÏÁö ¾ÊÀ½
+            if (LodingHeroSavingData.equips != null) // ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ Heroï¿½ï¿½ ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ifï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 CurrentCreateHero.GetComponent<EquipScript>().myEquip = LodingHeroSavingData.equips;
             }
 
-            CurrentHeroList.Add(CurrentCreateHero); // ÀÌ ¸®½ºÆ®¸¦ ±âÁØÀ¸·Î UI»ý¼º¹× È÷¾î·Î ÄÁÆ®·Ñ 
+            CurrentHeroList.Add(CurrentCreateHero); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ 
         }
 
 
@@ -182,7 +182,7 @@ namespace Song
         {
             for (int i = 0; i < CurrentHeroList.Count; i++)
             {
-                CurrentHeroDataList[i] = CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData; // °¢ heroÀÇ savingdataÀúÀå
+                CurrentHeroDataList[i] = CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData; // ï¿½ï¿½ heroï¿½ï¿½ savingdataï¿½ï¿½ï¿½ï¿½
             }
 
             //if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
@@ -193,14 +193,15 @@ namespace Song
             string jdata = JsonConvert.SerializeObject(CurrentHeroDataList);
             File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", jdata);
         }
+
         public void _Load()
         {
             string jdata = File.ReadAllText(Application.dataPath + "/Resources/Stat.Json");
-            CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //ºÒ·¯¿Â savingdata¸¦ LoadHeroCreateÇÔ¼ö¸¦ »ç¿ëÇØ heroObject»ý¼º
+            CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //ï¿½Ò·ï¿½ï¿½ï¿½ savingdataï¿½ï¿½ LoadHeroCreateï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ heroObjectï¿½ï¿½ï¿½ï¿½
 
-            for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataListÀÇ ±æÀÌ°¡ 30 ÀÌ¹Ç·Î 30¹ø ¹Ýº¹µÊ.
+            for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataListï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ 30 ï¿½Ì¹Ç·ï¿½ 30ï¿½ï¿½ ï¿½Ýºï¿½ï¿½ï¿½.
             {
-                if (CurrentHeroDataList[i].stat.Name == "")  //¹è¿­ÀÌ¶ó ³²Àº°ø°£Àº nullÀÌ µÇ¾î¹ö¸®¹Ç·Î nullÀ» ¸¸³ª¸é for¹®À» ¸ØÃã
+                if (CurrentHeroDataList[i] == null)
                 {
                     break;
                 }
