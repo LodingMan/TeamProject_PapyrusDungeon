@@ -38,7 +38,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7009451171708647012}
+  - {fileID: 6923644177713675219}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -279,10 +279,11 @@ MonoBehaviour:
   target: {fileID: 0}
   point: []
   dist: 0
-  isMove: 0
   curTime: 0
   coolTime: 0
   pointCnt: 0
+  anim: {fileID: 0}
+  herostate: 0
 --- !u!114 &6051900710505557478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillScript: {fileID: 2547879120970336075}
---- !u!1001 &4394454544005118627
+--- !u!1001 &4444795676801775380
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -317,7 +318,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6753903744550867111, guid: b19510a7d7f019c419c499dd889ffcbc, type: 3}
       propertyPath: m_Name
-      value: Archer02
+      value: _Archer01
       objectReference: {fileID: 0}
     - target: {fileID: 6753903744551029959, guid: b19510a7d7f019c419c499dd889ffcbc, type: 3}
       propertyPath: m_RootOrder
@@ -363,14 +364,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6753903744560390915, guid: b19510a7d7f019c419c499dd889ffcbc, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4fb937207f56c0f4a82937b64faf0a58, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19510a7d7f019c419c499dd889ffcbc, type: 3}
---- !u!4 &7009451171708647012 stripped
+--- !u!4 &6923644177713675219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6753903744551029959, guid: b19510a7d7f019c419c499dd889ffcbc, type: 3}
-  m_PrefabInstance: {fileID: 4394454544005118627}
+  m_PrefabInstance: {fileID: 4444795676801775380}
   m_PrefabAsset: {fileID: 0}

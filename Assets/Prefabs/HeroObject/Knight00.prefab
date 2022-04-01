@@ -38,7 +38,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8065012592483429515}
+  - {fileID: 5369482597401906444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -279,11 +279,11 @@ MonoBehaviour:
   target: {fileID: 0}
   point: []
   dist: 0
-  isMove: 0
   curTime: 0
   coolTime: 0
   pointCnt: 0
   anim: {fileID: 0}
+  herostate: 0
 --- !u!114 &6051900710505557478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,20 +309,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillScript: {fileID: 2547879120970336075}
---- !u!1001 &7329535025032565749
+--- !u!1001 &4674499486944801394
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 547463367457261639}
     m_Modifications:
-    - target: {fileID: 746211592785989818, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4fb937207f56c0f4a82937b64faf0a58, type: 2}
     - target: {fileID: 746211592795382558, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
       propertyPath: m_Name
-      value: Knight01
+      value: _Knight00
       objectReference: {fileID: 0}
     - target: {fileID: 746211592795815806, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
       propertyPath: m_RootOrder
@@ -370,8 +366,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
---- !u!4 &8065012592483429515 stripped
+--- !u!4 &5369482597401906444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 746211592795815806, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
-  m_PrefabInstance: {fileID: 7329535025032565749}
+  m_PrefabInstance: {fileID: 4674499486944801394}
   m_PrefabAsset: {fileID: 0}
