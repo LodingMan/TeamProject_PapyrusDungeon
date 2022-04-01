@@ -40,6 +40,7 @@ namespace Shin
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().anim.SetBool("isMove", false);
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = false;
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;

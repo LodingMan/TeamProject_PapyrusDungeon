@@ -36,7 +36,7 @@ public class CameraMoving : MonoBehaviour
         CameraMove();
     }
 
-    public void CameraMove()
+    public void CameraMove() // 카메라 이동 애니메이션
     {
         switch (camState)
         {
@@ -122,7 +122,7 @@ public class CameraMoving : MonoBehaviour
     }
 
 
-    public void ReturnToOrigin()
+    public void ReturnToOrigin() // 현재 위치에서 원래 자리로 돌아올때 필요한 함수입니다.
     {
         switch (camStateChecker)
         {
