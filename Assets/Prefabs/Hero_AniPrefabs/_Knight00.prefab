@@ -11549,7 +11549,7 @@ GameObject:
   - component: {fileID: 746211592795815806}
   - component: {fileID: 746211592785989818}
   m_Layer: 0
-  m_Name: _Knight04
+  m_Name: _Knight00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

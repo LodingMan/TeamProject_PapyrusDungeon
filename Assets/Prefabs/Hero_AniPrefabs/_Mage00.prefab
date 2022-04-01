@@ -13163,7 +13163,7 @@ GameObject:
   - component: {fileID: 927823265588962564}
   - component: {fileID: 927823265581435584}
   m_Layer: 0
-  m_Name: _Mage04
+  m_Name: _Mage00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

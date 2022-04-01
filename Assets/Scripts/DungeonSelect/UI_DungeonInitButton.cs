@@ -30,7 +30,7 @@ namespace Shin
 
         }
 
-        public void OnClickBtn()
+        public void OnClickBtn() // 이 버튼이 눌리면 town off, tent on.    
         {
             if (camera_Town.enabled)
             {
@@ -45,10 +45,13 @@ namespace Shin
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().herostate = Shin.NaviMeshHero.HEROSTATE.IDLE;
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().anim.SetInteger("herostate", (int)Shin.NaviMeshHero.HEROSTATE.IDLE);
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = false;
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
                 guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
+                
             }
 
 
