@@ -24,6 +24,7 @@ namespace Shin
         public GuildManager guildMgr;
         public Transform[] tentPos = new Transform[3];
 
+
         private void Awake()
         {
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
@@ -38,6 +39,7 @@ namespace Shin
 
         public void OnClickBtn() // �� ��ư�� ������ town off, tent on.    
         {
+
             loadingPanel.DOAnchorPos(new Vector2(0, 0), 0.5f);
 
             for (int i = 0; i < shopMgr.hasItemList.Count; i++)

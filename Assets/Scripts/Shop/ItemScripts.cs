@@ -219,7 +219,7 @@ public class ItemScripts : MonoBehaviour
 
     public void ShowBtnOnlyDungeon()
     {
-        if (dgMgr.isDungeonSelect && itemUseManager.isActive)
+        if (dgMgr.isTent && itemUseManager.isActive)
         {
             if (!isDungeon)
             {

@@ -249,7 +249,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void ShowBtnOnlyDungeon() // 던전에 입장 시 버튼 표시를 합니다.
     {
-        if (dgSelectMgr.isDungeonSelect && itemUseManager.isActive)
+        if (dgSelectMgr.isTent && itemUseManager.isActive)
         {
             if (!isDungeon)
             {

@@ -12,6 +12,7 @@ namespace Song
         public List<GameObject> buttons;  //원래 있던버튼 싹다 비활성화 시켜주기
         public UI_Tweening_Manager uI_Tweening_Manager;
         public bool isDungeonSelect = false;
+        public bool isTent = false;
         public int DungeonType;
         public GuildManager guildManager;
 
@@ -70,6 +71,18 @@ namespace Song
         public void DungeonSelect3()
         {
             DungeonType= 3;
+        }
+
+        public void VillageToTent()
+        {
+            if (!isTent)
+            {
+                isTent = true;
+            }
+            else
+            {
+                isTent = false;
+            }
         }
     }
 }
