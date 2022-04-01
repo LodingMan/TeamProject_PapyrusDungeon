@@ -296,6 +296,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12664be65fdd2584daa7d4a0eef04c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroSavingData:
+    stat:
+      Index: 0
+      Name: 
+      Job: 
+      HP: 0
+      MAXHP: 0
+      MP: 0
+      MAXMP: 0
+      Atk: 0
+      Def: 0
+      Cri: 0
+      Acc: 0
+      Agi: 0
+      Speed: 0
+    skills: []
+    equips: []
+    ColorType: 0
 --- !u!114 &8437211915347757842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 746211592795815806, guid: 76fd7d4875bcd864d82f4dd440966f56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 746211592795815806, guid: 76fd7d4875bcd864d82f4dd440966f56, type: 3}
       propertyPath: m_LocalPosition.z
