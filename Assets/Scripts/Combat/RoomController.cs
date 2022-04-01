@@ -18,20 +18,22 @@ public class RoomController : MonoBehaviour
 
     public void RoomCheck(int Roomnumber)
     {
+        Debug.Log(Roomnumber);
 
-        for(int i = 0; i<RoomList.Count; i++)
+        for (int i = 0; i<RoomList.Count; i++)
         {
             if (RoomList[i].GetComponent<RoomScript>().roomNumber == Roomnumber)
             {
                 RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
+                Debug.Log(Roomnumber);
                 if(!isFirst)
                 {
                     for(int j = 0; j < RoomList.Count; j++)
                     {
-                        if(RoomList[j].GetComponent<RoomScript>().roomNumber == Roomnumber)
+                        if(RoomList[j].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.PreviousPlayers)
                         {
                             RoomList[j].GetComponent<MeshRenderer>().material = RoomColors[0];
-                            Debug.Log("ÇÔ¼ö ½áÁü");
+                            Debug.Log(inGamePlayerScript.PreviousPlayers);
 
                             break;
 

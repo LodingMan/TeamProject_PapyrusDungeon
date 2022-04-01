@@ -183,7 +183,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                        //  RC.RoomList.Add(map[searchY, searchX]);
+                          RC.RoomList.Add(map[searchY, searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 

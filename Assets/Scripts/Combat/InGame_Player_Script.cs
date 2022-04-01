@@ -55,15 +55,16 @@ public class InGame_Player_Script : MonoBehaviour
 
     public void KeepGoing()
     {
-        //PreviousPlayers = currentPlayers;
-        //currentPlayers = NextPlayers;
-        RC.RoomCheck(NextPlayers);
+        PreviousPlayers = currentPlayers;
+        currentPlayers = NextPlayers;
+        RC.RoomCheck(currentPlayers);
     }
-    public void TurningBack()
+    public void TurningBack() //룸체크는 인자로 들어온놈을 노란색으로 바꿔주고 Previous를 흰색으로 바꿔줌. 
     {
-        //PreviousPlayers = currentPlayers;
-        //currentPlayers = PreviousPlayers;
-        RC.RoomCheck(PreviousPlayers);
+        NextPlayers = PreviousPlayers;
+        PreviousPlayers = currentPlayers;
+        currentPlayers = NextPlayers;
+        RC.RoomCheck(currentPlayers);
     }
     public void StartWarp(int roomnumber)
     {

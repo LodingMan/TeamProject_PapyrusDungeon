@@ -20,10 +20,6 @@ public class RoomScript : MonoBehaviour
         roomNumber = num;
     }
 
-    /// <summary>
-    /// Passage의 생성은 MapCreate에서 함
-    /// </summary>
-    /// <param name="Passage"></param>
 
 
 }
