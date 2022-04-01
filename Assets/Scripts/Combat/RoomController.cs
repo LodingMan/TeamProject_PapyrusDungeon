@@ -9,25 +9,39 @@ public class RoomController : MonoBehaviour
     public RoomScript roomScript;
     public InGame_Player_Script inGamePlayerScript;
     public List<Material> RoomColors;
+    public int PreviousRoomNumber;
+
+    public bool isFirst = true;
 
 
 
 
-    public void RoomCheck(int roomnumber)
+    public void RoomCheck(int Roomnumber)
     {
 
         for(int i = 0; i<RoomList.Count; i++)
         {
-            if (RoomList[i].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.currentPlayers)
+            if (RoomList[i].GetComponent<RoomScript>().roomNumber == Roomnumber)
             {
                 RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
+                if(!isFirst)
+                {
+                    for(int j = 0; j < RoomList.Count; j++)
+                    {
+                        if(RoomList[j].GetComponent<RoomScript>().roomNumber == Roomnumber)
+                        {
+                            RoomList[j].GetComponent<MeshRenderer>().material = RoomColors[0];
+                            Debug.Log("함수 써짐");
+
+                            break;
+
+                        }
+                    }
+                }
+
+                isFirst = false;
             }
         }
-
-
-
-
-
 
         #region 보험
         //Debug.Log(roomnumber);
