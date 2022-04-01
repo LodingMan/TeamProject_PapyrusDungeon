@@ -193,6 +193,7 @@ namespace Song
             string jdata = JsonConvert.SerializeObject(CurrentHeroDataList);
             File.WriteAllText(Application.persistentDataPath + "/Resources/Stat.Json", jdata);
         }
+
         public void _Load()
         {
             string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/Stat.Json");
@@ -200,7 +201,7 @@ namespace Song
 
             for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList의 길이가 30 이므로 30번 반복됨.
             {
-                if (CurrentHeroDataList[i] == null)  //배열이라 남은공간은 null이 되어버리므로 null을 만나면 for문을 멈춤
+                if (CurrentHeroDataList[i].stat.Name == "")
                 {
                     break;
                 }
