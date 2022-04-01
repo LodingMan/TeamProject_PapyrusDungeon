@@ -29,7 +29,7 @@ public class MapCreate : MonoBehaviour
 
     //여기 아래부터 참조하는 스크립트
 
-    public PlayerScript_Proto players;
+    public InGame_Player_Script players;
     public RoomScript roomScript;
     public GameObject MinimapBundle;
 
@@ -40,7 +40,7 @@ public class MapCreate : MonoBehaviour
         {
             for (int j = 0; j < 8; j++)
             {
-                mapCreatePos[i, j] = new Vector3(3000 + (j * 10), 0 + (i * 10), 0);
+                mapCreatePos[i, j] = new Vector3(3000 + (j * 10), 0 + (i * 10), -1);
             }
         }
         firstSelect();
@@ -58,7 +58,7 @@ public class MapCreate : MonoBehaviour
 
         PassageCreate();
 
-        //players.StartWarp(startRoomNumber);
+        players.StartWarp(startRoomNumber);
 
     }
 

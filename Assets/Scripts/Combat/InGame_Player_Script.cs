@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScript_Proto : MonoBehaviour
+public class InGame_Player_Script : MonoBehaviour
 {
     public int currentPlayers = 0;
     public int PreviousPlayers;
     public int NextPlayers;
     public Text currentPlayerText;
-    public MapCreate mapCreate;
+    //public MapCreate mapCreate;
     public RoomController RC;
 
 
@@ -36,10 +36,14 @@ public class PlayerScript_Proto : MonoBehaviour
 
                 break;
             case 10:
+                PreviousPlayers = currentPlayers;
+                NextPlayers = currentPlayers + 10;
                 currentPlayers += 200;
 
                 break;
             case -10:
+                PreviousPlayers = currentPlayers;
+                NextPlayers = currentPlayers - 10;
                 currentPlayers += 190;
 
                 break;
@@ -47,14 +51,20 @@ public class PlayerScript_Proto : MonoBehaviour
                 break;
         }
         RC.RoomCheck(currentPlayers);
+    }
 
-
+    public void KeepGoing()
+    {
+        currentPlayers = NextPlayers;
+    }
+    public void TurningBack()
+    {
+        currentPlayers = PreviousPlayers;
     }
     public void StartWarp(int roomnumber)
     {
         currentPlayers = roomnumber;
-        currentPlayerText.text = "" + currentPlayers;
-
+        RC.RoomCheck(currentPlayers);
     }
 
 }

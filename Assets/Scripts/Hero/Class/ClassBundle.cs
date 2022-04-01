@@ -81,7 +81,6 @@ public class Item // Item은 이후 상점에서 별도로 쓰일 가능성이 있을거 같아 일단 
         this.TargetStatus = targetStatus;
     }
 }
-[System.Serializable]
 public class HeroSavingData
 {
 
