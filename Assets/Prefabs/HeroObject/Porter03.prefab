@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7750419162253192531}
   - component: {fileID: 6051900710505557478}
   - component: {fileID: 8437211915347757842}
+  - component: {fileID: -1137304924536524736}
   m_Layer: 0
   m_Name: Porter03
   m_TagString: Player
@@ -296,24 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12664be65fdd2584daa7d4a0eef04c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSavingData:
-    stat:
-      Index: 0
-      Name: 
-      Job: 
-      HP: 0
-      MAXHP: 0
-      MP: 0
-      MAXMP: 0
-      Atk: 0
-      Def: 0
-      Cri: 0
-      Acc: 0
-      Agi: 0
-      Speed: 0
-    skills: []
-    equips: []
-    ColorType: 0
 --- !u!114 &8437211915347757842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +310,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillScript: {fileID: 2547879120970336075}
+--- !u!114 &-1137304924536524736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897786029668791550}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2188856183759320141
 PrefabInstance:
   m_ObjectHideFlags: 0
