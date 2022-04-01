@@ -10,11 +10,12 @@ namespace Shin
     public class UI_DungeonInitButton : MonoBehaviour
     {
         Button btn;
-        public GameObject canvas_Town;
-        public GameObject camera_Town;
-        public GameObject canvas_Tent;        
-        public GameObject camera_Tent;
+        public Canvas canvas_Town;
+        public Camera camera_Town;
+        public Canvas canvas_Tent;        
+        public Camera camera_Tent;
         public GameObject camfire;
+        
         public GuildManager guildMgr;
         public Transform[] tentPos = new Transform[3];
 
@@ -31,15 +32,15 @@ namespace Shin
 
         public void OnClickBtn()
         {
-            if (camera_Town.activeSelf == true)
+            if (camera_Town.enabled)
             {
-                camera_Town.SetActive(false);
-                camera_Tent.SetActive(true);
+                camera_Town.enabled = false;
+                camera_Tent.enabled = true;
             }
-            if (canvas_Town.activeSelf == true)
+            if (canvas_Town.enabled)
             {
-                canvas_Town.SetActive(false);
-                canvas_Tent.SetActive(true);
+                canvas_Town.enabled = false;
+                canvas_Tent.enabled = true;
             }
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
