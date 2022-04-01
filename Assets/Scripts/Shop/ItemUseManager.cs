@@ -10,6 +10,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Equip[] equips = new Equip[2];
     public string heroName; //현재 선택된 오브젝트의 이름
     public bool isActive = false; // 중복 클릭 방지를 위한 bool값 입니다.
+    public bool alreadySelect = false;
     public Song.UI_DungeonSelect_Manager dgMgr;
     public GameObject tentCam;
     public quick_outline.quick_outline outline;
@@ -17,7 +18,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
     void Update()
     {
-        if (dgMgr.isTent)
+        if (dgMgr.isTent && !alreadySelect)
         {
             if (Input.GetMouseButtonDown(0)) // 오브젝트 클릭 시 정보 가져오는 스크립트입니다. 추후에 터치로 바꿀 예정입니다.
             {
@@ -28,6 +29,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                     if (hit.transform.gameObject.tag == "Player") // 레이를 쏴서 태그가 Player이면 그 오브젝트의 정보를 가져옵니다.
                     {                                             // 그 후에 ItemScripts에 있는 함수에 따라서 정보를 변경합니다.
                         isActive = true;
+                        alreadySelect = true;
                         stats = hit.transform.gameObject.GetComponent<StatScript>().myStat;
                         equips = hit.transform.gameObject.GetComponent<EquipScript>().myEquip;
                         heroName = hit.transform.gameObject.name;
@@ -35,7 +37,21 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         outline.enabled = true;
                         Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
                     }
-                    else
+
+
+                }
+            }
+        }
+
+        if (dgMgr.isTent && alreadySelect)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray.origin, ray.direction, out hit))
+                {
+                    if (hit.transform.gameObject.tag != "Player")
                     {
                         if (outline)
                         {
@@ -45,13 +61,18 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         stats = null;
                         equips = null;
                         heroName = null;
+                        alreadySelect = false;
                     }
+
 
                 }
             }
+            
         }
 
     }
+
+
 
 
 }
