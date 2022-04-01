@@ -7,6 +7,8 @@ public class RoomController : MonoBehaviour
     public MapCreate mapCreate;
     public List<GameObject> RoomList;
     public RoomScript roomScript;
+    public PlayerScript_Proto inGamePlayerScript;
+    public List<Material> RoomColors;
 
 
 
@@ -14,31 +16,13 @@ public class RoomController : MonoBehaviour
     public void RoomCheck(int roomnumber)
     {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for(int i = 0; i<RoomList.Count; i++)
+        {
+            if (RoomList[i].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.currentPlayers)
+            {
+             //   RoomList[i].GetComponent<MeshRenderer>().material = 
+            }
+        }
 
 
 

@@ -36,10 +36,14 @@ public class PlayerScript_Proto : MonoBehaviour
 
                 break;
             case 10:
+                PreviousPlayers = currentPlayers;
+                NextPlayers = currentPlayers + 10;
                 currentPlayers += 200;
 
                 break;
             case -10:
+                PreviousPlayers = currentPlayers;
+                NextPlayers = currentPlayers - 10;
                 currentPlayers += 190;
 
                 break;
