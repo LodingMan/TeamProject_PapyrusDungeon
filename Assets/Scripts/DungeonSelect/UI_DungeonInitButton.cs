@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using DG.Tweening;
 using Song;
 
 namespace Shin
@@ -15,7 +16,7 @@ namespace Shin
         public Canvas canvas_Tent;        
         public Camera camera_Tent;
         public GameObject camfire;
-        
+        public RectTransform loadingPanel;
         public GuildManager guildMgr;
         public Transform[] tentPos = new Transform[3];
 
@@ -32,17 +33,28 @@ namespace Shin
 
         public void OnClickBtn() // 이 버튼이 눌리면 town off, tent on.    
         {
-            if (camera_Town.enabled)
-            {
-                camera_Town.enabled = false;
-                camera_Tent.enabled = true;
-            }
+            loadingPanel.DOAnchorPos(new Vector2(0, 0), 0.5f);
+
             if (canvas_Town.enabled)
             {
                 canvas_Town.enabled = false;
-                canvas_Tent.enabled = true;
+                //canvas_Tent.enabled = true;
             }
+            StartCoroutine(TweenLoadingPanel());
 
+            
+        }
+        IEnumerator TweenLoadingPanel()
+        {
+            yield return new WaitForSeconds(2f);
+            if (camera_Town.enabled)
+            {
+                camera_Town.enabled = false;
+                //camera_Tent.enabled = true;
+            }
+            
+            if (!camera_Town.enabled) camera_Tent.enabled = true;
+            if (!canvas_Town.enabled) canvas_Tent.enabled = true;
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().herostate = Shin.NaviMeshHero.HEROSTATE.IDLE;
@@ -51,10 +63,12 @@ namespace Shin
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
                 guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
-                
+
             }
 
-
+            loadingPanel.DOAnchorPos(new Vector2(1930, 0), 0.5f);
+            
+            
         }
     }
 }
