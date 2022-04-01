@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2885974010025107615}
   - component: {fileID: 2885974010025107612}
   - component: {fileID: 2885974010025107613}
-  - component: {fileID: -3346203287308326183}
+  - component: {fileID: -8660399423347102204}
   m_Layer: 3
   m_Name: PassageMap
   m_TagString: Untagged
@@ -97,7 +97,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &-3346203287308326183
+--- !u!114 &-8660399423347102204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,11 +106,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2885974010025107586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b381bc9f56de34cbba91b1e0625d9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 963ee50d8181a2945afb0d8d1310efab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCheckList:
   - {fileID: 0}
   - {fileID: 0}
-  renderer: {fileID: 0}
-  passageNumber: 0
+  childernPassage:
+  - {fileID: 0}
+  - {fileID: 0}
+  Renderer: {fileID: 0}
+  roomNumber: 0

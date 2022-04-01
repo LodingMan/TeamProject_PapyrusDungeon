@@ -12,13 +12,16 @@ namespace Shin
         NavMeshAgent agent;
         public float dist;
         int rnd_zen, rnd_target;
-        public bool isMove;
         public float curTime, coolTime;
         string nodeName;
         public int pointCnt;
 
         public Animator anim;
-
+        public enum HEROSTATE
+        {
+            IDLE = 0,
+            WALK
+        }public HEROSTATE herostate = HEROSTATE.IDLE;
         void Start()
         {
             anim = transform.GetChild(0).GetComponent<Animator>();
@@ -38,13 +41,14 @@ namespace Shin
             dist = Vector3.Distance(transform.position, target.position);
             if (dist > 1.1f)
             {
-                isMove = true;
+                herostate = HEROSTATE.WALK;
                 agent.SetDestination(target.position);
                 coolTime = Random.Range(1.5f, 2.5f);
             }
             else
             {
-                isMove = false;
+                herostate = HEROSTATE.IDLE;
+                
                 curTime += Time.deltaTime;
                 if (curTime > coolTime)
                 {
@@ -53,15 +57,7 @@ namespace Shin
                     target = point[rnd_target];
                 }
             }
-
-            if(isMove)
-            {
-                anim.SetBool("isMove", true);// 애니메이션 WALK
-            }
-            else
-            {
-                anim.SetBool("isMove", false);// 애니메이션 IDLE
-            }
+            anim.SetInteger("herostate", (int)herostate);
         }
 
         public void InitNaviPoint() // Hierarchy에서 NaviPoint검색해서 point에 할당.

@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerScript_Proto : MonoBehaviour
 {
-    public int currentPlayers=0;
+    public int currentPlayers = 0;
     public int PreviousPlayers;
-    public bool isRoom =true;
+    public int NextPlayers;
     public Text currentPlayerText;
     public MapCreate mapCreate;
     public RoomController RC;
@@ -25,53 +23,25 @@ public class PlayerScript_Proto : MonoBehaviour
         switch (roomnumber)
         {
             case 1:
-                if(isRoom)
-                {
-                    currentPlayers += 100;
-                    isRoom = false;
-                }
-                else
-                {
-                    currentPlayers -= 99;
-                    isRoom = true;
-                }
+                PreviousPlayers = currentPlayers;
+                NextPlayers = currentPlayers + 1;
+                currentPlayers += 100;
+
                 break;
             case -1:
-                if (isRoom)
-                {
-                    currentPlayers += 99;
-                    isRoom = false;
+                PreviousPlayers = currentPlayers;
+                NextPlayers = currentPlayers - 1;
+                currentPlayers += 99;
 
-                }
-                else
-                {
-                    currentPlayers -= 100;
-                    isRoom = true;
-                }
+
                 break;
             case 10:
-                if (isRoom)
-                {
-                    currentPlayers += 200;
-                    isRoom = false;
-                }
-                else
-                {
-                    currentPlayers -= 190;
-                    isRoom = true;
-                }
+                currentPlayers += 200;
+
                 break;
             case -10:
-                if (isRoom)
-                {
-                    currentPlayers += 190;
-                    isRoom = false;
-                }
-                else
-                {
-                    currentPlayers -= 200;
-                    isRoom = true;
-                }
+                currentPlayers += 190;
+
                 break;
             default:
                 break;
@@ -84,12 +54,6 @@ public class PlayerScript_Proto : MonoBehaviour
     {
         currentPlayers = roomnumber;
         currentPlayerText.text = "" + currentPlayers;
-        //RC.RoomCheck(currentPlayers);
-
-    }
-    public void Warp()
-    {
-        RC.RoomCheck(currentPlayers);
 
     }
 

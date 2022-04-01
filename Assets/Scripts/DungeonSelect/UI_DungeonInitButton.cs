@@ -10,11 +10,12 @@ namespace Shin
     public class UI_DungeonInitButton : MonoBehaviour
     {
         Button btn;
-        public GameObject canvas_Town;
-        public GameObject camera_Town;
-        public GameObject canvas_Tent;        
-        public GameObject camera_Tent;
+        public Canvas canvas_Town;
+        public Camera camera_Town;
+        public Canvas canvas_Tent;        
+        public Camera camera_Tent;
         public GameObject camfire;
+        
         public GuildManager guildMgr;
         public Transform[] tentPos = new Transform[3];
 
@@ -23,28 +24,34 @@ namespace Shin
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             btn = GetComponent<Button>();
             btn.onClick.AddListener(OnClickBtn);
+            tentPos[0].position = new Vector3(-32f, 0.95f, -132);
+            tentPos[1].position = new Vector3(-32.12f, 0.95f, -135.43f);
+            tentPos[2].position = new Vector3(-35.29f, 0.95f, -135.98f);
+
         }
 
-        public void OnClickBtn()
+        public void OnClickBtn() // 이 버튼이 눌리면 town off, tent on.    
         {
-            if (camera_Town.activeSelf == true)
+            if (camera_Town.enabled)
             {
-                camera_Town.SetActive(false);
-                camera_Tent.SetActive(true);
+                camera_Town.enabled = false;
+                camera_Tent.enabled = true;
             }
-            if (canvas_Town.activeSelf == true)
+            if (canvas_Town.enabled)
             {
-                canvas_Town.SetActive(false);
-                canvas_Tent.SetActive(true);
+                canvas_Town.enabled = false;
+                canvas_Tent.enabled = true;
             }
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
-                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().anim.SetBool("isMove", false);
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().herostate = Shin.NaviMeshHero.HEROSTATE.IDLE;
+                guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().anim.SetInteger("herostate", (int)Shin.NaviMeshHero.HEROSTATE.IDLE);
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = false;
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
                 guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
+                
             }
 
 
