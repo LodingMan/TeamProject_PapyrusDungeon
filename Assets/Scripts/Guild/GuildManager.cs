@@ -57,6 +57,7 @@ namespace Song
                 Current_UI_Prefabs[i].transform.SetParent(unemployedHero_UI_Prefabs_Create_Point.transform);
                 Current_UI_Prefabs[i].transform.GetChild(0).GetComponent<Text>().text = "Name : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Name;
                 Current_UI_Prefabs[i].transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
+                Current_UI_Prefabs[i].transform.localScale = new Vector3(1, 1, 1); // Yoon
                 Current_UI_Prefabs[i].GetComponent<Song.Unemployed_Hero_UI_Script>().This_Prefab_Object = UnemployedHero[i];
             }
             UnemployedHero.Clear();
