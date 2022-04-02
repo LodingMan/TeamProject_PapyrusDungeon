@@ -65,6 +65,7 @@ namespace Song
             UI_Prefab.name = "" + Current_Hero_Prefab_Count;
             Current_Hero_Prefab_Count++;
             UI_Prefab.transform.SetParent(guildManager.currentHero_UI_Prefabs_Create_Point.transform);
+            UI_Prefab.transform.localScale = new Vector3(1, 1, 1);
             UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = gameObject.transform.GetChild(0).GetComponent<Text>().text;
             UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
             UI_Prefab.GetComponent<Song.Current_Hero_UI_Script>().This_Prefab_Object = This_Prefab_Object; //고용전 영웅에서 고용된 영웅 프리팹으로 넘어가면서 오브젝트 인수인계

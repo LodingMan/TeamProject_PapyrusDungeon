@@ -55,6 +55,7 @@ namespace Song
                 Current_UI_Prefabs.Add(Instantiate(unemployedHero_UI_Prefab));
                 Current_UI_Prefabs[i].name = "" + i;
                 Current_UI_Prefabs[i].transform.SetParent(unemployedHero_UI_Prefabs_Create_Point.transform);
+                Current_UI_Prefabs[i].transform.localScale = new Vector3(1, 1, 1);
                 Current_UI_Prefabs[i].transform.GetChild(0).GetComponent<Text>().text = "Name : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Name;
                 Current_UI_Prefabs[i].transform.GetChild(1).GetComponent<Text>().text = "Job : " + UnemployedHero[i].GetComponent<StatScript>().myStat.Job;
                 Current_UI_Prefabs[i].GetComponent<Song.Unemployed_Hero_UI_Script>().This_Prefab_Object = UnemployedHero[i];
@@ -70,6 +71,7 @@ namespace Song
             {
                 currentPrefab = Instantiate(currentHero_UI_Prefab);
                 currentPrefab.transform.SetParent(currentHero_UI_Prefabs_Create_Point.transform);
+                currentPrefab.transform.localScale = new Vector3(1, 1, 1);
                 currentPrefab.transform.GetChild(0).GetComponent<Text>().text = "Name : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Name;
                 currentPrefab.transform.GetChild(1).GetComponent<Text>().text = "Job : " + heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.Job;
                 currentPrefab.GetComponent<Current_Hero_UI_Script>().This_Prefab_Object = heroManager.CurrentHeroList[i];
