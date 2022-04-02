@@ -83,19 +83,19 @@ public class ItemUseManager : MonoBehaviour //øµøı¿ª º±≈√«ÿº≠ º±≈√«— øµøı¿« Ω∫≈›
                 break;
             case 0:
 
-                tentCam.transform.position = new Vector3(-34f, 1.3f, -133f);
-                tentCam.transform.rotation = Quaternion.Euler(-3f, 51f, 0f);
+                tentCam.transform.position = new Vector3(-34.62f, 1f, -132.96f);
+                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 71.647f, 0f);
                 break;
             case 1:
 
-                tentCam.transform.position = new Vector3(-34.4f, 1.25f, -134f);
-                tentCam.transform.rotation = Quaternion.Euler(-2.2f, 111f, 0f);
+                tentCam.transform.position = new Vector3(-34.62f, 1f, -134.44f);
+                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 114.926f, 0f);
                 break;
 
             case 2:
 
-                tentCam.transform.position = new Vector3(-34.4f, 1.2f, -134f);
-                tentCam.transform.rotation = Quaternion.Euler(-4.6f, 193f, 0f);
+                tentCam.transform.position = new Vector3(-34.99f, 1f, -133.82f);
+                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 195.287f, 0f);
                 break;
         }
     }

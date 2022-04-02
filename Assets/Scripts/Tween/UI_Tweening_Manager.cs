@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 //==================================================================================================//
 //UI의 움직임을 Tween으로 컨트롤 할때 TweenManager오브젝트의 이 컴포넌트에 넣고 제어 (Stage 씬에서만 사용)//
@@ -16,8 +17,11 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_inventoryPanelPos;
     public RectTransform UI_smithPanelPos;
     public RectTransform UI_inventoryPanel_TentPos;
+    public RectTransform UI_BackGround_Pos;
     public CameraMoving camMove;
+    public Text panelOpenBtn;
 
+    bool UI_isBackground_On = false;
     //bool UI_isGuildPanel_On = false;
     //bool UI_isChurchPanel_On = false;
     //bool UI_isTrainingPanel_On = false;
@@ -162,4 +166,21 @@ public class UI_Tweening_Manager : MonoBehaviour
 
         }
     }
+
+    public void UI_BackGroundPanel_On_Off()
+    {
+        if (UI_isBackground_On)
+        {
+            panelOpenBtn.text = "열\n기";
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(-769, 0), 0.5f);
+            UI_isBackground_On = false;
+        }
+        else
+        {
+            panelOpenBtn.text = "닫\n기";
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(-515, 0), 0.5f);
+            UI_isBackground_On = true;
+        }
+    }
+
 }
