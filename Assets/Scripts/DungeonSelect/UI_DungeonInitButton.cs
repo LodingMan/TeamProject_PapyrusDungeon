@@ -22,6 +22,7 @@ namespace Shin
 
         public RectTransform loadingPanel;
         public GuildManager guildMgr;
+        public UI_Tweening_Manager twMgr;
         public Transform[] tentPos = new Transform[3];
 
 
@@ -29,6 +30,7 @@ namespace Shin
         {
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             shopMgr = GameObject.Find("ShopManager").GetComponent<ShopManager>();
+            twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
             btn = GetComponent<Button>();
             btn.onClick.AddListener(OnClickBtn);
             tentPos[0].position = new Vector3(-32f, 0.95f, -132);
@@ -85,6 +87,10 @@ namespace Shin
 
 			
             loadingPanel.DOAnchorPos(new Vector2(1290, 0), 0.5f);
+            twMgr.UIStack[0] = null;
+            twMgr.StackCount = 0;
+
+            loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
             
             
         }

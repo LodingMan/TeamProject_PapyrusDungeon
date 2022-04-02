@@ -178,14 +178,14 @@ public class UI_Tweening_Manager : MonoBehaviour
     {
         if (UI_isBackground_On)
         {
-            panelOpenBtn.text = "��\n��";
-            UI_BackGround_Pos.DOAnchorPos(new Vector2(-769, 0), 0.5f);
+            panelOpenBtn.text = "O\nP\nE\nN";
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(-130, 0), 0.5f);
             UI_isBackground_On = false;
         }
         else
         {
-            panelOpenBtn.text = "��\n��";
-            UI_BackGround_Pos.DOAnchorPos(new Vector2(-515, 0), 0.5f);
+            panelOpenBtn.text = "C\nL\nO\nS\nE";
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(130, 0), 0.5f);
             UI_isBackground_On = true;
         }
     }
