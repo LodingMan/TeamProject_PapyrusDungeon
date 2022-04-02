@@ -12,16 +12,27 @@ public class Target_Panal_Script : MonoBehaviour
     public void TargetView() //공격가능한 대상을 표시해줌 물론 UI로 처리함. 
     {
        // Debug.Log("Func");
-        for (int i = 0; i < combatManager.SaveSkill.EnemyPosition.Length; i++)
+        for (int i = 0; i < combatManager.enemys.Count; i++)
         {
+            if(combatManager.SaveSkill.EnemyPosition[i] == -1)
+            {
+                continue;
+            }
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].gameObject.SetActive(true);
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]].transform.position);
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].GetComponent<Enemy_Target_Script>().This_TargetObject = combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]];
 
 
-        //    Debug.Log(combatManager.SaveSkill.EnemyPosition[i]);
         }
 
+    }
+    public void TargetAllOff()
+    {
+        for(int i = 0; i < 3; i ++)
+        {
+            TargetUI[i].gameObject.SetActive(false);
+
+        }
     }
 
 

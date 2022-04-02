@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 633097203143947100}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,26 +161,26 @@ MonoBehaviour:
   SkillIndex: 000000000000000000000000
   mySkills:
   - Index: 0
-    Name: 
+    Name: "1\uBC88"
     LV: 0
     ATK: 0
     DEF: 0
-    MyPosition: 
-    EnemyPosition: 
+    MyPosition: 000000000100000002000000
+    EnemyPosition: 000000000100000002000000
   - Index: 0
-    Name: 
+    Name: "2\uBC88"
     LV: 0
     ATK: 0
     DEF: 0
-    MyPosition: 
-    EnemyPosition: 
+    MyPosition: 00000000ffffffff02000000
+    EnemyPosition: 000000000100000002000000
   - Index: 0
-    Name: 
+    Name: "3\uBC88"
     LV: 0
     ATK: 0
     DEF: 0
-    MyPosition: 
-    EnemyPosition: 
+    MyPosition: 00000000ffffffff02000000
+    EnemyPosition: ffffffffffffffffffffffff
 --- !u!114 &633097203143947100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,4 +206,4 @@ MonoBehaviour:
     Cri: 0
     Acc: 0
     Agi: 10
-    Speed: 0
+    Speed: 6

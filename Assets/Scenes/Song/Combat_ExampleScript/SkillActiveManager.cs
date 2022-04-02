@@ -36,6 +36,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             Childs.Add(transform.GetChild(i).gameObject);
             Childs[i].SetActive(false);
         }
+        gameObject.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -45,6 +46,9 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             Childs[i].SetActive(true); //클릭한 순간 UI켜짐
         }
     }
+
+
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(isActive)
@@ -91,6 +95,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void SkillActiveOn(skill[] targetSkills) //스킬의 정보를 출력함
     {
         isActive = true;
+        gameObject.SetActive(true);
 
         for (int i = 0; i < 3; i++) currentSkills[i] = targetSkills[i];
  
@@ -109,6 +114,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
            if( combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveHeroIndex)
             {
                 enemyTargetScript.TargetView();
+                gameObject.SetActive(false);
                 return;
             }
         }
@@ -130,6 +136,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
 
     }
+
 
 }
 

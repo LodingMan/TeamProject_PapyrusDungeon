@@ -491,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   This_TargetObject: {fileID: 0}
   combatManager: {fileID: 553913256}
+  target_Panal_Script: {fileID: 1647978864}
 --- !u!1001 &389367142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -508,11 +509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].MyPosition.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].EnemyPosition.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].MyPosition.Array.data[0]
@@ -524,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].MyPosition.Array.data[2]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].EnemyPosition.Array.data[0]
@@ -532,11 +533,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].EnemyPosition.Array.data[1]
-      value: 2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: mySkills.Array.data[0].EnemyPosition.Array.data[2]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644946, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: m_RootOrder
@@ -849,18 +850,8 @@ MonoBehaviour:
   CreateEnemyPool:
   - {fileID: 614076157150829884, guid: 08a451421c1334748aef7adfbddd719f, type: 3}
   - {fileID: 614076157150829884, guid: fb8f14299c1ec264ebef193a33021bf0, type: 3}
-  - {fileID: 614076157150829884, guid: 6c0147e3026e8c64ab85c27be550e33e, type: 3}
-  enemys:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speedComparisonArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemys: []
+  speedComparisonArray: []
   heroManager: {fileID: 0}
   guildManager: {fileID: 0}
   skillActiveManager: {fileID: 148484002}
@@ -874,6 +865,7 @@ MonoBehaviour:
     MyPosition: 
     EnemyPosition: 
   currentActiveHeroIndex: 0
+  currentActiveSkillList: []
 --- !u!4 &553913257
 Transform:
   m_ObjectHideFlags: 0
@@ -973,7 +965,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 553913256}
         m_TargetAssemblyTypeName: e_CombatManager, Assembly-CSharp
-        m_MethodName: CombatStart
+        m_MethodName: TurnStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1161,6 +1153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   This_TargetObject: {fileID: 0}
   combatManager: {fileID: 553913256}
+  target_Panal_Script: {fileID: 1647978864}
 --- !u!1 &943734672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   This_TargetObject: {fileID: 0}
   combatManager: {fileID: 553913256}
+  target_Panal_Script: {fileID: 1647978864}
 --- !u!224 &1742040927 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8950175397240493633, guid: d6dc8d3b35df8f74a905831b30fb5940, type: 3}
@@ -1914,6 +1908,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
+      propertyPath: mySkills.Array.data[0].MyPosition.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014116657118644945, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
+      propertyPath: mySkills.Array.data[0].EnemyPosition.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1014116657118644946, guid: 91e78d384d50c4d4c94515613023d721, type: 3}
       propertyPath: m_RootOrder
       value: 3
