@@ -17,6 +17,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public bool isActive = false; // 중복 클릭 방지를 위한 bool값 입니다.
     public bool alreadySelect = false;
     public Song.UI_DungeonSelect_Manager dgMgr;
+    public UI_Tweening_Manager twMgr;
     public GameObject[] guildMgr = new GameObject[3];
     public quick_outline.quick_outline outline;
 
@@ -29,6 +30,77 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
 
     void Update()
+    {
+        SelectHero();
+        CamMove();
+    }
+
+
+    IEnumerator FindIndexMethod()
+    {
+        for (int i = 0; i < guildMgr.Length; i++)
+        {
+            if (guildMgr[i].name == heroName)
+            {
+                partyNum = Array.FindIndex(guildMgr, element => element == selectHero);
+            }
+        }
+        yield return new WaitForEndOfFrame();
+    }
+
+    public void BackToSelect()
+    {
+        if (dgMgr.isTent && alreadySelect)
+        {
+
+            if (outline)
+            {
+                outline.enabled = false;
+            }
+            partyNum = -1;
+            isActive = false;
+            stats = null;
+            equips = null;
+            heroName = null;
+            alreadySelect = false;
+
+        }
+    }
+
+    public void CamMove()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            partyNum = -1;
+        }
+        
+        switch (partyNum)
+        {
+            case -1:
+                BackToSelect();
+                tentCam.transform.position = new Vector3(-37.2f, 1f, -131.1f);
+                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 130.35f, 0f);
+                break;
+            case 0:
+
+                tentCam.transform.position = new Vector3(-34f, 1.3f, -133f);
+                tentCam.transform.rotation = Quaternion.Euler(-3f, 51f, 0f);
+                break;
+            case 1:
+
+                tentCam.transform.position = new Vector3(-34.4f, 1.25f, -134f);
+                tentCam.transform.rotation = Quaternion.Euler(-2.2f, 111f, 0f);
+                break;
+
+            case 2:
+
+                tentCam.transform.position = new Vector3(-34.4f, 1.2f, -134f);
+                tentCam.transform.rotation = Quaternion.Euler(-4.6f, 193f, 0f);
+                break;
+        }
+    }
+
+    public void SelectHero()
     {
         if (dgMgr.isTent && !alreadySelect)
         {
@@ -45,6 +117,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         heroName = hit.transform.gameObject.name;
                         selectHero = hit.transform.gameObject;
                         StartCoroutine(FindIndexMethod());
+                        twMgr.UI_Inventory_Tent_PanelPos_On_Off();
                         isActive = true;
                         alreadySelect = true;
                         stats = hit.transform.gameObject.GetComponent<StatScript>().myStat;
@@ -58,72 +131,5 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                 }
             }
         }
-
-        if (dgMgr.isTent && alreadySelect)
-        {
-            guildMgr = GameObject.Find("GuildManager").GetComponent<Song.GuildManager>().Party_Hero_Member;
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray.origin, ray.direction, out hit))
-                {
-                    if (hit.transform.gameObject.tag != "Player")
-                    {
-                        if (outline)
-                        {
-                            outline.enabled = false;
-                        }
-                        partyNum = -1;
-                        isActive = false;
-                        stats = null;
-                        equips = null;
-                        heroName = null;
-                        alreadySelect = false;
-                    }
-
-
-                }
-            }
-            
-        }
-
-        switch (partyNum) 
-        {
-            case -1:
-                tentCam.transform.position = new Vector3(-37.2f, 1f, -131.1f);
-                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 130.35f, 0f);
-                break;
-            case 0:
-                tentCam.transform.position = new Vector3(-34f, 1.3f, -133f);
-                tentCam.transform.rotation = Quaternion.Euler(-3f, 51f, 0f);
-                break;
-            case 1:
-                tentCam.transform.position = new Vector3(-34.4f, 1.25f, -134f);
-                tentCam.transform.rotation = Quaternion.Euler(-2.2f, 111f, 0f);
-                break;
-
-            case 2:
-                tentCam.transform.position = new Vector3(-34.4f, 1.2f, -134f);
-                tentCam.transform.rotation = Quaternion.Euler(-4.6f, 193f, 0f);
-                break;
-        }
-
     }
-
-
-    IEnumerator FindIndexMethod()
-    {
-        for (int i = 0; i < guildMgr.Length; i++)
-        {
-            if (guildMgr[i].name == heroName)
-            {
-                partyNum = Array.FindIndex(guildMgr, element => element == selectHero);
-            }
-        }
-        yield return new WaitForEndOfFrame();
-    }
-
-
-
 }
