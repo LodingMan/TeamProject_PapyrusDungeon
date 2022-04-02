@@ -1,8 +1,9 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 //==================================================================================================//
-//UIÀÇ ¿òÁ÷ÀÓÀ» TweenÀ¸·Î ÄÁÆ®·Ñ ÇÒ¶§ TweenManager¿ÀºêÁ§Æ®ÀÇ ÀÌ ÄÄÆ÷³ÍÆ®¿¡ ³Ö°í Á¦¾î (Stage ¾À¿¡¼­¸¸ »ç¿ë)//
+//UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Tweenï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ò¶ï¿½ TweenManagerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ (Stage ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)//
 //==================================================================================================//
 public class UI_Tweening_Manager : MonoBehaviour
 {
@@ -16,9 +17,12 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_inventoryPanelPos;
     public RectTransform UI_smithPanelPos;
     public RectTransform UI_inventoryPanel_TentPos;
+    public RectTransform UI_BackGround_Pos;
     public RectTransform UI_HeroStatPanel_TentPos;
     public CameraMoving camMove;
+    public Text panelOpenBtn;
 
+    bool UI_isBackground_On = false;
     //bool UI_isGuildPanel_On = false;
     //bool UI_isChurchPanel_On = false;
     //bool UI_isTrainingPanel_On = false;
@@ -169,4 +173,21 @@ public class UI_Tweening_Manager : MonoBehaviour
 
         }
     }
+
+    public void UI_BackGroundPanel_On_Off()
+    {
+        if (UI_isBackground_On)
+        {
+            panelOpenBtn.text = "ï¿½ï¿½\nï¿½ï¿½";
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(-769, 0), 0.5f);
+            UI_isBackground_On = false;
+        }
+        else
+        {
+            panelOpenBtn.text = "ï¿½ï¿½\nï¿½ï¿½";
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(-515, 0), 0.5f);
+            UI_isBackground_On = true;
+        }
+    }
+
 }
