@@ -79,7 +79,11 @@ public class ItemUseManager : MonoBehaviour //øµøı¿ª º±≈√«ÿº≠ º±≈√«— øµøı¿« Ω∫≈›
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            partyNum = -1;
+            if (twMgr.StackCount == 0)
+            {
+                partyNum = -1;
+            }
+
         }
         
         switch (partyNum)
@@ -96,14 +100,14 @@ public class ItemUseManager : MonoBehaviour //øµøı¿ª º±≈√«ÿº≠ º±≈√«— øµøı¿« Ω∫≈›
                 break;
             case 1:
 
-                tentCam.transform.position = new Vector3(-34.62f, 1f, -134.44f);
-                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 114.926f, 0f);
+                tentCam.transform.position = new Vector3(-34.21f, 1.35f, -133.44f);
+                tentCam.transform.rotation = Quaternion.Euler(-8.695f, 133.147f, 3.122f);
                 break;
 
             case 2:
 
-                tentCam.transform.position = new Vector3(-34.99f, 1f, -133.82f);
-                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 195.287f, 0f);
+                tentCam.transform.position = new Vector3(-34.79f, 1.15f, -133.43f);
+                tentCam.transform.rotation = Quaternion.Euler(-9.234f, 191.353f, 0f);
                 break;
         }
     }
