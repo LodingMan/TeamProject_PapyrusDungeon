@@ -65,6 +65,7 @@ namespace Song
             UI_Prefab.name = "" + Current_Hero_Prefab_Count;
             Current_Hero_Prefab_Count++;
             UI_Prefab.transform.SetParent(guildManager.currentHero_UI_Prefabs_Create_Point.transform);
+            UI_Prefab.transform.localScale = new Vector3(1, 1, 1);
             UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = gameObject.transform.GetChild(0).GetComponent<Text>().text;
             UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
             UI_Prefab.transform.localScale = new Vector3(1, 1, 1); // Yoon
