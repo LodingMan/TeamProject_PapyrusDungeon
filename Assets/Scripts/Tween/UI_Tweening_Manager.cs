@@ -16,6 +16,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_inventoryPanelPos;
     public RectTransform UI_smithPanelPos;
     public RectTransform UI_inventoryPanel_TentPos;
+    public RectTransform UI_HeroStatPanel_TentPos;
     public CameraMoving camMove;
 
     //bool UI_isGuildPanel_On = false;
@@ -151,6 +152,12 @@ public class UI_Tweening_Manager : MonoBehaviour
         StackCount++;
     }
 
+    public void UI_HeroStat_Tent_PanelPos_On_Off()
+    {
+        UI_HeroStatPanel_TentPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_HeroStatPanel_TentPos;
+        StackCount++;
+    }
     public void UI_Smith_PanelPos_On_Off()
     {
         if(!isSmithOn && !isShopOn)
