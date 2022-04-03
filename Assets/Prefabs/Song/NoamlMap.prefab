@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6018678090777280012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -109,11 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963ee50d8181a2945afb0d8d1310efab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCheckList:
-  - {fileID: 0}
-  - {fileID: 0}
-  childernPassage:
-  - {fileID: 0}
-  - {fileID: 0}
   Renderer: {fileID: 0}
+  inGame_Player_Script: {fileID: 0}
   roomNumber: 0
+  moveDir: 0
