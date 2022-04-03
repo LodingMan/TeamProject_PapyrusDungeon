@@ -1,11 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class SKillTable //: MonoBehaviour  03-25 수정
-{                       // 수정 사유 : 데이터를 가져오는데 사용되는 메모리를 줄이기 위해 Monobehaviour를 지우고 HeroManager에서 SkillTable를 초기화 해서 값을 사용함. 
-                        // 여기에 있는 값을 다른 스크립트에서 사용하려면 SkillTable skillTable = new SkillTable(); 사용하면 이 클래스에 있는 값을 가져갈 수 있다.
-
+public class SKillTable
+{
     public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv 추가
     {
         //Mage
@@ -55,17 +51,23 @@ public class SKillTable //: MonoBehaviour  03-25 수정
         { 36, new skill(36, "SkillName37", 1, 2, 2, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 })},
         { 37, new skill(37, "SkillName38", 1, 3, 3, new int[3] { 1, 2, 3 }, new int[3] { 1, 0, 3 })},
         { 38, new skill(38, "SkillName39", 1, 4, 4, new int[3] { 0, 2, 0 }, new int[3] { 0, 2, 0 })},
-        { 39, new skill(39, "SkillName40", 1, 5, 5, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 })}
+        { 39, new skill(39, "SkillName40", 1, 5, 5, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 })},
+
+        //100이후로 몬스터 스킬
+        { 100, new skill(100, "SkillName101", 1, 1, 1 ,new int[3] { 1, 2, 3 }, new int[3] { 1, 2, 3 })},
+        { 101, new skill(101, "SkillName102", 1, 2, 2, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 })},
+        { 102, new skill(102, "SkillName103", 1, 3, 3, new int[3] { 1, 2, 3 }, new int[3] { 1, 0, 3 })},
+
+        { 103, new skill(103, "SkillName104", 1, 1, 1 ,new int[3] { 1, 2, 3 }, new int[3] { 1, 2, 3 })},
+        { 104, new skill(104, "SkillName37", 1, 2, 2, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 })},
+        { 105, new skill(105, "SkillName38", 1, 3, 3, new int[3] { 1, 2, 3 }, new int[3] { 1, 0, 3 })},
+
+        { 106, new skill(106, "SkillName36", 1, 1, 1 ,new int[3] { 1, 2, 3 }, new int[3] { 1, 2, 3 })},
+        { 107, new skill(107, "SkillName37", 1, 2, 2, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 })},
+        { 108, new skill(108, "SkillName38", 1, 3, 3, new int[3] { 1, 2, 3 }, new int[3] { 1, 0, 3 })},
+
+
     };
 
-    // Monobehaviour를 지우면서 같이 지움
-    //void Start()
-    //{
-    //    initSkill[0] = new skill(0, "SkillName1", 1, 1 ,new int[3] { 1, 2, 3 },new int[3] { 1,2,3} );
-    //    initSkill[1] = new skill(0, "SkillName2", 2, 2, new int[3] {1, 0, 3 }, new int[3] { 0, 0, 3 });
-    //    initSkill[2] = new skill(0, "SkillName3", 3, 3, new int[3] { 1, 2, 3 }, new int[3] { 1, 0, 3 });
-    //    initSkill[3] = new skill(0, "SkillName4", 4, 4, new int[3] { 0, 2, 0 }, new int[3] { 0, 2, 0 });
-    //    initSkill[4] = new skill(0, "SkillName5", 5, 5, new int[3] { 1, 0, 3 }, new int[3] { 0, 0, 3 });
-    //}
 
 }
