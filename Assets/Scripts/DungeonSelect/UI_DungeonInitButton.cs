@@ -86,12 +86,17 @@ namespace Shin
             }
 
 			
-            loadingPanel.DOAnchorPos(new Vector2(1290, 0), 0.5f);
-            twMgr.UIStack[0] = null;
+            //loadingPanel.DOAnchorPos(new Vector2(1290, 0), 0.5f);
+            for (int i = 0; i < twMgr.UIStack.Length; i++)
+            {
+                twMgr.UIStack[i] = null;
+            }
             twMgr.StackCount = 0;
+            twMgr.isTentOn = true;
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
-            
+            twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+            twMgr.UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             
         }
     }

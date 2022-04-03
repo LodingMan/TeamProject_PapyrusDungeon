@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +21,8 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_inventoryPanel_TentPos;
     public RectTransform UI_BackGround_Pos;
     public RectTransform UI_HeroStatPanel_TentPos;
+    public RectTransform UI_DunGeonEntrance_Pos;
+    public RectTransform UI_loadingPanel_Pos;
     public CameraMoving camMove;
     public Text panelOpenBtn;
 
@@ -33,17 +37,31 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool UI_isStatusPanel_On = false;
     public bool isShopOn = false;
     public bool isSmithOn = false;
+    public bool isTentOn = false; // shin
+
     public ShopManager shopMgr;
 
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
-
-
+    public Canvas canvas_Town;
+    public Canvas canvas_Tent;
+    public Camera camera_Town;
+    public Camera camera_Tent;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (isTentOn == true && StackCount == 0)
+            {
+                if (canvas_Tent.enabled)
+                {
+                    canvas_Tent.enabled = false;
+                }
+                UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+                StartCoroutine(TweenLoadingPanel());
+                // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
+            }
             if (StackCount > 0)
             {
                 if (UIStack[StackCount - 1] != null)
@@ -65,7 +83,20 @@ public class UI_Tweening_Manager : MonoBehaviour
 
         }
     }
+    
+    IEnumerator TweenLoadingPanel()
+    {
+        yield return new WaitForSeconds(2f);
+        if (camera_Tent.enabled)
+        {
+            camera_Tent.enabled = false;
+        }
+        if (!camera_Tent.enabled) camera_Town.enabled = true;
+        if (!canvas_Tent.enabled) canvas_Town.enabled = true;
 
+        UI_loadingPanel_Pos.DOAnchorPos(new Vector2(1500, 0), 0.5f);
+        isTentOn = false;
+    }
 
     public void UI_GuildPanel_On()
     {
@@ -173,6 +204,12 @@ public class UI_Tweening_Manager : MonoBehaviour
 
         }
     }
+    public void UI_DunGeonEntrance_On()
+    {
+        UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_DunGeonEntrance_Pos;
+        StackCount++;
+    }
 
     public void UI_BackGroundPanel_On_Off()
     {
@@ -190,4 +227,5 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
     }
 
+    
 }
