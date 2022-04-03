@@ -28,7 +28,7 @@ public class ItemScripts : MonoBehaviour
 
     private void Start()
     {
-        itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
+        itemUseManager = GameObject.Find("TentManager").GetComponent<ItemUseManager>();
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         dgMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         useBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
