@@ -43,10 +43,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
-    public Canvas canvas_Town;
-    public Canvas canvas_Tent;
-    public Camera camera_Town;
-    public Camera camera_Tent;
+    public Shin.UI_DungeonInitButton uI_DungeonInitButton;
 
     private void Update()
     {
@@ -54,14 +51,15 @@ public class UI_Tweening_Manager : MonoBehaviour
         {
             if (isTentOn == true && StackCount == 0)
             {
-                if (canvas_Tent.enabled)
+                if (uI_DungeonInitButton.canvas_Tent.enabled)
                 {
-                    canvas_Tent.enabled = false;
+                    uI_DungeonInitButton.canvas_Tent.enabled = false;
                 }
                 UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-                StartCoroutine(TweenLoadingPanel());
+                StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
                 // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
             }
+
             if (StackCount > 0)
             {
                 if (UIStack[StackCount - 1] != null)
@@ -84,19 +82,7 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
     }
     
-    IEnumerator TweenLoadingPanel()
-    {
-        yield return new WaitForSeconds(2f);
-        if (camera_Tent.enabled)
-        {
-            camera_Tent.enabled = false;
-        }
-        if (!camera_Tent.enabled) camera_Town.enabled = true;
-        if (!canvas_Tent.enabled) canvas_Town.enabled = true;
-
-        UI_loadingPanel_Pos.DOAnchorPos(new Vector2(1500, 0), 0.5f);
-        isTentOn = false;
-    }
+    
 
     public void UI_GuildPanel_On()
     {
