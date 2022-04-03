@@ -47,8 +47,6 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
     }
 
-
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(isActive)
@@ -59,8 +57,6 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
             Lever.anchoredPosition = inputPos;
         }
-
-
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -103,6 +99,12 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         SkillText[1].text = currentSkills[1].Name;
         SkillText[2].text = currentSkills[2].Name;
         SkillText[3].text = "턴 넘기기";
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Childs.Add(transform.GetChild(i).gameObject);
+            Childs[i].SetActive(false);
+        }
     }
 
     public void Skill1()
@@ -115,6 +117,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             {
                 enemyTargetScript.TargetView();
                 gameObject.SetActive(false);
+                Debug.Log("1번스킬 사용!");
                 return;
             }
         }

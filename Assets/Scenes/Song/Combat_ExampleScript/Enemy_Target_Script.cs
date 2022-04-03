@@ -12,6 +12,7 @@ public class Enemy_Target_Script : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log(This_TargetObject + "를 대상으로" + combatManager.SaveSkill.Name + "스킬 사용");
         combatManager.SkillResultInit(This_TargetObject);
         target_Panal_Script.TargetAllOff();
 
