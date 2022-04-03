@@ -192,7 +192,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isEquip = false;
                 //itemUseManager.isActive = false;
-                itemUseManager.equips[0].Index = 0;
+                itemUseManager.equips[0].Index = -1;
                 itemUseManager.equips[0].Name = null;
                 itemUseManager.equips[0].Lv = 0;
                 itemUseManager.equips[0].Atk -= equip.Atk;
@@ -213,7 +213,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isEquip = false;
                 //itemUseManager.isActive = false;
-                itemUseManager.equips[1].Index = 0;
+                itemUseManager.equips[1].Index = -1;
                 itemUseManager.equips[1].Name = null;
                 itemUseManager.equips[1].Lv = 0;
                 itemUseManager.equips[1].Atk -= equip.Atk;
