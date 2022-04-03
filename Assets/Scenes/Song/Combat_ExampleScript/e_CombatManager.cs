@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class e_CombatManager : MonoBehaviour
 {
+    public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public Enemy_Stat_Table enemy_Stat_Table = new Enemy_Stat_Table();
+    public Enemy_Sequence_Table enemy_Sequence_Table = new Enemy_Sequence_Table();
+    public SKillTable sKillTable = new SKillTable();
+
+
     public List<GameObject> myParty = new List<GameObject>();
     public List<GameObject> CreateEnemyPool = new List<GameObject>();
     public List<GameObject> enemys = new List<GameObject>();
@@ -21,6 +27,8 @@ public class e_CombatManager : MonoBehaviour
 
 
     int Damage;
+    public GameObject CurrentCreateEnemy;
+
 
 
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
@@ -28,22 +36,73 @@ public class e_CombatManager : MonoBehaviour
 
     public void Init_Dungeon_Party()
     {
-        //일단 가져왔다고 가정한다. 
+        for(int i = 0; i < 3; i++)
+        {
+            myParty.Add(guildManager.Party_Hero_Member[i]);
+        }
     }
 
 
 
     //전투가 시작되면 적 배치 테이블에서 랜덤으로 적 가져와야됨. 
     //Dictionary로 관리한다고 가정한다면, 1번가져와 하면 슬라임, 스켈레톤, 웨어울프, 2번가져와 하면 코볼트 , 골렘, 고블린 이렇게 3마리 단위로생성해줘야됨
-    private void Start()
+
+    public void EnemyInit()
     {
-        for (int i = 0; i < CreateEnemyPool.Count; i++)//일단 그냥 배열 가져오는걸로 하는데 나중에는 이 배열이 몬스터 배치 테이블에 있는 값을 가져와서 채워져야 된다는것. 
+        List<int> Sequence_Rnd = new List<int>();
+        int SequenceSaveNumber = Random.Range(0, enemy_Sequence_Table.Enemy_Sequence.Count);
+
+        for (int i = 0; i < enemy_Sequence_Table.Enemy_Sequence[SequenceSaveNumber].Length; i++)
         {
-            enemys.Add(Instantiate(CreateEnemyPool[i], new Vector3((i + 1) * 2, 0, 0), transform.rotation)); //위치도 임시다.  이렇게 생성되는건 CombatStart에서 처리되어야 한다 start가 아니라. 
-        }                                                                                                    //combatstart보다 enemyInit함수를 하나 파서 따로 처리하는게 맞는것 같다. 
+            Sequence_Rnd.Add(enemy_Sequence_Table.Enemy_Sequence[SequenceSaveNumber][i]);
+        }
+
+
+        int SkillNumber = 0;
+        Debug.Log(Sequence_Rnd.Count);
+        for(int i = 0; i < Sequence_Rnd.Count; i++)
+        {
+            switch (Sequence_Rnd[i])
+            {
+                case 0:
+                    CurrentCreateEnemy = Instantiate(enemyPrefabs[0]);
+                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = enemy_Stat_Table.Enemys[Sequence_Rnd[i]];
+                    SkillNumber = 0;
+                    break;
+                case 1:
+                    CurrentCreateEnemy = Instantiate(enemyPrefabs[1]);
+                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = enemy_Stat_Table.Enemys[Sequence_Rnd[i]];
+                    SkillNumber = 3;
+
+                    break;
+                case 2:
+                    CurrentCreateEnemy = Instantiate(enemyPrefabs[2]);
+                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = enemy_Stat_Table.Enemys[Sequence_Rnd[i]];
+                    SkillNumber = 6;
+
+                    break;
+                default:
+                    break;
+            }
+
+            for(int j = 0; j < 3; j++)
+            {
+                CurrentCreateEnemy.GetComponent<SkillScript>().mySkills[j] = sKillTable.skillTable_Dictionary[SkillNumber + j + 100];
+            }
+
+            enemys.Add(CurrentCreateEnemy);
+
+        }
+
+        //for (int i = 0; i < ; i++)//일단 그냥 배열 가져오는걸로 하는데 나중에는 이 배열이 몬스터 배치 테이블에 있는 값을 가져와서 채워져야 된다는것. 
+        //{
+        //    enemys.Add(Instantiate(CreateEnemyPool[i], new Vector3((i + 1) * 2, 0, 0), transform.rotation)); //위치도 임시다.  이렇게 생성되는건 CombatStart에서 처리되어야 한다 start가 아니라. 
+        //}
+
+
+  //      TurnStart();
 
     }
-
     public void TurnStart() //전투가 시작되면 모든 유닛의 속도를 비교해 주어야 하므로 6칸 짜리 배열에 모든 오브젝트를 때려넣는다. 
     {
         for (int i = 0; i < myParty.Count; i++)
