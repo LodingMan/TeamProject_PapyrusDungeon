@@ -32,7 +32,7 @@ public class EquipScripts_ysg : MonoBehaviour
     void Start()
     {
 
-        itemUseManager = GameObject.Find("ShopManager").GetComponent<ItemUseManager>();
+        itemUseManager = GameObject.Find("TentManager").GetComponent<ItemUseManager>();
         smithManager = GameObject.Find("SmithManager").GetComponent<SmithManager>();
         smithSlot = smithManager.smithSlot;
         itemData = GameObject.Find("ShopManager").GetComponent<ShopManager>();
