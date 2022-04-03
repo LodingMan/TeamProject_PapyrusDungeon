@@ -34,9 +34,9 @@ public class MapCreate : MonoBehaviour
     public GameObject MinimapBundle;
 
 
-    void Start()
+    public void MapCreateFunc()
     {
-        for (int i = 0; i < 8; i++)   
+        for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
             {
@@ -59,7 +59,6 @@ public class MapCreate : MonoBehaviour
         PassageCreate();
 
         players.StartWarp(startRoomNumber);
-
     }
 
     public void firstSelect()
