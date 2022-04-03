@@ -99,8 +99,8 @@ public class ItemScripts : MonoBehaviour
                     {
                         isUsed = true; // 아이템 사용 유무 체크
                         itemUseManager.stats.HP += item.Pram; // 선택된 오브젝트의 HP값을 증가 시켜줍니다. 증가값은 itemTable에 있는 수치를 기반으로 합니다.
-                        itemUseManager.isActive = false; // 중복 클릭 방지를 위해 넣었습니다.
-                        itemUseManager.stats = null; // 아이템 사용 후 가비지 데이터를 제거합니다.
+                        //itemUseManager.isActive = false; // 중복 클릭 방지를 위해 넣었습니다.
+                        //itemUseManager.stats = null; // 아이템 사용 후 가비지 데이터를 제거합니다.
                         for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
                         {
                             if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)
@@ -118,8 +118,8 @@ public class ItemScripts : MonoBehaviour
                     {
                         isUsed = true;
                         itemUseManager.stats.MP += item.Pram;
-                        itemUseManager.isActive = false;
-                        itemUseManager.stats = null;
+                        //itemUseManager.isActive = false;
+                        //itemUseManager.stats = null;
                         for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--)
                         {
                             if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)

@@ -39,6 +39,9 @@ public class ShopManager : MonoBehaviour
         isShop = true;
         Instantiate(ShopItemList[0], shopPanel.transform);
         Instantiate(ShopItemList[1], shopPanel.transform);
+        Instantiate(equipList[0], inventory.transform);
+        Instantiate(equipList[1], inventory.transform);
+
     }
 
 

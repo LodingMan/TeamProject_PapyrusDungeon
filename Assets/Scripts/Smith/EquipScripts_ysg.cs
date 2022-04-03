@@ -156,7 +156,7 @@ public class EquipScripts_ysg : MonoBehaviour
         if (itemUseManager.isActive) // ¿µ¿õÀÌ ¼±ÅÃ µÇ¾ú´Ù¸é ½ÇÇàÇÕ´Ï´Ù.
         {
             isEquip = true;
-            itemUseManager.isActive = false;
+            //itemUseManager.isActive = false;
             itemUseManager.equips[0].Index = equip.Index;
             itemUseManager.equips[0].Name = equip.Name;
             itemUseManager.equips[0].Lv = equip.Lv;
@@ -172,7 +172,7 @@ public class EquipScripts_ysg : MonoBehaviour
         if (itemUseManager.isActive)
         {
             isEquip = true;
-            itemUseManager.isActive = false;
+            //itemUseManager.isActive = false;
             itemUseManager.equips[1].Index = equip.Index;
             itemUseManager.equips[1].Name = equip.Name;
             itemUseManager.equips[1].Lv = equip.Lv;
@@ -188,15 +188,19 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (isEquip && itemUseManager.isActive)
         {
-            isEquip = false;
-            itemUseManager.isActive = false;
-            itemUseManager.equips[0].Index = -1;
-            itemUseManager.equips[0].Name = null;
-            itemUseManager.equips[0].Lv = -1;
-            itemUseManager.equips[0].Atk -= equip.Atk;
-            itemUseManager.equips[0].Def -= equip.Def;
-            equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÀåÂø";
-            equipBtn.gameObject.SetActive(false);
+            if (itemUseManager.equips[0].Name != "")
+            {
+                isEquip = false;
+                //itemUseManager.isActive = false;
+                itemUseManager.equips[0].Index = 0;
+                itemUseManager.equips[0].Name = null;
+                itemUseManager.equips[0].Lv = 0;
+                itemUseManager.equips[0].Atk -= equip.Atk;
+                itemUseManager.equips[0].Def -= equip.Def;
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÀåÂø";
+                equipBtn.gameObject.SetActive(false);
+            }
+
 
         }
     }
@@ -205,15 +209,19 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (isEquip && itemUseManager.isActive)
         {
-            isEquip = false;
-            itemUseManager.isActive = false;
-            itemUseManager.equips[1].Index = -1;
-            itemUseManager.equips[1].Name = null;
-            itemUseManager.equips[1].Lv = -1;
-            itemUseManager.equips[1].Atk -= equip.Atk;
-            itemUseManager.equips[1].Def -= equip.Def;
-            equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÀåÂø";
-            equipBtn.gameObject.SetActive(false);
+            if (itemUseManager.equips[1].Name != "")
+            {
+                isEquip = false;
+                //itemUseManager.isActive = false;
+                itemUseManager.equips[1].Index = 0;
+                itemUseManager.equips[1].Name = null;
+                itemUseManager.equips[1].Lv = 0;
+                itemUseManager.equips[1].Atk -= equip.Atk;
+                itemUseManager.equips[1].Def -= equip.Def;
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÀåÂø";
+                equipBtn.gameObject.SetActive(false);
+            }
+
 
         }
     }
