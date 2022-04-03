@@ -94,10 +94,6 @@ public class e_CombatManager : MonoBehaviour
 
         }
 
-        //for (int i = 0; i < ; i++)//일단 그냥 배열 가져오는걸로 하는데 나중에는 이 배열이 몬스터 배치 테이블에 있는 값을 가져와서 채워져야 된다는것. 
-        //{
-        //    enemys.Add(Instantiate(CreateEnemyPool[i], new Vector3((i + 1) * 2, 0, 0), transform.rotation)); //위치도 임시다.  이렇게 생성되는건 CombatStart에서 처리되어야 한다 start가 아니라. 
-        //}
 
 
   //      TurnStart();
