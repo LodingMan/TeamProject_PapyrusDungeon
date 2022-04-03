@@ -64,7 +64,15 @@ namespace Song
             Status_Texts[8].text = "AGI : " + Target_Hero.GetComponent<StatScript>().myStat.Agi;
             Status_Texts[9].text = "SPEED : " + Target_Hero.GetComponent<StatScript>().myStat.Speed;
             // Shin
-            //Skills_Icon[0].sprite = 
+
+            for (int i = 0; i < Skills_Icon.Length; i++)
+            {
+                Skills_Icon[i].sprite = skillDetailTable.sprite[Target_Hero.GetComponent<SkillScript>().mySkills[i].Index];
+            }
+            for(int i=0; i < Equips_Icon.Length; i++)
+            {
+                Equips_Icon[i].sprite = equipDetailTable.sprite[Target_Hero.GetComponent<EquipScript>().myEquip[i].Index];
+            }
             //Status_Texts[10].text = "SKILL1 : " + Target_Hero.GetComponent<SkillScript>().skills[0].Name;
             //Status_Texts[11].text = "SKILL2 : " + Target_Hero.GetComponent<SkillScript>().skills[1].Name;
             //Status_Texts[12].text = "SKILL3 : " + Target_Hero.GetComponent<SkillScript>().skills[2].Name;
