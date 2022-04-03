@@ -173,14 +173,14 @@ MonoBehaviour:
     ATK: 0
     DEF: 0
     MyPosition: 00000000ffffffff02000000
-    EnemyPosition: 000000000100000002000000
+    EnemyPosition: ffffffffffffffff02000000
   - Index: 0
     Name: "3\uBC88"
     LV: 0
     ATK: 0
     DEF: 0
     MyPosition: 00000000ffffffff02000000
-    EnemyPosition: ffffffffffffffffffffffff
+    EnemyPosition: ffffffff01000000ffffffff
 --- !u!114 &633097203143947100
 MonoBehaviour:
   m_ObjectHideFlags: 0
