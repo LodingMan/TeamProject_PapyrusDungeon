@@ -14,7 +14,7 @@ public class LoadingSceneManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(1);
+        AsyncOperation op = SceneManager.LoadSceneAsync(2);
         op.allowSceneActivation = false;
         float timer = 0.0f;
         while (!op.isDone)
