@@ -25,6 +25,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
     // Shin
     public Shin.SkillDetailTable skillDetailTable;
+    public Shin.EquipDetailTable equipDetailTable;
     public Image[] equips_icon;
     public Image[] skills_icon;
 
@@ -137,23 +138,26 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         outline = hit.transform.gameObject.GetComponent<quick_outline.quick_outline>();
                         outline.enabled = true;                        
                         Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
-                        for (int i = 0; i < equips.Length; i++)
-                        {
-                            // 예외조건으로 장비를 끼고 있지 않으면 => 즉 equipsi[i].Index가 null이면 예외처리.
-                            //equips_icon[i].sprite = 장비이미지테이블.sprite
-                        }
-                        for (int i = 0; i < mySkills.Length; i++) // 스킬 인덱스
-                        {
-                            skills_icon[i].sprite = skillDetailTable.sprite[mySkills[i].Index];
-                        }
-                        twMgr.UI_HeroStat_Tent_PanelPos_On_Off(); // Shin. 여기에 Tent_HeroPanel을 tween하도록.
-                        //heroname을 이용하여 UI값들 설정. Shin.
-                        
-                    }
+                        InitEquip();
 
+                        twMgr.UI_HeroStat_Tent_PanelPos_On_Off(); // Shin. 여기에 Tent_HeroPanel을 tween하도록.
+                        //heroname을 이용하여 UI값들 설정. Shin.  
+                    }
 
                 }
             }
+        }
+    }
+
+    public void InitEquip() // 04.03 Shin. image input function. tent일 때 스킬,장비가 바뀌면 이 함수 호출.
+    {
+        for (int i = 0; i < equips.Length; i++)
+        {
+            equips_icon[i].sprite = equipDetailTable.sprite[equips[i].Index];
+        }
+        for (int i = 0; i < mySkills.Length; i++) // 스킬 인덱스
+        {
+            skills_icon[i].sprite = skillDetailTable.sprite[mySkills[i].Index];
         }
     }
 }

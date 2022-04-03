@@ -26,10 +26,14 @@ namespace Song
         {
             if (isDungeonSelect)
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if(uI_Tweening_Manager.StackCount == 0)
                 {
-                    DungeonSelect_Off();
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        DungeonSelect_Off();
+                    }
                 }
+                
             }
 
         }
