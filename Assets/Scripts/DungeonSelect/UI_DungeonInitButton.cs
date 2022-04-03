@@ -63,10 +63,10 @@ namespace Shin
             {
                 canvas_Town.enabled = false;
             }
-            StartCoroutine(TweenLoadingPanel()); 
+            StartCoroutine(TweenLoadingPanelToTent()); 
         }
 
-        IEnumerator TweenLoadingPanel()
+        public IEnumerator TweenLoadingPanelToTent()
         {
             yield return new WaitForSeconds(2f);
             if (camera_Town.enabled)
@@ -100,6 +100,21 @@ namespace Shin
             twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             twMgr.UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             
+        }
+        public IEnumerator TweenLoadingPanelToTown()
+        {
+            yield return new WaitForSeconds(2f);
+            if (camera_Tent.enabled)
+            {
+                camera_Tent.enabled = false;
+            }
+            if (!camera_Tent.enabled) camera_Town.enabled = true;
+            if (!canvas_Tent.enabled) canvas_Town.enabled = true;
+
+            loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
+            twMgr.isTentOn = false;
+            TownPrefabs.SetActive(true);
+            TentPrefabs.SetActive(false);
         }
     }
 }
