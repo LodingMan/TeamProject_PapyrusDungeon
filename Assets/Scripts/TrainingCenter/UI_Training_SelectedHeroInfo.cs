@@ -9,7 +9,7 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_TrainingManager uI_trainingManager;
-        Shin.SkillDetailTable skillDetailTable;
+        public Shin.SkillDetailTable skillDetailTable;
         Shin.HeroImageTable heroImageTable;
 
         UI_Tweening_Manager uI_Tweening_Manager;
@@ -47,7 +47,6 @@ namespace Shin
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
-            skillDetailTable = GameObject.Find("SkillDetailManager").GetComponent<Shin.SkillDetailTable>();
             heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();

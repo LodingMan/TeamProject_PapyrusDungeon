@@ -9,10 +9,14 @@ namespace Song
     {
         public UI_Tweening_Manager uI_Tweening_Manger;
         public Song.GuildManager guildManager;
-        public Text[] Status_Texts = new Text[13];
+        public Text[] Status_Texts = new Text[10];
+        public Image[] Skills_Icon = new Image[3]; // Shin
+        public Image[] Equips_Icon = new Image[2]; // Shin
         public GameObject This_Prefab_Object;
         public HeroManager heroManager;
-
+        public Shin.SkillDetailTable skillDetailTable;
+        public Shin.EquipDetailTable equipDetailTable;
+        
 
         private void Start()
         {
@@ -20,9 +24,16 @@ namespace Song
             for (int i = 0; i < Status_Texts.Length; i++)
             {
                 Status_Texts[i] = gameObject.transform.GetChild(i).GetComponent<Text>();
-
             }
-
+            // Shin
+            for (int i = 0; i < Skills_Icon.Length; i++)
+            {
+                Skills_Icon[i] = gameObject.transform.GetChild(Status_Texts.Length + i).GetComponent<Image>();
+            }
+            for (int i = 0; i < Equips_Icon.Length; i++)
+            {
+                Equips_Icon[i] = gameObject.transform.GetChild(Status_Texts.Length + Skills_Icon.Length + i).GetComponent<Image>();
+            }
 
         }
         private void Update()
@@ -52,9 +63,11 @@ namespace Song
             Status_Texts[7].text = "ACC : " + Target_Hero.GetComponent<StatScript>().myStat.Acc;
             Status_Texts[8].text = "AGI : " + Target_Hero.GetComponent<StatScript>().myStat.Agi;
             Status_Texts[9].text = "SPEED : " + Target_Hero.GetComponent<StatScript>().myStat.Speed;
-            Status_Texts[10].text = "SKILL1 : " + Target_Hero.GetComponent<SkillScript>().skills[0].Name;
-            Status_Texts[11].text = "SKILL2 : " + Target_Hero.GetComponent<SkillScript>().skills[1].Name;
-            Status_Texts[12].text = "SKILL3 : " + Target_Hero.GetComponent<SkillScript>().skills[2].Name;
+            // Shin
+            //Skills_Icon[0].sprite = 
+            //Status_Texts[10].text = "SKILL1 : " + Target_Hero.GetComponent<SkillScript>().skills[0].Name;
+            //Status_Texts[11].text = "SKILL2 : " + Target_Hero.GetComponent<SkillScript>().skills[1].Name;
+            //Status_Texts[12].text = "SKILL3 : " + Target_Hero.GetComponent<SkillScript>().skills[2].Name;
 
         }
 

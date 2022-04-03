@@ -21,10 +21,7 @@ public class Target_Panal_Script : MonoBehaviour
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].gameObject.SetActive(true);
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]].transform.position);
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].GetComponent<Enemy_Target_Script>().This_TargetObject = combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]];
-
-
         }
-
     }
     public void TargetAllOff()
     {

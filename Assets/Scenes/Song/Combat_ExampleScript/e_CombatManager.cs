@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class e_CombatManager : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class e_CombatManager : MonoBehaviour
     {
         for (int i = 0; i < myParty.Count; i++)
         {
-            if(myParty[i] != null)
+            if (myParty[i] != null)
             {
                 speedComparisonArray.Add(myParty[i]);
 
@@ -68,6 +69,7 @@ public class e_CombatManager : MonoBehaviour
 
     public void SpeedComparison()
     {
+        Debug.Log("속도계산");
         for (int i = speedComparisonArray.Count - 1; i > 0; i--) // 버블 오름차순 정렬
             for (int j = 0; j < i; j++)
                 if (speedComparisonArray[j].GetComponent<StatScript>().myStat.Speed < speedComparisonArray[j + 1].GetComponent<StatScript>().myStat.Speed)
@@ -76,50 +78,39 @@ public class e_CombatManager : MonoBehaviour
         NextMove();
 
     }
-// 여기까지 해서 적을 불러오고 가장 먼저 진행할 캐릭터가 정해지기까지 했다. 이제 배열의 순서대로 진행하기만 하면 된다. 
+    // 여기까지 해서 적을 불러오고 가장 먼저 진행할 캐릭터가 정해지기까지 했다. 이제 배열의 순서대로 진행하기만 하면 된다. 
 
     public void NextMove() //배열의 가장 앞에있는놈의 행동 시작
     {
-        if(speedComparisonArray.Count == 0)
+        if (speedComparisonArray.Count == 0)
         {
             TurnStart();
+            return;
         }
+
 
 
         if (speedComparisonArray[0].tag == "Player")//플레이어라면
         {
 
 
-            for (int i = 0; i<myParty.Count; i++)
+            for (int i = 0; i < myParty.Count; i++)
             {
-                if(myParty[i] == speedComparisonArray[0])
+                if (myParty[i] == speedComparisonArray[0])
                 {
                     currentActiveHeroIndex = i;
 
                 }
             }
-            skillActiveManager.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
-            //아웃라인 그려주고
-            skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //스킬의 정보를 띄워줌
-            //UI쪽에서 스킬창 띄워주고 드래그&드롭으로 saveSkill에 스킬 파라미터값 넣어줌
-
-           
+            StartCoroutine(SkillUISetting());
         }
         if (speedComparisonArray[0].tag == "Enemy")
         {
-            Debug.Log("tset");
 
-            for (int i = 0; i < enemys.Count; i++)
-            {
-                if (enemys[i] == speedComparisonArray[0])
-                {
-                    currentActiveHeroIndex = i; //스킬을 사용할 유닛의 위치번호
-                    Debug.Log(i);
 
-                }
-            }
+            StartCoroutine(EnemyActive());
 
-         EnemySkillSelect(speedComparisonArray[0]);
+
 
 
         }
@@ -128,7 +119,8 @@ public class e_CombatManager : MonoBehaviour
 
     public void EnemySkillSelect(GameObject target)
     {
-        bool isListInitAgree = false;
+        List<int> ListRemoveAgree = new List<int>();
+        int FailCnt = 0;
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -140,53 +132,86 @@ public class e_CombatManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < currentActiveSkillList.Count; i++) //일단 사용할 스킬 리스트만큼 반복
+
+        for (int i = 0; i < currentActiveSkillList.Count; i++) //일단 사용할 스킬 리스트만큼 반복
         {
-            for(int j = 0; j <myParty.Count; j++) //해당 스킬의 EnemyPosition의 인덱스를 확인을 하는데 내 파티의 생존자 수만큼만 확인 (생존자가 1명이면 1번칸만 확인)
+
+            for (int j = 0; j < myParty.Count; j++) //해당 스킬의 EnemyPosition의 인덱스를 확인을 하는데 내 파티의 생존자 수만큼만 확인 (생존자가 1명이면 1번칸만 확인)
             {
-                Debug.Log("Continue");
 
                 if (currentActiveSkillList[i].EnemyPosition[j] == -1)
                 {
-                    continue;
-                }
-                else
-                {
-                    isListInitAgree = true;
-                  //  target.GetComponent<SkillScript>().mySkills[i].EnemyPosition[j]
+                    FailCnt++;
                 }
             }
-            if(!isListInitAgree)
+            if (FailCnt == myParty.Count)
             {
-                currentActiveSkillList.RemoveAt(i);
+                ListRemoveAgree.Add(i);
             }
-            else
-            {
-                isListInitAgree = false;
-            }
+            FailCnt = 0;
+
         }
-        // 이 위의 for문까지가 내가 사용할 수 있는 위치, 내가 사용할수 있는 스킬들중 범위내에 대상이 있는 스킬들을 찾아내 리스트 안에 담아놓은것. 
+
+        for (int i = ListRemoveAgree.Count; i > 0; i--)
+        {
+            currentActiveSkillList.RemoveAt(ListRemoveAgree[i - 1]);
+        }
+
+        // 이 위의 for문까지가 내가 사용할 수 있는 위치, 내가 사용할수 있는 스킬들중 범위내에 대상이 있는 스킬들을 찾아내 리스트 안에 담아놓은것.
         // 이제 스킬을 골라야됨.
-        if (currentActiveSkillList.Count == 0)
+        if (currentActiveSkillList.Count == 0) //사용할 스킬이 없다면
         {
             //아무튼 취소하는내용
         }
 
-       SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
+        SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
+        Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name);
+
+    }
+
+    public void EnemySkillUse()
+    {
+        int UseIndex;
+        while(true)
+        {
+            UseIndex = SaveSkill.EnemyPosition[Random.Range(0, (myParty.Count))];
+            if (UseIndex == -1)
+            {
+                continue;
+            }
+            break;
+        }
+
+        SkillResultInit(myParty[UseIndex]);
+        
+        Debug.Log("대상에게 스킬 사용 완료! 대상은 " + myParty[UseIndex]);
+
+
+
 
     }
 
 
+
+
     public void SkillResultInit(GameObject target)
     {
-        Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk + 
-            speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Atk + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Atk);
+        if(speedComparisonArray[0].tag == "Player")
+        {
+            Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk +
+                speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Atk + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Atk);
+        }
+        else
+        {
+            Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk);
+        }
+
 
         Damage -= target.GetComponent<StatScript>().myStat.Def;
 
         if (Random.Range(0, 100) < speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri)
         {
-            Damage += (int)(Damage/2);
+            Damage += (int)(Damage / 2);
             Debug.Log("Crit!");
         }
 
@@ -217,4 +242,40 @@ public class e_CombatManager : MonoBehaviour
         arr[num2] = tmp;
     }
 
+    IEnumerator SkillUISetting()
+    {
+        yield return new WaitForSeconds(3);
+
+        Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
+
+        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
+                                                                                                                                                         //아웃라인 그려주고
+        skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //스킬의 정보를 띄워줌
+                                                                                                        //UI쪽에서 스킬창 띄워주고 드래그&드롭으로 saveSkill에 스킬 파라미터값 넣어줌
+
+    }
+
+    IEnumerator EnemyActive()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("행동할 유딧 대상 지정 완료");
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            if (enemys[i] == speedComparisonArray[0])
+            {
+                currentActiveHeroIndex = i; //스킬을 사용할 유닛의 위치번호
+                Debug.Log("행동할 대상은" + speedComparisonArray[0] + "인덱스는" + currentActiveHeroIndex);
+
+            }
+        }
+
+        yield return new WaitForSeconds(3);
+        EnemySkillSelect(speedComparisonArray[0]); //이 함수가 호출되고 난 뒤에는 SaveSkill에 Enemy가 사용할 스킬이 저장되어있다. 
+
+        yield return new WaitForSeconds(3);
+        
+        EnemySkillUse();
+
+
+    }
 }

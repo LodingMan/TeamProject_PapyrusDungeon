@@ -31,7 +31,6 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     private void Start()
     {
         partyNum = -1;
-        skillDetailTable = GameObject.Find("SkillDetailManager").GetComponent<Shin.SkillDetailTable>();
     }
 
 
