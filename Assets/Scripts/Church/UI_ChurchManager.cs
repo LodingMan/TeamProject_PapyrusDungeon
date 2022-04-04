@@ -23,6 +23,8 @@ namespace Shin {
         public Button btn_HealStart; // 회복 버튼. 직접 하이어라키에서 넣어줌.
         public Button btn_HealEnd;
         public int curWeek;
+        public GameObject churchWarning;
+
         private void Awake()
         {
             btn_HealStart.onClick.AddListener(HealingStart);
@@ -32,14 +34,14 @@ namespace Shin {
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            //healingHeroDataList = new List<HeroSavingData>(); // 초기화
             townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
-            curWeek = townManager.Week;
+            churchWarning.SetActive(false);
         }
         private void Update()
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             healingList = healing_List_UI_Content.GetComponentsInChildren<Button>();
+            curWeek = townManager.Week;
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
