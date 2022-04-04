@@ -9,6 +9,9 @@ namespace Shin
     public class UI_TrainingManager : MonoBehaviour
     {
         public Song.HeroManager heroManager;
+        public TownManager twMgr;
+        public UI_Tweening_Manager tweenMgr;
+
         public GameObject employer_List_UI_Content; // 스크롤뷰 content
         public GameObject training_List_UI_Content;
 
@@ -21,25 +24,43 @@ namespace Shin
         public Button[] employedList;
         public Button[] trainingList;
 
-        void Start()
+        public Button TrainButton;
+        public bool isWarning = false;
+
+        private void Awake()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
+            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
+            tweenMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+
+            TrainButton.onClick.AddListener(EmployedInit_UI);
         }
         private void Update()
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             trainingList = training_List_UI_Content.GetComponentsInChildren<Button>();
 
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (heroInfo.activeSelf == false)
+                if (isWarning)
                 {
-                    Destroy_UI();
-                    heroInfo.SetActive(false);
+                    EmployedDestroy_UI();
+                    EmployedInit_UI();
+                    isWarning = false;
                 }
+                else
+                {
+                    if (heroInfo.activeSelf == false)
+                    {
+                        EmployedDestroy_UI();
+                        heroInfo.SetActive(false);
+                    }
+                }
+
+                
             }
         }
-        public void Init_UI() // 훈련소 버튼 클릭 시 실행.
+        public void EmployedInit_UI() // 훈련소 버튼 클릭 시 실행.
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
@@ -53,17 +74,8 @@ namespace Shin
                 employedHero_UI.name = heroManager.CurrentHeroList[i].name;
             }
 
-            for (int i  = 0; i < heroManager.CurrentHeroList.Count; i++)
-            {
-                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining == true)
-                {
-                    trainingHero_UI = Instantiate(trainingHero_UI_Prefab, training_List_UI_Content.transform);
-                    trainingHero_UI.name = heroManager.CurrentHeroList[i].name;
-                }
-            }
-
         }
-        public void Destroy_UI() // 훈련소 패널의 닫기 버튼 클릭 시 실행.
+        public void EmployedDestroy_UI() // 훈련소 패널의 닫기 버튼 클릭 시 실행.
         {
             //employer_List_UI_Content의 child를 검색해서 전부 파괴.            
             if (employedList != null)
@@ -71,13 +83,6 @@ namespace Shin
                 for (int i = 0; i < employedList.Length; i++)
                 {
                     Destroy(employedList[i].gameObject);
-                }
-            }
-            if (trainingList != null)
-            {
-                for (int i = 0; i < trainingList.Length; i++)
-                {
-                    Destroy(trainingList[i].gameObject);
                 }
             }
         }

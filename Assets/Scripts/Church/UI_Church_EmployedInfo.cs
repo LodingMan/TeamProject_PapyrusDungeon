@@ -27,7 +27,6 @@ namespace Shin
         {
             btn = GetComponent<Button>();
             btn.onClick.AddListener(Create_HealingHero_UI_Prefab); // 버튼이 눌리면
-
         }
         private void Start()
         {
@@ -59,14 +58,12 @@ namespace Shin
                 if (gameObject.name == heroManager.CurrentHeroList[i].name)
                 { heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = true; }
             }
-            //uI_ChurchManager.HealingDestroy_UI();
 
             uI_ChurchManager.healingHero_UI = Instantiate(uI_ChurchManager.healingHero_UI_Prefab, uI_ChurchManager.healing_List_UI_Content.transform);
             uI_ChurchManager.healingHero_UI.name = gameObject.name;
             uI_ChurchManager.healingHero_UI.GetComponent<UI_HealingInfo>().curWeek = curWeek;
 
             uI_ChurchManager.EmployedDestroy_UI();
-
             uI_ChurchManager.EmployedInit_UI();
         }
     }
