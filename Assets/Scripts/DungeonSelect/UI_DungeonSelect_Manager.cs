@@ -19,11 +19,7 @@ namespace Song
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
         }
-        public void isDungeonSelectOff()
-        {
-            isDungeonSelect = false;
 
-        }
 
         private void Update()
         {
@@ -57,6 +53,8 @@ namespace Song
             }
             uI_Tweening_Manager.UI_DungeonSelectPanel_On(); // 사용할 패널 내려옴
             isDungeonSelect = true;
+
+
         }
         public void DungeonSelect_Off()
         {
