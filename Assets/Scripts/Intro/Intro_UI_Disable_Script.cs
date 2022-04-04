@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class Intro_UI_Disable_Script : MonoBehaviour
 {
     public bool isLoaded = false;
     public float timer1 = 0f;
+
+    private void Start()
+    {
+
+    }
 
 
     private void Update()
