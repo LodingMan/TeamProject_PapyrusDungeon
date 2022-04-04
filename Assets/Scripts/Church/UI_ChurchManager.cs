@@ -19,7 +19,6 @@ namespace Shin {
         public Button employedHero_UI;
         public Button healingHero_UI;
 
-        //public List<HeroSavingData> healingHeroDataList; // 회복중인 영웅 리스트
         public Button[] employedList;
         public Button[] healingList;
         public Button ChurchButton;
@@ -76,31 +75,7 @@ namespace Shin {
                     Destroy(employedList[i].gameObject);
                 }
             }
-        }
-        public void HealingInit_UI()
-        {
-            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
-            {
-                if (heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing)
-                {
-                    healingHero_UI = Instantiate(employedHero_UI_Prefab, employer_List_UI_Content.transform);
-                    healingHero_UI.name = heroManager.CurrentHeroList[i].name;
-                }
-            }
-        }
-        public void HealingDestroy_UI()
-        {
-            if (healingList != null)
-            {
-                for (int i = 0; i < healingList.Length; i++)
-                {
-                    Destroy(healingList[i].gameObject);
-                }
-            }
-        }
-        
-
-        
+        }  
     }
 }
 

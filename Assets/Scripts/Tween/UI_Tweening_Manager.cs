@@ -24,6 +24,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_DunGeonEntrance_Pos;
     public RectTransform UI_loadingPanel_Pos;
     public RectTransform UI_ChurchWarningPanel_Pos;
+    public RectTransform UI_TrainWarningPanel_Pos;
     public CameraMoving camMove;
     public Text panelOpenBtn;
 
@@ -145,6 +146,18 @@ public class UI_Tweening_Manager : MonoBehaviour
         UIStack[StackCount] = UI_ChurchWarningPanel_Pos;
         StackCount++;
     }
+    public void UI_ChurchWaringPanel_Off()
+    {
+        if (StackCount > 0)
+        {
+            if (UIStack[StackCount - 1] != null)
+            {
+                UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1] = null;
+                StackCount--;
+            }
+        }
+    }
     
     public void UI_TrainingPanel_On()
     {
@@ -154,9 +167,25 @@ public class UI_Tweening_Manager : MonoBehaviour
             UIStack[StackCount] = UI_trainingPanelPos;
             StackCount++;
         }
-
     }
-
+    public void UI_TrainWarningPanel_On()
+    {
+        UI_TrainWarningPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_TrainWarningPanel_Pos;
+        StackCount++;
+    }
+    public void UI_TrainWarningPanel_Off()
+    {
+        if (StackCount > 0)
+        {
+            if (UIStack[StackCount - 1] != null)
+            {
+                UI_TrainWarningPanel_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1] = null;
+                StackCount--;
+            }
+        }
+    }
     public void UI_TrainingSecPanel_On()
     {
         if (!isShopOn && !isSmithOn)

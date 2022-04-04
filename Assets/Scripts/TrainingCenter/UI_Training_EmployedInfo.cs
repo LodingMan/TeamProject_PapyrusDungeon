@@ -8,9 +8,11 @@ namespace Shin
 {
     public class UI_Training_EmployedInfo : MonoBehaviour
     {
-        Song.HeroManager heroManager;
-        Shin.UI_TrainingManager uI_trainingManager;
-        UI_Tweening_Manager uI_Tweening_Manager;
+        public Song.HeroManager heroManager;
+        public Shin.UI_TrainingManager uI_trainingManager;
+        public UI_Tweening_Manager uI_Tweening_Manager;
+        public TownManager twMgr;
+        
         public StatScript statScript;
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
@@ -18,17 +20,19 @@ namespace Shin
         public Text text_Name;
         public Text text_Job;
 
-        
+        public int curWeek;
         Button btn;
 
         private void Awake()
         {
+            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
+            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+            
 
             heroInfo = GameObject.Find("Training_HeroInfo").transform.GetChild(0).GetComponent<Image>();
             btn = GetComponent<Button>();
@@ -44,6 +48,7 @@ namespace Shin
 
         public void Init_UI()
         {
+            curWeek = twMgr.Week;
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고
@@ -66,6 +71,7 @@ namespace Shin
             }
             
             heroInfo.name = statScript.myStat.Name;
+            heroInfo.GetComponent<UI_Training_SelectedHeroInfo>().curWeek = curWeek;
             heroInfo.GetComponent<UI_Training_SelectedHeroInfo>().InitHeroInfo();
         }
 
