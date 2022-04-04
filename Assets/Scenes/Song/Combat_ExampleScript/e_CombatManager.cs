@@ -29,6 +29,8 @@ public class e_CombatManager : MonoBehaviour
     int Damage;
     public GameObject CurrentCreateEnemy;
 
+    public Vector3 FirstHeroCreatePos = new Vector3(-3000, 0, 0);
+
 
 
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
@@ -39,7 +41,19 @@ public class e_CombatManager : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             myParty.Add(guildManager.Party_Hero_Member[i]);
+
+            
         }
+        myParty[0].transform.position = FirstHeroCreatePos;
+        myParty[0].transform.rotation = Quaternion.Euler(0, 90, 0);
+
+        for (int i = 0; i < myParty.Count-1; i++)
+        {
+            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(2 * (i+1), 0, 0);
+            myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+
+
     }
 
 
