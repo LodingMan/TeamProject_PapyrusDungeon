@@ -19,6 +19,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public int sell = 0;
 
     public bool isEquip = false; // 현재 무기or장비가 장착 되었는지 확인 하는 bool 값입니다.
+    public bool isArmorEquip = false;
     public bool isSmith = false;
     public bool isSelled = false;
     public bool isDungeon = false;
@@ -155,15 +156,19 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (itemUseManager.isActive) // 영웅이 선택 되었다면 실행합니다.
         {
-            isEquip = true;
-            //itemUseManager.isActive = false;
-            itemUseManager.equips[0].Index = equip.Index;
-            itemUseManager.equips[0].Name = equip.Name;
-            itemUseManager.equips[0].Lv = equip.Lv;
-            itemUseManager.equips[0].Atk += equip.Atk;
-            itemUseManager.equips[0].Def += equip.Def;
-            equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
-            equipBtn.gameObject.SetActive(false);
+            if (itemUseManager.equips[0].Name == "" && !isEquip)
+            {
+                isEquip = true;
+                //itemUseManager.isActive = false;
+                itemUseManager.equips[0].Index = equip.Index;
+                itemUseManager.equips[0].Name = equip.Name;
+                itemUseManager.equips[0].Lv = equip.Lv;
+                itemUseManager.equips[0].Atk += equip.Atk;
+                itemUseManager.equips[0].Def += equip.Def;
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
+                equipBtn.gameObject.SetActive(false);
+            }
+
 
         }
     }
@@ -171,15 +176,18 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (itemUseManager.isActive)
         {
-            isEquip = true;
-            //itemUseManager.isActive = false;
-            itemUseManager.equips[1].Index = equip.Index;
-            itemUseManager.equips[1].Name = equip.Name;
-            itemUseManager.equips[1].Lv = equip.Lv;
-            itemUseManager.equips[1].Atk += equip.Atk;
-            itemUseManager.equips[1].Def += equip.Def;
-            equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
-            equipBtn.gameObject.SetActive(false);
+            if (itemUseManager.equips[1].Name == "" && !isArmorEquip)
+            {
+                isArmorEquip = true;
+                //itemUseManager.isActive = false;
+                itemUseManager.equips[1].Index = equip.Index;
+                itemUseManager.equips[1].Name = equip.Name;
+                itemUseManager.equips[1].Lv = equip.Lv;
+                itemUseManager.equips[1].Atk += equip.Atk;
+                itemUseManager.equips[1].Def += equip.Def;
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
+                equipBtn.gameObject.SetActive(false);
+            }
 
         }
     }
@@ -188,7 +196,7 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (isEquip && itemUseManager.isActive)
         {
-            if (itemUseManager.equips[0].Name != "")
+            if (itemUseManager.equips[0].Name != "" && isEquip)
             {
                 isEquip = false;
                 //itemUseManager.isActive = false;
@@ -209,9 +217,9 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (isEquip && itemUseManager.isActive)
         {
-            if (itemUseManager.equips[1].Name != "")
+            if (itemUseManager.equips[1].Name != "" && isArmorEquip)
             {
-                isEquip = false;
+                isArmorEquip = false;
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[1].Index = -1;
                 itemUseManager.equips[1].Name = null;

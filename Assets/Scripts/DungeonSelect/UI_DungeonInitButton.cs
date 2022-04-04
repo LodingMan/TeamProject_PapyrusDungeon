@@ -109,7 +109,7 @@ namespace Shin
             {
                 camera_Tent.enabled = false;
             }
-            if (!camera_Tent.enabled) camera_Town.enabled = true;
+            if (!camera_Tent.enabled) camera_Town.enabled = true; 
             if (!canvas_Tent.enabled) canvas_Town.enabled = true;
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
