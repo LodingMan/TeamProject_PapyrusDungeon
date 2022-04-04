@@ -47,7 +47,7 @@ public class RoomController : MonoBehaviour
 
                     if(RoomList[i].GetComponent<RoomScript>().roomNumber < 99)
                     {
-                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram) //전투이벤트
+                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram) //룸이벤트
                         {
                             case 0:
                                 
@@ -55,6 +55,10 @@ public class RoomController : MonoBehaviour
                                
                             case 2:
                                 Debug.Log("전투시작");
+                                combatManager.EnemyInit();
+                                
+                                inGamePlayerScript.isMove = false;
+                                
                                 //여기서 컴뱃 스타트임.
                                 break;
                             case 3:
@@ -69,7 +73,7 @@ public class RoomController : MonoBehaviour
                     }
                     else
                     {
-                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram)
+                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram) //복도이벤트
                         {
                             case 0:
 

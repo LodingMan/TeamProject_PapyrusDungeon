@@ -7,6 +7,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 {
 
     public List<Button> Go_Back_Btn = new List<Button>();
+    public Button MiniMapCommingBtn;
+    bool isMiniMapOn = false;
 
     public void Go_Back_On()
     {
@@ -18,4 +20,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         Go_Back_Btn[0].gameObject.SetActive(false);
         Go_Back_Btn[1].gameObject.SetActive(false);
     }
+
+
+
+
 }

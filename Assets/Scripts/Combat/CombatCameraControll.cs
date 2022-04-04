@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CombatCameraControll : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class CombatCameraControll : MonoBehaviour
     public InGame_Player_Script inGame_Player_Script;
 
     public GameObject OffControll;
+
+    public bool isMiniMapOn = false;
 
 
     private void Update()
@@ -86,6 +89,19 @@ public class CombatCameraControll : MonoBehaviour
 
     }
 
+    public void MiniMapCameraMove()
+    {
+        if(!isMiniMapOn)
+        {
+            MinimapCamera.DORect(new Rect(0.25f, 0.25f, 0.5f, 0.5f), 0.5f);
+            isMiniMapOn = true;
+        }
+        else
+        {
+            MinimapCamera.DORect(new Rect(0f, 0f, 0f, 0f), 0.5f);
+            isMiniMapOn = false;
+        }
+    }
 
 
 
