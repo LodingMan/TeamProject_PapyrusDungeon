@@ -89,9 +89,13 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_GuildPanel_On()
     {
-        UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_guildPanelPos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UIStack[StackCount] = UI_guildPanelPos;
+            StackCount++;
+        }
+
         //if(UI_isGuildPanel_On)
         //{
         //    UI_guildPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
@@ -105,23 +109,35 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_StatusPanel_On()
     {
-        UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
-        UIStack[StackCount] = UI_StatusPanelPos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+            UIStack[StackCount] = UI_StatusPanelPos;
+            StackCount++;
+        }
+
     }
 
     public void UI_DungeonSelectPanel_On()
     {
-        UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
-        UIStack[StackCount] = UI_DungeonSelectPanelPos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+            UIStack[StackCount] = UI_DungeonSelectPanelPos;
+            StackCount++;
+        }
+
     }
 
     public void UI_ChurchPanel_On()
     {
-        UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_churchPanelPos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UIStack[StackCount] = UI_churchPanelPos;
+            StackCount++;
+        }
+
     }
     public void UI_ChurchWarningPanel_On()
     {
@@ -132,16 +148,24 @@ public class UI_Tweening_Manager : MonoBehaviour
     
     public void UI_TrainingPanel_On()
     {
-        UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_trainingPanelPos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UIStack[StackCount] = UI_trainingPanelPos;
+            StackCount++;
+        }
+
     }
 
     public void UI_TrainingSecPanel_On()
     {
-        UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_trainingSecPanelPos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UIStack[StackCount] = UI_trainingSecPanelPos;
+            StackCount++;
+        }
+
     }
     public void UI_TrainingSecPanel_Off()
     {
@@ -201,9 +225,13 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_DunGeonEntrance_On()
     {
-        UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_DunGeonEntrance_Pos;
-        StackCount++;
+        if (!isShopOn && !isSmithOn)
+        {
+            UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UIStack[StackCount] = UI_DunGeonEntrance_Pos;
+            StackCount++;
+        }
+
     }
 
     public void UI_BackGroundPanel_On_Off()
