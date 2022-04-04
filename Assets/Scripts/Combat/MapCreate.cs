@@ -11,6 +11,7 @@ public class MapCreate : MonoBehaviour
     public GameObject bossRoomPrefab;
     public GameObject passagePrefab;
     public Vector3[,] mapCreatePos = new Vector3[8, 8];
+    public CombatCameraControll combatCameraControll;
 
     public RoomController RC;
 
@@ -34,8 +35,9 @@ public class MapCreate : MonoBehaviour
     public GameObject MinimapBundle;
 
 
-    public void MapCreateFunc()
+    private void Start()
     {
+        Debug.Log("시작");
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
@@ -59,6 +61,9 @@ public class MapCreate : MonoBehaviour
         PassageCreate();
 
         players.StartWarp(startRoomNumber);
+        combatCameraControll.CameraCurrentPosSet();
+
+
     }
 
     public void firstSelect()

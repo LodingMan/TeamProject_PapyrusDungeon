@@ -16,6 +16,9 @@ public class RoomController : MonoBehaviour
 
 
 
+
+
+
     public void RoomCheck(int Roomnumber)
     {
         Debug.Log(Roomnumber);
@@ -33,7 +36,7 @@ public class RoomController : MonoBehaviour
                         if(RoomList[j].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.PreviousPlayers)
                         {
                             RoomList[j].GetComponent<MeshRenderer>().material = RoomColors[0];
-                            Debug.Log(inGamePlayerScript.PreviousPlayers);
+                            //Debug.Log(inGamePlayerScript.PreviousPlayers);
 
                             break;
 

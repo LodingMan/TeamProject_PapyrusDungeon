@@ -9,6 +9,11 @@ public class InGame_Player_Script : MonoBehaviour
     public Text currentPlayerText;
     //public MapCreate mapCreate;
     public RoomController RC;
+    public CombatCameraControll combatCameraControll;
+
+
+    public bool isRoom = true;
+    public bool isMove = true;
 
 
     void Start()
@@ -48,23 +53,33 @@ public class InGame_Player_Script : MonoBehaviour
 
                 break;
             default:
-                break;
+                return;
         }
+        isRoom = false;
         RC.RoomCheck(currentPlayers);
+        combatCameraControll.CameraCurrentPosSet();
+
     }
 
     public void KeepGoing()
     {
         PreviousPlayers = currentPlayers;
         currentPlayers = NextPlayers;
+        isRoom = true;
+
         RC.RoomCheck(currentPlayers);
+        combatCameraControll.CameraCurrentPosSet();
+
     }
     public void TurningBack() //룸체크는 인자로 들어온놈을 노란색으로 바꿔주고 Previous를 흰색으로 바꿔줌. 
     {
         NextPlayers = PreviousPlayers;
         PreviousPlayers = currentPlayers;
         currentPlayers = NextPlayers;
+        isRoom = true;
         RC.RoomCheck(currentPlayers);
+        combatCameraControll.CameraCurrentPosSet();
+
     }
     public void StartWarp(int roomnumber)
     {
