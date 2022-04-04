@@ -28,14 +28,13 @@ namespace Shin {
         private void Awake()
         {
             btn_HealStart.onClick.AddListener(HealingStart);
-            btn_HealEnd.onClick.AddListener(HealingEnd);
+            //btn_HealEnd.onClick.AddListener(HealingEnd);
         }
 
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
-            churchWarning.SetActive(false);
         }
         private void Update()
         {
@@ -103,7 +102,7 @@ namespace Shin {
             Init_UI();
         }
 
-        public void HealingEnd() // Btn_HealEnd 온클릭
+        /*public void HealingEnd() // Btn_HealEnd 온클릭
         {
             // **예외조건으로 1주 이상이 지나야 회복조건이 발동되도록 수정해야함.
             
@@ -122,7 +121,7 @@ namespace Shin {
             }
             Destroy_UI();
             Init_UI();
-        }
+        }*/
     }
 }
 

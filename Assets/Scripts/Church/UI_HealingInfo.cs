@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Shin
 {
@@ -18,11 +19,11 @@ namespace Shin
         public Button btn; // 자기 자신
         public int curWeek;
         public static int healingCnt; // 회복중인 영웅 리스트 순서에 사용할 static int
-        public GameObject churchWarning;
+        public RectTransform churchWarning;
         public Button btn_ReturnChurch;
         private void Awake()
         {
-            churchWarning = GameObject.Find("ChurchWarning").GetComponent<GameObject>();
+            churchWarning = GameObject.Find("ChurchWarning").GetComponent<RectTransform>();
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
@@ -79,17 +80,13 @@ namespace Shin
             }
             else
             {
+                churchWarning.DOAnchorPos(new Vector2(0, 0), 0.5f);
+                
                 Debug.Log("아직 1주가 지나지 않음");
+                
             }
             uI_ChurchManager.Destroy_UI();
             uI_ChurchManager.Init_UI();
-        }
-
-        IEnumerator WarningPopUp()
-        {
-            churchWarning.SetActive(true);
-            yield return new WaitForSeconds(1f);
-            churchWarning.SetActive(false);
         }
     }
 
