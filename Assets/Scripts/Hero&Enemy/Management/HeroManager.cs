@@ -57,7 +57,7 @@ namespace Song
             {
                 case "Mage":
 
-                    initStat = new Stat(0, RandomName, "Mage", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5); //�ʱ� �������� ����
+                    initStat = new Stat(0, RandomName, "Mage", 9, 9, 9, 9, 5, 5, 2, 2, 3, 6); //�ʱ� �������� ����
                     CurrentCreateHero = Instantiate(HeroPrefabs[color]) as GameObject; //������ ����
                     CurrentCreateHero.name = initStat.Name; // ������ ������Ʈ�� ���� �̸�
 
@@ -73,7 +73,7 @@ namespace Song
                     break;
                 case "Babarian":
 
-                    initStat = new Stat(2, RandomName, "Babarian", 9, 9, 9, 9, 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(2, RandomName, "Babarian", 9, 9, 9, 9, 5, 5, 2, 2, 3, 6);
                     CurrentCreateHero = Instantiate(HeroPrefabs[color+8]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
@@ -82,7 +82,7 @@ namespace Song
                     break;
                 case "Knight":
 
-                    initStat = new Stat(3, RandomName, "Knight", 9, 9 , 5 , 5 , 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(3, RandomName, "Knight", 9, 9 , 5 , 5 , 5, 5, 2, 2, 3, 6);
                     CurrentCreateHero = Instantiate(HeroPrefabs[color+12]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
@@ -90,7 +90,7 @@ namespace Song
                     break;
                 case "Barristan":
 
-                    initStat = new Stat(4, RandomName, "Barristan", 9 , 9 , 9, 9 , 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(4, RandomName, "Barristan", 9 , 9 , 9, 9 , 5, 5, 2, 2, 3, 6);
                     CurrentCreateHero = Instantiate(HeroPrefabs[color+16]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
@@ -98,7 +98,7 @@ namespace Song
                     break;
                 case "Porter":
 
-                    initStat = new Stat(5, RandomName, "Porter", 9, 9 , 9, 9 , 5, 5, 2, 2, 3, 5);
+                    initStat = new Stat(5, RandomName, "Porter", 9, 9 , 9, 9 , 5, 5, 2, 2, 3, 6);
                     CurrentCreateHero = Instantiate(HeroPrefabs[color+20]) as GameObject;
                     CurrentCreateHero.name = initStat.Name;
 
