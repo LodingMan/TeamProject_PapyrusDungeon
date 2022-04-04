@@ -17,12 +17,8 @@ public class CombatCameraControll : MonoBehaviour
     public RoomController roomController;
     public InGame_Player_Script inGame_Player_Script;
 
+    public GameObject OffControll;
 
-    private void Start()
-    {
-        MinimapCamera.enabled = true;
-
-    }
 
     private void Update()
     {
@@ -61,6 +57,11 @@ public class CombatCameraControll : MonoBehaviour
         TentCanvas.gameObject.SetActive(false);
 
         CombatCamera.enabled = true;
+
+        MinimapCamera.enabled = true;
+
+        OffControll = GameObject.Find("TentManager");
+        OffControll.GetComponent<ItemUseManager>().enabled = false;
 
     }
 
