@@ -25,11 +25,16 @@ public class e_CombatManager : MonoBehaviour
     public skill SaveSkill; //스킬 사용자의 스킬 저장
     public int currentActiveHeroIndex; //현재 스킬을 사용할 히어로가 몇번째에 위치하는지 
 
+    public Camera CombatCamera;
+
 
     int Damage;
     public GameObject CurrentCreateEnemy;
 
     public Vector3 FirstHeroCreatePos = new Vector3(-3000, 0, 0);
+    public Vector3 FirstEnemyCreatePos = new Vector3(-2997, 0, 0);
+
+    public bool isCombat;
 
 
 
@@ -49,7 +54,7 @@ public class e_CombatManager : MonoBehaviour
 
         for (int i = 0; i < myParty.Count-1; i++)
         {
-            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(2 * (i+1), 0, 0);
+            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(1.5f * (i+1), 0, 0);
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
         }
 
@@ -63,6 +68,7 @@ public class e_CombatManager : MonoBehaviour
 
     public void EnemyInit()
     {
+        isCombat = true;
         List<int> Sequence_Rnd = new List<int>();
         int SequenceSaveNumber = Random.Range(0, enemy_Sequence_Table.Enemy_Sequence.Count);
 
@@ -104,17 +110,24 @@ public class e_CombatManager : MonoBehaviour
                 CurrentCreateEnemy.GetComponent<SkillScript>().mySkills[j] = sKillTable.skillTable_Dictionary[SkillNumber + j + 100];
             }
 
+            CurrentCreateEnemy.transform.position = FirstEnemyCreatePos + new Vector3(1.5f * i, 0, 0);
+            CurrentCreateEnemy.transform.rotation = Quaternion.Euler(0, -90, 0);
+
             enemys.Add(CurrentCreateEnemy);
 
         }
+        
 
 
 
-  //      TurnStart();
+        TurnStart();
 
     }
     public void TurnStart() //전투가 시작되면 모든 유닛의 속도를 비교해 주어야 하므로 6칸 짜리 배열에 모든 오브젝트를 때려넣는다. 
     {
+
+
+
         for (int i = 0; i < myParty.Count; i++)
         {
             if (myParty[i] != null)
@@ -131,6 +144,17 @@ public class e_CombatManager : MonoBehaviour
             {
                 speedComparisonArray.Add(enemys[j]);
             }
+        }
+
+        if(myParty.Count == 0)
+        {
+            isCombat = false;
+            return;
+        }
+        else if(enemys.Count == 0)
+        {
+            isCombat = false;
+            return;
         }
 
         SpeedComparison();
@@ -255,9 +279,6 @@ public class e_CombatManager : MonoBehaviour
         
         Debug.Log("대상에게 스킬 사용 완료! 대상은 " + myParty[UseIndex]);
 
-
-
-
     }
 
 
@@ -275,8 +296,18 @@ public class e_CombatManager : MonoBehaviour
             Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk);
         }
 
+        if (speedComparisonArray[0].tag == "Player")
+        {
+            Damage -= target.GetComponent<StatScript>().myStat.Def;
 
-        Damage -= target.GetComponent<StatScript>().myStat.Def;
+        }
+        else
+        {
+            Damage -= target.GetComponent<StatScript>().myStat.Def
+                 + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Def + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Def;
+
+        }
+
 
         if (Random.Range(0, 100) < speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri)
         {
@@ -317,7 +348,7 @@ public class e_CombatManager : MonoBehaviour
 
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 
-        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
+        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
                                                                                                                                                          //아웃라인 그려주고
         skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //스킬의 정보를 띄워줌
                                                                                                         //UI쪽에서 스킬창 띄워주고 드래그&드롭으로 saveSkill에 스킬 파라미터값 넣어줌
@@ -340,7 +371,6 @@ public class e_CombatManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         EnemySkillSelect(speedComparisonArray[0]); //이 함수가 호출되고 난 뒤에는 SaveSkill에 Enemy가 사용할 스킬이 저장되어있다. 
-
         yield return new WaitForSeconds(3);
         
         EnemySkillUse();
