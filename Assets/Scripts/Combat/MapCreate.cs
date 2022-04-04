@@ -4,10 +4,10 @@ using UnityEngine;
 public class MapCreate : MonoBehaviour
 {
 
-    public GameObject[,] map = new GameObject[8, 8]; 
+    public GameObject[,] map = new GameObject[8, 8];
     public List<GameObject> passages;
 
-    public GameObject nomalRoomPrefab; 
+    public GameObject nomalRoomPrefab;
     public GameObject bossRoomPrefab;
     public GameObject passagePrefab;
     public Vector3[,] mapCreatePos = new Vector3[8, 8];
@@ -18,12 +18,12 @@ public class MapCreate : MonoBehaviour
 
     public int startRoomNumber;
 
-    public int searchX; 
-    public int searchY; 
+    public int searchX;
+    public int searchY;
     public List<int> selectRoom;
     public List<int> passageRoom;
     public int createRoomCnt = 0;
-    public int currentSelectRoom = 0; 
+    public int currentSelectRoom = 0;
 
     public int noneCnt;
     public int startingPointRoomNumber;
@@ -35,9 +35,10 @@ public class MapCreate : MonoBehaviour
     public GameObject MinimapBundle;
 
 
-    public void MapCreateFunc()
+    //public void MapCreateFunc()
+    private void Start()
     {
-        /*Debug.Log("시작");
+        Debug.Log("시작");
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
@@ -61,7 +62,7 @@ public class MapCreate : MonoBehaviour
         PassageCreate();
 
         players.StartWarp(startRoomNumber);
-        combatCameraControll.CameraCurrentPosSet();*/
+        combatCameraControll.CameraCurrentPosSet();
 
 
     }
@@ -71,7 +72,7 @@ public class MapCreate : MonoBehaviour
         int rnd = Random.Range(0, 7);
         map[6, rnd] = Instantiate(nomalRoomPrefab, mapCreatePos[6, rnd], transform.rotation) as GameObject;
         map[6, rnd].name = "[" + 6 + "," + rnd + "]" + "START";
-      
+
 
         map[6, rnd].GetComponent<RoomScript>().InitRoomNumber(60 + rnd);// 방에게 현재 방번호 부여
         map[6, rnd].transform.SetParent(MinimapBundle.transform);
@@ -81,7 +82,7 @@ public class MapCreate : MonoBehaviour
 
         startRoomNumber = selectRoom[0];
 
-       // players.StartWarp(selectRoom[0]);
+        // players.StartWarp(selectRoom[0]);
 
 
     }
@@ -93,29 +94,30 @@ public class MapCreate : MonoBehaviour
 
         SearchNum = selectRoom[currentSelectRoom];
 
-        if (SearchNum < 70)        {
+        if (SearchNum < 70)
+        {
             SearchNum += 10;
-            searchX = SearchNum % 10; 
-            searchY = SearchNum / 10; 
+            searchX = SearchNum % 10;
+            searchY = SearchNum / 10;
 
 
-            if (map[searchY, searchX] == null)  
+            if (map[searchY, searchX] == null)
             {
-                if (searchY != 7) 
+                if (searchY != 7)
                 {
-                    if (map[searchY + 1, searchX] != null) 
+                    if (map[searchY + 1, searchX] != null)
                     {
                         noneCnt++;
                     }
                 }
-                if (searchX != 0) 
+                if (searchX != 0)
                 {
                     if (map[searchY, searchX - 1] != null)
                     {
                         noneCnt++;
                     }
                 }
-                if (searchX != 7) 
+                if (searchX != 7)
                 {
                     if (map[searchY, searchX + 1] != null)
                     {
@@ -132,7 +134,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                             RC.RoomList.Add(map[searchY,searchX]);
+                        RC.RoomList.Add(map[searchY, searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 
@@ -154,11 +156,11 @@ public class MapCreate : MonoBehaviour
             searchX = SearchNum % 10;
             searchY = SearchNum / 10;
 
-            
 
-            if (map[searchY, searchX] == null) 
+
+            if (map[searchY, searchX] == null)
             {
-                if (searchY != 0) 
+                if (searchY != 0)
                 {
                     if (map[searchY - 1, searchX] != null)
                     {
@@ -187,7 +189,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                          RC.RoomList.Add(map[searchY, searchX]);
+                        RC.RoomList.Add(map[searchY, searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 
@@ -212,11 +214,11 @@ public class MapCreate : MonoBehaviour
             searchY = SearchNum / 10;
 
 
-            if (map[searchY, searchX] == null)         
+            if (map[searchY, searchX] == null)
             {
                 if (searchY != 7)
                 {
-                    if (map[searchY + 1, searchX] != null) 
+                    if (map[searchY + 1, searchX] != null)
                     {
                         noneCnt++;
                     }
@@ -271,8 +273,10 @@ public class MapCreate : MonoBehaviour
             searchY = SearchNum / 10;
 
 
-            if (map[searchY, searchX] == null)             {
-                if (searchY != 7)                 {
+            if (map[searchY, searchX] == null)
+            {
+                if (searchY != 7)
+                {
                     if (map[searchY + 1, searchX] != null) //??????? ??? ?? ???
                     {
                         noneCnt++;
@@ -285,7 +289,7 @@ public class MapCreate : MonoBehaviour
                         noneCnt++;
                     }
                 }
-                if (searchX != 7)                 
+                if (searchX != 7)
                 {
                     if (map[searchY, searchX + 1] != null)
                     {
@@ -301,7 +305,7 @@ public class MapCreate : MonoBehaviour
                         map[searchY, searchX] = Instantiate(nomalRoomPrefab, mapCreatePos[searchY, searchX], transform.rotation) as GameObject;
                         map[searchY, searchX].transform.SetParent(MinimapBundle.transform);
 
-                          RC.RoomList.Add(map[searchY, searchX]);
+                        RC.RoomList.Add(map[searchY, searchX]);
 
                         map[searchY, searchX].name = "[" + searchY + "," + searchX + "]";
 
@@ -333,11 +337,11 @@ public class MapCreate : MonoBehaviour
         bossX = selectRoom[selectRoom.Count - 1] % 10;
         bossY = selectRoom[selectRoom.Count - 1] / 10;
         Destroy(map[bossY, bossX]);
-        RC.RoomList.RemoveAt(RC.RoomList.Count-1);
+        RC.RoomList.RemoveAt(RC.RoomList.Count - 1);
         map[bossY, bossX] = Instantiate(bossRoomPrefab, mapCreatePos[bossY, bossX], transform.rotation) as GameObject;
         map[bossY, bossX].transform.SetParent(MinimapBundle.transform);
 
-         RC.RoomList.Add(map[bossY, bossX]);
+        RC.RoomList.Add(map[bossY, bossX]);
 
 
         map[bossY, bossX].GetComponent<RoomScript>().InitRoomNumber((bossY * 10) + bossX);// 방에게 현재 방번호 부여
@@ -362,24 +366,24 @@ public class MapCreate : MonoBehaviour
             {
                 if (selectRoom[i] + 10 == selectRoom[j])
                 {
-                    Passage = Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10 , selectRoom[i] % 10] + new Vector3(Random.Range(-1, 2), 5,0), Quaternion.Euler(0,0,90)) as GameObject;
+                    Passage = Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10, selectRoom[i] % 10] + new Vector3(Random.Range(-1, 2), 5, 0), Quaternion.Euler(0, 0, 90)) as GameObject;
                     Passage.transform.SetParent(MinimapBundle.transform);
 
                     Passage.name = "" + selectRoom[i] + "Up";
                     Passage.tag = "Up";
-                     RC.RoomList.Add(Passage);
+                    RC.RoomList.Add(Passage);
 
                     Passage.GetComponent<RoomScript>().roomNumber = selectRoom[i] + 200;
 
                 }
                 if (selectRoom[i] + 1 == selectRoom[j])
                 {
-                    Passage =  Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10, selectRoom[i] % 10] + new Vector3(5, Random.Range(-1,2), 0), Quaternion.Euler(0, 0, 0)) as GameObject;
+                    Passage = Instantiate(passagePrefab, mapCreatePos[selectRoom[i] / 10, selectRoom[i] % 10] + new Vector3(5, Random.Range(-1, 2), 0), Quaternion.Euler(0, 0, 0)) as GameObject;
                     Passage.transform.SetParent(MinimapBundle.transform);
 
                     Passage.name = "" + selectRoom[i] + "Right";
                     Passage.tag = "Right";
-                      RC.RoomList.Add(Passage);
+                    RC.RoomList.Add(Passage);
 
                     Passage.GetComponent<RoomScript>().roomNumber = selectRoom[i] + 100;
 
@@ -411,10 +415,10 @@ public class MapCreate : MonoBehaviour
 
 
     void Swap(List<int> arr, int num1, int num2)
-        {
-            int tmp = arr[num1];
-            arr[num1] = arr[num2];
-            arr[num2] = tmp;
-        }
+    {
+        int tmp = arr[num1];
+        arr[num1] = arr[num2];
+        arr[num2] = tmp;
+    }
 
 }

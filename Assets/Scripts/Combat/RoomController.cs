@@ -7,15 +7,16 @@ public class RoomController : MonoBehaviour
     public MapCreate mapCreate;
     public List<GameObject> RoomList;
     public RoomScript roomScript;
+
     public InGame_Player_Script inGamePlayerScript;
+    public Combat_Event_UI_Manager combat_Event_UI_Manager;
+    public Room_Passage_Event room_Passage_Event;
+
+    
     public List<Material> RoomColors;
     public int PreviousRoomNumber;
 
     public bool isFirst = true;
-
-
-
-
 
 
 
@@ -42,6 +43,55 @@ public class RoomController : MonoBehaviour
 
                         }
                     }
+
+                    if(RoomList[i].GetComponent<RoomScript>().roomNumber < 99)
+                    {
+                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram) //전투이벤트
+                        {
+                            case 0:
+                                
+                            case 1:
+                               
+                            case 2:
+                                Debug.Log("전투시작");
+                                break;
+                            case 3:
+                                Debug.Log("골드");
+                                break;
+                            case 4:
+                                Debug.Log("아이템");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram)
+                        {
+                            case 0:
+
+                            case 1:
+
+                            case 2:
+                            case 3:
+                            case 4:
+                                room_Passage_Event.Passage_HpDown_Event();
+                                break;
+                            default:
+                                break;
+                        }
+
+
+                        combat_Event_UI_Manager.Go_Back_On(); //이벤트가 끝나고 나타나야됨. 
+
+
+                    }
+
+
+
+
+
                 }
 
                 isFirst = false;
