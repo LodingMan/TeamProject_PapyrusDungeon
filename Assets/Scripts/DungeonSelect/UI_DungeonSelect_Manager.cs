@@ -62,6 +62,7 @@ namespace Song
                 buttons[i].SetActive(true);
             }
             isDungeonSelect = false;
+
         }
 
         public void DungeonSelect1()
