@@ -90,6 +90,7 @@ public class HeroSavingData
     public int ColorType;
 
 }
+
 [System.Serializable]
 public class Equip
 {
