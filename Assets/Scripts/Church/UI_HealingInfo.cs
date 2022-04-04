@@ -35,8 +35,6 @@ namespace Shin
 
         void Start()
         {
-            
-            curWeek = townManager.Week;
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // 리스트 길이만큼.
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름 비교해서
@@ -51,20 +49,11 @@ namespace Shin
 
         }
 
-        public void Create_EmployedHero_UI_Prefab()
-        {
-            // UI 프리팹 생성.
-            uI_ChurchManager.employedHero_UI = Instantiate(uI_ChurchManager.employedHero_UI_Prefab, uI_ChurchManager.employer_List_UI_Content.transform); // 오브젝트 생성.
-            uI_ChurchManager.employedHero_UI.name = gameObject.name; // 이름 변경.
-
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
         public void HealingEnd() // Btn_HealEnd 온클릭
         {
             // **예외조건으로 1주 이상이 지나야 회복조건이 발동되도록 수정해야함.
             // 자기 자신만 되도록 변경.
-            if((uI_ChurchManager.curWeek - curWeek >= 1)) {
+            if((townManager.Week - curWeek >= 1)) {
                 for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
                 {
                     if (gameObject.name == heroManager.CurrentHeroList[i].name)
@@ -75,8 +64,9 @@ namespace Shin
                         heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MAXMP; // mp회복
                     }
                 }
-                uI_ChurchManager.Destroy_UI();
-                uI_ChurchManager.Init_UI();
+                uI_ChurchManager.EmployedDestroy_UI();
+                uI_ChurchManager.EmployedInit_UI();
+                Destroy(gameObject);
             }
             else
             {
