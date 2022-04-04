@@ -7,7 +7,7 @@ namespace Song
 
     public class UI_DungeonSelect_Manager : MonoBehaviour
     {
-        public List<GameObject> buttons;  //¿ø·¡ ÀÖ´ø¹öÆ° ½Ï´Ù ºñÈ°¼ºÈ­ ½ÃÄÑÁÖ±â
+        public List<GameObject> buttons;  //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½Æ° ï¿½Ï´ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
         public UI_Tweening_Manager uI_Tweening_Manager;
         public bool isDungeonSelect = false;
         public bool isTent = false;
@@ -19,7 +19,6 @@ namespace Song
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
         }
-
 
         private void Update()
         {
@@ -42,16 +41,16 @@ namespace Song
             {
                 if (guildManager.Party_Hero_Member[i] == null)
                 {
-                    Debug.Log("¿µ¿õ3¸íÀ» ÆÄÆ¼¿¡ ³Ö¾îÁÖ¼¼¿ä");
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
                     return;
                 }
             }
-            //Ä«¸Þ¶ó ÀÌµ¿
+            //Ä«ï¿½Þ¶ï¿½ ï¿½Ìµï¿½
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].SetActive(false);//±âÁ¸ ¹öÆ° ºñÈ°¼º
+                buttons[i].SetActive(false);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½È°ï¿½ï¿½
             }
-            uI_Tweening_Manager.UI_DungeonSelectPanel_On(); // »ç¿ëÇÒ ÆÐ³Î ³»·Á¿È
+            uI_Tweening_Manager.UI_DungeonSelectPanel_On(); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             isDungeonSelect = true;
 
 

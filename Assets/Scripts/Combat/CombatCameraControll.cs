@@ -50,11 +50,16 @@ public class CombatCameraControll : MonoBehaviour
         //여기서 코루틴 사용해서 패널닫고 열거나 페이드인 / 아웃처리해서 자연스러운 던전이동.
         // 아래 setActive들을 코루틴 안에 넣어도 좋다. 
 
-        TownCanvas.gameObject.SetActive(false);
-        TownCamera.gameObject.SetActive(false);
+        //TownCanvas.gameObject.SetActive(false);
+        //TownCamera.gameObject.SetActive(false);
+        TownCamera.enabled = false;
+        TownCanvas.enabled = false;
 
-        TentCamera.gameObject.SetActive(false);
-        TentCanvas.gameObject.SetActive(false);
+        TentCamera.enabled = false;
+        TentCanvas.enabled = false;
+
+        //TentCamera.gameObject.SetActive(false);
+        //TentCanvas.gameObject.SetActive(false);
 
         CombatCamera.enabled = true;
 
