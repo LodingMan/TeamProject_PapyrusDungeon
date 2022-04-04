@@ -25,6 +25,8 @@ public class e_CombatManager : MonoBehaviour
     public skill SaveSkill; //스킬 사용자의 스킬 저장
     public int currentActiveHeroIndex; //현재 스킬을 사용할 히어로가 몇번째에 위치하는지 
 
+    public Camera CombatCamera;
+
 
     int Damage;
     public GameObject CurrentCreateEnemy;
@@ -118,7 +120,7 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-  //      TurnStart();
+        TurnStart();
 
     }
     public void TurnStart() //전투가 시작되면 모든 유닛의 속도를 비교해 주어야 하므로 6칸 짜리 배열에 모든 오브젝트를 때려넣는다. 
@@ -346,7 +348,7 @@ public class e_CombatManager : MonoBehaviour
 
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 
-        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
+        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
                                                                                                                                                          //아웃라인 그려주고
         skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //스킬의 정보를 띄워줌
                                                                                                         //UI쪽에서 스킬창 띄워주고 드래그&드롭으로 saveSkill에 스킬 파라미터값 넣어줌

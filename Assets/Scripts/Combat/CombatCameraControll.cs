@@ -27,7 +27,6 @@ public class CombatCameraControll : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             RaycastHit hit;
             var ray = MinimapCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -40,6 +39,8 @@ public class CombatCameraControll : MonoBehaviour
                         if(inGame_Player_Script.isMove)
                         {
                             inGame_Player_Script.PlayerWarp(hit.collider.gameObject.GetComponent<RoomScript>().roomNumber - inGame_Player_Script.currentPlayers);
+                            Debug.Log(hit.collider.gameObject.GetComponent<RoomScript>().roomNumber - inGame_Player_Script.currentPlayers);
+                            
                         }
                     }
                    
@@ -86,6 +87,8 @@ public class CombatCameraControll : MonoBehaviour
 
         }
         // MinimapCamera.transform = roomController.RoomList[inGame_Player_Script.currentPlayers]
+        StartCoroutine(MinimapDlay());
+
 
     }
 
@@ -93,17 +96,27 @@ public class CombatCameraControll : MonoBehaviour
     {
         if(!isMiniMapOn)
         {
+            //MinimapCamera.enabled = true;
+
             MinimapCamera.DORect(new Rect(0.25f, 0.25f, 0.5f, 0.5f), 0.5f);
             isMiniMapOn = true;
+
         }
         else
         {
+
             MinimapCamera.DORect(new Rect(0f, 0f, 0f, 0f), 0.5f);
             isMiniMapOn = false;
+          //  MinimapCamera.enabled = false;
+
         }
     }
 
-
+    IEnumerator MinimapDlay()
+    {
+        yield return new WaitForSeconds(1);
+        MiniMapCameraMove();
+    }
 
 
 
