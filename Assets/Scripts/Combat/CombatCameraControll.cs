@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class CombatCameraControll : MonoBehaviour
@@ -14,11 +15,12 @@ public class CombatCameraControll : MonoBehaviour
     public Canvas TentCanvas;
     public Canvas TownCanvas;
 
+    public Image LoadingPanal;
+    
 
     public RoomController roomController;
     public InGame_Player_Script inGame_Player_Script;
 
-    public GameObject OffControll;
 
     public bool isMiniMapOn = false;
 
@@ -51,26 +53,14 @@ public class CombatCameraControll : MonoBehaviour
 
     public void UI_Camera_All_Off()
     {
-        //여기서 코루틴 사용해서 패널닫고 열거나 페이드인 / 아웃처리해서 자연스러운 던전이동.
-        // 아래 setActive들을 코루틴 안에 넣어도 좋다. 
-
-        //TownCanvas.gameObject.SetActive(false);
-        //TownCamera.gameObject.SetActive(false);
-        TownCamera.enabled = false;
-        TownCanvas.enabled = false;
+         TownCamera.enabled = false;
+       // TownCanvas.enabled = false;
 
         TentCamera.enabled = false;
-        TentCanvas.enabled = false;
-
-        //TentCamera.gameObject.SetActive(false);
-        //TentCanvas.gameObject.SetActive(false);
-
         CombatCamera.enabled = true;
 
         MinimapCamera.enabled = true;
 
-        OffControll = GameObject.Find("TentManager");
-        OffControll.GetComponent<ItemUseManager>().enabled = false;
 
     }
 
@@ -87,24 +77,19 @@ public class CombatCameraControll : MonoBehaviour
 
         }
         // MinimapCamera.transform = roomController.RoomList[inGame_Player_Script.currentPlayers]
-        StartCoroutine(MinimapDlay());
-
-
     }
 
-    public void MiniMapCameraMove()
+    public void MiniMapCameraMove() //미니맵 창이 부드럽게 가운데에 뜨게 만듬
     {
         if(!isMiniMapOn)
         {
             //MinimapCamera.enabled = true;
 
-            MinimapCamera.DORect(new Rect(0.25f, 0.25f, 0.5f, 0.5f), 0.5f);
+            MinimapCamera.DORect(new Rect(0.18f, 0.18f, 0.65f, 0.65f), 0.5f);
             isMiniMapOn = true;
-
         }
         else
         {
-
             MinimapCamera.DORect(new Rect(0f, 0f, 0f, 0f), 0.5f);
             isMiniMapOn = false;
           //  MinimapCamera.enabled = false;
@@ -112,13 +97,27 @@ public class CombatCameraControll : MonoBehaviour
         }
     }
 
-    IEnumerator MinimapDlay()
+    public IEnumerator MinimapDlay() //복도로 이동하고 1초뒤에 미니맵 닫히도록함
     {
         yield return new WaitForSeconds(1);
         MiniMapCameraMove();
     }
 
 
+    public void BlackFade_Out() //전투시작 눌렀을때 로딩하는것처럼 보이게 하기
+    {
+        LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
+        StartCoroutine(FadeDlay());
+    }
+    IEnumerator FadeDlay() //위를 하기 위한 코루틴
+    {
+        yield return new WaitForSeconds(4);
+        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 7);
+        yield return new WaitForSeconds(5);
+        LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
+        LoadingPanal.color = Color.black;
 
+
+    }
 
 }

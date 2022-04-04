@@ -346,6 +346,10 @@ public class e_CombatManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
 
+        GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
+        textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
+        
+
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 
         skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
