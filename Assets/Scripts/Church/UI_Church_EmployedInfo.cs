@@ -10,7 +10,7 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_ChurchManager uI_ChurchManager;
-
+        TownManager twMgr;
         //public HeroSavingData healingHeroData = new HeroSavingData();
 
         public StatScript statScript;
@@ -18,9 +18,9 @@ namespace Shin
         public Text text_Name;
         public Text text_Job;
 
-        
         public Button btn; // 자기 자신의 버튼.
         int num;
+        public int curWeek;
         //static public int EmployedCnt = 0;
 
         private void Awake()
@@ -33,9 +33,11 @@ namespace Shin
         {
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
+            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             // 초기화
+            curWeek = twMgr.Week;
 
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
@@ -57,10 +59,15 @@ namespace Shin
                 if (gameObject.name == heroManager.CurrentHeroList[i].name)
                 { heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = true; }
             }
-            uI_ChurchManager.Destroy_UI();
-            uI_ChurchManager.Init_UI();
-            
-            Destroy(gameObject);
+            //uI_ChurchManager.HealingDestroy_UI();
+
+            uI_ChurchManager.healingHero_UI = Instantiate(uI_ChurchManager.healingHero_UI_Prefab, uI_ChurchManager.healing_List_UI_Content.transform);
+            uI_ChurchManager.healingHero_UI.name = gameObject.name;
+            uI_ChurchManager.healingHero_UI.GetComponent<UI_HealingInfo>().curWeek = curWeek;
+
+            uI_ChurchManager.EmployedDestroy_UI();
+
+            uI_ChurchManager.EmployedInit_UI();
         }
     }
 }
