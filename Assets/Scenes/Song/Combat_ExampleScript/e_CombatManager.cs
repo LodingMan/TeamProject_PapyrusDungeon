@@ -304,7 +304,7 @@ public class e_CombatManager : MonoBehaviour
         else
         {
             Damage -= target.GetComponent<StatScript>().myStat.Def
-                 + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Def + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Def;
+                 + target.GetComponent<EquipScript>().myEquip[0].Def + target.GetComponent<EquipScript>().myEquip[1].Def;
 
         }
 
