@@ -11,6 +11,7 @@ public class RoomController : MonoBehaviour
     public InGame_Player_Script inGamePlayerScript;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
     public Room_Passage_Event room_Passage_Event;
+    public e_CombatManager combatManager;
 
     
     public List<Material> RoomColors;
@@ -54,6 +55,7 @@ public class RoomController : MonoBehaviour
                                
                             case 2:
                                 Debug.Log("전투시작");
+                                //여기서 컴뱃 스타트임.
                                 break;
                             case 3:
                                 Debug.Log("골드");
