@@ -23,6 +23,7 @@ namespace Shin
         public RectTransform loadingPanel;
         public GuildManager guildMgr;
         public UI_Tweening_Manager twMgr;
+        public Song.UI_DungeonSelect_Manager dgMgr;
         public Transform[] tentPos = new Transform[3];
 
         public GameObject TownPrefabs;
@@ -113,6 +114,7 @@ namespace Shin
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
             twMgr.isTentOn = false;
+            dgMgr.isTent = false;
             TownPrefabs.SetActive(true);
             TentPrefabs.SetActive(false);
 

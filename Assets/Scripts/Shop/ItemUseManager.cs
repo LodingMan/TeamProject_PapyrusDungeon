@@ -71,7 +71,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
             equips = null;
             heroName = null;
             alreadySelect = false;
-
+            Debug.Log("here");
         }
     }
 
