@@ -35,7 +35,7 @@ public class CameraMoving : MonoBehaviour
 
     private void Update()
     {
-       // CameraMove();
+       CameraMove();
     }
 
     public void CameraMove() // 카메라 이동 애니메이션
