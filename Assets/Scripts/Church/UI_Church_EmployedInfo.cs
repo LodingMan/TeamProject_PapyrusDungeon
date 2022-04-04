@@ -52,17 +52,14 @@ namespace Shin
 
         public void Create_HealingHero_UI_Prefab() // 버튼 클릭시 실행.
         {
-            uI_ChurchManager.healingHero_UI = Instantiate(uI_ChurchManager.healingHero_UI_Prefab, uI_ChurchManager.healing_List_UI_Content.transform); // UI 생성.
-            uI_ChurchManager.healingHero_UI.name = gameObject.name; // UI 네이밍.
+            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+            {
+                if (gameObject.name == heroManager.CurrentHeroList[i].name)
+                { heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = true; }
+            }
+            uI_ChurchManager.Destroy_UI();
+            uI_ChurchManager.Init_UI();
             
-            // parameter input
-            /*healingHeroData.stat = statScript.myStat;
-            healingHeroData.skills = skillScript.skills;
-            healingHeroData.equips = equipScript.myEquip;*/
-
-            //uI_ChurchManager.healingHeroDataList.Add(healingHeroData); // healingHeroDataList 리스트에 ADD
-
-            //EmployedCnt++; // healingHeroDataList[순서]에 사용할 static 변수.
             Destroy(gameObject);
         }
     }

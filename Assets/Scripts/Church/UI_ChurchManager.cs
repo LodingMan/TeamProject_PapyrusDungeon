@@ -7,7 +7,8 @@ namespace Shin {
     public class UI_ChurchManager : MonoBehaviour
     {
         public Song.HeroManager heroManager;
-        public TownManager townManager;
+        public TownManager twMgr;
+        public UI_Tweening_Manager tweenMgr;
         public GameObject employer_List_UI_Content; // 스크롤뷰 content
         public GameObject healing_List_UI_Content; // 스크롤뷰 content
 
@@ -20,31 +21,36 @@ namespace Shin {
         //public List<HeroSavingData> healingHeroDataList; // 회복중인 영웅 리스트
         public Button[] employedList;
         public Button[] healingList;
-        public Button btn_HealStart; // 회복 버튼. 직접 하이어라키에서 넣어줌.
         public Button btn_HealEnd;
         public int curWeek;
-        public GameObject churchWarning;
+        public bool isWarning = false;
 
         private void Awake()
         {
-            btn_HealStart.onClick.AddListener(HealingStart);
-            //btn_HealEnd.onClick.AddListener(HealingEnd);
+            btn_HealEnd.onClick.AddListener(HealingEnd);
         }
-
         void Start()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
+            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
+            tweenMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
         }
         private void Update()
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             healingList = healing_List_UI_Content.GetComponentsInChildren<Button>();
-            curWeek = townManager.Week;
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Destroy_UI();
+                if (isWarning)
+                {
+                    Destroy_UI();
+                    Init_UI();
+                    isWarning = false;
+                }
+                else
+                {
+                    Destroy_UI();
+                }
             }
         }
         public void Init_UI() // 교회 버튼 클릭 시 실행.
@@ -88,40 +94,39 @@ namespace Shin {
             }
         }
 
-        public void HealingStart() // 회복 버튼 누르면 실행.
+        public void HealingEnd() // Btn_HealEnd 온클릭 // 복귀가능한 인원 전체 복귀
         {
-            for (int i = 0; i < healingList.Length; i++)
-            {
-                for (int j = 0; j < heroManager.CurrentHeroList.Count; j++)
-                {
-                    if (healingList[i].name == heroManager.CurrentHeroList[j].name)
-                    { heroManager.CurrentHeroList[j].GetComponent<HeroScript_Current_State>().isHealing = true; }
-                }
-            }
-            Destroy_UI();
-            Init_UI();
-        }
-
-        /*public void HealingEnd() // Btn_HealEnd 온클릭
-        {
-            // **예외조건으로 1주 이상이 지나야 회복조건이 발동되도록 수정해야함.
-            
+            int check = 0; // 복귀 인원체크용 int.
             for (int i = 0; i < healingList.Length; i++)
             {
                 for (int j = 0; j < heroManager.CurrentHeroList.Count; j++)
                 {
                     if (healingList[i].name == heroManager.CurrentHeroList[j].name)
                     {
-                        heroManager.CurrentHeroList[j].GetComponent<HeroScript_Current_State>().isHealing = false;
-                        // 회복이 종료될 때 회복되도록.
-                        heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.HP = heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MAXHP; // hp회복
-                        heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MAXMP; // mp회복
+                        if ((twMgr.Week - healingList[i].GetComponent<UI_HealingInfo>().curWeek) >= 1)
+                        {
+                            check++;
+                            healingList[i].GetComponent<HeroScript_Current_State>().isHealing = false;
+                            heroManager.CurrentHeroList[j].GetComponent<HeroScript_Current_State>().isHealing = false;
+                            // 회복이 종료될 때 회복되도록.
+                            heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.HP = heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MAXHP; // hp회복
+                            heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[j].GetComponent<StatScript>().myStat.MAXMP; // mp회복
+                        }
                     }
                 }
             }
-            Destroy_UI();
-            Init_UI();
-        }*/
+            if (check == 0) // 복귀가능한 인원이 1명도 없으면.
+            {
+                tweenMgr.UI_ChurchWarningPanel_On();
+                isWarning = true;
+            }
+            else
+            {
+                Destroy_UI();
+                Init_UI();
+            }
+            
+        }
     }
 }
 

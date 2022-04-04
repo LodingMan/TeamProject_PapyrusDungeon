@@ -19,11 +19,9 @@ namespace Shin
         public Button btn; // 자기 자신
         public int curWeek;
         public static int healingCnt; // 회복중인 영웅 리스트 순서에 사용할 static int
-        public RectTransform churchWarning;
         public Button btn_ReturnChurch;
         private void Awake()
         {
-            churchWarning = GameObject.Find("ChurchWarning").GetComponent<RectTransform>();
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
@@ -77,17 +75,18 @@ namespace Shin
                         heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MP = heroManager.CurrentHeroList[i].GetComponent<StatScript>().myStat.MAXMP; // mp회복
                     }
                 }
+                uI_ChurchManager.Destroy_UI();
+                uI_ChurchManager.Init_UI();
             }
             else
             {
-                churchWarning.DOAnchorPos(new Vector2(0, 0), 0.5f);
-                
+                uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_On();
+                uI_ChurchManager.isWarning = true;
                 Debug.Log("아직 1주가 지나지 않음");
-                
             }
-            uI_ChurchManager.Destroy_UI();
-            uI_ChurchManager.Init_UI();
+            
         }
+
     }
 
 }

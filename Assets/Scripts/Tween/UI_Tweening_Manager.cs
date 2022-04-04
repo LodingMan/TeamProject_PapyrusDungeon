@@ -23,6 +23,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_HeroStatPanel_TentPos;
     public RectTransform UI_DunGeonEntrance_Pos;
     public RectTransform UI_loadingPanel_Pos;
+    public RectTransform UI_ChurchWarningPanel_Pos;
     public CameraMoving camMove;
     public Text panelOpenBtn;
 
@@ -59,30 +60,32 @@ public class UI_Tweening_Manager : MonoBehaviour
                 StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
                 // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
             }
-
-            if (StackCount > 0)
-            {
-                if (UIStack[StackCount - 1] != null)
-                {
-                    UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
-                    UIStack[StackCount - 1] = null;
-                    StackCount--;
-                    isShopOn = false;
-                    isSmithOn = false;
-                    shopMgr.isShop = false;
-                    
-                }
-            }
-
-            if (StackCount == 0)
-            {
-                camMove.ReturnToOrigin();
-            }
+            StackCountFun(); 
 
         }
     }
-    
-    
+
+    public void StackCountFun()
+    {
+        if (StackCount > 0)
+        {
+            if (UIStack[StackCount - 1] != null)
+            {
+                UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1] = null;
+                StackCount--;
+                isShopOn = false;
+                isSmithOn = false;
+                shopMgr.isShop = false;
+
+            }
+        }
+
+        if (StackCount == 0)
+        {
+            camMove.ReturnToOrigin();
+        }
+    }
 
     public void UI_GuildPanel_On()
     {
@@ -120,7 +123,13 @@ public class UI_Tweening_Manager : MonoBehaviour
         UIStack[StackCount] = UI_churchPanelPos;
         StackCount++;
     }
-
+    public void UI_ChurchWarningPanel_On()
+    {
+        UI_ChurchWarningPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_ChurchWarningPanel_Pos;
+        StackCount++;
+    }
+    
     public void UI_TrainingPanel_On()
     {
         UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
