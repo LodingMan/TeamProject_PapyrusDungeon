@@ -25,12 +25,14 @@ namespace Shin
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
-            btn_ReturnChurch = GameObject.Find("Btn_ReturnChurch").GetComponent<Button>();
+            
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+
             btn = GetComponent<Button>();//초기화
-            //btn.onClick.AddListener(Create_EmployedHero_UI_Prefab); // 자기자신의 버튼이 눌리면 함수 실행.
+            btn_ReturnChurch = GameObject.Find("Btn_ReturnChurch").GetComponent<Button>();
             btn.onClick.AddListener(HealingEnd);
+            btn_ReturnChurch.onClick.AddListener(ForceReturn);
         }
 
         void Start()
@@ -72,8 +74,23 @@ namespace Shin
             {
                 uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_On();
                 uI_ChurchManager.isWarning = true;
-                Debug.Log("아직 1주가 지나지 않음");
             }
+        }
+
+        public void ForceReturn()
+        {
+            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+            {
+                if (gameObject.name == heroManager.CurrentHeroList[i].name)
+                {
+                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false;
+                }
+            }
+            uI_ChurchManager.EmployedDestroy_UI();
+            uI_ChurchManager.EmployedInit_UI();
+            uI_ChurchManager.tweenMgr.UI_ChurchWaringPanel_Off();
+            uI_ChurchManager.isWarning = false;
+            Destroy(gameObject);
             
         }
 

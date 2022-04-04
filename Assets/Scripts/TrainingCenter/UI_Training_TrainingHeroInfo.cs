@@ -13,16 +13,23 @@ namespace Shin
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
 
-        public Button btn; // 자기자신버튼
+        Button btn; // 자기자신버튼
+        public Button btn_ReturnTrain;
+        public int curWeek;
         private void Awake()
         {
+            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
+            uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+
             btn = GetComponent<Button>();
+            btn_ReturnTrain = GameObject.Find("Btn_ReturnTrain").GetComponent<Button>();
+            btn.onClick.AddListener(TrainingEnd);
+            btn_ReturnTrain.onClick.AddListener(ForceReturn);
         }
         // Start is called before the first frame update
         void Start()
         {
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
@@ -49,19 +56,43 @@ namespace Shin
         //TrainingStart() 함수는 UI_Training_SelectedHeroInfo 스크립트에 있음.
         public void TrainingEnd()
         {
-            // 예외조건 처리 필요. n주차 이상 지나야 가능하도록.
-            heroScript_Current_State.isTraining = false;
+            if ((uI_trainingManager.twMgr.Week - curWeek >= 1))
+            {
+                heroScript_Current_State.isTraining = false;
+                for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+                {
+                    if (gameObject.name == heroManager.CurrentHeroList[i].name)
+                    {
+                        heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining = heroScript_Current_State.isTraining;
+                        // 스킬레벨업
+                    }
+                }
+                uI_trainingManager.EmployedDestroy_UI();
+                uI_trainingManager.EmployedInit_UI();
+                Destroy(gameObject);
+            }
+            else
+            {
+                uI_trainingManager.tweenMgr.UI_TrainWarningPanel_On();
+                uI_trainingManager.isWarning = true;
+                Debug.Log("아직 1주 안지났어요");
+            }
+        }
+
+        public void ForceReturn()
+        {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name)
                 {
-                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining = heroScript_Current_State.isTraining;
-                    // 스킬레벨업
+                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining = false;
                 }
             }
-            // 변경사항이 있으니 다시 UI 파괴&생성
-            //uI_trainingManager.Destroy_UI();
-            //uI_trainingManager.Init_UI();
+            uI_trainingManager.EmployedDestroy_UI();
+            uI_trainingManager.EmployedInit_UI();
+            uI_trainingManager.tweenMgr.UI_TrainWarningPanel_Off();
+            uI_trainingManager.isWarning = false;
+            Destroy(gameObject);
         }
     }
 }
