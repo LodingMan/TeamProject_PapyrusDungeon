@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Song
 {
@@ -21,25 +19,30 @@ namespace Song
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
         }
+        public void isDungeonSelectOff()
+        {
+            isDungeonSelect = false;
+
+        }
 
         private void Update()
         {
             if (isDungeonSelect)
             {
-                if(uI_Tweening_Manager.StackCount == 0)
+                if (uI_Tweening_Manager.StackCount == 0)
                 {
                     if (Input.GetKeyDown(KeyCode.Escape))
                     {
                         DungeonSelect_Off();
                     }
                 }
-                
+
             }
 
         }
         public void DungeonSelect_On()
         {
-            for(int i =0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (guildManager.Party_Hero_Member[i] == null)
                 {
@@ -49,9 +52,9 @@ namespace Song
             }
             //카메라 이동
             for (int i = 0; i < buttons.Count; i++)
-                {
-                    buttons[i].SetActive(false);//기존 버튼 비활성
-                }
+            {
+                buttons[i].SetActive(false);//기존 버튼 비활성
+            }
             uI_Tweening_Manager.UI_DungeonSelectPanel_On(); // 사용할 패널 내려옴
             isDungeonSelect = true;
         }
@@ -75,7 +78,7 @@ namespace Song
         }
         public void DungeonSelect3()
         {
-            DungeonType= 3;
+            DungeonType = 3;
         }
 
         public void VillageToTent()

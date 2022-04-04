@@ -35,9 +35,9 @@ public class MapCreate : MonoBehaviour
     public GameObject MinimapBundle;
 
 
-    private void Start()
+    public void MapCreateFunc()
     {
-        Debug.Log("시작");
+        /*Debug.Log("시작");
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
@@ -61,7 +61,7 @@ public class MapCreate : MonoBehaviour
         PassageCreate();
 
         players.StartWarp(startRoomNumber);
-        combatCameraControll.CameraCurrentPosSet();
+        combatCameraControll.CameraCurrentPosSet();*/
 
 
     }
