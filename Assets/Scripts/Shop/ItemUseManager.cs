@@ -160,4 +160,19 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
             skills_icon[i].sprite = skillDetailTable.sprite[mySkills[i].Index];
         }
     }
+
+
+    public void DungeonInit()
+    {
+        if (outline)
+        {
+            outline.enabled = false;
+        }
+        partyNum = -1;
+        isActive = false;
+        stats = null;
+        equips = null;
+        heroName = null;
+        alreadySelect = false;
+    }
 }
