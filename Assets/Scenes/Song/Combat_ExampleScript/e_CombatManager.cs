@@ -304,7 +304,7 @@ public class e_CombatManager : MonoBehaviour
         else
         {
             Damage -= target.GetComponent<StatScript>().myStat.Def
-                 + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Def + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Def;
+                 + target.GetComponent<EquipScript>().myEquip[0].Def + target.GetComponent<EquipScript>().myEquip[1].Def;
 
         }
 
@@ -345,6 +345,10 @@ public class e_CombatManager : MonoBehaviour
     IEnumerator SkillUISetting()
     {
         yield return new WaitForSeconds(3);
+
+        GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
+        textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
+        
 
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 

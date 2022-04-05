@@ -55,8 +55,7 @@ public class RoomController : MonoBehaviour
                                
                             case 2:
                                 Debug.Log("전투시작");
-                                combatManager.EnemyInit();
-                                
+                                StartCoroutine(BattleDlay());
                                 inGamePlayerScript.isMove = false;
                                 
                                 //여기서 컴뱃 스타트임.
@@ -88,7 +87,6 @@ public class RoomController : MonoBehaviour
                                 break;
                         }
 
-
                         combat_Event_UI_Manager.Go_Back_On(); //이벤트가 끝나고 나타나야됨.  가급적이면 
 
 
@@ -101,53 +99,18 @@ public class RoomController : MonoBehaviour
             }
         }
 
-        #region 보험
-        //Debug.Log(roomnumber);
-        //if (players.isRoom)
-        //{ 
-        //    for (int i = 0; i < RoomList.Count; i++)
-        //    {
-        //        if (roomnumber == RoomList[i].GetComponent<RoomScript>().roomNumber)
-        //        {
-        //            roomScript = RoomList[i].GetComponent<RoomScript>();
-        //            roomScript.Renderer.material = roomScript.PlayerCheckList[1];
-        //            for (int j = 0; j < PassageList.Count; j++)
-        //            {
-        //                if (PassageList[j].GetComponent<PassageScript>().passageNumber == players.PreviousPlayers)
-        //                {
-        //                    passageScript = PassageList[j].GetComponent<PassageScript>();
-
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-        //else if (!players.isRoom)
-        //{
-        //    for (int i = 0; i < PassageList.Count; i++)
-        //    {
-        //        if (roomnumber == PassageList[i].GetComponent<PassageScript>().passageNumber)
-        //        {
-        //            passageScript = PassageList[i].GetComponent<PassageScript>();
-        //            for(int j = 0; j < RoomList.Count; j++)
-        //            {
-        //                if (RoomList[j].GetComponent<RoomScript>().roomNumber == players.PreviousPlayers)
-        //                {
-        //                    roomScript = RoomList[j].GetComponent<RoomScript>();
-
-        //                    roomScript.Renderer.material = roomScript.PlayerCheckList[0];
-
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //}
-        #endregion
 
 
     }
 
+    IEnumerator BattleDlay()
+    {
+        yield return new WaitForSeconds(2);
+        combatManager.EnemyInit();
+
+        combat_Event_UI_Manager.BattleStart();
+
+    }
 
 
 }

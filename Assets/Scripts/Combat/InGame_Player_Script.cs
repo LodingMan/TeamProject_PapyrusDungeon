@@ -9,6 +9,11 @@ public class InGame_Player_Script : MonoBehaviour
     public Text currentPlayerText;
     //public MapCreate mapCreate;
     public RoomController RC;
+
+
+
+    public Combat_Event_UI_Manager combat_Event_UI_Manager;
+    public e_CombatManager combatManager;
     public CombatCameraControll combatCameraControll;
 
 
@@ -57,6 +62,8 @@ public class InGame_Player_Script : MonoBehaviour
         }
         isRoom = false;
         RC.RoomCheck(currentPlayers);
+        StartCoroutine(combatCameraControll.MinimapDlay());
+
         combatCameraControll.CameraCurrentPosSet();
 
     }
@@ -85,6 +92,7 @@ public class InGame_Player_Script : MonoBehaviour
     {
         currentPlayers = roomnumber;
         RC.RoomCheck(currentPlayers);
+        combat_Event_UI_Manager.MinimapGuide();
     }
 
 }
