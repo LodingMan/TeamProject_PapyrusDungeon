@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 1
+    Index: 25
     Name: Shield
     Lv: 1
     Atk: 0
@@ -478,6 +478,7 @@ MonoBehaviour:
   equipIndex: 0
   sell: 0
   isEquip: 0
+  isArmorEquip: 0
   isSmith: 0
   isSelled: 0
   isDungeon: 0
@@ -497,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 1
+      Index: 25
       Name: Shield
       Lv: 1
       Atk: 0
