@@ -16,6 +16,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public Button[] Yes_No_Button = new Button[2];
     bool isMiniMapOn = false;
+    public GameObject EventUIPanal;
 
 
 

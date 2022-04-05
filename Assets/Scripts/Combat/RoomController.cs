@@ -116,8 +116,7 @@ public class RoomController : MonoBehaviour
     public IEnumerator PassageEventDlay(GameObject Room)
     {
 
-        yield return new WaitForSeconds(5);
-        //그냥 여기서 코루틴 부르고 코루틴 안에서 이벤트 처리하는게 나을듯
+        yield return new WaitForSeconds(10);
         switch (Room.GetComponent<RoomScript>().DungeonEventPram) //복도이벤트
         {
             case 0:
@@ -133,7 +132,6 @@ public class RoomController : MonoBehaviour
                 break;
         }
 
-        combat_Event_UI_Manager.Go_Back_On(); //이벤트가 끝나고 나타나야됨.  가급적이면 
 
     }
 
