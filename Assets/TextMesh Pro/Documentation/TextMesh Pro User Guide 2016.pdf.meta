@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Images/EquipsIMG.meta
+guid: 61d2f275e1dc40c43ac4c807793b9abd
+folderAsset: yes
+=======
 guid: 1b8d251f9af63b746bf2f7ffe00ebb9b
+>>>>>>> 5aed771bd31fe85cae7a998ec57ba138620a52a1:Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

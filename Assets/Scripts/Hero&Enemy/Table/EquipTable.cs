@@ -11,10 +11,10 @@ public class EquipTable
     {
         // 인덱스, 이름, 직업, 레벨, hp, mp, atk, def, cri, acc, cost 순으로 추가 시킴 04/05 윤성근
         { 0, new Equip(0, "Sword", "Knight", 1, 0, 0, 10, 0, 0, 0, 10) }, //Equip의 맴버변수는 ClassBundle확인
-        { 1, new Equip(1, "Axe", "Babarian", 1, 0, 0, 10, 0, 0, 0, 10) },
+        { 1, new Equip(1, "Axe", "Barristan", 1, 0, 0, 10, 0, 0, 0, 10) },
         { 2, new Equip(2, "Bow", "Archer", 1, 0, 0, 10, 0, 0, 0, 10) },
         { 3, new Equip(3, "Knife", "Porter" ,1 ,0 ,0, 10, 0, 0, 0, 10) },
-        { 4, new Equip(4, "PoleAxe","Barristan", 1, 0, 0, 20, 0, 0, 0, 10) },
+        { 4, new Equip(4, "DoubleAxe","Babarian", 1, 0, 0, 20, 0, 0, 0, 10) },
         { 5, new Equip(5, "Saber", "Knight", 1, 0, 0, 10, 0, 0, 0, 10) },
         { 6, new Equip(6, "Wand", "Mage", 1, 0, 0, 10, 0, 0, 0, 10) },
         { 7, new Equip(7, "Amulet1", "Any", 1, 10, 0, 0, 10, 0, 0, 10) },
