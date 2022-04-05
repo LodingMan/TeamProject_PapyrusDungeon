@@ -217,6 +217,78 @@ public class EquipScripts_ysg : MonoBehaviour
 
                     break;
                 case 1:
+                    EquipWeapon();
+                    break;
+                case 2:
+                    EquipWeapon();
+                    break;
+                case 3:
+                    EquipWeapon();
+                    break;
+                case 4:
+                    EquipWeapon();
+                    break;
+                case 5:
+                    EquipWeapon();
+                    break;
+                case 6:
+                    EquipWeapon();
+                    break;
+                case 7:
+                    EquipArmor();
+                    break;
+                case 8:
+                    EquipArmor();
+                    break;
+                case 9:
+                    EquipArmor();
+                    break;
+                case 10:
+                    EquipArmor();
+                    break;
+                case 11:
+                    EquipArmor();
+                    break;
+                case 12:
+                    EquipArmor();
+                    break;
+                case 13:
+                    EquipArmor();
+                    break;
+                case 14:
+                    EquipArmor();
+                    break;
+                case 15:
+                    EquipArmor();
+                    break;
+                case 16:
+                    EquipArmor();
+                    break;
+                case 17:
+                    EquipArmor();
+                    break;
+                case 18:
+                    EquipArmor();
+                    break;
+                case 19:
+                    EquipArmor();
+                    break;
+                case 20:
+                    EquipArmor();
+                    break;
+                case 21:
+                    EquipArmor();
+                    break;
+                case 22:
+                    EquipArmor();
+                    break;
+                case 23:
+                    EquipArmor();
+                    break;
+                case 24:
+                    EquipArmor();
+                    break;
+                case 25:
                     EquipArmor();
                     break;
                 default:
@@ -233,6 +305,78 @@ public class EquipScripts_ysg : MonoBehaviour
                     break;
 
                 case 1:
+                    UnEquipWeapon();
+                    break;
+                case 2:
+                    UnEquipWeapon();
+                    break;
+                case 3:
+                    UnEquipWeapon();
+                    break;
+                case 4:
+                    UnEquipWeapon();
+                    break;
+                case 5:
+                    UnEquipWeapon();
+                    break;
+                case 6:
+                    UnEquipWeapon();
+                    break;
+                case 7:
+                    UnEquipArmor();
+                    break;
+                case 8:
+                    UnEquipArmor();
+                    break;
+                case 9:
+                    UnEquipArmor();
+                    break;
+                case 10:
+                    UnEquipArmor();
+                    break;
+                case 11:
+                    UnEquipArmor();
+                    break;
+                case 12:
+                    UnEquipArmor();
+                    break;
+                case 13:
+                    UnEquipArmor();
+                    break;
+                case 14:
+                    UnEquipArmor();
+                    break;
+                case 15:
+                    UnEquipArmor();
+                    break;
+                case 16:
+                    UnEquipArmor();
+                    break;
+                case 17:
+                    UnEquipArmor();
+                    break;
+                case 18:
+                    UnEquipArmor();
+                    break;
+                case 19:
+                    UnEquipArmor();
+                    break;
+                case 20:
+                    UnEquipArmor();
+                    break;
+                case 21:
+                    UnEquipArmor();
+                    break;
+                case 22:
+                    UnEquipArmor();
+                    break;
+                case 23:
+                    UnEquipArmor();
+                    break;
+                case 24:
+                    UnEquipArmor();
+                    break;
+                case 25:
                     UnEquipArmor();
                     break;
                 default:
