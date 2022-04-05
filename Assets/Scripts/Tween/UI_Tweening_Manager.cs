@@ -26,9 +26,8 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_ChurchWarningPanel_Pos;
     public RectTransform UI_TrainWarningPanel_Pos;
     public CameraMoving camMove;
-    public Text panelOpenBtn;
 
-    bool UI_isBackground_On = false;
+    public bool UI_isBackground_On = true;
     //bool UI_isGuildPanel_On = false;
     //bool UI_isChurchPanel_On = false;
     //bool UI_isTrainingPanel_On = false;
@@ -137,7 +136,9 @@ public class UI_Tweening_Manager : MonoBehaviour
             UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UIStack[StackCount] = UI_churchPanelPos;
             StackCount++;
+            UI_BackGroundPanel_On_Off();
         }
+        
 
     }
     public void UI_ChurchWarningPanel_On()
@@ -166,6 +167,7 @@ public class UI_Tweening_Manager : MonoBehaviour
             UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UIStack[StackCount] = UI_trainingPanelPos;
             StackCount++;
+            UI_BackGroundPanel_On_Off();
         }
     }
     public void UI_TrainWarningPanel_On()
@@ -267,14 +269,12 @@ public class UI_Tweening_Manager : MonoBehaviour
     {
         if (UI_isBackground_On)
         {
-            panelOpenBtn.text = "O\nP\nE\nN";
-            UI_BackGround_Pos.DOAnchorPos(new Vector2(-130, 0), 0.5f);
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(0, -200), 0.5f);
             UI_isBackground_On = false;
         }
         else
         {
-            panelOpenBtn.text = "C\nL\nO\nS\nE";
-            UI_BackGround_Pos.DOAnchorPos(new Vector2(130, 0), 0.5f);
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(0, 150), 0.5f);
             UI_isBackground_On = true;
         }
     }
