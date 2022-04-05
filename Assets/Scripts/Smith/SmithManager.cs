@@ -99,5 +99,18 @@ public class SmithManager : MonoBehaviour
         }
     }
 
+    public void EquipReturnToInven()
+    {
+        if (smithSlot.GetChild(0) != null)
+        {
+            equip = null;
+
+            smithSlot.GetChild(0).SetParent(inventory);
+            smithSlot.GetChild(0).transform.localPosition = inventory.localPosition;
+            smithSlot.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+
+        }
+    }
+
 
 }

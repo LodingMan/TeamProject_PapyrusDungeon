@@ -41,6 +41,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool isTentOn = false; // shin
 
     public ShopManager shopMgr;
+    public SmithManager smithMgr;
 
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
@@ -76,6 +77,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 StackCount--;
                 isShopOn = false;
                 isSmithOn = false;
+                smithMgr.EquipReturnToInven();
                 shopMgr.isShop = false;
 
             }
