@@ -18,6 +18,7 @@ public class e_CombatManager : MonoBehaviour
 
     public Song.HeroManager heroManager;
     public Song.GuildManager guildManager;
+    public Combat_Event_UI_Manager combat_Event_UI_Manager;
 
     public SkillActiveManager skillActiveManager;
     public Target_Panal_Script enemyTargetScript;
@@ -348,12 +349,15 @@ public class e_CombatManager : MonoBehaviour
 
         GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
         textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
-        
 
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 
         skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
-                                                                                                                                                         //아웃라인 그려주고
+                                                                                                                                                          //아웃라인 그려주고
+
+        combat_Event_UI_Manager.CurrentAttack_Move();
+
+
         skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //스킬의 정보를 띄워줌
                                                                                                         //UI쪽에서 스킬창 띄워주고 드래그&드롭으로 saveSkill에 스킬 파라미터값 넣어줌
 
