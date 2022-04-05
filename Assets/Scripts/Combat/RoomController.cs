@@ -19,6 +19,8 @@ public class RoomController : MonoBehaviour
 
     public bool isFirst = true;
 
+    public List<GameObject> RoomPrefabs = new List<GameObject>();
+
 
 
     public void RoomCheck(int Roomnumber)
@@ -108,5 +110,23 @@ public class RoomController : MonoBehaviour
 
     }
 
+    public IEnumerator RoomPrefabLoad()
+    {
+        
+        yield return new WaitForSeconds(3);
+        RoomPrefabs[1].SetActive(false);
+        RoomPrefabs[2].SetActive(false);
+        RoomPrefabs[0].SetActive(true);
+
+    }
+    public IEnumerator PassagePrefabLoad()
+    {
+        yield return new WaitForSeconds(3);
+        RoomPrefabs[0].SetActive(false);
+        RoomPrefabs[1].SetActive(true);
+        RoomPrefabs[2].SetActive(true);
+
+
+    }
 
 }
