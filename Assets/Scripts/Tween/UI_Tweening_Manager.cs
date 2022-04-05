@@ -154,7 +154,7 @@ public class UI_Tweening_Manager : MonoBehaviour
         UIStack[StackCount] = UI_ChurchWarningPanel_Pos;
         StackCount++;
     }
-    public void UI_ChurchWaringPanel_Off()
+    public void UI_ChurchWarningPanel_Off()
     {
         if (StackCount > 0)
         {

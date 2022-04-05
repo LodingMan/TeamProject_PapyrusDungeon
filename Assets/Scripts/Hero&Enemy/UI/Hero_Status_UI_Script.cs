@@ -16,11 +16,13 @@ namespace Song
         public HeroManager heroManager;
         public Shin.SkillDetailTable skillDetailTable;
         public Shin.EquipDetailTable equipDetailTable;
-        
+        Shin.HeroImageTable heroImageTable;
+        public Image heroIcon;
 
         private void Start()
         {
             uI_Tweening_Manger = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             for (int i = 0; i < Status_Texts.Length; i++)
             {
                 Status_Texts[i] = gameObject.transform.GetChild(i).GetComponent<Text>();
@@ -73,9 +75,30 @@ namespace Song
             {
                 Equips_Icon[i].sprite = equipDetailTable.sprite[Target_Hero.GetComponent<EquipScript>().myEquip[i].Index];
             }
-            //Status_Texts[10].text = "SKILL1 : " + Target_Hero.GetComponent<SkillScript>().skills[0].Name;
-            //Status_Texts[11].text = "SKILL2 : " + Target_Hero.GetComponent<SkillScript>().skills[1].Name;
-            //Status_Texts[12].text = "SKILL3 : " + Target_Hero.GetComponent<SkillScript>().skills[2].Name;
+            switch (Target_Hero.GetComponent<StatScript>().myStat.Job)
+            {
+                case "Babarian":
+                    heroIcon.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroIcon.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroIcon.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroIcon.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroIcon.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroIcon.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
+            
 
         }
 

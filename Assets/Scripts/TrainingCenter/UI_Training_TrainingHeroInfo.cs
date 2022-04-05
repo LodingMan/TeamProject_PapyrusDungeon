@@ -15,7 +15,7 @@ namespace Shin
         Shin.HeroImageTable heroImageTable;
 
         Button btn; // 자기자신버튼
-        public Button btn_ReturnTrain;
+        //public Button btn_ReturnTrain;
         public Image heroIcon;
         public Text heroName;
         public int curWeek;
@@ -26,9 +26,9 @@ namespace Shin
             heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
 
             btn = GetComponent<Button>();
-            btn_ReturnTrain = GameObject.Find("Btn_ReturnTrain").GetComponent<Button>();
+            //btn_ReturnTrain = GameObject.Find("Btn_ReturnTrain").GetComponent<Button>();
             btn.onClick.AddListener(TrainingEnd);
-            btn_ReturnTrain.onClick.AddListener(ForceReturn);
+            //btn_ReturnTrain.onClick.AddListener(ForceReturn);
         }
         // Start is called before the first frame update
         void Start()
@@ -103,7 +103,7 @@ namespace Shin
             {
                 uI_trainingManager.tweenMgr.UI_TrainWarningPanel_On();
                 uI_trainingManager.isWarning = true;
-                Debug.Log("아직 1주 안지났어요");
+                StartCoroutine(WarningPanelOff());
             }
         }
 
@@ -121,6 +121,13 @@ namespace Shin
             uI_trainingManager.tweenMgr.UI_TrainWarningPanel_Off();
             uI_trainingManager.isWarning = false;
             Destroy(gameObject);
+        }
+
+        IEnumerator WarningPanelOff()
+        {
+            yield return new WaitForSeconds(1.5f);
+            uI_trainingManager.tweenMgr.UI_TrainWarningPanel_Off();
+            uI_trainingManager.isWarning = false;
         }
     }
 }
