@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+
 
 public class InGame_Player_Script : MonoBehaviour
 {
@@ -65,6 +67,9 @@ public class InGame_Player_Script : MonoBehaviour
         StartCoroutine(combatCameraControll.MinimapDlay());
 
         combatCameraControll.CameraCurrentPosSet();
+        //복도로 이동
+        StartCoroutine(RC.PassagePrefabLoad());
+
 
     }
 
@@ -77,6 +82,10 @@ public class InGame_Player_Script : MonoBehaviour
         RC.RoomCheck(currentPlayers);
         combatCameraControll.CameraCurrentPosSet();
 
+        //던전으로 바꾸기
+        StartCoroutine(RC.RoomPrefabLoad());
+
+
     }
     public void TurningBack() //룸체크는 인자로 들어온놈을 노란색으로 바꿔주고 Previous를 흰색으로 바꿔줌. 
     {
@@ -87,6 +96,10 @@ public class InGame_Player_Script : MonoBehaviour
         RC.RoomCheck(currentPlayers);
         combatCameraControll.CameraCurrentPosSet();
 
+        //던전으로 바꾸기
+        StartCoroutine(RC.RoomPrefabLoad());
+
+
     }
     public void StartWarp(int roomnumber)
     {
@@ -95,4 +108,5 @@ public class InGame_Player_Script : MonoBehaviour
         combat_Event_UI_Manager.MinimapGuide();
     }
 
+    
 }
