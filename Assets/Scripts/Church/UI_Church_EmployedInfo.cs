@@ -17,6 +17,8 @@ namespace Shin
         public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
         public Text text_Job;
+        public Slider HP_Bar;
+        public Slider MP_Bar;
 
         public Button btn; // 자기 자신의 버튼.
         int num;
