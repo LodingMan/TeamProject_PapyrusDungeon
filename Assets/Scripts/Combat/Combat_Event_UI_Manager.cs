@@ -12,6 +12,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public SkillActiveManager skillActiveManager;
 
     public List<Button> Go_Back_Btn = new List<Button>();
+    public List<Text> SkillInfo_Text = new List<Text>();
+    public List<Image> SKillInfo_Image = new List<Image>();
     public Button MiniMapCommingBtn;
     public Text IngameText;
 
