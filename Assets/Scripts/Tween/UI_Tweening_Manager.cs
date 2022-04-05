@@ -83,6 +83,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
         if (StackCount == 0)
         {
+            UI_BackGroundPanel_On_Off();
             camMove.ReturnToOrigin();
         }
     }
@@ -94,6 +95,7 @@ public class UI_Tweening_Manager : MonoBehaviour
             UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UIStack[StackCount] = UI_guildPanelPos;
             StackCount++;
+            UI_BackGroundPanel_On_Off();
         }
 
         //if(UI_isGuildPanel_On)

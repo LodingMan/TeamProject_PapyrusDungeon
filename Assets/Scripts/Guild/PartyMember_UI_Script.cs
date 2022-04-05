@@ -90,11 +90,20 @@ namespace Song
                         This_Prefab_Object = uI_Central.Catch_Hero_Object;
                         This_Prefab_Object.GetComponent<HeroScript_Current_State>().isParty = true;
                         isParty_Hero_In = true;
-                        gameObject.transform.GetChild(0).GetComponent<Text>().text = "Name : " + This_Prefab_Object.GetComponent<StatScript>().myStat.Name;
+                        gameObject.transform.GetChild(0).GetComponent<Text>().text = This_Prefab_Object.GetComponent<StatScript>().myStat.Name;
                         gameObject.transform.GetChild(1).GetComponent<Text>().text = "Class : " + This_Prefab_Object.GetComponent<StatScript>().myStat.Job;
                         gameObject.transform.GetChild(2).GetComponent<Text>().text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP;
-
+                        
                         guildManager.Party_Hero_Member[int.Parse(gameObject.name)] = This_Prefab_Object;
+                        /*switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
+                        {
+                            case "Porter":
+                                // heroImage.sprite = 0번 이미지
+                                break;
+                            default:
+                                break;
+                        }*/
+                        // 직업을 검사해서 이미지 넣기.
 
                     }
                     else
