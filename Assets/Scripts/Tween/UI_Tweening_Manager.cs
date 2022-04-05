@@ -38,6 +38,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool UI_isStatusPanel_On = false;
     public bool isShopOn = false;
     public bool isSmithOn = false;
+    public bool isInvenOn = false;
     public bool isTentOn = false; // shin
 
     public ShopManager shopMgr;
@@ -77,6 +78,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 StackCount--;
                 isShopOn = false;
                 isSmithOn = false;
+                isInvenOn = false;
                 shopMgr.isShop = false;
                 smithMgr.EquipReturnToInven();
 
@@ -227,9 +229,14 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Inventory_PanelPos_On_Off()
     {
-        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_inventoryPanelPos;
-        StackCount++;
+        if (!isInvenOn)
+        {
+            isInvenOn = true;
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UIStack[StackCount] = UI_inventoryPanelPos;
+            StackCount++;
+        }
+
     }
 
     public void UI_Inventory_Tent_PanelPos_On_Off()
