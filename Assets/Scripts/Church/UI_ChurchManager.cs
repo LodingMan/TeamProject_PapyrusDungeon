@@ -49,7 +49,6 @@ namespace Shin {
                 else
                 {
                     EmployedDestroy_UI();
-                    tweenMgr.UI_BackGroundPanel_On_Off();
                 }
             }
         }

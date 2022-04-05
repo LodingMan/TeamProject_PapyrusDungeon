@@ -12,14 +12,18 @@ namespace Shin
         public StatScript statScript;
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
+        Shin.HeroImageTable heroImageTable;
 
         Button btn; // 자기자신버튼
         public Button btn_ReturnTrain;
+        public Image heroIcon;
+        public Text heroName;
         public int curWeek;
         private void Awake()
         {
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
 
             btn = GetComponent<Button>();
             btn_ReturnTrain = GameObject.Find("Btn_ReturnTrain").GetComponent<Button>();
@@ -50,6 +54,30 @@ namespace Shin
                     skillScript.SkillIndex = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().SkillIndex;
                     skillScript.mySkills = heroManager.CurrentHeroList[i].GetComponent<SkillScript>().mySkills;
                     heroScript_Current_State.isHealing = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining;
+                    heroName.text = statScript.myStat.Name;
+                    switch (statScript.myStat.Job)
+                    {
+                        case "Babarian":
+                            heroIcon.sprite = heroImageTable.sprite[0];
+                            break;
+                        case "Archer":
+                            heroIcon.sprite = heroImageTable.sprite[1];
+                            break;
+                        case "Knight":
+                            heroIcon.sprite = heroImageTable.sprite[2];
+                            break;
+                        case "Barristan":
+                            heroIcon.sprite = heroImageTable.sprite[3];
+                            break;
+                        case "Mage":
+                            heroIcon.sprite = heroImageTable.sprite[4];
+                            break;
+                        case "Porter":
+                            heroIcon.sprite = heroImageTable.sprite[5];
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
