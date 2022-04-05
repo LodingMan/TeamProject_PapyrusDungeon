@@ -24,6 +24,8 @@ public class CombatCameraControll : MonoBehaviour
 
     public bool isMiniMapOn = false;
 
+    public bool isFirst = true;
+
 
     private void Update()
     {
@@ -76,6 +78,12 @@ public class CombatCameraControll : MonoBehaviour
             }
 
         }
+        if(!isFirst)
+        {
+            BlackFade_In();
+            Debug.Log("error");
+        }
+        isFirst = false;
         // MinimapCamera.transform = roomController.RoomList[inGame_Player_Script.currentPlayers]
     }
 
@@ -107,15 +115,31 @@ public class CombatCameraControll : MonoBehaviour
     public void BlackFade_Out() //전투시작 눌렀을때 로딩하는것처럼 보이게 하기
     {
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
-        StartCoroutine(FadeDlay());
+        LoadingPanal.color = Color.black;
+        StartCoroutine(FadeOutDlay());
     }
-    IEnumerator FadeDlay() //위를 하기 위한 코루틴
+
+    public void BlackFade_In()
+    {
+        StartCoroutine(FadeInDlay());
+    }
+    IEnumerator FadeOutDlay() //위를 하기 위한 코루틴
     {
         yield return new WaitForSeconds(4);
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 7);
         yield return new WaitForSeconds(5);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
         LoadingPanal.color = Color.black;
+    }
+    IEnumerator FadeInDlay()
+    {
+        LoadingPanal.color = new Color(0, 0, 0, 0);
+        LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
+        LoadingPanal.DOColor(Color.black, 2);
+        yield return new WaitForSeconds(5);
+        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 2);
+        yield return new WaitForSeconds(3);
+        LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
 
 
     }
