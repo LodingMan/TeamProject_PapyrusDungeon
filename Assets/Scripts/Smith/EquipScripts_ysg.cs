@@ -125,12 +125,12 @@ public class EquipScripts_ysg : MonoBehaviour
                 EquipParamInit();
 
                 break;
-            case "Braser1(Clone)":
+            case "Armor3(Clone)":
                 equipIndex = 15;
                 EquipParamInit();
 
                 break;
-            case "Braser2(Clone)":
+            case "Armor4(Clone)":
                 equipIndex = 16;
                 EquipParamInit();
 
@@ -145,7 +145,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 EquipParamInit();
 
                 break;
-            case "Glove3(Clone)":
+            case "Armor5(Clone)":
                 equipIndex = 19;
                 EquipParamInit();
 
