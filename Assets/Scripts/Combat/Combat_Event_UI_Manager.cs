@@ -13,6 +13,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public List<Button> Go_Back_Btn = new List<Button>();
     public Button MiniMapCommingBtn;
     public Text IngameText;
+
+    public Button[] Yes_No_Button = new Button[2];
     bool isMiniMapOn = false;
 
 

@@ -74,22 +74,8 @@ public class RoomController : MonoBehaviour
                     }
                     else
                     {
-                        switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram) //복도이벤트
-                        {
-                            case 0:
-
-                            case 1:
-
-                            case 2:
-                            case 3:
-                            case 4:
-                                room_Passage_Event.Passage_HpDown_Event();
-                                break;
-                            default:
-                                break;
-                        }
-
-                        combat_Event_UI_Manager.Go_Back_On(); //이벤트가 끝나고 나타나야됨.  가급적이면 
+                        StartCoroutine(PassageEventDlay(RoomList[i]));
+                        
                     }
                 }
 
@@ -125,8 +111,31 @@ public class RoomController : MonoBehaviour
         RoomPrefabs[0].SetActive(false);
         RoomPrefabs[1].SetActive(true);
         RoomPrefabs[2].SetActive(true);
+    }
 
+    public IEnumerator PassageEventDlay(GameObject Room)
+    {
+
+        yield return new WaitForSeconds(5);
+        //그냥 여기서 코루틴 부르고 코루틴 안에서 이벤트 처리하는게 나을듯
+        switch (Room.GetComponent<RoomScript>().DungeonEventPram) //복도이벤트
+        {
+            case 0:
+
+            case 1:
+
+            case 2:
+            case 3:
+            case 4:
+                room_Passage_Event.Passage_HpDown_Event();
+                break;
+            default:
+                break;
+        }
+
+        combat_Event_UI_Manager.Go_Back_On(); //이벤트가 끝나고 나타나야됨.  가급적이면 
 
     }
+
 
 }
