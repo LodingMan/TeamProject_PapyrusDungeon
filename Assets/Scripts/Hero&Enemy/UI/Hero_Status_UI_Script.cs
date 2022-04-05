@@ -54,7 +54,7 @@ namespace Song
             This_Prefab_Object = Target_Hero;
 
             Status_Texts[0].text = Target_Hero.GetComponent<StatScript>().myStat.Name;
-            Status_Texts[1].text = "Class : " + Target_Hero.GetComponent<StatScript>().myStat.Job;
+            Status_Texts[1].text = Target_Hero.GetComponent<StatScript>().myStat.Job;
             Status_Texts[2].text = "HP : " + Target_Hero.GetComponent<StatScript>().myStat.HP + "/" + Target_Hero.GetComponent<StatScript>().myStat.MAXHP;
             Status_Texts[3].text = "MP : " + Target_Hero.GetComponent<StatScript>().myStat.MP + "/" + Target_Hero.GetComponent<StatScript>().myStat.MAXMP;
             Status_Texts[4].text = "ATK : " + Target_Hero.GetComponent<StatScript>().myStat.Atk;
