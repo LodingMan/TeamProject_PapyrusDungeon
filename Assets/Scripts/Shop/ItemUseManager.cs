@@ -15,6 +15,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Equip[] equips = new Equip[2];
     public skill[] mySkills = new skill[3];
     public int partyNum = -1;
+    public string herojob;
     public string heroName; //현재 선택된 오브젝트의 이름
     public bool isActive = false; // 중복 클릭 방지를 위한 bool값 입니다.
     public bool alreadySelect = false;

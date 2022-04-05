@@ -45,7 +45,7 @@ public class SmithManager : MonoBehaviour
             upgradeChance = 100;
             isSlotFull = false;
             GameObject smithEquip = smithSlot.GetChild(0).gameObject;
-            equip.Lv = smithEquip.GetComponent<EquipScripts_ysg>().equip.Lv;
+            equip = smithEquip.GetComponent<EquipScripts_ysg>().equip;
             int rnd = Random.Range(0, 100);
             upgradeChance -= equip.Lv * 10;
             if (upgradeChance < 0)
@@ -55,16 +55,30 @@ public class SmithManager : MonoBehaviour
             if (rnd < upgradeChance)
             {
                 equip.Lv++;
+                equip.Hp = (equip.Hp * 1) + equip.Lv + 1;
+                equip.Mp = (equip.Mp * 1) + equip.Lv + 1;
+                equip.Atk = (equip.Atk * 1) + equip.Lv + 1;
+                equip.Def = (equip.Def * 1) + equip.Lv + 1;
+                equip.Cri = (equip.Cri * 1) + equip.Lv + 1;
+                equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
                 Debug.Log("강화 성공! 레벨: "+ equip.Lv +",확률 :" + upgradeChance + "%");
 
             }
             else
             {
+                Equip smithEquipOriginStats = smithEquip.GetComponent<EquipTable>().initEquip[equip.Index];
                 equip.Lv = 1;
+                equip.Hp = smithEquipOriginStats.Hp;
+                equip.Mp = smithEquipOriginStats.Mp;
+                equip.Atk = smithEquipOriginStats.Atk;
+                equip.Def = smithEquipOriginStats.Def;
+                equip.Cri = smithEquipOriginStats.Cri;
+                equip.Acc = smithEquipOriginStats.Acc;
+
                 Debug.Log("강화 실패! 레벨: " + equip.Lv + ",확률 :" + upgradeChance +"%");
             }
-            smithEquip.GetComponent<EquipScripts_ysg>().equip.Lv = equip.Lv;
-            smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip.Lv = equip.Lv;
+            smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
+            smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
             smithEquip.GetComponent<EquipDataSave>().SaveEquip();
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;

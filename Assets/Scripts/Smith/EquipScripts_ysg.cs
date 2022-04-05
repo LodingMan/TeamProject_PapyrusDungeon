@@ -52,9 +52,132 @@ public class EquipScripts_ysg : MonoBehaviour
                 EquipParamInit();
 
                 break;
+            case "Axe(Clone)":
+                equipIndex = 1;
+                EquipParamInit();
+
+                break;
+            case "Bow(Clone)":
+                equipIndex = 2;
+                EquipParamInit();
+
+                break;
+            case "Knife(Clone)":
+                equipIndex = 3;
+                EquipParamInit();
+
+                break;
+            case "PoleAxe(Clone)":
+                equipIndex = 4;
+                EquipParamInit();
+
+                break;
+            case "Saber(Clone)":
+                equipIndex = 5;
+                EquipParamInit();
+
+                break;
+            case "Wand(Clone)":
+                equipIndex = 6;
+                EquipParamInit();
+
+                break;
+
+            case "Amulet1(Clone)":
+                equipIndex = 7;
+                EquipParamInit();
+
+                break;
+            case "Amulet2(Clone)":
+                equipIndex = 8;
+                EquipParamInit();
+
+                break;
+            case "Amulet3(Clone)":
+                equipIndex = 9;
+                EquipParamInit();
+
+                break;
+            case "Armor1(Clone)":
+                equipIndex = 10;
+                EquipParamInit();
+
+                break;
+            case "Armor2(Clone)":
+                equipIndex = 11;
+                EquipParamInit();
+
+                break;
+
+            case "Boot1(Clone)":
+                equipIndex = 12;
+                EquipParamInit();
+
+                break;
+            case "Boot2(Clone)":
+                equipIndex = 13;
+                EquipParamInit();
+
+                break;
+
+            case "Boot3(Clone)":
+                equipIndex = 14;
+                EquipParamInit();
+
+                break;
+            case "Braser1(Clone)":
+                equipIndex = 15;
+                EquipParamInit();
+
+                break;
+            case "Braser2(Clone)":
+                equipIndex = 16;
+                EquipParamInit();
+
+                break;
+            case "Glove1(Clone)":
+                equipIndex = 17;
+                EquipParamInit();
+
+                break;
+            case "Glove2(Clone)":
+                equipIndex = 18;
+                EquipParamInit();
+
+                break;
+            case "Glove3(Clone)":
+                equipIndex = 19;
+                EquipParamInit();
+
+                break;
+            case "Helmet1(Clone)":
+                equipIndex = 20;
+                EquipParamInit();
+
+                break;
+            case "Helmet2(Clone)":
+                equipIndex = 21;
+                EquipParamInit();
+
+                break;
+            case "Helmet3(Clone)":
+                equipIndex = 22;
+                EquipParamInit();
+
+                break;
+            case "Ring1(Clone)":
+                equipIndex = 23;
+                EquipParamInit();
+
+                break;
+            case "Ring2(Clone)":
+                equipIndex = 24;
+                EquipParamInit();
+
+                break;
 
             case "Shield(Clone)":
-                equipIndex = 1;
+                equipIndex = 25;
                 EquipParamInit();
 
                 break;
@@ -68,9 +191,14 @@ public class EquipScripts_ysg : MonoBehaviour
         {
             equip.Index = equipTable.initEquip[equipIndex].Index;
             equip.Name = equipTable.initEquip[equipIndex].Name;
+            equip.Job = equipTable.initEquip[equipIndex].Job;
             equip.Lv = equipTable.initEquip[equipIndex].Lv;
+            equip.Hp = equipTable.initEquip[equipIndex].Hp;
+            equip.Mp = equipTable.initEquip[equipIndex].Mp;
             equip.Atk = equipTable.initEquip[equipIndex].Atk;
             equip.Def = equipTable.initEquip[equipIndex].Def;
+            equip.Cri = equipTable.initEquip[equipIndex].Cri;
+            equip.Acc = equipTable.initEquip[equipIndex].Acc;
             equip.Cost = equipTable.initEquip[equipIndex].Cost;
         }
         gameObject.name = equip.Name;
@@ -167,15 +295,20 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (itemUseManager.isActive) // 영웅이 선택 되었다면 실행합니다.
         {
-            if (itemUseManager.equips[0].Name == "" && !isEquip)
+            if (itemUseManager.equips[0].Name == "" && !isEquip && itemUseManager.stats.Job == equip.Job)
             {
                 isEquip = true;
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[0].Index = equip.Index;
                 itemUseManager.equips[0].Name = equip.Name;
+                itemUseManager.equips[0].Job = equip.Job;
                 itemUseManager.equips[0].Lv = equip.Lv;
+                itemUseManager.equips[0].Hp = equip.Hp;
+                itemUseManager.equips[0].Mp = equip.Mp;
                 itemUseManager.equips[0].Atk += equip.Atk;
                 itemUseManager.equips[0].Def += equip.Def;
+                itemUseManager.equips[0].Cri += equip.Cri;
+                itemUseManager.equips[0].Acc += equip.Acc;
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
                 equipBtn.gameObject.SetActive(false);
             }
@@ -193,9 +326,14 @@ public class EquipScripts_ysg : MonoBehaviour
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[1].Index = equip.Index;
                 itemUseManager.equips[1].Name = equip.Name;
+                itemUseManager.equips[1].Job = equip.Job;
                 itemUseManager.equips[1].Lv = equip.Lv;
+                itemUseManager.equips[1].Hp = equip.Hp;
+                itemUseManager.equips[1].Mp = equip.Mp;
                 itemUseManager.equips[1].Atk += equip.Atk;
                 itemUseManager.equips[1].Def += equip.Def;
+                itemUseManager.equips[1].Cri += equip.Cri;
+                itemUseManager.equips[1].Acc += equip.Acc;
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
                 equipBtn.gameObject.SetActive(false);
             }
@@ -213,9 +351,15 @@ public class EquipScripts_ysg : MonoBehaviour
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[0].Index = -1;
                 itemUseManager.equips[0].Name = null;
+                itemUseManager.equips[0].Job = null;
                 itemUseManager.equips[0].Lv = 0;
-                itemUseManager.equips[0].Atk -= equip.Atk;
-                itemUseManager.equips[0].Def -= equip.Def;
+                itemUseManager.equips[0].Hp = 0;
+                itemUseManager.equips[0].Mp = 0;
+                itemUseManager.equips[0].Atk = 0;
+                itemUseManager.equips[0].Def = 0;
+                itemUseManager.equips[0].Cri = 0;
+                itemUseManager.equips[0].Acc = 0;
+
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
                 equipBtn.gameObject.SetActive(false);
             }
@@ -234,9 +378,14 @@ public class EquipScripts_ysg : MonoBehaviour
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[1].Index = -1;
                 itemUseManager.equips[1].Name = null;
+                itemUseManager.equips[1].Job = null;
                 itemUseManager.equips[1].Lv = 0;
-                itemUseManager.equips[1].Atk -= equip.Atk;
-                itemUseManager.equips[1].Def -= equip.Def;
+                itemUseManager.equips[1].Hp = 0;
+                itemUseManager.equips[1].Mp = 0;
+                itemUseManager.equips[1].Atk = 0;
+                itemUseManager.equips[1].Def = 0;
+                itemUseManager.equips[1].Cri = 0;
+                itemUseManager.equips[1].Acc = 0;
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
                 equipBtn.gameObject.SetActive(false);
             }
@@ -252,9 +401,15 @@ public class EquipScripts_ysg : MonoBehaviour
                 smithManager.isSlotFull = true;
                 smithManager.equip.Index = equip.Index;
                 smithManager.equip.Name = equip.Name;
+                smithManager.equip.Job = equip.Job;
                 smithManager.equip.Lv = equip.Lv;
+                smithManager.equip.Hp = equip.Hp;
+                smithManager.equip.Mp = equip.Mp;
                 smithManager.equip.Atk = equip.Atk;
                 smithManager.equip.Def = equip.Def;
+                smithManager.equip.Cri = equip.Cri;
+                smithManager.equip.Acc = equip.Acc;
+
 
                 gameObject.transform.SetParent(smithSlot);
                 gameObject.transform.localPosition = smithSlot.localPosition;
