@@ -83,14 +83,18 @@ public class SmithManager : MonoBehaviour
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
             smithEquip.transform.localScale = new Vector3(1, 1, 1);
+
             if (shopManager.hasEquipList.Contains(smithEquip))
             {
                 shopManager.hasEquipList.Remove(smithEquip);
                 shopManager.hasEquipList.Add(smithEquip);
+
             }
             else
             {
                 shopManager.hasEquipList.Add(smithEquip);
+
+
             }
 
             
@@ -101,15 +105,16 @@ public class SmithManager : MonoBehaviour
 
     public void EquipReturnToInven()
     {
-        if (smithSlot.GetChild(0) != null)
+        if (isSlotFull)
         {
-            equip = null;
-
-            smithSlot.GetChild(0).SetParent(inventory);
-            smithSlot.GetChild(0).transform.localPosition = inventory.localPosition;
-            smithSlot.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+            GameObject smithEquip = smithSlot.GetChild(0).gameObject;
+            smithEquip.transform.SetParent(inventory);
+            smithEquip.transform.localPosition = inventory.localPosition;
+            smithEquip.transform.localScale = new Vector3(1, 1, 1);
 
         }
+        isSlotFull = false;
+        isActive = false;
     }
 
 

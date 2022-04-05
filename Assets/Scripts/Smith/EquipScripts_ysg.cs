@@ -626,8 +626,6 @@ public class EquipScripts_ysg : MonoBehaviour
                 smithManager.equip.Def = equip.Def;
                 smithManager.equip.Cri = equip.Cri;
                 smithManager.equip.Acc = equip.Acc;
-
-
                 gameObject.transform.SetParent(smithSlot);
                 gameObject.transform.localPosition = smithSlot.localPosition;
                 gameObject.transform.localScale = smithSlot.localScale;
@@ -635,6 +633,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 equipBtn.gameObject.SetActive(false);
             
         }
+
 
 
     }
