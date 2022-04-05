@@ -96,18 +96,28 @@ public class Equip
 {
     public int Index;
     public string Name;
+    public string Job;
     public int Lv;
+    public int Hp;
+    public int Mp;
     public int Atk;
     public int Def;
+    public int Cri;
+    public int Acc;
     public int Cost;
 
-    public Equip(int index, string name, int lv, int atk, int def, int cost)
+    public Equip(int index, string name, string job, int lv, int hp, int mp, int atk, int def, int cri, int acc, int cost)
     {
         Index = index;
         Name = name;
+        Job = job;
         Lv = lv;
+        Hp = hp;
+        Mp = mp;
         Atk = atk;
         Def = def;
+        Cri = cri;
+        Acc = acc;
         Cost = cost;
     }
 }
