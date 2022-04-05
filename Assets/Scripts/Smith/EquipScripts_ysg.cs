@@ -393,6 +393,79 @@ public class EquipScripts_ysg : MonoBehaviour
                 case 1:
                     UpgradeEquips();
                     break;
+                case 2:
+                    UpgradeEquips();
+                    break;
+                case 3:
+                    UpgradeEquips();
+                    break;
+                case 4:
+                    UpgradeEquips();
+                    break;
+                case 5:
+                    UpgradeEquips();
+                    break;
+                case 6:
+                    UpgradeEquips();
+                    break;
+                case 7:
+                    UpgradeEquips();
+                    break;
+                case 8:
+                    UpgradeEquips();
+                    break;
+                case 9:
+                    UpgradeEquips();
+                    break;
+                case 10:
+                    UpgradeEquips();
+                    break;
+                case 11:
+                    UpgradeEquips();
+                    break;
+                case 12:
+                    UpgradeEquips();
+                    break;
+                case 13:
+                    UpgradeEquips();
+                    break;
+                case 14:
+                    UpgradeEquips();
+                    break;
+                case 15:
+                    UpgradeEquips();
+                    break;
+                case 16:
+                    UpgradeEquips();
+                    break;
+                case 17:
+                    UpgradeEquips();
+                    break;
+                case 18:
+                    UpgradeEquips();
+                    break;
+                case 19:
+                    UpgradeEquips();
+                    break;
+                case 20:
+                    UpgradeEquips();
+                    break;
+                case 21:
+                    UpgradeEquips();
+                    break;
+                case 22:
+                    UpgradeEquips();
+                    break;
+                case 23:
+                    UpgradeEquips();
+                    break;
+                case 24:
+                    UpgradeEquips();
+                    break;
+                case 25:
+                    UpgradeEquips();
+                    break;
+
                 default:
                     break;
             }
