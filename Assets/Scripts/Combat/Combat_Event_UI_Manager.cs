@@ -9,6 +9,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public e_CombatManager combatManager;
     public InGame_Player_Script inGame_Player_Script;
     public CombatCameraControll combatCameraControll;
+    public SkillActiveManager skillActiveManager;
 
     public List<Button> Go_Back_Btn = new List<Button>();
     public Button MiniMapCommingBtn;
@@ -17,6 +18,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public Button[] Yes_No_Button = new Button[2];
     bool isMiniMapOn = false;
     public GameObject EventUIPanal;
+
+    public Image Current_Attack_Unit;
 
 
 
@@ -56,4 +59,12 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         IngameText.text = "";
     }
 
+    public void CurrentAttack_Move()
+    {
+        Current_Attack_Unit.rectTransform.anchoredPosition = skillActiveManager.GetComponent<Image>().rectTransform.anchoredPosition + new Vector2(0, 160);
+
+        Current_Attack_Unit.gameObject.SetActive(true);
+        Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
+
+    }
 }

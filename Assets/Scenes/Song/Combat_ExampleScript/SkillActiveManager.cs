@@ -16,6 +16,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     public e_CombatManager combatManager;
     public Target_Panal_Script enemyTargetScript;
 
+
     public Image SkillImage;
     public Text[] SkillText = new Text[4]; // 테스트용 변수다. 이미지로 대체해야됨 
     public List<GameObject> Childs;
