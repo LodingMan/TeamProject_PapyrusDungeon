@@ -17,6 +17,8 @@ namespace Shin
         public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
         public Text text_Job;
+        public Slider HP_Bar;
+        public Slider MP_Bar;
 
         public Button btn; // 자기 자신의 버튼.
         int num;
@@ -35,6 +37,7 @@ namespace Shin
             twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+            
             // 초기화
             curWeek = twMgr.Week;
 
@@ -48,6 +51,8 @@ namespace Shin
 
             text_Name.text = statScript.myStat.Name;
             text_Job.text = statScript.myStat.Job;
+            HP_Bar.value = (float)statScript.myStat.HP / (float)statScript.myStat.MAXHP;
+            MP_Bar.value = (float)statScript.myStat.MP / (float)statScript.myStat.MAXMP;
 
         }
 
