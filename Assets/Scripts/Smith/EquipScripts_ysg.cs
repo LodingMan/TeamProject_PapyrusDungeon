@@ -40,6 +40,8 @@ public class EquipScripts_ysg : MonoBehaviour
         equipBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
         dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+
+
         itemData.hasEquipList.Add(gameObject);
 
 
@@ -62,6 +64,15 @@ public class EquipScripts_ysg : MonoBehaviour
     }
     public void EquipParamInit() //EquipTable에 있는 정보를 가져옵니다. 정보는 equipIndex에 있는 Index를 기반으로 가져옵니다.
     {
+        if (equip.Name == "")
+        {
+            equip.Index = equipTable.initEquip[equipIndex].Index;
+            equip.Name = equipTable.initEquip[equipIndex].Name;
+            equip.Lv = equipTable.initEquip[equipIndex].Lv;
+            equip.Atk = equipTable.initEquip[equipIndex].Atk;
+            equip.Def = equipTable.initEquip[equipIndex].Def;
+            equip.Cost = equipTable.initEquip[equipIndex].Cost;
+        }
         gameObject.name = equip.Name;
         equip.Cost = equipTable.initEquip[equipIndex].Cost;
     }

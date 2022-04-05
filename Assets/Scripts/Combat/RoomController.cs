@@ -88,11 +88,7 @@ public class RoomController : MonoBehaviour
                         }
 
                         combat_Event_UI_Manager.Go_Back_On(); //이벤트가 끝나고 나타나야됨.  가급적이면 
-
-
                     }
-
-
                 }
 
                 isFirst = false;
@@ -105,7 +101,7 @@ public class RoomController : MonoBehaviour
 
     IEnumerator BattleDlay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(11);
         combatManager.EnemyInit();
 
         combat_Event_UI_Manager.BattleStart();
