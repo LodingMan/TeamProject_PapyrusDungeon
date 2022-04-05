@@ -21,7 +21,6 @@ namespace Shin
         public Button training_Start;
 
         public Text heroName;
-        public Text heroJob;
         public Image heroImage;
 
         public Image detail_Image;
@@ -52,8 +51,7 @@ namespace Shin
             equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             heroName = transform.GetChild(0).GetComponent<Text>();
-            heroJob = transform.GetChild(1).GetComponent<Text>();
-            heroImage = transform.GetChild(2).GetComponent<Image>();
+            heroImage = transform.GetChild(1).GetComponent<Image>();
 
             gameObject.SetActive(false);
             
@@ -84,7 +82,6 @@ namespace Shin
                 }
             }
             heroName.text = statScript.myStat.Name;
-            heroJob.text = statScript.myStat.Job;
 
             IndexInit();
         }
@@ -116,7 +113,7 @@ namespace Shin
                 Skill_Btn[i].name = skillScript.mySkills[i].Index.ToString();
                 Skill_Btn[i].image.sprite = skillDetailTable.sprite[skillScript.mySkills[i].Index];
             }
-            switch (heroJob.text)
+            switch (statScript.myStat.Job)
             {
                 case "Babarian":
                     heroImage.sprite = heroImageTable.sprite[0];
