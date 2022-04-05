@@ -81,7 +81,6 @@ public class CombatCameraControll : MonoBehaviour
         if(!isFirst)
         {
             BlackFade_In();
-            Debug.Log("error");
         }
         isFirst = false;
         // MinimapCamera.transform = roomController.RoomList[inGame_Player_Script.currentPlayers]
