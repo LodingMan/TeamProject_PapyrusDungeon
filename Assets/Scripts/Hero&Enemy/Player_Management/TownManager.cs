@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Newtonsoft.Json;
 
 public class TownManager : MonoBehaviour
@@ -17,6 +18,15 @@ public class TownManager : MonoBehaviour
     public List<GameObject> OnControll = new List<GameObject>(); 
 
     public List<GameObject> OffControll = new List<GameObject>();
+
+    public Text text_Week;
+    public Text text_Gold;
+    public Text text_Jewel;
+    public void Update()
+    {
+        text_Week.text = Week + " 주차";
+        text_Gold.text = Gold.ToString();
+    }
     public void NextWeek() // 전투 종료 , 처음 게임 시작 등의 이유로 플레이어의 진행도가 다음주로 넘어감.
                            // 해당 함수가 실행 되었을때 HeroManager에서 임의의 수만큼 Hero를 랜덤으로 생성하는데 
                            // 생성되는 수는 HeroManager에 선언되어있는 guildManager의 oneDayCreateHeroCount 변수를 참조한다.
