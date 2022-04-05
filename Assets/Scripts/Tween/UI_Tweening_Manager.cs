@@ -79,6 +79,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 isSmithOn = false;
                 //smithMgr.EquipReturnToInven();
                 shopMgr.isShop = false;
+                smithMgr.EquipReturnToInven();
 
             }
         }
