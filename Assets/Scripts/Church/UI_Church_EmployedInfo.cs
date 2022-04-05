@@ -46,8 +46,8 @@ namespace Shin
                 }
             }
 
-            text_Name.text = "이름 : " + statScript.myStat.Name;
-            text_Job.text = "직업 : " + statScript.myStat.Job;
+            text_Name.text = statScript.myStat.Name;
+            text_Job.text = statScript.myStat.Job;
 
         }
 

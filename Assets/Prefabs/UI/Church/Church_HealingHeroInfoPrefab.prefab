@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC774\uB984 : "
+  m_Text: "\uC774\uB984"
 --- !u!1 &6375537933230837357
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC9C1\uC5C5 : "
+  m_Text: "\uC9C1\uC5C5"
 --- !u!1 &6375537934540642707
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,11 +295,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2079af0f4791f1641bc4d57cb3e8f499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  townManager: {fileID: 0}
   statScript: {fileID: 0}
   heroScript_Current_State: {fileID: 0}
   text_Name: {fileID: 6375537932930849968}
   text_Job: {fileID: 6375537933230837347}
   btn: {fileID: 0}
+  curWeek: 0
+  btn_ReturnChurch: {fileID: 0}
 --- !u!114 &-7065470010307888517
 MonoBehaviour:
   m_ObjectHideFlags: 0
