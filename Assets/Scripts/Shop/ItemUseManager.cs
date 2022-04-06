@@ -27,8 +27,11 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     // Shin
     public Shin.SkillDetailTable skillDetailTable;
     public Shin.EquipDetailTable equipDetailTable;
+    public Shin.HeroImageTable heroImageTable;
     public Image[] equips_icon;
     public Image[] skills_icon;
+    public GameObject heroStat;
+    
 
     private void Start()
     {
@@ -137,10 +140,38 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         equips = hit.transform.gameObject.GetComponent<EquipScript>().myEquip;
                         mySkills = hit.transform.gameObject.GetComponent<SkillScript>().mySkills; // Shin
                         outline = hit.transform.gameObject.GetComponent<quick_outline.quick_outline>();
-                        outline.enabled = true;                        
+                        outline.enabled = true;
                         Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
                         InitEquip();
 
+                        heroStat.name = stats.Name;
+                        heroStat.transform.GetChild(0).name = stats.Job;
+                        switch (stats.Job) {
+                            case "Babarian":
+                                heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[0];
+                                break;
+                            case "Archer":
+                                heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[1];
+                                break;
+                            case "Knight":
+                                heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[2];
+                                break;
+                            case "Barristan":
+                                heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[3];
+                                break;
+                            case "Mage":
+                                heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[4];
+                                break;
+                            case "Porter":
+                                heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[5];
+                                break;
+                            default:
+                                break;
+                        
+                        }
+
+                    
+                        //heroStat.transform.GetChild(0).GetComponent<Image>().sprite;
                         twMgr.UI_HeroStat_Tent_PanelPos_On_Off(); // Shin. 여기에 Tent_HeroPanel을 tween하도록.
                         //heroname을 이용하여 UI값들 설정. Shin.  
                     }
