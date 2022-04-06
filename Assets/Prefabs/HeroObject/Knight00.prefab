@@ -217,15 +217,25 @@ MonoBehaviour:
   myEquip:
   - Index: 0
     Name: 
+    Job: 
     Lv: 0
+    Hp: 0
+    Mp: 0
     Atk: 0
     Def: 0
+    Cri: 0
+    Acc: 0
     Cost: 0
   - Index: 0
     Name: 
+    Job: 
     Lv: 0
+    Hp: 0
+    Mp: 0
     Atk: 0
     Def: 0
+    Cri: 0
+    Acc: 0
     Cost: 0
 --- !u!114 &1104360322990537209
 MonoBehaviour:
@@ -335,6 +345,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 547463367457261639}
     m_Modifications:
+    - target: {fileID: 746211592785989818, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5826b9020e9c49545a000805a9bfba44, type: 2}
     - target: {fileID: 746211592795382558, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
       propertyPath: m_Name
       value: _Knight00

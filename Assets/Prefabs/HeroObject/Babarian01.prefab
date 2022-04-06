@@ -217,15 +217,25 @@ MonoBehaviour:
   myEquip:
   - Index: 0
     Name: 
+    Job: 
     Lv: 0
+    Hp: 0
+    Mp: 0
     Atk: 0
     Def: 0
+    Cri: 0
+    Acc: 0
     Cost: 0
   - Index: 0
     Name: 
+    Job: 
     Lv: 0
+    Hp: 0
+    Mp: 0
     Atk: 0
     Def: 0
+    Cri: 0
+    Acc: 0
     Cost: 0
 --- !u!114 &1104360322990537209
 MonoBehaviour:
@@ -383,6 +393,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6753903744560390915, guid: c176ddcf62bde4a4bb9524e117f1ae3c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fc64afd1e7cefde48866fb22f88899be, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c176ddcf62bde4a4bb9524e117f1ae3c, type: 3}
 --- !u!4 &2687873504106926583 stripped
