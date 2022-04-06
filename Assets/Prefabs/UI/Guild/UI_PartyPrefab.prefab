@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a04babfe69fe91647a9be0950ef851e6, type: 3}
     m_FontSize: 76
     m_FontStyle: 1
     m_BestFit: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a04babfe69fe91647a9be0950ef851e6, type: 3}
     m_FontSize: 76
     m_FontStyle: 1
     m_BestFit: 0
@@ -315,6 +315,8 @@ MonoBehaviour:
   This_Prefab_Object: {fileID: 0}
   guildManager: {fileID: 0}
   uI_Central: {fileID: 0}
+  heroImageTable: {fileID: 0}
+  heroIcon: {fileID: 0}
   isParty_Hero_In: 0
   isPointerDown: 0
   downTime: 0
@@ -384,7 +386,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a04babfe69fe91647a9be0950ef851e6, type: 3}
     m_FontSize: 76
     m_FontStyle: 1
     m_BestFit: 0
