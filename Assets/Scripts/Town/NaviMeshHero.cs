@@ -19,7 +19,7 @@ namespace Shin
         public Animator anim;
         public enum HEROSTATE
         {
-            IDLE = 0,
+            IDLE = 998,
             WALK
         }public HEROSTATE herostate = HEROSTATE.IDLE;
         void Start()
