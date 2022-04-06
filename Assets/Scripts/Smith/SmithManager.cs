@@ -10,6 +10,7 @@ public class SmithManager : MonoBehaviour
     public Equip equip;
     public Transform smithSlot;
     public Transform inventory;
+    public int equipIndex;
 
     public int upgradeChance = 100;
     public ShopManager shopManager;
@@ -46,6 +47,7 @@ public class SmithManager : MonoBehaviour
             isSlotFull = false;
             GameObject smithEquip = smithSlot.GetChild(0).gameObject;
             equip = smithEquip.GetComponent<EquipScripts_ysg>().equip;
+            equipIndex = equip.Index;
             int rnd = Random.Range(0, 100);
             upgradeChance -= equip.Lv * 10;
             if (upgradeChance < 0)
@@ -66,7 +68,7 @@ public class SmithManager : MonoBehaviour
             }
             else
             {
-                Equip smithEquipOriginStats = smithEquip.GetComponent<EquipTable>().initEquip[equip.Index];
+                Equip smithEquipOriginStats = smithEquip.GetComponent<EquipScripts_ysg>().equipTable.initEquip[equipIndex];
                 equip.Lv = 1;
                 equip.Hp = smithEquipOriginStats.Hp;
                 equip.Mp = smithEquipOriginStats.Mp;
@@ -74,6 +76,7 @@ public class SmithManager : MonoBehaviour
                 equip.Def = smithEquipOriginStats.Def;
                 equip.Cri = smithEquipOriginStats.Cri;
                 equip.Acc = smithEquipOriginStats.Acc;
+                equip.Cost = smithEquipOriginStats.Cost;
 
                 Debug.Log("강화 실패! 레벨: " + equip.Lv + ",확률 :" + upgradeChance +"%");
             }
@@ -89,10 +92,12 @@ public class SmithManager : MonoBehaviour
                 shopManager.hasEquipList.Remove(smithEquip);
                 shopManager.hasEquipList.Add(smithEquip);
 
+
             }
             else
             {
                 shopManager.hasEquipList.Add(smithEquip);
+
 
 
             }

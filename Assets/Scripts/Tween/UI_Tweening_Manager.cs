@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 //==================================================================================================//
 //UI�� �������� Tween���� ��Ʈ�� �Ҷ� TweenManager������Ʈ�� �� ������Ʈ�� �ְ� ���� (Stage �������� ���)//
@@ -36,10 +33,9 @@ public class UI_Tweening_Manager : MonoBehaviour
     //bool UI_isInventoryPanel_On = false;
     //bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
-    public bool isShopOn = false;
-    public bool isSmithOn = false;
-    public bool isInvenOn = false;
     public bool isTentOn = false; // shin
+    public bool isShopOn = false;
+    public bool isSmith = false;
 
     public ShopManager shopMgr;
     public SmithManager smithMgr;
@@ -62,7 +58,13 @@ public class UI_Tweening_Manager : MonoBehaviour
                 StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
                 // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
             }
-            StackCountFun(); 
+            if (isShopOn || isSmith)
+            {
+                isShopOn = false;
+                isSmith = false;
+                UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+            }
+            StackCountFun();
 
         }
     }
@@ -77,10 +79,6 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1] = null;
                 StackCount--;
                 isShopOn = false;
-                isSmithOn = false;
-                isInvenOn = false;
-                //smithMgr.EquipReturnToInven();
-                shopMgr.isShop = false;
                 smithMgr.EquipReturnToInven();
 
             }
@@ -88,20 +86,22 @@ public class UI_Tweening_Manager : MonoBehaviour
 
         if (StackCount == 0)
         {
-            UI_BackGroundPanel_On_Off();
+            if (!UI_isBackground_On) // 패널 올라가고 나서 ESC 누르면 아래 패널 내려가는거 방지 04/06 윤성근
+            {
+                UI_BackGroundPanel_On_Off();
+            }
+
             camMove.ReturnToOrigin();
         }
     }
 
     public void UI_GuildPanel_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UIStack[StackCount] = UI_guildPanelPos;
-            StackCount++;
-            UI_BackGroundPanel_On_Off();
-        }
+
+        UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_guildPanelPos;
+        StackCount++;
+        UI_BackGroundPanel_On_Off();
 
         //if(UI_isGuildPanel_On)
         //{
@@ -116,36 +116,30 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_StatusPanel_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
-            UIStack[StackCount] = UI_StatusPanelPos;
-            StackCount++;
-        }
+
+        UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UIStack[StackCount] = UI_StatusPanelPos;
+        StackCount++;
+
 
     }
 
     public void UI_DungeonSelectPanel_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
-            UIStack[StackCount] = UI_DungeonSelectPanelPos;
-            StackCount++;
-        }
+
+        UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UIStack[StackCount] = UI_DungeonSelectPanelPos;
+        StackCount++;
 
     }
 
     public void UI_ChurchPanel_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UIStack[StackCount] = UI_churchPanelPos;
-            StackCount++;
-            UI_BackGroundPanel_On_Off();
-        }
-        
+        UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_churchPanelPos;
+        StackCount++;
+        UI_BackGroundPanel_On_Off();
+
 
     }
     public void UI_ChurchWarningPanel_On()
@@ -166,16 +160,15 @@ public class UI_Tweening_Manager : MonoBehaviour
             }
         }
     }
-    
+
     public void UI_TrainingPanel_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UIStack[StackCount] = UI_trainingPanelPos;
-            StackCount++;
-            UI_BackGroundPanel_On_Off();
-        }
+
+        UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_trainingPanelPos;
+        StackCount++;
+        UI_BackGroundPanel_On_Off();
+
     }
     public void UI_TrainWarningPanel_On()
     {
@@ -197,12 +190,11 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_TrainingSecPanel_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UIStack[StackCount] = UI_trainingSecPanelPos;
-            StackCount++;
-        }
+
+        UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_trainingSecPanelPos;
+        StackCount++;
+
 
     }
     public void UI_TrainingSecPanel_Off()
@@ -215,30 +207,34 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1] = null;
                 StackCount--;
             }
-        } 
+        }
     }
 
     public void UI_Shop_PanelPos_On_Off()
     {
-        if(!isShopOn && !isSmithOn)
+        if (!isShopOn)
         {
+            isShopOn = true;
             UI_shopPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UIStack[StackCount] = UI_shopPanelPos;
             StackCount++;
-            isShopOn = true;
-
+            UI_BackGroundPanel_On_Off();
         }
+
+
+
     }
 
     public void UI_Inventory_PanelPos_On_Off()
     {
-        if (!isInvenOn)
-        {
-            isInvenOn = true;
-            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UIStack[StackCount] = UI_inventoryPanelPos;
-            StackCount++;
-        }
+
+
+        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_inventoryPanelPos;
+        StackCount++;
+        UI_BackGroundPanel_On_Off();
+
 
     }
 
@@ -257,23 +253,27 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_Smith_PanelPos_On_Off()
     {
-        if(!isSmithOn && !isShopOn)
+        if (!isSmith)
         {
+            isSmith = true;
             UI_smithPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UIStack[StackCount] = UI_smithPanelPos;
             StackCount++;
-            isSmithOn = true;
-
+            UI_BackGroundPanel_On_Off();
         }
+
+
+
+
     }
     public void UI_DunGeonEntrance_On()
     {
-        if (!isShopOn && !isSmithOn)
-        {
-            UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-            UIStack[StackCount] = UI_DunGeonEntrance_Pos;
-            StackCount++;
-        }
+
+        UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_DunGeonEntrance_Pos;
+        StackCount++;
+
 
     }
 
@@ -291,5 +291,5 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
     }
 
-    
+
 }
