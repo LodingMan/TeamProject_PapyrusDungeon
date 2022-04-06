@@ -16,25 +16,25 @@ public class SKillTable
         { 7, new skill(7, "SkillName8", 1, 3, 3, new int[3] {0,1,-1  }, new int[3] { 0,1,-1 })},
         { 8, new skill(8, "SkillName9", 1, 4, 4, new int[3] {0,1,-1  }, new int[3] { 0,1,-1 })},
         { 9, new skill(9, "SkillName10", 1, 5, 5, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
-        //
+        //Babarian
         { 10, new skill(10, "SkillName11", 1, 1, 1 ,new int[3] {0,1,2  }, new int[3] {0,1,-1  })},
         { 11, new skill(11, "SkillName12", 1, 2, 2, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
         { 12, new skill(12, "SkillName13", 1, 3, 3, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
         { 13, new skill(13, "SkillName14", 1, 4, 4, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
         { 14, new skill(14, "SkillName15", 1, 5, 5, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
-        //
+        //Barristan
         { 15, new skill(15, "SkillName16", 1, 1, 1 ,new int[3] {0,1,2 }, new int[3] { 0,1,-1  })},
         { 16, new skill(16, "SkillName17", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 17, new skill(17, "SkillName18", 1, 3, 3, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 18, new skill(18, "SkillName19", 1, 4, 4, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 19, new skill(19, "SkillName20", 1, 5, 5, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
-        //
+        //Knight
         { 20, new skill(20, "SkillName21", 1, 1, 1 ,new int[3] {0,1,2 }, new int[3] { 0,1,-1  })},
         { 21, new skill(21, "SkillName22", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 22, new skill(22, "SkillName23", 1, 3, 3, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 23, new skill(23, "SkillName24", 1, 4, 4, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 24, new skill(24, "SkillName25", 1, 5, 5, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
-        //
+        //Porter
         { 25, new skill(25, "SkillName26", 1, 1, 1 ,new int[3] {0,1,2 }, new int[3] {0,1,-1  })},
         { 26, new skill(26, "SkillName27", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] {0,1,-1  })},
         { 27, new skill(27, "SkillName28", 1, 3, 3, new int[3] {0,1,-1 }, new int[3] {0,1,-1  })},
