@@ -27,6 +27,7 @@ namespace Shin
             anim = transform.GetChild(0).GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>();
             point = new Transform[pointCnt = 11];
+            herostate = HEROSTATE.IDLE;
 
             InitNaviPoint(); // hierarchy에 있는 NaviPoint를 point에 배정하는 함수.
             
