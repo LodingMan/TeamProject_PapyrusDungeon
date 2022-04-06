@@ -134,7 +134,6 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void Skill1_Info()
     {
 
-        //currentSkills[0];의 정보를 UI로 표시
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(314.6f, -12.3f), 1);
         
         for(int i = 0; i< 3; i++)
@@ -191,9 +190,38 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     }
     public void Skill2_Info()
     {
-        //currentSkills[0];의 정보를 UI로 표시
 
+        combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(314.6f, -12.3f), 1);
 
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentSkills[1].MyPosition[i] == -1)
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i].enabled = false;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 6].enabled = true;
+            }
+            else
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i].enabled = true;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 6].enabled = false;
+            }
+
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentSkills[1].EnemyPosition[i] == -1)
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i + 3].enabled = false;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 9].enabled = true;
+            }
+            else
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i + 3].enabled = true;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 9].enabled = false;
+            }
+
+        }
     }
     public void Skill3()
     {
@@ -213,7 +241,38 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     }
     public void Skill3_Info()
     {
-        //currentSkills[0];의 정보를 UI로 표시
+
+        combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(314.6f, -12.3f), 1);
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentSkills[2].MyPosition[i] == -1)
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i].enabled = false;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 6].enabled = true;
+            }
+            else
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i].enabled = true;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 6].enabled = false;
+            }
+
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentSkills[2].EnemyPosition[i] == -1)
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i + 3].enabled = false;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 9].enabled = true;
+            }
+            else
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i + 3].enabled = true;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 9].enabled = false;
+            }
+
+        }
     }
 
     public void SkillNone()

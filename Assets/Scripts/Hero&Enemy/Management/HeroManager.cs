@@ -34,6 +34,8 @@ namespace Song
 
         public GuildManager guildManager;
 
+        public int NameCount = 0;
+
         public void RandomHeroCreate()
         {
             for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) // ���� ��尡 ����ϴ� ���� ����ŭ ��������

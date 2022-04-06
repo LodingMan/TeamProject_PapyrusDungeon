@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class e_CombatManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class e_CombatManager : MonoBehaviour
     public Song.HeroManager heroManager;
     public Song.GuildManager guildManager;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
+    public Target_Panal_Script target_Panal_Script;
+
 
     public SkillActiveManager skillActiveManager;
     public Target_Panal_Script enemyTargetScript;
@@ -259,6 +262,11 @@ public class e_CombatManager : MonoBehaviour
         }
 
         SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
+
+
+        combat_Event_UI_Manager.EnemySkillNameText.enabled = true;
+        combat_Event_UI_Manager.EnemySkillNameText.text = SaveSkill.Name;
+        combat_Event_UI_Manager.EnemySkillNameText.GetComponent<DOTweenAnimation>().DORestart();
         Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name);
 
     }
@@ -276,9 +284,18 @@ public class e_CombatManager : MonoBehaviour
             break;
         }
 
-        SkillResultInit(myParty[UseIndex]);
-        
+
         Debug.Log("대상에게 스킬 사용 완료! 대상은 " + myParty[UseIndex]);
+        //여기서 사용할 대상 이미지 출력
+        combat_Event_UI_Manager.Player_Targeting.enabled = true;
+        combat_Event_UI_Manager.Player_Targeting.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(myParty[UseIndex].transform.position);
+        combat_Event_UI_Manager.Player_Targeting.GetComponent<DOTweenAnimation>().DORestart();
+        StartCoroutine(EnemyAttack());
+        SkillResultInit(myParty[UseIndex]);
+
+
+
+
 
     }
 
@@ -373,15 +390,41 @@ public class e_CombatManager : MonoBehaviour
             {
                 currentActiveHeroIndex = i; //스킬을 사용할 유닛의 위치번호
                 Debug.Log("행동할 대상은" + speedComparisonArray[0] + "인덱스는" + currentActiveHeroIndex);
+                skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
+
 
             }
         }
 
         yield return new WaitForSeconds(3);
+
         EnemySkillSelect(speedComparisonArray[0]); //이 함수가 호출되고 난 뒤에는 SaveSkill에 Enemy가 사용할 스킬이 저장되어있다. 
         yield return new WaitForSeconds(3);
         
         EnemySkillUse();
+
+
+    }
+
+    IEnumerator EnemyAttack()
+    {
+        yield return new WaitForSeconds(2);
+        combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
+        combat_Event_UI_Manager.Player_Targeting.enabled = false;
+
+
+
+        //여기에 적이 공격하는 애니메이션 입력해주면 됨. 
+    }
+    public IEnumerator HeroAttackDlay(GameObject target)
+    {
+        yield return new WaitForSeconds(1);
+        target_Panal_Script.TargetAllOff();
+        Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
+        SkillResultInit(target);
+        Debug.Log("Test");
+
+
 
 
     }
