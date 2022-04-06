@@ -135,7 +135,6 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
 
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(314.6f, -12.3f), 1);
-        
         for(int i = 0; i< 3; i++)
         {
             if (currentSkills[0].MyPosition[i] == -1)
@@ -150,7 +149,6 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             }
 
         }
-
         for (int i = 0; i < 3; i++)
         {
             if (currentSkills[0].EnemyPosition[i] == -1)
