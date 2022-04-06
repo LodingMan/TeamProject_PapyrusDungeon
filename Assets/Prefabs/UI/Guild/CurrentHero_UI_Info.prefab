@@ -339,6 +339,7 @@ MonoBehaviour:
   HP: {fileID: 5378348638996514873}
   MP: {fileID: 4155982434817026257}
   curStateText: {fileID: 8599910911114585178}
+  heroIcon: {fileID: 7852166743348454819}
 --- !u!225 &2814269097480952290
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -487,7 +488,7 @@ GameObject:
   - component: {fileID: 2713177781121978420}
   - component: {fileID: 7852166743348454819}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HeroIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

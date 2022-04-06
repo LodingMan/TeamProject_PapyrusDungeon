@@ -21,17 +21,45 @@ namespace Song
         public GameObject This_Prefab_Object; //해당 UI하나가 어떤 오브젝트를 가리키고 있는지 보여줌.
         public UI_Central uI_Central;
         public Song.Hero_Status_UI_Script hero_Status_UI_Script;
+
+        //shin
+        Shin.HeroImageTable heroImageTable;
         public Text HP;
         public Text MP;
         public Text curStateText;
+        public Image heroIcon;
         
 
         private void Start()
         {
             hero_Status_UI_Script = GameObject.Find("Status_UI").GetComponent<Song.Hero_Status_UI_Script>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
             root = transform.root;
             canvasGroup = GetComponent<CanvasGroup>();
+            switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
+            {
+                case "Babarian":
+                    heroIcon.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroIcon.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroIcon.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroIcon.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroIcon.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroIcon.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
         }
         private void Update()
         {
