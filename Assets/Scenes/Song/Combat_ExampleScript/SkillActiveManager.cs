@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerDownHandler
 {
@@ -15,9 +16,10 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public e_CombatManager combatManager;
     public Target_Panal_Script enemyTargetScript;
+    public Combat_Event_UI_Manager combat_Event_UI_Manager;
 
 
-    public Image SkillImage;
+    public Image[] SkillImage = new Image[4];
     public Text[] SkillText = new Text[4]; // 테스트용 변수다. 이미지로 대체해야됨 
     public List<GameObject> Childs;
 
@@ -95,11 +97,15 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         gameObject.SetActive(true);
 
         for (int i = 0; i < 3; i++) currentSkills[i] = targetSkills[i];
- 
+
         SkillText[0].text = currentSkills[0].Name;
         SkillText[1].text = currentSkills[1].Name;
         SkillText[2].text = currentSkills[2].Name;
         SkillText[3].text = "턴 넘기기";
+
+        //나중에 이미지로 대체할때 currentKill[i]의 인덱스 == 스킬 아이콘 리스트 번호 일때 해당 스킬 아이콘을 SkillImage에 넣는다. 
+
+
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -125,19 +131,95 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         Debug.Log("사용불가");
 
     }
+    public void Skill1_Info()
+    {
+
+        //currentSkills[0];의 정보를 UI로 표시
+        combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(314.6f, -12.3f), 1);
+        
+        for(int i = 0; i< 3; i++)
+        {
+            if (currentSkills[0].MyPosition[i] == -1)
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i].enabled = false;
+                combat_Event_UI_Manager.SKillInfo_Image[i+6].enabled = true;
+            }
+            else
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i].enabled = true;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 6].enabled = false;
+            }
+
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentSkills[0].EnemyPosition[i] == -1)
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i+3].enabled = false;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 9].enabled = true;
+            }
+            else
+            {
+                combat_Event_UI_Manager.SKillInfo_Image[i+3].enabled = true;
+                combat_Event_UI_Manager.SKillInfo_Image[i + 9].enabled = false;
+            }
+
+        }
+    }
+    public void InfoOut()
+    {
+        combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(314.6f, 682), 1);
+
+    }
 
     public void Skill2()
     {
         combatManager.SaveSkill = currentSkills[1];
+        for (int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
+        {
+            if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveHeroIndex)
+            {
+                enemyTargetScript.TargetView();
+                gameObject.SetActive(false);
+                Debug.Log("2번스킬 사용!");
+                return;
+            }
+        }
+        Debug.Log("사용불가");
+
+    }
+    public void Skill2_Info()
+    {
+        //currentSkills[0];의 정보를 UI로 표시
+
 
     }
     public void Skill3()
     {
         combatManager.SaveSkill = currentSkills[2];
+        for (int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
+        {
+            if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveHeroIndex)
+            {
+                enemyTargetScript.TargetView();
+                gameObject.SetActive(false);
+                Debug.Log("3번스킬 사용!");
+                return;
+            }
+        }
+        Debug.Log("사용불가");
 
     }
+    public void Skill3_Info()
+    {
+        //currentSkills[0];의 정보를 UI로 표시
+    }
+
     public void SkillNone()
     {
+        combatManager.speedComparisonArray.RemoveAt(0);
+        combatManager.NextMove();
 
     }
 

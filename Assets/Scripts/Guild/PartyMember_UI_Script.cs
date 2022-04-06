@@ -14,6 +14,8 @@ namespace Song
         Transform root;
         public UI_Central uI_Central;
         Song.Current_Hero_UI_Script current_Hero_UI;
+        public Shin.HeroImageTable heroImageTable; // Shin
+        public Image heroIcon;
         public bool isParty_Hero_In = false;
         public bool isPointerDown = false;
         public float downTime;
@@ -23,6 +25,7 @@ namespace Song
         {
             guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             root = transform.root;
         }
         private void Update()
@@ -91,10 +94,34 @@ namespace Song
                         This_Prefab_Object.GetComponent<HeroScript_Current_State>().isParty = true;
                         isParty_Hero_In = true;
                         gameObject.transform.GetChild(0).GetComponent<Text>().text = This_Prefab_Object.GetComponent<StatScript>().myStat.Name;
-                        gameObject.transform.GetChild(1).GetComponent<Text>().text = "Class : " + This_Prefab_Object.GetComponent<StatScript>().myStat.Job;
-                        gameObject.transform.GetChild(2).GetComponent<Text>().text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP;
+
+                        /*gameObject.transform.GetChild(1).GetComponent<Text>().text = "Class : " + This_Prefab_Object.GetComponent<StatScript>().myStat.Job;
+                        gameObject.transform.GetChild(2).GetComponent<Text>().text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP;*/
                         
                         guildManager.Party_Hero_Member[int.Parse(gameObject.name)] = This_Prefab_Object;
+                        switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
+                        {
+                            case "Babarian":
+                                heroIcon.sprite = heroImageTable.sprite[0];
+                                break;
+                            case "Archer":
+                                heroIcon.sprite = heroImageTable.sprite[1];
+                                break;
+                            case "Knight":
+                                heroIcon.sprite = heroImageTable.sprite[2];
+                                break;
+                            case "Barristan":
+                                heroIcon.sprite = heroImageTable.sprite[3];
+                                break;
+                            case "Mage":
+                                heroIcon.sprite = heroImageTable.sprite[4];
+                                break;
+                            case "Porter":
+                                heroIcon.sprite = heroImageTable.sprite[5];
+                                break;
+                            default:
+                                break;
+                        }
                         /*switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
                         {
                             case "Porter":

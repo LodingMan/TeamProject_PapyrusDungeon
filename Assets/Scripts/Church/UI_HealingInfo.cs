@@ -19,7 +19,7 @@ namespace Shin
         public Button btn; // 자기 자신
         public int curWeek;
         public static int healingCnt; // 회복중인 영웅 리스트 순서에 사용할 static int
-        public Button btn_ReturnChurch;
+        //public Button btn_ReturnChurch;
         private void Awake()
         {
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
@@ -30,9 +30,9 @@ namespace Shin
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
             btn = GetComponent<Button>();//초기화
-            btn_ReturnChurch = GameObject.Find("Btn_ReturnChurch").GetComponent<Button>();
+            //btn_ReturnChurch = GameObject.Find("Btn_ReturnChurch").GetComponent<Button>();
             btn.onClick.AddListener(HealingEnd);
-            btn_ReturnChurch.onClick.AddListener(ForceReturn);
+            //btn_ReturnChurch.onClick.AddListener(ForceReturn);
         }
 
         void Start()
@@ -74,10 +74,11 @@ namespace Shin
             {
                 uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_On();
                 uI_ChurchManager.isWarning = true;
+                StartCoroutine(WarningPanelOff());
             }
         }
 
-        public void ForceReturn()
+        /*public void ForceReturn()
         {
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
@@ -88,12 +89,17 @@ namespace Shin
             }
             uI_ChurchManager.EmployedDestroy_UI();
             uI_ChurchManager.EmployedInit_UI();
-            uI_ChurchManager.tweenMgr.UI_ChurchWaringPanel_Off();
+            uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_Off();
             uI_ChurchManager.isWarning = false;
-            Destroy(gameObject);
-            
-        }
+            Destroy(gameObject); 
+        }*/
 
+        IEnumerator WarningPanelOff()
+        {
+            yield return new WaitForSeconds(1.5f);
+            uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_Off();
+            uI_ChurchManager.isWarning = false;
+        }
     }
 
 }

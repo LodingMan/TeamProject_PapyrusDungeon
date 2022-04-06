@@ -12,6 +12,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public SkillActiveManager skillActiveManager;
 
     public List<Button> Go_Back_Btn = new List<Button>();
+    public List<Text> SkillInfo_Text = new List<Text>();
+    public List<Image> SKillInfo_Image = new List<Image>();
     public Button MiniMapCommingBtn;
     public Text IngameText;
 
@@ -20,6 +22,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public GameObject EventUIPanal;
 
     public Image Current_Attack_Unit;
+    public Image Skill_Info_UI;
 
 
 
@@ -67,4 +70,5 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
 
     }
+
 }
