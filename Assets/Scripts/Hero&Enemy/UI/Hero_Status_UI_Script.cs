@@ -28,14 +28,6 @@ namespace Song
                 Status_Texts[i] = gameObject.transform.GetChild(i).GetComponent<Text>();
             }
             // Shin
-            for (int i = 0; i < Skills_Icon.Length; i++)
-            {
-                Skills_Icon[i] = gameObject.transform.GetChild(Status_Texts.Length + i).GetComponent<Image>();
-            }
-            for (int i = 0; i < Equips_Icon.Length; i++)
-            {
-                Equips_Icon[i] = gameObject.transform.GetChild(Status_Texts.Length + Skills_Icon.Length + i).GetComponent<Image>();
-            }
 
         }
         private void Update()
