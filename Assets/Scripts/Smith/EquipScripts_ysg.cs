@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 //==================================================================================================//
-//����, ��� ���� �� ���� ��ũ��Ʈ�Դϴ�. 03-28 ������
+//무기, 장비 장착 및 해제 스크립트입니다. 03-28 윤성근
 //==================================================================================================//
 public class EquipScripts_ysg : MonoBehaviour 
 {
@@ -18,7 +18,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public int equipIndex;
     public int sell = 0;
 
-    public bool isEquip = false; // ���� ����or��� ���� �Ǿ����� Ȯ�� �ϴ� bool ���Դϴ�.
+    public bool isEquip = false; // 현재 무기or장비가 장착 되었는지 확인 하는 bool 값입니다.
     public bool isArmorEquip = false;
     public bool isSmith = false;
     public bool isSelled = false;
@@ -45,7 +45,7 @@ public class EquipScripts_ysg : MonoBehaviour
         itemData.hasEquipList.Add(gameObject);
 
 
-        switch (gameObject.name) //���� ���ӿ�����Ʈ�� �̸��� �´� �Լ��� ����մϴ�.
+        switch (gameObject.name) //현재 게임오브젝트의 이름에 맞는 함수를 출력합니다.
         {
             case "Sword(Clone)":
                 equipIndex = 0;
@@ -185,7 +185,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 break;
         }
     }
-    public void EquipParamInit() //EquipTable�� �ִ� ������ �����ɴϴ�. ������ equipIndex�� �ִ� Index�� ������� �����ɴϴ�.
+    public void EquipParamInit() //EquipTable에 있는 정보를 가져옵니다. 정보는 equipIndex에 있는 Index를 기반으로 가져옵니다.
     {
         if (equip.Name == "")
         {
@@ -287,7 +287,7 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 case 10:
-                    Debug.Log("����");
+                    Debug.Log("해제");
                     UnEquipArmor();
                     break;
                 case 11:
@@ -342,7 +342,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
     }
 
-    public void Equip() // ��� ���� or ���� ������ ȣ��Ǵ� �Լ��Դϴ�. 
+    public void Equip() // 장비를 장착 or 해제 했을때 호출되는 함수입니다. 
     {
         if (!isEquip)
         {
@@ -508,7 +508,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isSelled = true;
                 itemData.money += equip.Cost;
-                for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //������ ��� �� ����Ʈ�� �ִ� ������Ʈ ���� �� �ߺ����� �����Ǵ°� ���� �ϱ� ���� ���� 03-30 ������
+                for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-30 윤성근
                 {
                     if (itemData.hasEquipList[i].GetComponent<EquipScripts_ysg>().isSelled)
                     {
@@ -517,7 +517,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 }
                 equipBtn.gameObject.SetActive(false);
                 Destroy(gameObject);
-                Debug.Log("�ǸſϷ�");
+                Debug.Log("판매완료");
 
             }
 
@@ -529,9 +529,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
 
     }
-    public void EquipWeapon() // ���� ���� �� ����Ǵ� �Լ��Դϴ�.
+    public void EquipWeapon() // 무기 착용 시 실행되는 함수입니다.
     {
-        if (itemUseManager.isActive) // ������ ���� �Ǿ��ٸ� �����մϴ�.
+        if (itemUseManager.isActive) // 영웅이 선택 되었다면 실행합니다.
         {
             if (itemUseManager.equips[0].Name == "" && !isEquip && itemUseManager.stats.Job == equip.Job)
             {
@@ -547,14 +547,14 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Def += equip.Def;
                 itemUseManager.equips[0].Cri += equip.Cri;
                 itemUseManager.equips[0].Acc += equip.Acc;
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "����";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
                 equipBtn.gameObject.SetActive(false);
             }
 
 
         }
     }
-    public void EquipArmor() // ��� ���� �� ����Ǵ� �Լ��Դϴ�.
+    public void EquipArmor() // 장비 착용 시 실행되는 함수입니다.
     {
         if (itemUseManager.isActive)
         {
@@ -572,14 +572,14 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def += equip.Def;
                 itemUseManager.equips[1].Cri += equip.Cri;
                 itemUseManager.equips[1].Acc += equip.Acc;
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "����";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
                 equipBtn.gameObject.SetActive(false);
             }
 
         }
     }
 
-    public void UnEquipWeapon() //���� ���� �Լ��Դϴ�.
+    public void UnEquipWeapon() //무기 해제 함수입니다.
     {
         if (isEquip && itemUseManager.isActive)
         {
@@ -598,7 +598,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Cri = 0;
                 itemUseManager.equips[0].Acc = 0;
 
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "����";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
                 equipBtn.gameObject.SetActive(false);
             }
 
@@ -606,7 +606,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UnEquipArmor() // ��� ���� �Լ��Դϴ�.
+    public void UnEquipArmor() // 장비 해제 함수입니다.
     {
 
         if (isArmorEquip && itemUseManager.isActive)
@@ -626,7 +626,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def = 0;
                 itemUseManager.equips[1].Cri = 0;
                 itemUseManager.equips[1].Acc = 0;
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "����";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
                 equipBtn.gameObject.SetActive(false);
             }
 
@@ -634,7 +634,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UpgradeEquips() // ����, ��� ��ȭ �Լ��Դϴ�.
+    public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
         if (!smithManager.isSlotFull && smithManager.isActive)
         {
@@ -662,13 +662,13 @@ public class EquipScripts_ysg : MonoBehaviour
     }
 
 
-    public void SellCancel() //������ �������� �ʱ�ȭ ��ŵ�ϴ�.
+    public void SellCancel() //상점이 닫혔으면 초기화 시킵니다.
     {
         sell = 0;
         isSelled = false;
     }
 
-    public void ShowBtnOnlyDungeon() // ������ ���� �� ��ư ǥ�ø� �մϴ�.
+    public void ShowBtnOnlyDungeon() // 던전에 입장 시 버튼 표시를 합니다.
     {
         if (dgSelectMgr.isTent && itemUseManager.isActive)
         {
