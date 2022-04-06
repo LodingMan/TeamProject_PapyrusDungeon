@@ -101,7 +101,7 @@ namespace Song
             if (PointerDonwTime > 1.5f)
             {
                 Debug.Log("스테이터스창 출력");
-                //root.BroadcastMessage("Open_Status_UI", SendMessageOptions.DontRequireReceiver); // 현재 transform 정보를 UI_Central(Hierarchy에 존재하는 Canvers)의 "Drag"라는 이름의 함수에 전해줌. 
+               // root.BroadcastMessage("Open_Status_UI", SendMessageOptions.DontRequireReceiver); // 현재 transform 정보를 UI_Central(Hierarchy에 존재하는 Canvers)의 "Drag"라는 이름의 함수에 전해줌. 
                 hero_Status_UI_Script.Open_Status_UI(This_Prefab_Object);
                 PointerDonwTime = 0;
                 isPointerDown = false;
