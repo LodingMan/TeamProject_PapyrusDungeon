@@ -8,15 +8,17 @@ namespace Shin
 {
     public class UI_HealingInfo : MonoBehaviour
     {
-        // public HeroSavingData employedHeroData = new HeroSavingData();
         Shin.UI_ChurchManager uI_ChurchManager;
         Song.HeroManager heroManager;
+        HeroImageTable heroImageTable;
         public TownManager townManager;
         public StatScript statScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
         public Text text_Job;
         public Button btn; // 자기 자신
+        public Image heroIcon;
+        
         public int curWeek;
         public static int healingCnt; // 회복중인 영웅 리스트 순서에 사용할 static int
         //public Button btn_ReturnChurch;
@@ -25,14 +27,13 @@ namespace Shin
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
-            
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
             btn = GetComponent<Button>();//초기화
-            //btn_ReturnChurch = GameObject.Find("Btn_ReturnChurch").GetComponent<Button>();
             btn.onClick.AddListener(HealingEnd);
-            //btn_ReturnChurch.onClick.AddListener(ForceReturn);
         }
 
         void Start()
@@ -48,7 +49,29 @@ namespace Shin
 
             text_Name.text = statScript.myStat.Name;
             text_Job.text = statScript.myStat.Job;
-
+            switch (statScript.myStat.Job)
+            {
+                case "Babarian":
+                    heroIcon.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroIcon.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroIcon.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroIcon.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroIcon.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroIcon.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void HealingEnd() // Btn_HealEnd 온클릭
@@ -77,22 +100,6 @@ namespace Shin
                 StartCoroutine(WarningPanelOff());
             }
         }
-
-        /*public void ForceReturn()
-        {
-            for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
-            {
-                if (gameObject.name == heroManager.CurrentHeroList[i].name)
-                {
-                    heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = false;
-                }
-            }
-            uI_ChurchManager.EmployedDestroy_UI();
-            uI_ChurchManager.EmployedInit_UI();
-            uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_Off();
-            uI_ChurchManager.isWarning = false;
-            Destroy(gameObject); 
-        }*/
 
         IEnumerator WarningPanelOff()
         {

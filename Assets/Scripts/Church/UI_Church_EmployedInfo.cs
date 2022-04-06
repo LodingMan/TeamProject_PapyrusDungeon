@@ -11,12 +11,16 @@ namespace Shin
         Song.HeroManager heroManager;
         Shin.UI_ChurchManager uI_ChurchManager;
         TownManager twMgr;
+        HeroImageTable heroImageTable;
         //public HeroSavingData healingHeroData = new HeroSavingData();
 
         public StatScript statScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
         public Text text_Job;
+        public Image heroIcon;
+        public Text HP;
+        public Text MP;
 
         public Button btn; // 자기 자신의 버튼.
         int num;
@@ -33,6 +37,7 @@ namespace Shin
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             
@@ -49,7 +54,31 @@ namespace Shin
 
             text_Name.text = statScript.myStat.Name;
             text_Job.text = statScript.myStat.Job;
-
+            HP.text = "HP : " + statScript.myStat.HP + " / " + statScript.myStat.MAXHP;
+            MP.text = "MP : " + statScript.myStat.MP + " / " + statScript.myStat.MAXMP;
+            switch (statScript.myStat.Job)
+            {
+                case "Babarian":
+                    heroIcon.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroIcon.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroIcon.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroIcon.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroIcon.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroIcon.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void Create_HealingHero_UI_Prefab() // 버튼 클릭시 실행.
