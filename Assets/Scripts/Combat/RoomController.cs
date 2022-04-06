@@ -89,7 +89,7 @@ public class RoomController : MonoBehaviour
 
     IEnumerator BattleDlay()
     {
-        yield return new WaitForSeconds(11);
+        yield return new WaitForSeconds(8);
         combatManager.EnemyInit();
 
         combat_Event_UI_Manager.BattleStart();

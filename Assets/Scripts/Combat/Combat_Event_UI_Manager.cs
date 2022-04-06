@@ -16,6 +16,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public List<Image> SKillInfo_Image = new List<Image>();
     public Button MiniMapCommingBtn;
     public Text IngameText;
+    public Text EnemySkillNameText;
 
     public Button[] Yes_No_Button = new Button[2];
     bool isMiniMapOn = false;
@@ -23,6 +24,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public Image Current_Attack_Unit;
     public Image Skill_Info_UI;
+    public Image Player_Targeting;
 
 
 

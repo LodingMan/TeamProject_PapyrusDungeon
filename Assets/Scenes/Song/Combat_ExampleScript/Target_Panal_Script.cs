@@ -28,7 +28,7 @@ public class Target_Panal_Script : MonoBehaviour
         for(int i = 0; i < 3; i ++)
         {
             TargetUI[i].gameObject.SetActive(false);
-
+            
         }
     }
 
