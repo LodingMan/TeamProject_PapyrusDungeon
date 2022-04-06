@@ -366,7 +366,7 @@ public class e_CombatManager : MonoBehaviour
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 
         skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
-                                                                                                                                                          //아웃라인 그려주고
+        Debug.Log(skillActiveManager.GetComponent<RectTransform>().anchoredPosition);                                                                                                                                          //아웃라인 그려주고
 
         combat_Event_UI_Manager.CurrentAttack_Move();
 
