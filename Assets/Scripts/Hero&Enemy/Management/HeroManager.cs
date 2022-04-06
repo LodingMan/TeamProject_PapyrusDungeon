@@ -82,7 +82,6 @@ namespace Song
                     {
                         heroName = randomName;
                         name_JobTable.CurrentHeroName.Add(heroName);
-                        Debug.Log(heroName);
                     }
                 }
                 else
@@ -100,7 +99,6 @@ namespace Song
             {
                 heroName = randomName;
                 name_JobTable.CurrentHeroName.Add(heroName);
-                Debug.Log(heroName);
             }
             CheckOverName(randomName);
 
