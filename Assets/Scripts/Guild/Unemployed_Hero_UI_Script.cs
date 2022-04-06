@@ -11,14 +11,41 @@ namespace Song
     public class Unemployed_Hero_UI_Script : MonoBehaviour
     {
         GuildManager guildManager;
+        Shin.HeroImageTable heroImageTable;
         GameObject UI_Prefab;
         public GameObject This_Prefab_Object; //내가 무슨 오브젝트를 가리키고 있나
         static int Current_Hero_Prefab_Count = 0;
+        public Image heroImage; // shin
         private void Start()
         {
             guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(BtnFunc);
-            gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(true);
+            //gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(true);
+            
+            switch (gameObject.transform.GetChild(1).GetComponent<Text>().text) // shin
+            {
+                case "Babarian":
+                    heroImage.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroImage.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroImage.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroImage.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroImage.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroImage.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
 
         }
 
@@ -67,7 +94,10 @@ namespace Song
             UI_Prefab.transform.SetParent(guildManager.currentHero_UI_Prefabs_Create_Point.transform);
             UI_Prefab.transform.localScale = new Vector3(1, 1, 1);
             UI_Prefab.transform.GetChild(0).GetComponent<Text>().text = gameObject.transform.GetChild(0).GetComponent<Text>().text;
-            UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
+            //UI_Prefab.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text;
+            
+
+        
             UI_Prefab.transform.localScale = new Vector3(1, 1, 1); // Yoon
             UI_Prefab.GetComponent<Song.Current_Hero_UI_Script>().This_Prefab_Object = This_Prefab_Object; //고용전 영웅에서 고용된 영웅 프리팹으로 넘어가면서 오브젝트 인수인계
             guildManager.Current_Hero_UI_List.Add(UI_Prefab);

@@ -21,7 +21,10 @@ namespace Song
         public GameObject This_Prefab_Object; //해당 UI하나가 어떤 오브젝트를 가리키고 있는지 보여줌.
         public UI_Central uI_Central;
         public Song.Hero_Status_UI_Script hero_Status_UI_Script;
+        public Text HP;
+        public Text MP;
         public Text curStateText;
+        
 
         private void Start()
         {
@@ -47,6 +50,8 @@ namespace Song
             {
                 curStateText.text = "isHealing";
             }
+            HP.text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXHP;
+            MP.text = "MP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.MP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXMP;
 
             if (PointerDonwTime > 0.5f)
             {
