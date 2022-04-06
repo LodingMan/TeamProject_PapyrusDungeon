@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 //==================================================================================================//
-//¹«±â, Àåºñ ÀåÂø ¹× ÇØÁ¦ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù. 03-28 À±¼º±Ù
+//ë¬´ê¸°, ì¥ë¹„ ì¥ì°© ë° í•´ì œ ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤. 03-28 ìœ¤ì„±ê·¼
 //==================================================================================================//
 public class EquipScripts_ysg : MonoBehaviour 
 {
@@ -18,7 +18,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public int equipIndex;
     public int sell = 0;
 
-    public bool isEquip = false; // ÇöÀç ¹«±âorÀåºñ°¡ ÀåÂø µÇ¾ú´ÂÁö È®ÀÎ ÇÏ´Â bool °ªÀÔ´Ï´Ù.
+    public bool isEquip = false; // í˜„ì¬ ë¬´ê¸°orì¥ë¹„ê°€ ì¥ì°© ë˜ì—ˆëŠ”ì§€ í™•ì¸ í•˜ëŠ” bool ê°’ì…ë‹ˆë‹¤.
     public bool isArmorEquip = false;
     public bool isSmith = false;
     public bool isSelled = false;
@@ -45,7 +45,7 @@ public class EquipScripts_ysg : MonoBehaviour
         itemData.hasEquipList.Add(gameObject);
 
 
-        switch (gameObject.name) //ÇöÀç °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§¿¡ ¸Â´Â ÇÔ¼ö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+        switch (gameObject.name) //í˜„ì¬ ê²Œì„ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„ì— ë§ëŠ” í•¨ìˆ˜ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
         {
             case "Sword(Clone)":
                 equipIndex = 0;
@@ -185,7 +185,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 break;
         }
     }
-    public void EquipParamInit() //EquipTable¿¡ ÀÖ´Â Á¤º¸¸¦ °¡Á®¿É´Ï´Ù. Á¤º¸´Â equipIndex¿¡ ÀÖ´Â Index¸¦ ±â¹İÀ¸·Î °¡Á®¿É´Ï´Ù.
+    public void EquipParamInit() //EquipTableì— ìˆëŠ” ì •ë³´ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤. ì •ë³´ëŠ” equipIndexì— ìˆëŠ” Indexë¥¼ ê¸°ë°˜ìœ¼ë¡œ ê°€ì ¸ì˜µë‹ˆë‹¤.
     {
         if (equip.Name == "")
         {
@@ -287,7 +287,7 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 case 10:
-                    Debug.Log("ÇØÁ¦");
+                    Debug.Log("í•´ì œ");
                     UnEquipArmor();
                     break;
                 case 11:
@@ -342,7 +342,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
     }
 
-    public void Equip() // Àåºñ¸¦ ÀåÂø or ÇØÁ¦ ÇßÀ»¶§ È£ÃâµÇ´Â ÇÔ¼öÀÔ´Ï´Ù. 
+    public void Equip() // ì¥ë¹„ë¥¼ ì¥ì°© or í•´ì œ í–ˆì„ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤. 
     {
         if (!isEquip)
         {
@@ -508,7 +508,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isSelled = true;
                 itemData.money += equip.Cost;
-                for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //¾ÆÀÌÅÛ »ç¿ë ÈÄ ¸®½ºÆ®¿¡ ÀÖ´Â ¿ÀºêÁ§Æ® »èÁ¦ ½Ã Áßº¹À¸·Î »èÁ¦µÇ´Â°É ¹æÁö ÇÏ±â À§ÇØ ³ÖÀ½ 03-30 À±¼º±Ù
+                for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //ì•„ì´í…œ ì‚¬ìš© í›„ ë¦¬ìŠ¤íŠ¸ì— ìˆëŠ” ì˜¤ë¸Œì íŠ¸ ì‚­ì œ ì‹œ ì¤‘ë³µìœ¼ë¡œ ì‚­ì œë˜ëŠ”ê±¸ ë°©ì§€ í•˜ê¸° ìœ„í•´ ë„£ìŒ 03-30 ìœ¤ì„±ê·¼
                 {
                     if (itemData.hasEquipList[i].GetComponent<EquipScripts_ysg>().isSelled)
                     {
@@ -517,7 +517,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 }
                 equipBtn.gameObject.SetActive(false);
                 Destroy(gameObject);
-                Debug.Log("ÆÇ¸Å¿Ï·á");
+                Debug.Log("íŒë§¤ì™„ë£Œ");
 
             }
 
@@ -529,9 +529,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
 
     }
-    public void EquipWeapon() // ¹«±â Âø¿ë ½Ã ½ÇÇàµÇ´Â ÇÔ¼öÀÔ´Ï´Ù.
+    public void EquipWeapon() // ë¬´ê¸° ì°©ìš© ì‹œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
     {
-        if (itemUseManager.isActive) // ¿µ¿õÀÌ ¼±ÅÃ µÇ¾ú´Ù¸é ½ÇÇàÇÕ´Ï´Ù.
+        if (itemUseManager.isActive) // ì˜ì›…ì´ ì„ íƒ ë˜ì—ˆë‹¤ë©´ ì‹¤í–‰í•©ë‹ˆë‹¤.
         {
             if (itemUseManager.equips[0].Name == "" && !isEquip && itemUseManager.stats.Job == equip.Job)
             {
@@ -547,14 +547,14 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Def += equip.Def;
                 itemUseManager.equips[0].Cri += equip.Cri;
                 itemUseManager.equips[0].Acc += equip.Acc;
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÇØÁ¦";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "í•´ì œ";
                 equipBtn.gameObject.SetActive(false);
             }
 
 
         }
     }
-    public void EquipArmor() // Àåºñ Âø¿ë ½Ã ½ÇÇàµÇ´Â ÇÔ¼öÀÔ´Ï´Ù.
+    public void EquipArmor() // ì¥ë¹„ ì°©ìš© ì‹œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
     {
         if (itemUseManager.isActive)
         {
@@ -572,14 +572,14 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def += equip.Def;
                 itemUseManager.equips[1].Cri += equip.Cri;
                 itemUseManager.equips[1].Acc += equip.Acc;
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÇØÁ¦";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "í•´ì œ";
                 equipBtn.gameObject.SetActive(false);
             }
 
         }
     }
 
-    public void UnEquipWeapon() //¹«±â ÇØÁ¦ ÇÔ¼öÀÔ´Ï´Ù.
+    public void UnEquipWeapon() //ë¬´ê¸° í•´ì œ í•¨ìˆ˜ì…ë‹ˆë‹¤.
     {
         if (isEquip && itemUseManager.isActive)
         {
@@ -587,7 +587,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isEquip = false;
                 //itemUseManager.isActive = false;
-                itemUseManager.equips[0].Index = -1;
+                itemUseManager.equips[0].Index = 0;
                 itemUseManager.equips[0].Name = "";
                 itemUseManager.equips[0].Job = null;
                 itemUseManager.equips[0].Lv = 0;
@@ -598,7 +598,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Cri = 0;
                 itemUseManager.equips[0].Acc = 0;
 
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÀåÂø";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ì¥ì°©";
                 equipBtn.gameObject.SetActive(false);
             }
 
@@ -606,7 +606,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UnEquipArmor() // Àåºñ ÇØÁ¦ ÇÔ¼öÀÔ´Ï´Ù.
+    public void UnEquipArmor() // ì¥ë¹„ í•´ì œ í•¨ìˆ˜ì…ë‹ˆë‹¤.
     {
 
         if (isArmorEquip && itemUseManager.isActive)
@@ -616,7 +616,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isArmorEquip = false;
                 //itemUseManager.isActive = false;
-                itemUseManager.equips[1].Index = -1;
+                itemUseManager.equips[1].Index = 0;
                 itemUseManager.equips[1].Name = "";
                 itemUseManager.equips[1].Job = null;
                 itemUseManager.equips[1].Lv = 0;
@@ -626,7 +626,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def = 0;
                 itemUseManager.equips[1].Cri = 0;
                 itemUseManager.equips[1].Acc = 0;
-                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ÀåÂø";
+                equipBtn.transform.GetChild(0).GetComponent<Text>().text = "ì¥ì°©";
                 equipBtn.gameObject.SetActive(false);
             }
 
@@ -634,7 +634,7 @@ public class EquipScripts_ysg : MonoBehaviour
         }
     }
 
-    public void UpgradeEquips() // ¹«±â, Àåºñ °­È­ ÇÔ¼öÀÔ´Ï´Ù.
+    public void UpgradeEquips() // ë¬´ê¸°, ì¥ë¹„ ê°•í™” í•¨ìˆ˜ì…ë‹ˆë‹¤.
     {
         if (!smithManager.isSlotFull && smithManager.isActive)
         {
@@ -662,13 +662,13 @@ public class EquipScripts_ysg : MonoBehaviour
     }
 
 
-    public void SellCancel() //»óÁ¡ÀÌ ´İÇûÀ¸¸é ÃÊ±âÈ­ ½ÃÅµ´Ï´Ù.
+    public void SellCancel() //ìƒì ì´ ë‹«í˜”ìœ¼ë©´ ì´ˆê¸°í™” ì‹œí‚µë‹ˆë‹¤.
     {
         sell = 0;
         isSelled = false;
     }
 
-    public void ShowBtnOnlyDungeon() // ´øÀü¿¡ ÀÔÀå ½Ã ¹öÆ° Ç¥½Ã¸¦ ÇÕ´Ï´Ù.
+    public void ShowBtnOnlyDungeon() // ë˜ì „ì— ì…ì¥ ì‹œ ë²„íŠ¼ í‘œì‹œë¥¼ í•©ë‹ˆë‹¤.
     {
         if (dgSelectMgr.isTent && itemUseManager.isActive)
         {
