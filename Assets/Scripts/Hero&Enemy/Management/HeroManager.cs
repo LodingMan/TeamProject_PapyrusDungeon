@@ -51,7 +51,7 @@ namespace Song
         public void FirstHeroCreate(string HeroJobName, int color)  //�������� �ʱⰪ�� HeroObject�� �����ϴ� �Լ�. 
         {
             string RandomName = name_JobTable.RandomNameTable[Random.Range(0, name_JobTable.RandomNameTable.Length)]; //������ ������Ʈ�� ������ �̸� �����
-
+            // 중복처리 해야함.
             #region //������ �������� ���� �ο� ������Ʈ ����, ��ų �ε��� �ο�
             switch (HeroJobName)
             {
