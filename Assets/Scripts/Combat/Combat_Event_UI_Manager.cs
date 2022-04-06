@@ -66,7 +66,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public void CurrentAttack_Move()
     {
-        Current_Attack_Unit.rectTransform.anchoredPosition = skillActiveManager.GetComponent<Image>().rectTransform.anchoredPosition + new Vector2(0, 160);
+        Current_Attack_Unit.rectTransform.anchoredPosition = skillActiveManager.GetComponent<Image>().rectTransform.anchoredPosition;
 
         Current_Attack_Unit.gameObject.SetActive(true);
         Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();

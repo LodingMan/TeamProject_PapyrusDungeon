@@ -336,6 +336,54 @@ public class e_CombatManager : MonoBehaviour
         }
 
         target.GetComponent<StatScript>().myStat.HP -= Damage;
+
+        if(target.GetComponent<StatScript>().myStat.HP <= 0 )
+        {
+            int destroyIdx = 0;
+
+            if (target.tag == "Enemy")
+            {
+                //currentActiveHeroIndex가 아니라 타겟이 된 Enemy의 인덱스 번호가 필요하다.
+                for (int i = 0; i < enemys.Count; i++)
+                {
+                    if (enemys[i] == target)
+                    {
+                        destroyIdx = i;
+                    }
+                }
+
+                for (int i = destroyIdx + 1; i < enemys.Count; i++)
+                {
+                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((1.5f * i-1), 0, 0), 1);
+                    Debug.Log(enemys[i] + "이동함");
+                }
+                for(int i = 0; i < speedComparisonArray.Count; i++)
+                    if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
+
+
+                enemys.Remove(target);
+                Destroy(target);
+                if(enemys.Count == 0)
+                {
+                    speedComparisonArray.Clear();
+                    isCombat = false;
+                    InGame_Player_Script IP = GameObject.Find("InGamePlayer").GetComponent<InGame_Player_Script>();
+                    IP.isMove = true;
+                    
+                    
+                    return;
+                }
+            }
+            if(target.tag == "Player")
+            {
+
+                myParty.Remove(target);
+                heroManager.CurrentHeroList.Remove(target);
+                Destroy(target);
+            }
+        }
+
+
         Damage = 0;
         speedComparisonArray.RemoveAt(0);
 
@@ -366,7 +414,7 @@ public class e_CombatManager : MonoBehaviour
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
 
         skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
-        Debug.Log(skillActiveManager.GetComponent<RectTransform>().anchoredPosition);                                                                                                                                          //아웃라인 그려주고
+        Debug.Log(skillActiveManager.GetComponent<RectTransform>().anchoredPosition);                                                        //아웃라인 그려주고
 
         combat_Event_UI_Manager.CurrentAttack_Move();
 
@@ -388,7 +436,7 @@ public class e_CombatManager : MonoBehaviour
                 Debug.Log("행동할 대상은" + speedComparisonArray[0] + "인덱스는" + currentActiveHeroIndex);
 
                 combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition =
-                    CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position + new Vector3(0, 160, 0)); 
+                    CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position); 
                 Debug.Log(combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition);
                 combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(true);
                 combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
@@ -435,7 +483,7 @@ public class e_CombatManager : MonoBehaviour
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
         myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         speedComparisonArray[0].transform.position = EnemyPos;
         myParty[target_Idx].transform.position = HeroPos;
 
@@ -461,9 +509,30 @@ public class e_CombatManager : MonoBehaviour
     }
     public IEnumerator HeroAttackDlay(GameObject target)
     {
+        //여기부터 공격을 시작한 히어로의 움직임
         yield return new WaitForSeconds(0.5f);
+        combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
+
         target_Panal_Script.TargetAllOff();
+
+        Vector3 HeroPos = speedComparisonArray[0].transform.position;
+        Vector3 EnemyPos = target.transform.position;
+
+
+        speedComparisonArray[0].transform.position = new Vector3(- 2999.58f, 0, -3.12f);
+
+        target.transform.position = new Vector3(- 2997.85f, 0, -3.12f);
+
+
+        speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
+        target.transform.DOMove(target.transform.position - new Vector3(-0.8f, 0, 0), 3f);
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
+        yield return new WaitForSeconds(4);
+        Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
+
+        speedComparisonArray[0].transform.position = HeroPos;
+        target.transform.position = EnemyPos;
+
 
 
         SkillResultInit(target);

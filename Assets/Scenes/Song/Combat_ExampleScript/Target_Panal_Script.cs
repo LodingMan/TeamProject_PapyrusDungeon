@@ -18,7 +18,7 @@ public class Target_Panal_Script : MonoBehaviour
             {
                 continue;
             }
-            TargetUI[combatManager.SaveSkill.EnemyPosition[i]].gameObject.SetActive(true);
+            TargetUI[combatManager.SaveSkill.EnemyPosition[i]].enabled=true;
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].GetComponent<RectTransform>().anchoredPosition = combatManager.CombatCamera.WorldToScreenPoint(combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]].transform.position);
             TargetUI[combatManager.SaveSkill.EnemyPosition[i]].GetComponent<Enemy_Target_Script>().This_TargetObject = combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]];
         }
@@ -27,7 +27,7 @@ public class Target_Panal_Script : MonoBehaviour
     {
         for(int i = 0; i < 3; i ++)
         {
-            TargetUI[i].gameObject.SetActive(false);
+            TargetUI[i].enabled = false;
             
         }
     }
