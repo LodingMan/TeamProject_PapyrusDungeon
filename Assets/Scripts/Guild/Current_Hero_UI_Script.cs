@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 
 //=========================================================//
 //드래그&드롭 인터페이스를 상속받아 사용하며, 해당 스크립트는  //
@@ -21,6 +21,7 @@ namespace Song
         public GameObject This_Prefab_Object; //해당 UI하나가 어떤 오브젝트를 가리키고 있는지 보여줌.
         public UI_Central uI_Central;
         public Song.Hero_Status_UI_Script hero_Status_UI_Script;
+        public Text curStateText;
 
         private void Start()
         {
@@ -31,6 +32,22 @@ namespace Song
         }
         private void Update()
         {
+            if (!This_Prefab_Object.GetComponent<HeroScript_Current_State>().isDead)
+            {
+                curStateText.text = "isWait";
+            }
+            if(This_Prefab_Object.GetComponent<HeroScript_Current_State>().isParty) {
+                curStateText.text = "isParty";
+            }
+            if (This_Prefab_Object.GetComponent<HeroScript_Current_State>().isTraining)
+            {
+                curStateText.text = "isTraining";
+            }
+            if (This_Prefab_Object.GetComponent<HeroScript_Current_State>().isHealing)
+            {
+                curStateText.text = "isHealing";
+            }
+
             if (PointerDonwTime > 0.5f)
             {
                 isDrag = true;
