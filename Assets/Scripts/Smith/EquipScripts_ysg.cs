@@ -588,7 +588,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UnEquipArmor() // 장비 해제 함수입니다.
     {
-        if (isEquip && itemUseManager.isActive)
+        if (isArmorEquip && itemUseManager.isActive)
         {
             if (itemUseManager.equips[1].Name != "" && isArmorEquip)
             {
