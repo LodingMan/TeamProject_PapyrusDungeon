@@ -48,15 +48,14 @@ namespace Song
             This_Prefab_Object = Target_Hero;
 
             Status_Texts[0].text = Target_Hero.GetComponent<StatScript>().myStat.Name;
-            Status_Texts[1].text = Target_Hero.GetComponent<StatScript>().myStat.Job;
-            Status_Texts[2].text = "HP : " + Target_Hero.GetComponent<StatScript>().myStat.HP + "/" + Target_Hero.GetComponent<StatScript>().myStat.MAXHP;
-            Status_Texts[3].text = "MP : " + Target_Hero.GetComponent<StatScript>().myStat.MP + "/" + Target_Hero.GetComponent<StatScript>().myStat.MAXMP;
-            Status_Texts[4].text = "ATK : " + Target_Hero.GetComponent<StatScript>().myStat.Atk;
-            Status_Texts[5].text = "DEF : " + Target_Hero.GetComponent<StatScript>().myStat.Def;
-            Status_Texts[6].text = "CRI : " + Target_Hero.GetComponent<StatScript>().myStat.Cri;
-            Status_Texts[7].text = "ACC : " + Target_Hero.GetComponent<StatScript>().myStat.Acc;
-            Status_Texts[8].text = "AGI : " + Target_Hero.GetComponent<StatScript>().myStat.Agi;
-            Status_Texts[9].text = "SPEED : " + Target_Hero.GetComponent<StatScript>().myStat.Speed;
+            Status_Texts[1].text = "HP : " + Target_Hero.GetComponent<StatScript>().myStat.HP + "/" + Target_Hero.GetComponent<StatScript>().myStat.MAXHP;
+            Status_Texts[2].text = "MP : " + Target_Hero.GetComponent<StatScript>().myStat.MP + "/" + Target_Hero.GetComponent<StatScript>().myStat.MAXMP;
+            Status_Texts[3].text = "ATK : " + Target_Hero.GetComponent<StatScript>().myStat.Atk;
+            Status_Texts[4].text = "DEF : " + Target_Hero.GetComponent<StatScript>().myStat.Def;
+            Status_Texts[5].text = "CRI : " + Target_Hero.GetComponent<StatScript>().myStat.Cri;
+            Status_Texts[6].text = "ACC : " + Target_Hero.GetComponent<StatScript>().myStat.Acc;
+            Status_Texts[7].text = "AGI : " + Target_Hero.GetComponent<StatScript>().myStat.Agi;
+            Status_Texts[8].text = "SPEED : " + Target_Hero.GetComponent<StatScript>().myStat.Speed;
             // Shin
 
             for (int i = 0; i < Skills_Icon.Length; i++)
