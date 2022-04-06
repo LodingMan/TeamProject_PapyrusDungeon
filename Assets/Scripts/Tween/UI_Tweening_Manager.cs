@@ -61,6 +61,7 @@ public class UI_Tweening_Manager : MonoBehaviour
             if (isShopOn || isSmith)
             {
                 isShopOn = false;
+                shopMgr.isShop = false;
                 isSmith = false;
                 UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             }

@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equip:
     Index: 4
-    Name: PoleAxe
+    Name: DoubleAxe
     Job: Barristan
     Lv: 1
     Hp: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   equipSavingData:
     equip:
       Index: 4
-      Name: Knife
+      Name: DoubleAxe
       Job: Barristan
       Lv: 1
       Hp: 0
