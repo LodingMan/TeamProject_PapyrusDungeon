@@ -388,7 +388,7 @@ public class e_CombatManager : MonoBehaviour
                 Debug.Log("행동할 대상은" + speedComparisonArray[0] + "인덱스는" + currentActiveHeroIndex);
 
                 combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition =
-                    CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position ); //+new Vector3(0, 160, 0)
+                    CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position + new Vector3(0, 160, 0)); 
                 Debug.Log(combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition);
                 combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(true);
                 combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
@@ -414,6 +414,7 @@ public class e_CombatManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
         combat_Event_UI_Manager.Player_Targeting.enabled = false;
+        combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
 
 
         Vector3 EnemyPos = speedComparisonArray[0].transform.position;
