@@ -64,9 +64,15 @@ public class RoomController : MonoBehaviour
                                 break;
                             case 3:
                                 Debug.Log("골드");
+
+                                StartCoroutine(BattleDlay());
+                                inGamePlayerScript.isMove = false;//나중에 다 지우셈
                                 break;
                             case 4:
                                 Debug.Log("아이템");
+
+                                StartCoroutine(BattleDlay());
+                                inGamePlayerScript.isMove = false;//나중에 다 지우셈
                                 break;
                             default:
                                 break;
@@ -116,7 +122,7 @@ public class RoomController : MonoBehaviour
     public IEnumerator PassageEventDlay(GameObject Room)
     {
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         switch (Room.GetComponent<RoomScript>().DungeonEventPram) //복도이벤트
         {
             case 0:

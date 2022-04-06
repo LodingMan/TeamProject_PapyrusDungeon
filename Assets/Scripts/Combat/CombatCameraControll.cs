@@ -125,8 +125,8 @@ public class CombatCameraControll : MonoBehaviour
     IEnumerator FadeOutDlay() //위를 하기 위한 코루틴
     {
         yield return new WaitForSeconds(4);
-        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 7);
-        yield return new WaitForSeconds(5);
+        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 4);
+        yield return new WaitForSeconds(3);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
         LoadingPanal.color = Color.black;
     }
