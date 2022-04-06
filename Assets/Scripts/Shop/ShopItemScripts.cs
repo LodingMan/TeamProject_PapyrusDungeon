@@ -35,12 +35,12 @@ public class ShopItemScripts : MonoBehaviour
     {
         switch (gameObject.name)
         {
-            case "HP_POTION_SHOP(Clone)":
+            case "HP_POTION_SHOP":
                 itemIdx = itemTable.Item_Dictionary[0].Index;
                 gameObject.name = itemTable.Item_Dictionary[0].Name + "_Shop"; //_Shop 이 붙는 오브젝트는 상점에 나타나는 오브젝트입니다.
                 break;
 
-            case "MP_POTION_SHOP(Clone)":
+            case "MP_POTION_SHOP":
                 itemIdx = itemTable.Item_Dictionary[1].Index;
                 gameObject.name = itemTable.Item_Dictionary[1].Name + "_Shop";
                 break;
@@ -87,7 +87,6 @@ public class ShopItemScripts : MonoBehaviour
             buyItem.transform.SetParent(inventory.transform);
             buyItem.transform.localPosition = inventory.transform.localPosition;
             buyItem.transform.localScale = new Vector3(1, 1, 1);
-            Destroy(gameObject);
         }
         else
         {
