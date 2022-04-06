@@ -67,7 +67,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 EquipParamInit();
 
                 break;
-            case "PoleAxe(Clone)":
+            case "DoubleAxe(Clone)":
                 equipIndex = 4;
                 EquipParamInit();
 
@@ -205,35 +205,12 @@ public class EquipScripts_ysg : MonoBehaviour
         equip.Cost = equipTable.initEquip[equipIndex].Cost;
     }
 
-    public void Equip() // 장비를 장착 or 해제 했을때 호출되는 함수입니다. 
+    public void ArmorEquip()
     {
-        if (!isEquip)
+        if (!isArmorEquip)
         {
-
-            switch (equip.Index)
+            switch(equip.Index)
             {
-                case 0:
-                    EquipWeapon();
-
-                    break;
-                case 1:
-                    EquipWeapon();
-                    break;
-                case 2:
-                    EquipWeapon();
-                    break;
-                case 3:
-                    EquipWeapon();
-                    break;
-                case 4:
-                    EquipWeapon();
-                    break;
-                case 5:
-                    EquipWeapon();
-                    break;
-                case 6:
-                    EquipWeapon();
-                    break;
                 case 7:
                     EquipArmor();
                     break;
@@ -295,33 +272,11 @@ public class EquipScripts_ysg : MonoBehaviour
                     break;
             }
         }
-        else if (isEquip)
-        {
 
+        else if (isArmorEquip)
+        {
             switch (equip.Index)
             {
-                case 0:
-                    UnEquipWeapon();
-                    break;
-
-                case 1:
-                    UnEquipWeapon();
-                    break;
-                case 2:
-                    UnEquipWeapon();
-                    break;
-                case 3:
-                    UnEquipWeapon();
-                    break;
-                case 4:
-                    UnEquipWeapon();
-                    break;
-                case 5:
-                    UnEquipWeapon();
-                    break;
-                case 6:
-                    UnEquipWeapon();
-                    break;
                 case 7:
                     UnEquipArmor();
                     break;
@@ -332,6 +287,7 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 case 10:
+                    Debug.Log("해제");
                     UnEquipArmor();
                     break;
                 case 11:
@@ -380,6 +336,70 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 default:
+                    break;
+            }
+        }
+
+    }
+
+    public void Equip() // 장비를 장착 or 해제 했을때 호출되는 함수입니다. 
+    {
+        if (!isEquip)
+        {
+
+            switch (equip.Index)
+            {
+                case 0:
+                    EquipWeapon();
+
+                    break;
+                case 1:
+                    EquipWeapon();
+                    break;
+                case 2:
+                    EquipWeapon();
+                    break;
+                case 3:
+                    EquipWeapon();
+                    break;
+                case 4:
+                    EquipWeapon();
+                    break;
+                case 5:
+                    EquipWeapon();
+                    break;
+                case 6:
+                    EquipWeapon();
+                    break;
+
+            }
+        }
+        else if (isEquip)
+        {
+
+            switch (equip.Index)
+            {
+                case 0:
+                    UnEquipWeapon();
+                    break;
+
+                case 1:
+                    UnEquipWeapon();
+                    break;
+                case 2:
+                    UnEquipWeapon();
+                    break;
+                case 3:
+                    UnEquipWeapon();
+                    break;
+                case 4:
+                    UnEquipWeapon();
+                    break;
+                case 5:
+                    UnEquipWeapon();
+                    break;
+                case 6:
+                    UnEquipWeapon();
                     break;
             }
         }
@@ -563,12 +583,12 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (isEquip && itemUseManager.isActive)
         {
-            if (itemUseManager.equips[0].Name != "" && isEquip)
+            if (itemUseManager.equips[0].Name == gameObject.name && isEquip)
             {
                 isEquip = false;
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[0].Index = -1;
-                itemUseManager.equips[0].Name = null;
+                itemUseManager.equips[0].Name = "";
                 itemUseManager.equips[0].Job = null;
                 itemUseManager.equips[0].Lv = 0;
                 itemUseManager.equips[0].Hp = 0;
@@ -588,14 +608,16 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UnEquipArmor() // 장비 해제 함수입니다.
     {
-        if (isEquip && itemUseManager.isActive)
+
+        if (isArmorEquip && itemUseManager.isActive)
         {
-            if (itemUseManager.equips[1].Name != "" && isArmorEquip)
+
+            if (itemUseManager.equips[1].Name == gameObject.name && isArmorEquip)
             {
                 isArmorEquip = false;
                 //itemUseManager.isActive = false;
                 itemUseManager.equips[1].Index = -1;
-                itemUseManager.equips[1].Name = null;
+                itemUseManager.equips[1].Name = "";
                 itemUseManager.equips[1].Job = null;
                 itemUseManager.equips[1].Lv = 0;
                 itemUseManager.equips[1].Hp = 0;

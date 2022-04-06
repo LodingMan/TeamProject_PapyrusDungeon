@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 using UnityEngine.UI;
 //==================================================================================================//
 // 전체적인 아이템 및 장비 저장 불러오기 스크립트입니다. 이름 변경 예정입니다. 03-29 윤성근
@@ -35,9 +34,15 @@ public class ShopManager : MonoBehaviour
 
     public Button BuyBtn; // 구매 버튼
 
+    public void IsShop()
+    {
+
+        isShop = true;
+
+
+    }
     public void ItemSpawn() //상점 버튼을 눌렀을 시 아이템을 생성합니다. (나중에 랜덤으로 바꿀 예정) 03-27 윤성근
     {
-        isShop = true;
         for (int i = 0; i < shopPanel.transform.childCount; i++)
         {
             if (shopPanel.transform.GetChild(i).tag == "Equip")

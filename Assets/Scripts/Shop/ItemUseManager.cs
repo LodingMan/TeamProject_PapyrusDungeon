@@ -11,6 +11,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 {
     public GameObject tentCam;
     public GameObject selectHero;
+    public GameObject tentInven;
     public Stat stats;
     public Equip[] equips = new Equip[2];
     public skill[] mySkills = new skill[3];
@@ -31,6 +32,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Image[] equips_icon;
     public Image[] skills_icon;
     public GameObject heroStat;
+    
     
 
     private void Start()
