@@ -10,7 +10,7 @@ namespace Shin
 {
     public class UI_DungeonInitButton : MonoBehaviour
     {
-        Button btn;
+        public Button btn;
         public GameObject canvas_Town;
         public GameObject camera_Town;
         public GameObject canvas_Tent;        
@@ -34,7 +34,6 @@ namespace Shin
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             shopMgr = GameObject.Find("ShopManager").GetComponent<ShopManager>();
             twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-            btn = GetComponent<Button>();
             btn.onClick.AddListener(OnClickBtn);
             tentPos[0].position = new Vector3(-32f, 0.95f, -132);
             tentPos[1].position = new Vector3(-32.12f, 0.95f, -135.43f);

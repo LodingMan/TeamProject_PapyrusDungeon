@@ -50,9 +50,9 @@ public class UI_Tweening_Manager : MonoBehaviour
         {
             if (isTentOn == true && StackCount == 0)
             {
-                if (uI_DungeonInitButton.canvas_Tent.enabled)
+                if (uI_DungeonInitButton.canvas_Tent.activeSelf)
                 {
-                    uI_DungeonInitButton.canvas_Tent.enabled = false;
+                    uI_DungeonInitButton.canvas_Tent.SetActive(false);
                 }
                 UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
                 StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
