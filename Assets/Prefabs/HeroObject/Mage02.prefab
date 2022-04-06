@@ -346,9 +346,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 547463367457261639}
     m_Modifications:
     - target: {fileID: 927823265581435584, guid: 44b86ad8a9d2c014db2eb3d832c675c7, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: dc603c42b6599174e901596a1f756de4, type: 3}
+    - target: {fileID: 927823265581435584, guid: 44b86ad8a9d2c014db2eb3d832c675c7, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 3ccb1641bc043334e895bc321d49e4fd, type: 2}
+    - target: {fileID: 927823265581435584, guid: 44b86ad8a9d2c014db2eb3d832c675c7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 927823265588738404, guid: 44b86ad8a9d2c014db2eb3d832c675c7, type: 3}
       propertyPath: m_Name
       value: _Mage02

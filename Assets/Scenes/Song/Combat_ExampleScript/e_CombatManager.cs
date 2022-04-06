@@ -291,10 +291,6 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.Player_Targeting.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(myParty[UseIndex].transform.position);
         combat_Event_UI_Manager.Player_Targeting.GetComponent<DOTweenAnimation>().DORestart();
         StartCoroutine(EnemyAttack(UseIndex));
-        SkillResultInit(myParty[UseIndex]);
-
-
-
 
 
     }
@@ -390,7 +386,14 @@ public class e_CombatManager : MonoBehaviour
             {
                 currentActiveHeroIndex = i; //스킬을 사용할 유닛의 위치번호
                 Debug.Log("행동할 대상은" + speedComparisonArray[0] + "인덱스는" + currentActiveHeroIndex);
-                skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
+
+                combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition =
+                    CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position ); //+new Vector3(0, 160, 0)
+                Debug.Log(combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition);
+                combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(true);
+                combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
+
+
 
 
             }
@@ -416,17 +419,30 @@ public class e_CombatManager : MonoBehaviour
         Vector3 EnemyPos = speedComparisonArray[0].transform.position;
         Vector3 HeroPos = myParty[target_Idx].transform.position;
 
-        for(int i = 0; i < speedComparisonArray.Count; i++)
-        {
-            speedComparisonArray[i].SetActive(false);
-        }
-        speedComparisonArray[0].SetActive(true);
-        myParty[target_Idx].SetActive(true);
+        //for(int i = 0; i < speedComparisonArray.Count; i++)
+        //{
+        //    speedComparisonArray[i].SetActive(false);
+        //}
+    //    speedComparisonArray[0].SetActive(true);
+    //    myParty[target_Idx].SetActive(true);
 
-        speedComparisonArray[0].transform.position = new Vector3(-2999.58f, 0, -3.12f);
-        myParty[target_Idx].transform.position = new Vector3(-2998.75f, 0, -3.12f);
+        speedComparisonArray[0].transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
-       // speedComparisonArray[0].transform.DOMove()
+        myParty[target_Idx].transform.position = new Vector3(-2999.58f ,0, -3.12f);
+
+
+        speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
+        myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
+
+        yield return new WaitForSeconds(5);
+        speedComparisonArray[0].transform.position = EnemyPos;
+        myParty[target_Idx].transform.position = HeroPos;
+
+
+        SkillResultInit(myParty[target_Idx]);
+
+
+        // speedComparisonArray[0].transform.DOMove()
 
         //speedComparisonArray[0]위치 저장
         //myParty[target_Idx] 위치저장
@@ -444,9 +460,11 @@ public class e_CombatManager : MonoBehaviour
     }
     public IEnumerator HeroAttackDlay(GameObject target)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         target_Panal_Script.TargetAllOff();
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
+
+
         SkillResultInit(target);
         Debug.Log("Test");
 
