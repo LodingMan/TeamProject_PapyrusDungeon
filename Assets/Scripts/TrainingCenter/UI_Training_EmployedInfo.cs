@@ -12,13 +12,17 @@ namespace Shin
         public Shin.UI_TrainingManager uI_trainingManager;
         public UI_Tweening_Manager uI_Tweening_Manager;
         public TownManager twMgr;
-        
+        HeroImageTable heroImageTable;
+
         public StatScript statScript;
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Image heroInfo;
+        public Image heroIcon;
         public Text text_Name;
         public Text text_Job;
+        public Text HP;
+        public Text MP;
 
         public int curWeek;
         Button btn;
@@ -28,6 +32,7 @@ namespace Shin
             heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
             uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
@@ -60,8 +65,33 @@ namespace Shin
                     heroScript_Current_State.isTraining = heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining;
                 }
             }
-            text_Name.text = "이름 : " + statScript.myStat.Name;
-            text_Job.text = "직업 : " + statScript.myStat.Job;
+            text_Name.text = statScript.myStat.Name;
+            text_Job.text = statScript.myStat.Job;
+            HP.text = "HP : " + statScript.myStat.HP + " / " + statScript.myStat.MAXHP;
+            MP.text = "MP : " + statScript.myStat.MP + " / " + statScript.myStat.MAXMP;
+            switch (statScript.myStat.Job)
+            {
+                case "Babarian":
+                    heroIcon.sprite = heroImageTable.sprite[0];
+                    break;
+                case "Archer":
+                    heroIcon.sprite = heroImageTable.sprite[1];
+                    break;
+                case "Knight":
+                    heroIcon.sprite = heroImageTable.sprite[2];
+                    break;
+                case "Barristan":
+                    heroIcon.sprite = heroImageTable.sprite[3];
+                    break;
+                case "Mage":
+                    heroIcon.sprite = heroImageTable.sprite[4];
+                    break;
+                case "Porter":
+                    heroIcon.sprite = heroImageTable.sprite[5];
+                    break;
+                default:
+                    break;
+            }
         }
         void ShowHeroDetail()
         {

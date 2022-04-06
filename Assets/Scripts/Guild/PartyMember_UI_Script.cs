@@ -16,6 +16,8 @@ namespace Song
         Song.Current_Hero_UI_Script current_Hero_UI;
         public Shin.HeroImageTable heroImageTable; // Shin
         public Image heroIcon;
+        public Text HP;
+        public Text MP;
         public bool isParty_Hero_In = false;
         public bool isPointerDown = false;
         public float downTime;
@@ -65,9 +67,10 @@ namespace Song
             isParty_Hero_In = false;
             gameObject.transform.GetChild(0).GetComponent<Text>().text = "";
             gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
-            gameObject.transform.GetChild(2).GetComponent<Text>().text = "";
+            gameObject.transform.GetChild(3).GetComponent<Text>().text = "";
+            gameObject.transform.GetChild(4).GetComponent<Text>().text = "";
 
-            for(int i = 0; i < guildManager.Party_Hero_Member.Length; i++)
+            for (int i = 0; i < guildManager.Party_Hero_Member.Length; i++)
             {
 
                 if(guildManager.Party_Hero_Member[i] == This_Prefab_Object)
@@ -94,10 +97,8 @@ namespace Song
                         This_Prefab_Object.GetComponent<HeroScript_Current_State>().isParty = true;
                         isParty_Hero_In = true;
                         gameObject.transform.GetChild(0).GetComponent<Text>().text = This_Prefab_Object.GetComponent<StatScript>().myStat.Name;
-
-                        /*gameObject.transform.GetChild(1).GetComponent<Text>().text = "Class : " + This_Prefab_Object.GetComponent<StatScript>().myStat.Job;
-                        gameObject.transform.GetChild(2).GetComponent<Text>().text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP;*/
-                        
+                        HP.text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXHP;
+                        MP.text = "MP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.MP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXMP;
                         guildManager.Party_Hero_Member[int.Parse(gameObject.name)] = This_Prefab_Object;
                         switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
                         {
