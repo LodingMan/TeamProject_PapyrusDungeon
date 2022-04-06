@@ -11,6 +11,7 @@ TagManager:
   - Right
   - Inven
   - Enemy
+  - Equip
   layers:
   - Default
   - TransparentFX

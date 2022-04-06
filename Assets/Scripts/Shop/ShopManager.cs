@@ -19,6 +19,7 @@ public class ShopManager : MonoBehaviour
     public GameObject equipPrefab; // 생성되는 장비 프리팹
 
     public List<GameObject> ShopItemList = new List<GameObject>(); //상점에 나타나는 아이템 프리팹 리스트
+    public List<GameObject> shopEquipList = new List<GameObject>();
     public List<GameObject> itemList = new List<GameObject>(); //인벤토리에 들어올 아이템 프리팹 리스트
     public List<GameObject> equipList = new List<GameObject>(); //인벤토리에 들어올 장비 프리팹 리스트
     public List<GameObject> hasItemList = new List<GameObject>(); //가지고 있는 아이템 리스트입니다. 데이터 저장 할때 필요합니다.
@@ -37,11 +38,18 @@ public class ShopManager : MonoBehaviour
     public void ItemSpawn() //상점 버튼을 눌렀을 시 아이템을 생성합니다. (나중에 랜덤으로 바꿀 예정) 03-27 윤성근
     {
         isShop = true;
-        //Instantiate(ShopItemList[0], shopPanel.transform);
-        //Instantiate(ShopItemList[1], shopPanel.transform);
-
-        //Instantiate(equipList[0], inventory.transform);
-        //Instantiate(equipList[1], inventory.transform);
+        for (int i = 0; i < shopPanel.transform.childCount; i++)
+        {
+            if (shopPanel.transform.GetChild(i).tag == "Equip")
+            {
+                Destroy(shopPanel.transform.GetChild(i).gameObject);
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            int rnd = Random.Range(0, shopEquipList.Count);
+            Instantiate(shopEquipList[rnd], shopPanel.transform);
+        }
 
     }
 

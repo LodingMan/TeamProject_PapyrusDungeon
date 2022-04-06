@@ -14,6 +14,7 @@ public class TownManager : MonoBehaviour
     public Song.HeroManager heroManager; // inspector창에 HeroManager넣었음
     public Shin.UI_ChurchManager churchManager;
     public e_CombatManager combatManager;
+    public ShopManager shopMgr;
 
     public List<GameObject> OnControll = new List<GameObject>(); 
 
@@ -33,6 +34,7 @@ public class TownManager : MonoBehaviour
     {
         Week++;
         heroManager.RandomHeroCreate();
+        shopMgr.ItemSpawn();
     } //정리하자면 TownManager는 HeroManager에게 영웅을 생성하라 명령하고, HeroManager는 Guild에게 몇마리 생성해야 하는지 값을 받아 생성한다. 
 
     public void UpdateManager_All_Off()
