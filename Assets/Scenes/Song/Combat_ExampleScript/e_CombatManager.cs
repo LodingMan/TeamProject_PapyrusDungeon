@@ -290,8 +290,8 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.Player_Targeting.enabled = true;
         combat_Event_UI_Manager.Player_Targeting.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(myParty[UseIndex].transform.position);
         combat_Event_UI_Manager.Player_Targeting.GetComponent<DOTweenAnimation>().DORestart();
-        StartCoroutine(EnemyAttack());
-        SkillResultInit(myParty[UseIndex]);
+        StartCoroutine(EnemyAttack(myParty[UseIndex]));
+        SkillResultInit(UseIndex);
 
 
 
@@ -406,12 +406,38 @@ public class e_CombatManager : MonoBehaviour
 
     }
 
-    IEnumerator EnemyAttack()
+    IEnumerator EnemyAttack(int target_Idx)
     {
         yield return new WaitForSeconds(2);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
         combat_Event_UI_Manager.Player_Targeting.enabled = false;
 
+
+        Vector3 EnemyPos = speedComparisonArray[0].transform.position;
+        Vector3 HeroPos = myParty[target_Idx].transform.position;
+
+        for(int i = 0; i < speedComparisonArray.Count; i++)
+        {
+            speedComparisonArray[i].SetActive(false);
+        }
+        speedComparisonArray[0].SetActive(true);
+        myParty[target_Idx].SetActive(true);
+
+        speedComparisonArray[0].transform.position = new Vector3(-2999.58f, 0, -3.12f);
+        myParty[target_Idx].transform.position = new Vector3(-2998.75f, 0, -3.12f);
+
+        speedComparisonArray[0].transform.DOMove()
+
+        speedComparisonArray[0]위치 저장
+        myParty[target_Idx] 위치저장
+        speedComparisonArray전부 오브젝트 비활성화 
+
+        speedComparisonArray[0]위치 변경 
+        myParty[target_Idx] 위치변경 
+        Tween으로 무빙
+
+        오브젝트 전부 활성화
+        위치 바꿨던 놈들 제자리 
 
 
         //여기에 적이 공격하는 애니메이션 입력해주면 됨. 
