@@ -11,10 +11,10 @@ namespace Shin
     public class UI_DungeonInitButton : MonoBehaviour
     {
         Button btn;
-        public Canvas canvas_Town;
-        public Camera camera_Town;
-        public Canvas canvas_Tent;        
-        public Camera camera_Tent;
+        public GameObject canvas_Town;
+        public GameObject camera_Town;
+        public GameObject canvas_Tent;        
+        public GameObject camera_Tent;
         public GameObject camfire;
 
         public GameObject inventory;
@@ -60,9 +60,9 @@ namespace Shin
                 shopMgr.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
             }
 
-            if (canvas_Town.enabled)
+            if (canvas_Town.activeSelf)
             {
-                canvas_Town.enabled = false;
+                canvas_Town.SetActive(false);
             }
             StartCoroutine(TweenLoadingPanelToTent()); 
         }
@@ -70,13 +70,13 @@ namespace Shin
         public IEnumerator TweenLoadingPanelToTent()
         {
             yield return new WaitForSeconds(2f);
-            if (camera_Town.enabled)
+            if (camera_Town.activeSelf)
             {
-                camera_Town.enabled = false;
+                camera_Town.SetActive(false);
             }
             
-            if (!camera_Town.enabled) camera_Tent.enabled = true;
-            if (!canvas_Town.enabled) canvas_Tent.enabled = true;
+            if (!camera_Town.activeSelf) camera_Tent.SetActive(true);
+            if (!canvas_Town.activeSelf) canvas_Tent.SetActive(true);
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
@@ -105,12 +105,12 @@ namespace Shin
         public IEnumerator TweenLoadingPanelToTown()
         {
             yield return new WaitForSeconds(2f);
-            if (camera_Tent.enabled)
+            if (camera_Tent.activeSelf)
             {
-                camera_Tent.enabled = false;
+                camera_Tent.SetActive(false);
             }
-            if (!camera_Tent.enabled) camera_Town.enabled = true; 
-            if (!canvas_Tent.enabled) canvas_Town.enabled = true;
+            if (!camera_Tent.activeSelf) camera_Town.SetActive(true); 
+            if (!canvas_Tent.activeSelf) canvas_Town.SetActive(true);
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
             twMgr.isTentOn = false;
