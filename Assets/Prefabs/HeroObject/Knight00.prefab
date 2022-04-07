@@ -348,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 746211592785989818, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5826b9020e9c49545a000805a9bfba44, type: 2}
+      objectReference: {fileID: 9100000, guid: 072fc8da54d19d24cade68db9759571f, type: 2}
     - target: {fileID: 746211592795382558, guid: 12bb72d88bd21984988cb013fbbf8637, type: 3}
       propertyPath: m_Name
       value: _Knight00
