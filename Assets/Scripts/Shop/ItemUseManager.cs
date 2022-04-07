@@ -172,9 +172,8 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         
                         }
 
-                    
-                        //heroStat.transform.GetChild(0).GetComponent<Image>().sprite;
-                        twMgr.UI_HeroStat_Tent_PanelPos_On_Off(); // Shin. 여기에 Tent_HeroPanel을 tween하도록.
+                  
+                        
                         //heroname을 이용하여 UI값들 설정. Shin.  
                     }
 
