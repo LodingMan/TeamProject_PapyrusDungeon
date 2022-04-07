@@ -69,6 +69,7 @@ namespace Song
             gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
             gameObject.transform.GetChild(3).GetComponent<Text>().text = "";
             gameObject.transform.GetChild(4).GetComponent<Text>().text = "";
+            gameObject.transform.GetChild(2).GetComponent<Image>().sprite = heroImageTable.sprite[6];
 
             for (int i = 0; i < guildManager.Party_Hero_Member.Length; i++)
             {
@@ -123,15 +124,6 @@ namespace Song
                             default:
                                 break;
                         }
-                        /*switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
-                        {
-                            case "Porter":
-                                // heroImage.sprite = 0번 이미지
-                                break;
-                            default:
-                                break;
-                        }*/
-                        // 직업을 검사해서 이미지 넣기.
 
                     }
                     else
