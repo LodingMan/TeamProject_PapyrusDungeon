@@ -221,14 +221,12 @@ public class ItemScripts : MonoBehaviour
     {
         if (dgMgr.isTent && itemUseManager.isActive)
         {
-            if (!isDungeon)
+            if (dgMgr.isTent)
             {
-                isDungeon = true;
                 useBtn.gameObject.SetActive(true);
             }
             else
             {
-                isDungeon = false;
                 useBtn.gameObject.SetActive(false);
             }
         }
