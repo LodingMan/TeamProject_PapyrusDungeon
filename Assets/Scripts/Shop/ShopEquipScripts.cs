@@ -29,53 +29,53 @@ public class ShopEquipScripts : MonoBehaviour
         switch (gameObject.name)
         {
             case "SWORD_EQUIP(Clone)":
-                equipIdx = equipTable.initEquip[0].Index;
-                gameObject.name = equipTable.initEquip[0].Name + "_Shop";
-                break;
-
-            case "AXE_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[1].Index;
                 gameObject.name = equipTable.initEquip[1].Name + "_Shop";
                 break;
-            case "BOW_EQUIP(Clone)":
+
+            case "AXE_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[2].Index;
                 gameObject.name = equipTable.initEquip[2].Name + "_Shop";
                 break;
-            case "KNIFE_EQUIP(Clone)":
+            case "BOW_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[3].Index;
                 gameObject.name = equipTable.initEquip[3].Name + "_Shop";
                 break;
-            case "DOUBLEAXE_EQUIP(Clone)":
+            case "KNIFE_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[4].Index;
                 gameObject.name = equipTable.initEquip[4].Name + "_Shop";
                 break;
-            case "SABER_EQUIP(Clone)":
+            case "DOUBLEAXE_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[5].Index;
                 gameObject.name = equipTable.initEquip[5].Name + "_Shop";
                 break;
-            case "WAND_EQUIP(Clone)":
+            case "SABER_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[6].Index;
                 gameObject.name = equipTable.initEquip[6].Name + "_Shop";
                 break;
-            case "ARMOR1_EQUIP(Clone)":
-                equipIdx = equipTable.initEquip[10].Index;
-                gameObject.name = equipTable.initEquip[10].Name + "_Shop";
+            case "WAND_EQUIP(Clone)":
+                equipIdx = equipTable.initEquip[7].Index;
+                gameObject.name = equipTable.initEquip[7].Name + "_Shop";
                 break;
-            case "ARMOR2_EQUIP(Clone)":
+            case "ARMOR1_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[11].Index;
                 gameObject.name = equipTable.initEquip[11].Name + "_Shop";
                 break;
-            case "BOOT1_EQUIP(Clone)":
+            case "ARMOR2_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[12].Index;
                 gameObject.name = equipTable.initEquip[12].Name + "_Shop";
                 break;
-            case "BOOT2_EQUIP(Clone)":
+            case "BOOT1_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[13].Index;
                 gameObject.name = equipTable.initEquip[13].Name + "_Shop";
                 break;
-            case "BOOT3_EQUIP(Clone)":
+            case "BOOT2_EQUIP(Clone)":
                 equipIdx = equipTable.initEquip[14].Index;
                 gameObject.name = equipTable.initEquip[14].Name + "_Shop";
+                break;
+            case "BOOT3_EQUIP(Clone)":
+                equipIdx = equipTable.initEquip[15].Index;
+                gameObject.name = equipTable.initEquip[15].Name + "_Shop";
                 break;
             default:
                 break;
@@ -86,33 +86,30 @@ public class ShopEquipScripts : MonoBehaviour
     {
         switch (equipIdx)
         {
-            case 0:
-                EquipInstantiate();
-
-                break;
             case 1:
                 EquipInstantiate();
+
                 break;
             case 2:
                 EquipInstantiate();
-
                 break;
             case 3:
                 EquipInstantiate();
+
                 break;
             case 4:
                 EquipInstantiate();
-
                 break;
             case 5:
                 EquipInstantiate();
+
                 break;
             case 6:
                 EquipInstantiate();
-
                 break;
-            case 10:
+            case 7:
                 EquipInstantiate();
+
                 break;
             case 11:
                 EquipInstantiate();
@@ -124,6 +121,9 @@ public class ShopEquipScripts : MonoBehaviour
                 EquipInstantiate();
                 break;
             case 14:
+                EquipInstantiate();
+                break;
+            case 15:
                 EquipInstantiate();
                 break;
 
