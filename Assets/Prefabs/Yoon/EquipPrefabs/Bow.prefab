@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 2
+    Index: 3
     Name: Bow
     Job: Archer
     Lv: 1
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 2
+      Index: 3
       Name: Bow
       Job: Archer
       Lv: 1

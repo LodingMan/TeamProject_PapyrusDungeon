@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 3
+    Index: 4
     Name: Knife
     Job: Porter
     Lv: 1
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 3
+      Index: 4
       Name: Knife
       Job: Porter
       Lv: 1

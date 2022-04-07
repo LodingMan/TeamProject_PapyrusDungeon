@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 6
+    Index: 7
     Name: Wand
     Job: Mage
     Lv: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 6
+      Index: 7
       Name: Wand
       Job: Mage
       Lv: 1

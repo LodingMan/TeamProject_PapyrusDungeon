@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 21
+    Index: 22
     Name: Helmet2
     Job: Any
     Lv: 1
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 21
+      Index: 22
       Name: Helmet2
       Job: Any
       Lv: 1

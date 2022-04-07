@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 13
+    Index: 14
     Name: Boot2
     Job: Any
     Lv: 1
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 13
+      Index: 14
       Name: Boot2
       Job: Any
       Lv: 1

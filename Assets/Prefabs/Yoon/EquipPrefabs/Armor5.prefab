@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 19
+    Index: 20
     Name: Armor5
     Job: Any
     Lv: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 19
+      Index: 20
       Name: Armor5
       Job: Any
       Lv: 1
