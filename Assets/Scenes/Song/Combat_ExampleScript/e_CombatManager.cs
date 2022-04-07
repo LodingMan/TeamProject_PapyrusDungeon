@@ -501,10 +501,10 @@ public class e_CombatManager : MonoBehaviour
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
         myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
-        ppCon.DepthOfFieldOnOff(ppCon);
+        ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         combat_Effect_Manager.HitLight.enabled = true;
         yield return new WaitForSeconds(4);
-        ppCon.DepthOfFieldOnOff(ppCon);
+        ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
         speedComparisonArray[0].transform.position = EnemyPos;
         myParty[target_Idx].transform.position = HeroPos;
 
@@ -551,11 +551,13 @@ public class e_CombatManager : MonoBehaviour
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
         target.transform.DOMove(target.transform.position - new Vector3(-0.8f, 0, 0), 3f);
         combat_Effect_Manager.HitLight.enabled = true;
-        ppCon.DepthOfFieldOnOff(ppCon);
+        ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
+        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
         yield return new WaitForSeconds(4);
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
-        ppCon.DepthOfFieldOnOff(ppCon);
+        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
+        ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
         speedComparisonArray[0].transform.position = HeroPos;
         target.transform.position = EnemyPos;
         combat_Effect_Manager.HitLight.enabled = false;
