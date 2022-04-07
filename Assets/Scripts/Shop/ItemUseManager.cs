@@ -206,7 +206,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     {
         for (int i = 0; i < equips.Length; i++)
         {
-            equips_icon[i].sprite = equipDetailTable.sprite[equips[i+1].Index];
+            equips_icon[i].sprite = equipDetailTable.sprite[equips[i].Index];
         }
         for (int i = 0; i < mySkills.Length; i++) // 스킬 인덱스
         {
