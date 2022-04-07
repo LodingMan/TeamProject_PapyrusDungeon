@@ -389,7 +389,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < myParty.Count; i++)
                 {
-                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * i - 1), 0, 0), 1);
+                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * i-1), 0, 0), 1);
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);

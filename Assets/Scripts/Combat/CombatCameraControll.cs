@@ -136,6 +136,8 @@ public class CombatCameraControll : MonoBehaviour
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.DOColor(Color.black, 2);
         yield return new WaitForSeconds(5);
+        Screen.fullScreen = true;
+        
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 2);
         yield return new WaitForSeconds(3);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
