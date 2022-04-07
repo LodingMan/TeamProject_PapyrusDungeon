@@ -551,10 +551,11 @@ public class e_CombatManager : MonoBehaviour
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
         target.transform.DOMove(target.transform.position - new Vector3(-0.8f, 0, 0), 3f);
         combat_Effect_Manager.HitLight.enabled = true;
+        ppCon.DepthOfFieldOnOff(ppCon);
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
         yield return new WaitForSeconds(4);
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
-
+        ppCon.DepthOfFieldOnOff(ppCon);
         speedComparisonArray[0].transform.position = HeroPos;
         target.transform.position = EnemyPos;
         combat_Effect_Manager.HitLight.enabled = false;

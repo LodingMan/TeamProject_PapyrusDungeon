@@ -1,8 +1,7 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 //==================================================================================================//
 // 전체적인 아이템, 장비 사용 및 착용 시 필요한 스크립트 입니다. 03-28 윤성근
@@ -24,6 +23,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public UI_Tweening_Manager twMgr;
     public GameObject[] guildMgr = new GameObject[3];
     public quick_outline.quick_outline outline;
+    public ShopManager shopMgr;
 
     // Shin
     public Shin.SkillDetailTable skillDetailTable;
@@ -32,8 +32,8 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Image[] equips_icon;
     public Image[] skills_icon;
     public GameObject heroStat;
-    
-    
+
+
 
     private void Start()
     {
@@ -71,6 +71,25 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
             {
                 outline.enabled = false;
             }
+
+            for (int i = 0; i < shopMgr.hasItemList.Count; i++)
+            {
+                if (shopMgr.hasItemList[i].transform.GetChild(1).GetComponent<Button>().gameObject.activeSelf)
+                {
+                    shopMgr.hasItemList[i].transform.GetChild(1).GetComponent<Button>().gameObject.SetActive(false);
+                }
+
+            }
+
+            for (int i = 0; i < shopMgr.hasEquipList.Count; i++)
+            {
+                if (shopMgr.hasEquipList[i].transform.GetChild(1).GetComponent<Button>().gameObject.activeSelf)
+                {
+                    shopMgr.hasEquipList[i].transform.GetChild(1).GetComponent<Button>().gameObject.SetActive(false);
+                }
+
+            }
+
             partyNum = -1;
             isActive = false;
             stats = null;
@@ -91,7 +110,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
             }
 
         }
-        
+
         switch (partyNum)
         {
             case -1:
@@ -148,7 +167,8 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
                         heroStat.name = stats.Name;
                         heroStat.transform.GetChild(0).name = stats.Job;
-                        switch (stats.Job) {
+                        switch (stats.Job)
+                        {
                             case "Babarian":
                                 heroStat.transform.GetChild(0).GetComponent<Image>().sprite = heroImageTable.sprite[0];
                                 break;
@@ -169,12 +189,11 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                                 break;
                             default:
                                 break;
-                        
+
                         }
 
-                    
-                        //heroStat.transform.GetChild(0).GetComponent<Image>().sprite;
-                        twMgr.UI_HeroStat_Tent_PanelPos_On_Off(); // Shin. 여기에 Tent_HeroPanel을 tween하도록.
+
+
                         //heroname을 이용하여 UI값들 설정. Shin.  
                     }
 
