@@ -7,6 +7,12 @@ public class CombatCanvas_Script : MonoBehaviour
     public Camera TentCamera;
     private void Start()
     {
+    }
+    private void Awake()
+    {   
+        //Screen.SetResolution(1280, 1280 / 16 * 9, true);
+
+        //Screen.SetResolution(1280, 1280 / 16 * 9, false);
 
 
       //  SetResolution(); 
