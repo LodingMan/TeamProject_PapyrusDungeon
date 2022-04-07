@@ -48,136 +48,136 @@ public class EquipScripts_ysg : MonoBehaviour
         switch (gameObject.name) //현재 게임오브젝트의 이름에 맞는 함수를 출력합니다.
         {
             case "Sword(Clone)":
-                equipIndex = 0;
-                EquipParamInit();
-
-                break;
-            case "Axe(Clone)":
                 equipIndex = 1;
                 EquipParamInit();
 
                 break;
-            case "Bow(Clone)":
+            case "Axe(Clone)":
                 equipIndex = 2;
                 EquipParamInit();
 
                 break;
-            case "Knife(Clone)":
+            case "Bow(Clone)":
                 equipIndex = 3;
                 EquipParamInit();
 
                 break;
-            case "DoubleAxe(Clone)":
+            case "Knife(Clone)":
                 equipIndex = 4;
                 EquipParamInit();
 
                 break;
-            case "Saber(Clone)":
+            case "DoubleAxe(Clone)":
                 equipIndex = 5;
                 EquipParamInit();
 
                 break;
-            case "Wand(Clone)":
+            case "Saber(Clone)":
                 equipIndex = 6;
+                EquipParamInit();
+
+                break;
+            case "Wand(Clone)":
+                equipIndex = 7;
                 EquipParamInit();
 
                 break;
 
             case "Amulet1(Clone)":
-                equipIndex = 7;
-                EquipParamInit();
-
-                break;
-            case "Amulet2(Clone)":
                 equipIndex = 8;
                 EquipParamInit();
 
                 break;
-            case "Amulet3(Clone)":
+            case "Amulet2(Clone)":
                 equipIndex = 9;
                 EquipParamInit();
 
                 break;
-            case "Armor1(Clone)":
+            case "Amulet3(Clone)":
                 equipIndex = 10;
                 EquipParamInit();
 
                 break;
-            case "Armor2(Clone)":
+            case "Armor1(Clone)":
                 equipIndex = 11;
+                EquipParamInit();
+
+                break;
+            case "Armor2(Clone)":
+                equipIndex = 12;
                 EquipParamInit();
 
                 break;
 
             case "Boot1(Clone)":
-                equipIndex = 12;
+                equipIndex = 13;
                 EquipParamInit();
 
                 break;
             case "Boot2(Clone)":
-                equipIndex = 13;
+                equipIndex = 14;
                 EquipParamInit();
 
                 break;
 
             case "Boot3(Clone)":
-                equipIndex = 14;
-                EquipParamInit();
-
-                break;
-            case "Armor3(Clone)":
                 equipIndex = 15;
                 EquipParamInit();
 
                 break;
-            case "Armor4(Clone)":
+            case "Armor3(Clone)":
                 equipIndex = 16;
                 EquipParamInit();
 
                 break;
-            case "Glove1(Clone)":
+            case "Armor4(Clone)":
                 equipIndex = 17;
                 EquipParamInit();
 
                 break;
-            case "Glove2(Clone)":
+            case "Glove1(Clone)":
                 equipIndex = 18;
                 EquipParamInit();
 
                 break;
-            case "Armor5(Clone)":
+            case "Glove2(Clone)":
                 equipIndex = 19;
                 EquipParamInit();
 
                 break;
-            case "Helmet1(Clone)":
+            case "Armor5(Clone)":
                 equipIndex = 20;
                 EquipParamInit();
 
                 break;
-            case "Helmet2(Clone)":
+            case "Helmet1(Clone)":
                 equipIndex = 21;
                 EquipParamInit();
 
                 break;
-            case "Helmet3(Clone)":
+            case "Helmet2(Clone)":
                 equipIndex = 22;
                 EquipParamInit();
 
                 break;
-            case "Ring1(Clone)":
+            case "Helmet3(Clone)":
                 equipIndex = 23;
                 EquipParamInit();
 
                 break;
-            case "Ring2(Clone)":
+            case "Ring1(Clone)":
                 equipIndex = 24;
+                EquipParamInit();
+
+                break;
+            case "Ring2(Clone)":
+                equipIndex = 25;
                 EquipParamInit();
 
                 break;
 
             case "Shield(Clone)":
-                equipIndex = 25;
+                equipIndex = 26;
                 EquipParamInit();
 
                 break;
@@ -211,9 +211,6 @@ public class EquipScripts_ysg : MonoBehaviour
         {
             switch(equip.Index)
             {
-                case 7:
-                    EquipArmor();
-                    break;
                 case 8:
                     EquipArmor();
                     break;
@@ -266,6 +263,9 @@ public class EquipScripts_ysg : MonoBehaviour
                     EquipArmor();
                     break;
                 case 25:
+                    EquipArmor();
+                    break;
+                case 26:
                     EquipArmor();
                     break;
                 default:
@@ -277,9 +277,6 @@ public class EquipScripts_ysg : MonoBehaviour
         {
             switch (equip.Index)
             {
-                case 7:
-                    UnEquipArmor();
-                    break;
                 case 8:
                     UnEquipArmor();
                     break;
@@ -287,10 +284,10 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 case 10:
-                    Debug.Log("해제");
                     UnEquipArmor();
                     break;
                 case 11:
+                    Debug.Log("해제");
                     UnEquipArmor();
                     break;
                 case 12:
@@ -333,6 +330,9 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 case 25:
+                    UnEquipArmor();
+                    break;
+                case 26:
                     UnEquipArmor();
                     break;
                 default:
@@ -349,12 +349,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
             switch (equip.Index)
             {
-                case 0:
-                    EquipWeapon();
-
-                    break;
                 case 1:
                     EquipWeapon();
+
                     break;
                 case 2:
                     EquipWeapon();
@@ -369,6 +366,9 @@ public class EquipScripts_ysg : MonoBehaviour
                     EquipWeapon();
                     break;
                 case 6:
+                    EquipWeapon();
+                    break;
+                case 7:
                     EquipWeapon();
                     break;
 
@@ -379,13 +379,10 @@ public class EquipScripts_ysg : MonoBehaviour
 
             switch (equip.Index)
             {
-                case 0:
-                    UnEquipWeapon();
-                    break;
-
                 case 1:
                     UnEquipWeapon();
                     break;
+
                 case 2:
                     UnEquipWeapon();
                     break;
@@ -401,15 +398,15 @@ public class EquipScripts_ysg : MonoBehaviour
                 case 6:
                     UnEquipWeapon();
                     break;
+                case 7:
+                    UnEquipWeapon();
+                    break;
             }
         }
         else if (isSmith)
         {
             switch (equip.Index)
             {
-                case 0:
-                    UpgradeEquips();
-                    break;
                 case 1:
                     UpgradeEquips();
                     break;
@@ -483,6 +480,9 @@ public class EquipScripts_ysg : MonoBehaviour
                     UpgradeEquips();
                     break;
                 case 25:
+                    UpgradeEquips();
+                    break;
+                case 26:
                     UpgradeEquips();
                     break;
 
@@ -588,7 +588,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isEquip = false;
                 //itemUseManager.isActive = false;
-                itemUseManager.equips[0].Index = -1;
+                itemUseManager.equips[0].Index = 0;
                 itemUseManager.equips[0].Name = "";
                 itemUseManager.equips[0].Job = null;
                 itemUseManager.equips[0].Lv = 0;
@@ -617,7 +617,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isArmorEquip = false;
                 //itemUseManager.isActive = false;
-                itemUseManager.equips[1].Index = -1;
+                itemUseManager.equips[1].Index = 0;
                 itemUseManager.equips[1].Name = "";
                 itemUseManager.equips[1].Job = null;
                 itemUseManager.equips[1].Lv = 0;
