@@ -6,9 +6,9 @@ public class Enemy_Stat_Table
 {
     public Dictionary<int, Stat> Enemys = new Dictionary<int, Stat>()
     {
-        {0, new Stat(0,"Slime","", 5 , 5 , 0 , 0 , 5 , 5 , 5 , 5 , 5 , 5 )},
-        {1, new Stat(0,"Wolf","", 5 , 5 , 0 , 0 , 5 , 5 , 5 , 5 , 5 , 5 )},
-        {2, new Stat(0,"Goblin","", 5 , 5 , 0 , 0 , 5 , 5 , 5 , 5 , 5 , 5 )}
+        {0, new Stat(0,"Slime","", 5 , 5 , 0 , 0 ,99 , 5 , 5 , 100 , 5 , 5 )},
+        {1, new Stat(0,"Wolf","", 5 , 5 , 0 , 0 , 99 , 5 , 5 , 100 , 5 , 5 )},
+        {2, new Stat(0,"Goblin","", 5 , 5 , 0 , 99, 5 , 5 , 5 , 100 , 5 , 5 )}
     };
 
 }
