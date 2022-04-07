@@ -5,7 +5,7 @@ public class SKillTable
     public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv Ãß°¡
     {
         //Mage
-        { 0, new skill(0, "SkillName1", 1, 1, 1 ,new int[3] {0,1,2}, new int[3] {0,1,-1  })},
+        { 0, new skill(-1, "SkillName1", 1, 1, 1 ,new int[3] {0,1,2}, new int[3] {0,1,-1  })},
         { 2, new skill(2, "SkillName3", 1, 3, 3, new int[3] {0,1,-1}, new int[3] {0,1,-1  })},
         { 1, new skill(1, "SkillName2", 1, 2, 2, new int[3] {0,1,-1}, new int[3] {0,1,-1  })},
         { 3, new skill(3, "SkillName4", 1, 4, 4, new int[3] {0,1,-1}, new int[3] {0,1,-1  })},
@@ -22,13 +22,13 @@ public class SKillTable
         { 12, new skill(12, "SkillName13", 1, 3, 3, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
         { 13, new skill(13, "SkillName14", 1, 4, 4, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
         { 14, new skill(14, "SkillName15", 1, 5, 5, new int[3] {0,1,-1  }, new int[3] {0,1,-1  })},
-        //Barristan
+        //Knight
         { 15, new skill(15, "SkillName16", 1, 1, 1 ,new int[3] {0,1,2 }, new int[3] { 0,1,-1  })},
         { 16, new skill(16, "SkillName17", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 17, new skill(17, "SkillName18", 1, 3, 3, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 18, new skill(18, "SkillName19", 1, 4, 4, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 19, new skill(19, "SkillName20", 1, 5, 5, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
-        //Knight
+        //Barristan
         { 20, new skill(20, "SkillName21", 1, 1, 1 ,new int[3] {0,1,2 }, new int[3] { 0,1,-1  })},
         { 21, new skill(21, "SkillName22", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
         { 22, new skill(22, "SkillName23", 1, 3, 3, new int[3] {0,1,-1 }, new int[3] { 0,1,-1  })},
