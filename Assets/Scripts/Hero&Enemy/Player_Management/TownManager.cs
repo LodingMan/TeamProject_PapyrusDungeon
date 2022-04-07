@@ -10,6 +10,7 @@ public class TownManager : MonoBehaviour
     //해당 스크립트에서 현재 주자, 골드, 각 건물의 레벨현황 
     public int Week = 0;
     public int Gold = 0;
+    public int Jewel = 0;
 
     public Song.HeroManager heroManager; // inspector창에 HeroManager넣었음
     public Shin.UI_ChurchManager churchManager;
@@ -27,6 +28,7 @@ public class TownManager : MonoBehaviour
     {
         text_Week.text = Week + " 주차";
         text_Gold.text = Gold.ToString();
+        text_Jewel.text = Jewel.ToString();
     }
     public void NextWeek() // 전투 종료 , 처음 게임 시작 등의 이유로 플레이어의 진행도가 다음주로 넘어감.
                            // 해당 함수가 실행 되었을때 HeroManager에서 임의의 수만큼 Hero를 랜덤으로 생성하는데 
