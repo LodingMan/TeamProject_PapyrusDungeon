@@ -44,6 +44,8 @@ public class e_CombatManager : MonoBehaviour
 
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
 
+    public PostProcessingController ppCon; // 포스트 프로세싱 컨트롤러
+
 
     public void Init_Dungeon_Party()
     {
@@ -482,13 +484,16 @@ public class e_CombatManager : MonoBehaviour
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
         myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
-
+        ppCon.DepthOfFieldOnOff(ppCon);
         yield return new WaitForSeconds(4);
+        ppCon.DepthOfFieldOnOff(ppCon);
         speedComparisonArray[0].transform.position = EnemyPos;
         myParty[target_Idx].transform.position = HeroPos;
 
 
         SkillResultInit(myParty[target_Idx]);
+
+
 
 
         // speedComparisonArray[0].transform.DOMove()
@@ -537,6 +542,7 @@ public class e_CombatManager : MonoBehaviour
 
         SkillResultInit(target);
         Debug.Log("Test");
+
 
 
 
