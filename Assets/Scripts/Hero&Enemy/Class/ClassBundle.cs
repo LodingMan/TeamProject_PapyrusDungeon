@@ -37,6 +37,24 @@ public class Stat
         this.Agi = agi;
         this.Speed = speed; // 03 - 25 Speed Ãß°¡
 
+
+    }
+    public Stat(Stat nStat)
+    {
+
+        this.Index = nStat.Index;
+        this.Name = nStat.Name;
+        this.Job = nStat.Job;
+        this.HP = nStat.HP;
+        this.MAXHP = nStat.MAXHP;
+        this.MP = nStat.MP;
+        this.MAXMP = nStat.MAXMP;
+        this.Atk = nStat.Atk;
+        this.Def = nStat.Def;
+        this.Cri = nStat.Cri;
+        this.Acc = nStat.Acc;
+        this.Agi = nStat.Agi;
+        this.Speed = nStat.Speed;
     }
 }
 [System.Serializable]

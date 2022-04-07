@@ -22,9 +22,23 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     bool isMiniMapOn = false;
     public GameObject EventUIPanal;
 
-    public Image Current_Attack_Unit;
+    public GameObject Current_Attack_Unit;
     public Image Skill_Info_UI;
-    public Image Player_Targeting;
+    public GameObject Player_Targeting;
+
+
+    public Vector2 anchorPer;
+    public float minusPer_Width;
+    public float minusPer_Height;
+    public Text TestUI;
+
+    public List<GameObject> ScaleReFactoring = new List<GameObject>();
+
+    private void Start()
+    {
+        
+    }
+
 
 
 
@@ -66,8 +80,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public void CurrentAttack_Move()
     {
-        Current_Attack_Unit.rectTransform.anchoredPosition = skillActiveManager.GetComponent<Image>().rectTransform.anchoredPosition;
-
+        // Current_Attack_Unit.rectTransform.anchoredPosition = skillActiveManager.GetComponent<Image>().rectTransform.anchoredPosition;
+        Current_Attack_Unit.transform.position = combatManager.speedComparisonArray[0].transform.position + new Vector3(0, 1.7f, 0);
         Current_Attack_Unit.gameObject.SetActive(true);
         Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
 
