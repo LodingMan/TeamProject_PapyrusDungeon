@@ -25,6 +25,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public bool isDungeon = false;
 
     public Button equipBtn;
+    public Image equipImg;
     public Transform smithSlot;
 
    
@@ -38,6 +39,7 @@ public class EquipScripts_ysg : MonoBehaviour
         smithSlot = smithManager.smithSlot;
         itemData = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         equipBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
+        equipImg = gameObject.transform.GetChild(3).GetComponent<Image>();
         dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
@@ -287,7 +289,6 @@ public class EquipScripts_ysg : MonoBehaviour
                     UnEquipArmor();
                     break;
                 case 11:
-                    Debug.Log("해제");
                     UnEquipArmor();
                     break;
                 case 12:
@@ -548,10 +549,12 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Cri += equip.Cri;
                 itemUseManager.equips[0].Acc += equip.Acc;
                 itemUseManager.InitEquip();
+                equipImg.gameObject.SetActive(true);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
                 //equipBtn.gameObject.SetActive(false);
             }
             equipBtn.gameObject.SetActive(false);
+
         }
     }
     public void EquipArmor() // 장비 착용 시 실행되는 함수입니다.
@@ -573,6 +576,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Cri += equip.Cri;
                 itemUseManager.equips[1].Acc += equip.Acc;
                 itemUseManager.InitEquip();
+                equipImg.gameObject.SetActive(true);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
                 //equipBtn.gameObject.SetActive(false);
             }
@@ -599,10 +603,12 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Cri = 0;
                 itemUseManager.equips[0].Acc = 0;
                 itemUseManager.InitEquip();
+                equipImg.gameObject.SetActive(false);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
                 //equipBtn.gameObject.SetActive(false);
             }
             equipBtn.gameObject.SetActive(false);
+ 
 
         }
     }
@@ -628,6 +634,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Cri = 0;
                 itemUseManager.equips[1].Acc = 0;
                 itemUseManager.InitEquip();
+                equipImg.gameObject.SetActive(false);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
                 //equipBtn.gameObject.SetActive(false);
             }
