@@ -38,6 +38,8 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public ShopManager shopMgr;
     public SmithManager smithMgr;
+    public GameObject tentInven;
+    public GameObject originInven;
 
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
@@ -55,6 +57,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 }
                 UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
                 StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
+                TentInvenToOriginInven();
                 // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
             }
             if (isShopOn || isSmith)
@@ -285,5 +288,21 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
     }
 
+
+    public void TentInvenToOriginInven()
+    {
+        for (int i = 0; i < shopMgr.hasItemList.Count; i++)
+        {
+            shopMgr.hasItemList[i].transform.SetParent(originInven.transform);
+            shopMgr.hasItemList[i].transform.localPosition = originInven.transform.localPosition;
+            shopMgr.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
+        }
+        for (int i = 0; i < shopMgr.hasEquipList.Count; i++)
+        {
+            shopMgr.hasEquipList[i].transform.SetParent(originInven.transform);
+            shopMgr.hasEquipList[i].transform.localPosition = originInven.transform.localPosition;
+            shopMgr.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
 
 }

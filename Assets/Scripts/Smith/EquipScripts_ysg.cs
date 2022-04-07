@@ -673,14 +673,12 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (dgSelectMgr.isTent && itemUseManager.isActive)
         {
-            if (!isDungeon)
+            if (dgSelectMgr.isTent)
             {
-                isDungeon = true;
                 equipBtn.gameObject.SetActive(true);
             }
             else
             {
-                isDungeon = false;
                 equipBtn.gameObject.SetActive(false);
             }
         }

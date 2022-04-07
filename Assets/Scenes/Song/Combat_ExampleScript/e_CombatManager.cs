@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -21,13 +21,14 @@ public class e_CombatManager : MonoBehaviour
     public Song.GuildManager guildManager;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
     public Target_Panal_Script target_Panal_Script;
+    public Combat_Effect_Manager combat_Effect_Manager;
 
 
     public SkillActiveManager skillActiveManager;
     public Target_Panal_Script enemyTargetScript;
 
-    public skill SaveSkill; //½ºÅ³ »ç¿ëÀÚÀÇ ½ºÅ³ ÀúÀå
-    public int currentActiveHeroIndex; //ÇöÀç ½ºÅ³À» »ç¿ëÇÒ È÷¾î·Î°¡ ¸î¹øÂ°¿¡ À§Ä¡ÇÏ´ÂÁö 
+    public skill SaveSkill; //ìŠ¤í‚¬ ì‚¬ìš©ìì˜ ìŠ¤í‚¬ ì €ì¥
+    public int currentActiveUnitIndex; //í˜„ì¬ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  íˆì–´ë¡œê°€ ëª‡ë²ˆì§¸ì— ìœ„ì¹˜í•˜ëŠ”ì§€ 
 
     public Camera CombatCamera;
 
@@ -42,7 +43,9 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-    public List<skill> currentActiveSkillList = new List<skill>(); // È®ÀÎÇÏ·Á°í ²¨³»³õÀº°Í. ´Ù¾²°í EnemySkillSelect¿¡ ´Ù½Ã ³Ö¾î³õÀ»°Í.
+    public List<skill> currentActiveSkillList = new List<skill>(); // í™•ì¸í•˜ë ¤ê³  êº¼ë‚´ë†“ì€ê²ƒ. ë‹¤ì“°ê³  EnemySkillSelectì— ë‹¤ì‹œ ë„£ì–´ë†“ì„ê²ƒ.
+
+    public PostProcessingController ppCon; // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
 
 
     public void Init_Dungeon_Party()
@@ -67,8 +70,8 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-    //ÀüÅõ°¡ ½ÃÀÛµÇ¸é Àû ¹èÄ¡ Å×ÀÌºí¿¡¼­ ·£´ıÀ¸·Î Àû °¡Á®¿Í¾ßµÊ. 
-    //Dictionary·Î °ü¸®ÇÑ´Ù°í °¡Á¤ÇÑ´Ù¸é, 1¹ø°¡Á®¿Í ÇÏ¸é ½½¶óÀÓ, ½ºÄÌ·¹Åæ, ¿ş¾î¿ïÇÁ, 2¹ø°¡Á®¿Í ÇÏ¸é ÄÚº¼Æ® , °ñ·½, °íºí¸° ÀÌ·¸°Ô 3¸¶¸® ´ÜÀ§·Î»ı¼ºÇØÁà¾ßµÊ
+    //ì „íˆ¬ê°€ ì‹œì‘ë˜ë©´ ì  ë°°ì¹˜ í…Œì´ë¸”ì—ì„œ ëœë¤ìœ¼ë¡œ ì  ê°€ì ¸ì™€ì•¼ë¨. 
+    //Dictionaryë¡œ ê´€ë¦¬í•œë‹¤ê³  ê°€ì •í•œë‹¤ë©´, 1ë²ˆê°€ì ¸ì™€ í•˜ë©´ ìŠ¬ë¼ì„, ìŠ¤ì¼ˆë ˆí†¤, ì›¨ì–´ìš¸í”„, 2ë²ˆê°€ì ¸ì™€ í•˜ë©´ ì½”ë³¼íŠ¸ , ê³¨ë ˜, ê³ ë¸”ë¦° ì´ë ‡ê²Œ 3ë§ˆë¦¬ ë‹¨ìœ„ë¡œìƒì„±í•´ì¤˜ì•¼ë¨
 
     public void EnemyInit()
     {
@@ -127,7 +130,7 @@ public class e_CombatManager : MonoBehaviour
         TurnStart();
 
     }
-    public void TurnStart() //ÀüÅõ°¡ ½ÃÀÛµÇ¸é ¸ğµç À¯´ÖÀÇ ¼Óµµ¸¦ ºñ±³ÇØ ÁÖ¾î¾ß ÇÏ¹Ç·Î 6Ä­ Â¥¸® ¹è¿­¿¡ ¸ğµç ¿ÀºêÁ§Æ®¸¦ ¶§·Á³Ö´Â´Ù. 
+    public void TurnStart() //ì „íˆ¬ê°€ ì‹œì‘ë˜ë©´ ëª¨ë“  ìœ ë‹›ì˜ ì†ë„ë¥¼ ë¹„êµí•´ ì£¼ì–´ì•¼ í•˜ë¯€ë¡œ 6ì¹¸ ì§œë¦¬ ë°°ì—´ì— ëª¨ë“  ì˜¤ë¸Œì íŠ¸ë¥¼ ë•Œë ¤ë„£ëŠ”ë‹¤. 
     {
 
 
@@ -166,8 +169,8 @@ public class e_CombatManager : MonoBehaviour
 
     public void SpeedComparison()
     {
-        Debug.Log("¼Óµµ°è»ê");
-        for (int i = speedComparisonArray.Count - 1; i > 0; i--) // ¹öºí ¿À¸§Â÷¼ø Á¤·Ä
+        Debug.Log("ì†ë„ê³„ì‚°");
+        for (int i = speedComparisonArray.Count - 1; i > 0; i--) // ë²„ë¸” ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
             for (int j = 0; j < i; j++)
                 if (speedComparisonArray[j].GetComponent<StatScript>().myStat.Speed < speedComparisonArray[j + 1].GetComponent<StatScript>().myStat.Speed)
                     Swap(speedComparisonArray, j, j + 1);
@@ -175,9 +178,9 @@ public class e_CombatManager : MonoBehaviour
         NextMove();
 
     }
-    // ¿©±â±îÁö ÇØ¼­ ÀûÀ» ºÒ·¯¿À°í °¡Àå ¸ÕÀú ÁøÇàÇÒ Ä³¸¯ÅÍ°¡ Á¤ÇØÁö±â±îÁö Çß´Ù. ÀÌÁ¦ ¹è¿­ÀÇ ¼ø¼­´ë·Î ÁøÇàÇÏ±â¸¸ ÇÏ¸é µÈ´Ù. 
+    // ì—¬ê¸°ê¹Œì§€ í•´ì„œ ì ì„ ë¶ˆëŸ¬ì˜¤ê³  ê°€ì¥ ë¨¼ì € ì§„í–‰í•  ìºë¦­í„°ê°€ ì •í•´ì§€ê¸°ê¹Œì§€ í–ˆë‹¤. ì´ì œ ë°°ì—´ì˜ ìˆœì„œëŒ€ë¡œ ì§„í–‰í•˜ê¸°ë§Œ í•˜ë©´ ëœë‹¤. 
 
-    public void NextMove() //¹è¿­ÀÇ °¡Àå ¾Õ¿¡ÀÖ´Â³ğÀÇ Çàµ¿ ½ÃÀÛ
+    public void NextMove() //ë°°ì—´ì˜ ê°€ì¥ ì•ì—ìˆëŠ”ë†ˆì˜ í–‰ë™ ì‹œì‘
     {
         if (speedComparisonArray.Count == 0)
         {
@@ -187,7 +190,7 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-        if (speedComparisonArray[0].tag == "Player")//ÇÃ·¹ÀÌ¾î¶ó¸é
+        if (speedComparisonArray[0].tag == "Player")//í”Œë ˆì´ì–´ë¼ë©´
         {
 
 
@@ -195,7 +198,7 @@ public class e_CombatManager : MonoBehaviour
             {
                 if (myParty[i] == speedComparisonArray[0])
                 {
-                    currentActiveHeroIndex = i;
+                    currentActiveUnitIndex = i;
 
                 }
             }
@@ -222,7 +225,7 @@ public class e_CombatManager : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                if (target.GetComponent<SkillScript>().mySkills[i].MyPosition[j] == currentActiveHeroIndex)
+                if (target.GetComponent<SkillScript>().mySkills[i].MyPosition[j] == currentActiveUnitIndex)
                 {
                     currentActiveSkillList.Add(target.GetComponent<SkillScript>().mySkills[i]);
                 }
@@ -230,10 +233,10 @@ public class e_CombatManager : MonoBehaviour
         }
 
 
-        for (int i = 0; i < currentActiveSkillList.Count; i++) //ÀÏ´Ü »ç¿ëÇÒ ½ºÅ³ ¸®½ºÆ®¸¸Å­ ¹İº¹
+        for (int i = 0; i < currentActiveSkillList.Count; i++) //ì¼ë‹¨ ì‚¬ìš©í•  ìŠ¤í‚¬ ë¦¬ìŠ¤íŠ¸ë§Œí¼ ë°˜ë³µ
         {
 
-            for (int j = 0; j < myParty.Count; j++) //ÇØ´ç ½ºÅ³ÀÇ EnemyPositionÀÇ ÀÎµ¦½º¸¦ È®ÀÎÀ» ÇÏ´Âµ¥ ³» ÆÄÆ¼ÀÇ »ıÁ¸ÀÚ ¼ö¸¸Å­¸¸ È®ÀÎ (»ıÁ¸ÀÚ°¡ 1¸íÀÌ¸é 1¹øÄ­¸¸ È®ÀÎ)
+            for (int j = 0; j < myParty.Count; j++) //í•´ë‹¹ ìŠ¤í‚¬ì˜ EnemyPositionì˜ ì¸ë±ìŠ¤ë¥¼ í™•ì¸ì„ í•˜ëŠ”ë° ë‚´ íŒŒí‹°ì˜ ìƒì¡´ì ìˆ˜ë§Œí¼ë§Œ í™•ì¸ (ìƒì¡´ìê°€ 1ëª…ì´ë©´ 1ë²ˆì¹¸ë§Œ í™•ì¸)
             {
 
                 if (currentActiveSkillList[i].EnemyPosition[j] == -1)
@@ -254,11 +257,11 @@ public class e_CombatManager : MonoBehaviour
             currentActiveSkillList.RemoveAt(ListRemoveAgree[i - 1]);
         }
 
-        // ÀÌ À§ÀÇ for¹®±îÁö°¡ ³»°¡ »ç¿ëÇÒ ¼ö ÀÖ´Â À§Ä¡, ³»°¡ »ç¿ëÇÒ¼ö ÀÖ´Â ½ºÅ³µéÁß ¹üÀ§³»¿¡ ´ë»óÀÌ ÀÖ´Â ½ºÅ³µéÀ» Ã£¾Æ³» ¸®½ºÆ® ¾È¿¡ ´ã¾Æ³õÀº°Í.
-        // ÀÌÁ¦ ½ºÅ³À» °ñ¶ó¾ßµÊ.
-        if (currentActiveSkillList.Count == 0) //»ç¿ëÇÒ ½ºÅ³ÀÌ ¾ø´Ù¸é
+        // ì´ ìœ„ì˜ forë¬¸ê¹Œì§€ê°€ ë‚´ê°€ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìœ„ì¹˜, ë‚´ê°€ ì‚¬ìš©í• ìˆ˜ ìˆëŠ” ìŠ¤í‚¬ë“¤ì¤‘ ë²”ìœ„ë‚´ì— ëŒ€ìƒì´ ìˆëŠ” ìŠ¤í‚¬ë“¤ì„ ì°¾ì•„ë‚´ ë¦¬ìŠ¤íŠ¸ ì•ˆì— ë‹´ì•„ë†“ì€ê²ƒ.
+        // ì´ì œ ìŠ¤í‚¬ì„ ê³¨ë¼ì•¼ë¨.
+        if (currentActiveSkillList.Count == 0) //ì‚¬ìš©í•  ìŠ¤í‚¬ì´ ì—†ë‹¤ë©´
         {
-            //¾Æ¹«Æ° Ãë¼ÒÇÏ´Â³»¿ë
+            //ì•„ë¬´íŠ¼ ì·¨ì†Œí•˜ëŠ”ë‚´ìš©
         }
 
         SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
@@ -267,7 +270,7 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.EnemySkillNameText.enabled = true;
         combat_Event_UI_Manager.EnemySkillNameText.text = SaveSkill.Name;
         combat_Event_UI_Manager.EnemySkillNameText.GetComponent<DOTweenAnimation>().DORestart();
-        Debug.Log("»ç¿ëÇÒ ½ºÅ³ °áÁ¤! ½ºÅ³ÀÇ ÀÌ¸§Àº " + SaveSkill.Name);
+        Debug.Log("ì‚¬ìš©í•  ìŠ¤í‚¬ ê²°ì •! ìŠ¤í‚¬ì˜ ì´ë¦„ì€ " + SaveSkill.Name);
 
     }
 
@@ -285,8 +288,8 @@ public class e_CombatManager : MonoBehaviour
         }
 
 
-        Debug.Log("´ë»ó¿¡°Ô ½ºÅ³ »ç¿ë ¿Ï·á! ´ë»óÀº " + myParty[UseIndex]);
-        //¿©±â¼­ »ç¿ëÇÒ ´ë»ó ÀÌ¹ÌÁö Ãâ·Â
+        Debug.Log("ëŒ€ìƒì—ê²Œ ìŠ¤í‚¬ ì‚¬ìš© ì™„ë£Œ! ëŒ€ìƒì€ " + myParty[UseIndex]);
+        //ì—¬ê¸°ì„œ ì‚¬ìš©í•  ëŒ€ìƒ ì´ë¯¸ì§€ ì¶œë ¥
         combat_Event_UI_Manager.Player_Targeting.enabled = true;
         combat_Event_UI_Manager.Player_Targeting.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(myParty[UseIndex].transform.position);
         combat_Event_UI_Manager.Player_Targeting.GetComponent<DOTweenAnimation>().DORestart();
@@ -331,7 +334,7 @@ public class e_CombatManager : MonoBehaviour
 
         if (Random.Range(0, speedComparisonArray[0].GetComponent<StatScript>().myStat.Acc) < target.GetComponent<StatScript>().myStat.Agi)
         {
-            Debug.Log("È¸ÇÇ!");
+            Debug.Log("íšŒí”¼!");
             Damage = 0;
         }
 
@@ -343,7 +346,7 @@ public class e_CombatManager : MonoBehaviour
 
             if (target.tag == "Enemy")
             {
-                //currentActiveHeroIndex°¡ ¾Æ´Ï¶ó Å¸°ÙÀÌ µÈ EnemyÀÇ ÀÎµ¦½º ¹øÈ£°¡ ÇÊ¿äÇÏ´Ù.
+                //currentActiveHeroIndexê°€ ì•„ë‹ˆë¼ íƒ€ê²Ÿì´ ëœ Enemyì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸ê°€ í•„ìš”í•˜ë‹¤.
                 for (int i = 0; i < enemys.Count; i++)
                 {
                     if (enemys[i] == target)
@@ -355,7 +358,7 @@ public class e_CombatManager : MonoBehaviour
                 for (int i = destroyIdx + 1; i < enemys.Count; i++)
                 {
                     enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((1.5f * i-1), 0, 0), 1);
-                    Debug.Log(enemys[i] + "ÀÌµ¿ÇÔ");
+                    Debug.Log(enemys[i] + "ì´ë™í•¨");
                 }
                 for(int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
@@ -376,6 +379,22 @@ public class e_CombatManager : MonoBehaviour
             }
             if(target.tag == "Player")
             {
+                for (int i = 0; i < myParty.Count; i++)
+                {
+                    if (myParty[i] == target)
+                    {
+                        destroyIdx = i;
+                    }
+                }
+
+                for (int i = destroyIdx + 1; i < myParty.Count; i++)
+                {
+                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * i - 1), 0, 0), 1);
+                }
+                for (int i = 0; i < speedComparisonArray.Count; i++)
+                    if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
+
+
 
                 myParty.Remove(target);
                 heroManager.CurrentHeroList.Remove(target);
@@ -411,29 +430,29 @@ public class e_CombatManager : MonoBehaviour
         GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
         textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
 
-        Debug.Log(speedComparisonArray[0] + " ÀÇ ½ºÅ³UIÃâ·Â");
+        Debug.Log(speedComparisonArray[0] + " ì˜ ìŠ¤í‚¬UIì¶œë ¥");
 
-        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //ÅÍÄ¡ °¡´É¹üÀ§¿Í UI¸¦ ÅÏÀ» ÁøÇàÇÒ ÇÃ·¹ÀÌ¾î¿¡°Ô ¿Å°ÜÁÖ°í
-        Debug.Log(skillActiveManager.GetComponent<RectTransform>().anchoredPosition);                                                        //¾Æ¿ô¶óÀÎ ±×·ÁÁÖ°í
+        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //í„°ì¹˜ ê°€ëŠ¥ë²”ìœ„ì™€ UIë¥¼ í„´ì„ ì§„í–‰í•  í”Œë ˆì´ì–´ì—ê²Œ ì˜®ê²¨ì£¼ê³ 
+        Debug.Log(skillActiveManager.GetComponent<RectTransform>().anchoredPosition);                                                        //ì•„ì›ƒë¼ì¸ ê·¸ë ¤ì£¼ê³ 
 
         combat_Event_UI_Manager.CurrentAttack_Move();
 
 
-        skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //½ºÅ³ÀÇ Á¤º¸¸¦ ¶ç¿öÁÜ
-                                                                                                        //UIÂÊ¿¡¼­ ½ºÅ³Ã¢ ¶ç¿öÁÖ°í µå·¡±×&µå·ÓÀ¸·Î saveSkill¿¡ ½ºÅ³ ÆÄ¶ó¹ÌÅÍ°ª ³Ö¾îÁÜ
+        skillActiveManager.SkillActiveOn(speedComparisonArray[0].GetComponent<SkillScript>().mySkills); //ìŠ¤í‚¬ì˜ ì •ë³´ë¥¼ ë„ì›Œì¤Œ
+                                                                                                        //UIìª½ì—ì„œ ìŠ¤í‚¬ì°½ ë„ì›Œì£¼ê³  ë“œë˜ê·¸&ë“œë¡­ìœ¼ë¡œ saveSkillì— ìŠ¤í‚¬ íŒŒë¼ë¯¸í„°ê°’ ë„£ì–´ì¤Œ
 
     }
 
     IEnumerator EnemyActive()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log("Çàµ¿ÇÒ À¯µ÷ ´ë»ó ÁöÁ¤ ¿Ï·á");
+        Debug.Log("í–‰ë™í•  ìœ ë”§ ëŒ€ìƒ ì§€ì • ì™„ë£Œ");
         for (int i = 0; i < enemys.Count; i++)
         {
             if (enemys[i] == speedComparisonArray[0])
             {
-                currentActiveHeroIndex = i; //½ºÅ³À» »ç¿ëÇÒ À¯´ÖÀÇ À§Ä¡¹øÈ£
-                Debug.Log("Çàµ¿ÇÒ ´ë»óÀº" + speedComparisonArray[0] + "ÀÎµ¦½º´Â" + currentActiveHeroIndex);
+                currentActiveUnitIndex = i; //ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìœ ë‹›ì˜ ìœ„ì¹˜ë²ˆí˜¸
+                Debug.Log("í–‰ë™í•  ëŒ€ìƒì€" + speedComparisonArray[0] + "ì¸ë±ìŠ¤ëŠ”" + currentActiveUnitIndex);
 
                 combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition =
                     CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position); 
@@ -449,7 +468,7 @@ public class e_CombatManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
-        EnemySkillSelect(speedComparisonArray[0]); //ÀÌ ÇÔ¼ö°¡ È£ÃâµÇ°í ³­ µÚ¿¡´Â SaveSkill¿¡ Enemy°¡ »ç¿ëÇÒ ½ºÅ³ÀÌ ÀúÀåµÇ¾îÀÖ´Ù. 
+        EnemySkillSelect(speedComparisonArray[0]); //ì´ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ê³  ë‚œ ë’¤ì—ëŠ” SaveSkillì— Enemyê°€ ì‚¬ìš©í•  ìŠ¤í‚¬ì´ ì €ì¥ë˜ì–´ìˆë‹¤. 
         yield return new WaitForSeconds(3);
         
         EnemySkillUse();
@@ -482,34 +501,39 @@ public class e_CombatManager : MonoBehaviour
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
         myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
-
+        ppCon.DepthOfFieldOnOff(ppCon);
+        combat_Effect_Manager.HitLight.enabled = true;
         yield return new WaitForSeconds(4);
+        ppCon.DepthOfFieldOnOff(ppCon);
         speedComparisonArray[0].transform.position = EnemyPos;
         myParty[target_Idx].transform.position = HeroPos;
 
+        combat_Effect_Manager.HitLight.enabled = false;
 
         SkillResultInit(myParty[target_Idx]);
 
 
+
+
         // speedComparisonArray[0].transform.DOMove()
 
-        //speedComparisonArray[0]À§Ä¡ ÀúÀå
-        //myParty[target_Idx] À§Ä¡ÀúÀå
-        //speedComparisonArrayÀüºÎ ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­ 
+        //speedComparisonArray[0]ìœ„ì¹˜ ì €ì¥
+        //myParty[target_Idx] ìœ„ì¹˜ì €ì¥
+        //speedComparisonArrayì „ë¶€ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™” 
 
-        //speedComparisonArray[0]À§Ä¡ º¯°æ 
-        //myParty[target_Idx] À§Ä¡º¯°æ 
-        //TweenÀ¸·Î ¹«ºù
+        //speedComparisonArray[0]ìœ„ì¹˜ ë³€ê²½ 
+        //myParty[target_Idx] ìœ„ì¹˜ë³€ê²½ 
+        //Tweenìœ¼ë¡œ ë¬´ë¹™
 
-        //¿ÀºêÁ§Æ® ÀüºÎ È°¼ºÈ­
-        //À§Ä¡ ¹Ù²å´ø ³ğµé Á¦ÀÚ¸® 
+        //ì˜¤ë¸Œì íŠ¸ ì „ë¶€ í™œì„±í™”
+        //ìœ„ì¹˜ ë°”ê¿¨ë˜ ë†ˆë“¤ ì œìë¦¬ 
 
 
-        //¿©±â¿¡ ÀûÀÌ °ø°İÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç ÀÔ·ÂÇØÁÖ¸é µÊ. 
+        //ì—¬ê¸°ì— ì ì´ ê³µê²©í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì…ë ¥í•´ì£¼ë©´ ë¨. 
     }
     public IEnumerator HeroAttackDlay(GameObject target)
     {
-        //¿©±âºÎÅÍ °ø°İÀ» ½ÃÀÛÇÑ È÷¾î·ÎÀÇ ¿òÁ÷ÀÓ
+        //ì—¬ê¸°ë¶€í„° ê³µê²©ì„ ì‹œì‘í•œ íˆì–´ë¡œì˜ ì›€ì§ì„
         yield return new WaitForSeconds(0.5f);
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
 
@@ -526,17 +550,21 @@ public class e_CombatManager : MonoBehaviour
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
         target.transform.DOMove(target.transform.position - new Vector3(-0.8f, 0, 0), 3f);
-        Debug.Log(target + "¸¦ ´ë»óÀ¸·Î" + SaveSkill.Name + "½ºÅ³ »ç¿ë");
+        combat_Effect_Manager.HitLight.enabled = true;
+        Debug.Log(target + "ë¥¼ ëŒ€ìƒìœ¼ë¡œ" + SaveSkill.Name + "ìŠ¤í‚¬ ì‚¬ìš©");
         yield return new WaitForSeconds(4);
-        Debug.Log(target + "¸¦ ´ë»óÀ¸·Î" + SaveSkill.Name + "½ºÅ³ »ç¿ë");
+        Debug.Log(target + "ë¥¼ ëŒ€ìƒìœ¼ë¡œ" + SaveSkill.Name + "ìŠ¤í‚¬ ì‚¬ìš©");
 
         speedComparisonArray[0].transform.position = HeroPos;
         target.transform.position = EnemyPos;
+        combat_Effect_Manager.HitLight.enabled = false;
+
 
 
 
         SkillResultInit(target);
         Debug.Log("Test");
+
 
 
 

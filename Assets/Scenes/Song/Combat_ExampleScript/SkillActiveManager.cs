@@ -120,7 +120,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         combatManager.SaveSkill = currentSkills[0];
         for(int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
         {
-           if( combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveHeroIndex)
+           if( combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveUnitIndex)
             {
                 enemyTargetScript.TargetView();
                 gameObject.SetActive(false);
@@ -175,7 +175,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         combatManager.SaveSkill = currentSkills[1];
         for (int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
         {
-            if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveHeroIndex)
+            if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveUnitIndex)
             {
                 enemyTargetScript.TargetView();
                 gameObject.SetActive(false);
@@ -226,7 +226,7 @@ public class SkillActiveManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         combatManager.SaveSkill = currentSkills[2];
         for (int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
         {
-            if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveHeroIndex)
+            if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveUnitIndex)
             {
                 enemyTargetScript.TargetView();
                 gameObject.SetActive(false);
