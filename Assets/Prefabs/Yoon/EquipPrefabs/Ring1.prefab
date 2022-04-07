@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 23
+    Index: 24
     Name: Ring1
     Job: Any
     Lv: 1
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 23
+      Index: 24
       Name: Ring1
       Job: Any
       Lv: 1

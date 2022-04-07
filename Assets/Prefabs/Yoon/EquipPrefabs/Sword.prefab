@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip:
-    Index: 0
+    Index: 1
     Name: Sword
     Job: Knight
     Lv: 1
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSavingData:
     equip:
-      Index: 0
+      Index: 1
       Name: Sword
       Job: Knight
       Lv: 1
