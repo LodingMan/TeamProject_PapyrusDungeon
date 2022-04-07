@@ -547,11 +547,11 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Def += equip.Def;
                 itemUseManager.equips[0].Cri += equip.Cri;
                 itemUseManager.equips[0].Acc += equip.Acc;
+                itemUseManager.InitEquip();
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
-                equipBtn.gameObject.SetActive(false);
+                //equipBtn.gameObject.SetActive(false);
             }
-
-
+            equipBtn.gameObject.SetActive(false);
         }
     }
     public void EquipArmor() // 장비 착용 시 실행되는 함수입니다.
@@ -572,10 +572,11 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def += equip.Def;
                 itemUseManager.equips[1].Cri += equip.Cri;
                 itemUseManager.equips[1].Acc += equip.Acc;
+                itemUseManager.InitEquip();
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
-                equipBtn.gameObject.SetActive(false);
+                //equipBtn.gameObject.SetActive(false);
             }
-
+            equipBtn.gameObject.SetActive(false);
         }
     }
 
@@ -597,11 +598,11 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Def = 0;
                 itemUseManager.equips[0].Cri = 0;
                 itemUseManager.equips[0].Acc = 0;
-
+                itemUseManager.InitEquip();
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
-                equipBtn.gameObject.SetActive(false);
+                //equipBtn.gameObject.SetActive(false);
             }
-
+            equipBtn.gameObject.SetActive(false);
 
         }
     }
@@ -626,10 +627,11 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def = 0;
                 itemUseManager.equips[1].Cri = 0;
                 itemUseManager.equips[1].Acc = 0;
+                itemUseManager.InitEquip();
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
-                equipBtn.gameObject.SetActive(false);
+                //equipBtn.gameObject.SetActive(false);
             }
-
+            equipBtn.gameObject.SetActive(false);
 
         }
     }
@@ -653,8 +655,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 gameObject.transform.localPosition = smithSlot.localPosition;
                 gameObject.transform.localScale = smithSlot.localScale;
 
-                equipBtn.gameObject.SetActive(false);
-            
+                equipBtn.gameObject.SetActive(false);   
         }
 
 
