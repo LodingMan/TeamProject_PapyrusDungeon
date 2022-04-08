@@ -26,7 +26,7 @@ public class TownManager : MonoBehaviour
     public Text text_Jewel;
     public void Update()
     {
-        text_Week.text = Week + " ÁÖÂ÷";
+        text_Week.text = Week.ToString();
         text_Gold.text = Gold.ToString();
         text_Jewel.text = Jewel.ToString();
     }
