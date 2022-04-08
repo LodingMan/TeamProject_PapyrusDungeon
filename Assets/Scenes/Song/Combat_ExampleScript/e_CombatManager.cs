@@ -618,7 +618,7 @@ public class e_CombatManager : MonoBehaviour
         target.transform.DOMove(target.transform.position - new Vector3(-0.8f, 0, 0), 3f);
         combat_Effect_Manager.HitLight.enabled = true;
 
-
+        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
@@ -628,7 +628,6 @@ public class e_CombatManager : MonoBehaviour
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
 
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
-        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
         yield return new WaitForSeconds(4);
 
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
