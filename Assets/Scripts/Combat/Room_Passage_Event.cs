@@ -12,7 +12,7 @@ public class Room_Passage_Event : MonoBehaviour
     public void Passage_HpDown_Event()
     {
        // combat_Event_UI_Manager.EventUIPanal.SetActive(true);
-        combat_Event_UI_Manager.EventUIPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0,0), 1);
+        combat_Event_UI_Manager.EventUIPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0,360), 1);
         combat_Event_UI_Manager.Yes_No_Button[0].onClick.AddListener(Party_Hp_Down);
         combat_Event_UI_Manager.Yes_No_Button[1].onClick.AddListener(None_Event);
     }
@@ -20,7 +20,7 @@ public class Room_Passage_Event : MonoBehaviour
     {
         Debug.Log("모든 맴버의 HP가 감소함!");
        // combat_Event_UI_Manager.EventUIPanal.SetActive(false);
-        combat_Event_UI_Manager.EventUIPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, -720), 1);
+        combat_Event_UI_Manager.EventUIPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, -360), 1);
 
 
 
@@ -31,7 +31,7 @@ public class Room_Passage_Event : MonoBehaviour
     {
         Debug.Log("아무일도 일어나지 않음");
     //    combat_Event_UI_Manager.EventUIPanal.SetActive(false);
-        combat_Event_UI_Manager.EventUIPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, -720), 1);
+        combat_Event_UI_Manager.EventUIPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, -360), 1);
 
 
         combat_Event_UI_Manager.Go_Back_On();

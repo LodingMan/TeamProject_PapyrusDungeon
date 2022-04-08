@@ -1,29 +1,27 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class e_CombatManager : MonoBehaviour
 {
-    public List<GameObject> enemyPrefabs = new List<GameObject>();
-    public Enemy_Stat_Table enemy_Stat_Table = new Enemy_Stat_Table();
-    public Enemy_Sequence_Table enemy_Sequence_Table = new Enemy_Sequence_Table();
-    public SKillTable sKillTable = new SKillTable();
+    public List<GameObject> enemyPrefabs = new List<GameObject>();  //랜덤으로 생성될 에너미 종류
+    public Enemy_Stat_Table enemy_Stat_Table = new Enemy_Stat_Table();  // 에너미 프리펩에 맞는 에너미 스텟 부여
+    public Enemy_Sequence_Table enemy_Sequence_Table = new Enemy_Sequence_Table(); //에너미 배치를 정해주는 테이블
+    public SKillTable sKillTable = new SKillTable(); //스킬테이블
 
 
-    public List<GameObject> myParty = new List<GameObject>();
-    public List<GameObject> CreateEnemyPool = new List<GameObject>();
-    public List<GameObject> enemys = new List<GameObject>();
+    public List<GameObject> myParty = new List<GameObject>(); //GuildManager에서 가져온 PartyHero를 담은 배열
+    //public List<GameObject> CreateEnemyPool = new List<GameObject>(); //
+    public List<GameObject> enemys = new List<GameObject>(); //생성한 에너미 3마리가 들어감. 
 
-    public List<GameObject> speedComparisonArray = new List<GameObject>();
+    public List<GameObject> speedComparisonArray = new List<GameObject>(); //속도계산 배열 해당 리스트의 0번째가 현재 행동중인 유닛
 
     public Song.HeroManager heroManager;
     public Song.GuildManager guildManager;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
     public Target_Panal_Script target_Panal_Script;
     public Combat_Effect_Manager combat_Effect_Manager;
-
-
     public SkillActiveManager skillActiveManager;
     public Target_Panal_Script enemyTargetScript;
 
@@ -31,9 +29,12 @@ public class e_CombatManager : MonoBehaviour
     public int currentActiveUnitIndex; //현재 스킬을 사용할 히어로가 몇번째에 위치하는지 
 
     public Camera CombatCamera;
+    public Canvas CombatCanvas;
+    public Canvas Skill_Targeting_Canvas;
+    public Transform CanvasTransform;
 
 
-    int Damage;
+    int Damage; //총 합산 데미지
     public GameObject CurrentCreateEnemy;
 
     public Vector3 FirstHeroCreatePos = new Vector3(-3000, 0, 0);
@@ -41,38 +42,79 @@ public class e_CombatManager : MonoBehaviour
 
     public bool isCombat;
 
-
-
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
 
     public PostProcessingController ppCon; // ����Ʈ ���μ��� ��Ʈ�ѷ�
 
+    Ray ray;
+    RaycastHit hit;
+
+    private void Update()
+    {
+        if (CombatCamera.gameObject.activeSelf)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = CombatCamera.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray.origin, ray.direction, out hit))
+                {
+                    switch(hit.transform.gameObject.name)
+                    {
+                        case "Skill1": skillActiveManager.Skill1();
+                            break;
+                        case "Skill2": skillActiveManager.Skill2();
+                            break;
+                        case "Skill3": skillActiveManager.Skill3();
+                            break;
+                        case "None": skillActiveManager.SkillNone();
+                            break;
+
+                        case "Target1":
+                            hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                            StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                            break;
+                        case "Target2":
+                            hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                            StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                            break;
+                        case "Target3":
+                            hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                            StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                            break;
+                        default:
+                            break;
+                    }
+
+                    
+
+                    Debug.Log(hit.transform.gameObject.name);
+                }
+            }
+        }
+
+    }
+
 
     public void Init_Dungeon_Party()
     {
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             myParty.Add(guildManager.Party_Hero_Member[i]);
 
-            
+
         }
         myParty[0].transform.position = FirstHeroCreatePos;
         myParty[0].transform.rotation = Quaternion.Euler(0, 90, 0);
 
-        for (int i = 0; i < myParty.Count-1; i++)
+        for (int i = 0; i < myParty.Count - 1; i++)
         {
-            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(1.5f * (i+1), 0, 0);
+            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(1.5f * (i + 1), 0, 0);
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
         }
 
 
     }
-
-
-
-    //전투가 시작되면 적 배치 테이블에서 랜덤으로 적 가져와야됨. 
-    //Dictionary로 관리한다고 가정한다면, 1번가져와 하면 슬라임, 스켈레톤, 웨어울프, 2번가져와 하면 코볼트 , 골렘, 고블린 이렇게 3마리 단위로생성해줘야됨
-
     public void EnemyInit()
     {
         isCombat = true;
@@ -84,27 +126,30 @@ public class e_CombatManager : MonoBehaviour
             Sequence_Rnd.Add(enemy_Sequence_Table.Enemy_Sequence[SequenceSaveNumber][i]);
         }
 
-
         int SkillNumber = 0;
         Debug.Log(Sequence_Rnd.Count);
-        for(int i = 0; i < Sequence_Rnd.Count; i++)
+        for (int i = 0; i < Sequence_Rnd.Count; i++)
         {
+
             switch (Sequence_Rnd[i])
             {
                 case 0:
                     CurrentCreateEnemy = Instantiate(enemyPrefabs[0]);
-                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = enemy_Stat_Table.Enemys[Sequence_Rnd[i]];
+
+                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = new Stat(enemy_Stat_Table.Enemys[Sequence_Rnd[i]]);
                     SkillNumber = 0;
                     break;
                 case 1:
                     CurrentCreateEnemy = Instantiate(enemyPrefabs[1]);
-                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = enemy_Stat_Table.Enemys[Sequence_Rnd[i]];
+
+                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = new Stat(enemy_Stat_Table.Enemys[Sequence_Rnd[i]]);
                     SkillNumber = 3;
 
                     break;
                 case 2:
                     CurrentCreateEnemy = Instantiate(enemyPrefabs[2]);
-                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = enemy_Stat_Table.Enemys[Sequence_Rnd[i]];
+
+                    CurrentCreateEnemy.GetComponent<StatScript>().myStat = new Stat(enemy_Stat_Table.Enemys[Sequence_Rnd[i]]);
                     SkillNumber = 6;
 
                     break;
@@ -112,7 +157,7 @@ public class e_CombatManager : MonoBehaviour
                     break;
             }
 
-            for(int j = 0; j < 3; j++)
+            for (int j = 0; j < 3; j++)
             {
                 CurrentCreateEnemy.GetComponent<SkillScript>().mySkills[j] = sKillTable.skillTable_Dictionary[SkillNumber + j + 100];
             }
@@ -123,7 +168,7 @@ public class e_CombatManager : MonoBehaviour
             enemys.Add(CurrentCreateEnemy);
 
         }
-        
+
 
 
 
@@ -153,12 +198,12 @@ public class e_CombatManager : MonoBehaviour
             }
         }
 
-        if(myParty.Count == 0)
+        if (myParty.Count == 0)
         {
             isCombat = false;
             return;
         }
-        else if(enemys.Count == 0)
+        else if (enemys.Count == 0)
         {
             isCombat = false;
             return;
@@ -277,7 +322,7 @@ public class e_CombatManager : MonoBehaviour
     public void EnemySkillUse()
     {
         int UseIndex;
-        while(true)
+        while (true)
         {
             UseIndex = SaveSkill.EnemyPosition[Random.Range(0, (myParty.Count))];
             if (UseIndex == -1)
@@ -290,8 +335,8 @@ public class e_CombatManager : MonoBehaviour
 
         Debug.Log("대상에게 스킬 사용 완료! 대상은 " + myParty[UseIndex]);
         //여기서 사용할 대상 이미지 출력
-        combat_Event_UI_Manager.Player_Targeting.enabled = true;
-        combat_Event_UI_Manager.Player_Targeting.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(myParty[UseIndex].transform.position);
+        combat_Event_UI_Manager.Player_Targeting.SetActive(true);
+        combat_Event_UI_Manager.Player_Targeting.transform.position = myParty[UseIndex].transform.position + new Vector3(0, 1.7f, 0);
         combat_Event_UI_Manager.Player_Targeting.GetComponent<DOTweenAnimation>().DORestart();
         StartCoroutine(EnemyAttack(UseIndex));
 
@@ -303,7 +348,7 @@ public class e_CombatManager : MonoBehaviour
 
     public void SkillResultInit(GameObject target)
     {
-        if(speedComparisonArray[0].tag == "Player")
+        if (speedComparisonArray[0].tag == "Player")
         {
             Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk +
                 speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Atk + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Atk);
@@ -340,7 +385,7 @@ public class e_CombatManager : MonoBehaviour
 
         target.GetComponent<StatScript>().myStat.HP -= Damage;
 
-        if(target.GetComponent<StatScript>().myStat.HP <= 0 )
+        if (target.GetComponent<StatScript>().myStat.HP <= 0)
         {
             int destroyIdx = 0;
 
@@ -357,27 +402,27 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < enemys.Count; i++)
                 {
-                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((1.5f * i-1), 0, 0), 1);
+                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((-1.5f * (i-1)), 0, 0), 1);
                     Debug.Log(enemys[i] + "이동함");
                 }
-                for(int i = 0; i < speedComparisonArray.Count; i++)
+                for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
 
 
                 enemys.Remove(target);
                 Destroy(target);
-                if(enemys.Count == 0)
+                if (enemys.Count == 0)
                 {
                     speedComparisonArray.Clear();
                     isCombat = false;
                     InGame_Player_Script IP = GameObject.Find("InGamePlayer").GetComponent<InGame_Player_Script>();
                     IP.isMove = true;
-                    
-                    
+
+
                     return;
                 }
             }
-            if(target.tag == "Player")
+            if (target.tag == "Player")
             {
                 for (int i = 0; i < myParty.Count; i++)
                 {
@@ -389,7 +434,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < myParty.Count; i++)
                 {
-                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * i-1), 0, 0), 1);
+                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * (i-1)), 0, 0), 1);
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
@@ -431,10 +476,9 @@ public class e_CombatManager : MonoBehaviour
         textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
 
         Debug.Log(speedComparisonArray[0] + " 의 스킬UI출력");
-
-        skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);  //터치 가능범위와 UI를 턴을 진행할 플레이어에게 옮겨주고
-        Debug.Log(skillActiveManager.GetComponent<RectTransform>().anchoredPosition);                                                        //아웃라인 그려주고
-
+        //skillActiveManager.GetComponent<RectTransform>().anchoredPosition = CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position);
+        //skillActiveManager.transform.position = new Vector3(0, 1.75f, 0);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         combat_Event_UI_Manager.CurrentAttack_Move();
 
 
@@ -454,23 +498,15 @@ public class e_CombatManager : MonoBehaviour
                 currentActiveUnitIndex = i; //스킬을 사용할 유닛의 위치번호
                 Debug.Log("행동할 대상은" + speedComparisonArray[0] + "인덱스는" + currentActiveUnitIndex);
 
-                combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition =
-                    CombatCamera.WorldToScreenPoint(speedComparisonArray[0].transform.position); 
-                Debug.Log(combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<RectTransform>().anchoredPosition);
-                combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(true);
-                combat_Event_UI_Manager.Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
-
-
-
-
+                combat_Event_UI_Manager.CurrentAttack_Move();
+                break;
             }
         }
 
         yield return new WaitForSeconds(3);
-
         EnemySkillSelect(speedComparisonArray[0]); //이 함수가 호출되고 난 뒤에는 SaveSkill에 Enemy가 사용할 스킬이 저장되어있다. 
         yield return new WaitForSeconds(3);
-        
+
         EnemySkillUse();
 
 
@@ -480,7 +516,7 @@ public class e_CombatManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
-        combat_Event_UI_Manager.Player_Targeting.enabled = false;
+        combat_Event_UI_Manager.Player_Targeting.SetActive(false);
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
 
 
@@ -491,12 +527,12 @@ public class e_CombatManager : MonoBehaviour
         //{
         //    speedComparisonArray[i].SetActive(false);
         //}
-    //    speedComparisonArray[0].SetActive(true);
-    //    myParty[target_Idx].SetActive(true);
+        //    speedComparisonArray[0].SetActive(true);
+        //    myParty[target_Idx].SetActive(true);
 
         speedComparisonArray[0].transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
-        myParty[target_Idx].transform.position = new Vector3(-2999.58f ,0, -3.12f);
+        myParty[target_Idx].transform.position = new Vector3(-2999.58f, 0, -3.12f);
 
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
@@ -543,9 +579,9 @@ public class e_CombatManager : MonoBehaviour
         Vector3 EnemyPos = target.transform.position;
 
 
-        speedComparisonArray[0].transform.position = new Vector3(- 2999.58f, 0, -3.12f);
+        speedComparisonArray[0].transform.position = new Vector3(-2999.58f, 0, -3.12f);
 
-        target.transform.position = new Vector3(- 2997.85f, 0, -3.12f);
+        target.transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
@@ -553,7 +589,6 @@ public class e_CombatManager : MonoBehaviour
         combat_Effect_Manager.HitLight.enabled = true;
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
-        Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
         yield return new WaitForSeconds(4);
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
@@ -562,15 +597,8 @@ public class e_CombatManager : MonoBehaviour
         target.transform.position = EnemyPos;
         combat_Effect_Manager.HitLight.enabled = false;
 
-
-
-
         SkillResultInit(target);
         Debug.Log("Test");
-
-
-
-
 
     }
 }
