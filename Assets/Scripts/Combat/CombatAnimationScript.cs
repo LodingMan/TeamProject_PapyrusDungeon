@@ -9,16 +9,18 @@ public class CombatAnimationScript : MonoBehaviour
 
     public void HeroRun()
     {
-        combatMgr.myParty[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1001);
-        combatMgr.myParty[1].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1001);
-        combatMgr.myParty[2].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1001);
+        for (int i = 0; i < combatMgr.myParty.Count; i++)
+        {
+            combatMgr.myParty[i].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1001);
+        }
     }
 
     public void HeroIdle()
     {
-        combatMgr.myParty[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
-        combatMgr.myParty[1].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
-        combatMgr.myParty[2].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
+        for (int i = 0; i < combatMgr.myParty.Count; i++)
+        {
+            combatMgr.myParty[i].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
+        }
     }
 
 }
