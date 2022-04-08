@@ -537,9 +537,11 @@ public class e_CombatManager : MonoBehaviour
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
         myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
+        myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1000);
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         combat_Effect_Manager.HitLight.enabled = true;
         yield return new WaitForSeconds(4);
+        myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
         speedComparisonArray[0].transform.position = EnemyPos;
         myParty[target_Idx].transform.position = HeroPos;
