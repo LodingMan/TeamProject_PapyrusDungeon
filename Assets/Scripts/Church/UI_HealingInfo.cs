@@ -104,8 +104,12 @@ namespace Shin
         IEnumerator WarningPanelOff()
         {
             yield return new WaitForSeconds(1.5f);
-            uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_Off();
-            uI_ChurchManager.isWarning = false;
+            if (uI_ChurchManager.isWarning)
+            {
+                uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_Off();
+                uI_ChurchManager.isWarning = false;
+            }
+            
         }
     }
 

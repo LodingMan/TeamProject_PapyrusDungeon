@@ -164,7 +164,7 @@ public class UI_Tweening_Manager : MonoBehaviour
         {
             if (UIStack[StackCount - 1] != null)
             {
-                UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.25f);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
             }
@@ -192,7 +192,7 @@ public class UI_Tweening_Manager : MonoBehaviour
         {
             if (UIStack[StackCount - 1] != null)
             {
-                UI_TrainWarningPanel_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UI_TrainWarningPanel_Pos.DOAnchorPos(new Vector2(0, 1090), 0.25f);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
             }
