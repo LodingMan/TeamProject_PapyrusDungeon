@@ -85,6 +85,15 @@ namespace Shin
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = false;
                 guildMgr.Party_Hero_Member[i].transform.position = tentPos[i].position;
                 guildMgr.Party_Hero_Member[i].transform.LookAt(camfire.transform);
+                
+            }
+
+            for (int i = 0; i < guildMgr.heroManager.CurrentHeroList.Count; i++)//여기서 검사해서.
+            {
+                if (!guildMgr.heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isParty) //파티중이 아닌 애들은
+                {
+                    guildMgr.heroManager.CurrentHeroList[i].SetActive(false);
+                }
             }
 
             for (int i = 0; i < twMgr.UIStack.Length; i++)
@@ -124,6 +133,13 @@ namespace Shin
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = true;
                 
                 // 여기서 
+            }
+            for (int i = 0; i < guildMgr.heroManager.CurrentHeroList.Count; i++)//여기서 검사해서.
+            {
+                if (guildMgr.heroManager.CurrentHeroList[i].activeSelf == false) // 꺼져있는 애들을 다시 켜줌.
+                {
+                    guildMgr.heroManager.CurrentHeroList[i].SetActive(true);
+                }
             }
         }
     }
