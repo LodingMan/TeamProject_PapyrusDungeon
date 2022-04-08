@@ -14,6 +14,7 @@ public class CombatCameraControll : MonoBehaviour
 
     public Canvas TentCanvas;
     public Canvas TownCanvas;
+    public Canvas CombatCanvas;
 
     public Image LoadingPanal;
     
@@ -113,8 +114,7 @@ public class CombatCameraControll : MonoBehaviour
 
     public void BlackFade_Out() //전투시작 눌렀을때 로딩하는것처럼 보이게 하기
     {
-        LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
-        LoadingPanal.color = Color.black;
+
         StartCoroutine(FadeOutDlay());
     }
 
@@ -124,20 +124,23 @@ public class CombatCameraControll : MonoBehaviour
     }
     IEnumerator FadeOutDlay() //위를 하기 위한 코루틴
     {
+        LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
+        LoadingPanal.color = Color.black;
         yield return new WaitForSeconds(4);
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 4);
+        CombatCamera.transform.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
-        LoadingPanal.color = Color.black;
+        CombatCanvas.enabled = true;
+
     }
     IEnumerator FadeInDlay()
     {
         LoadingPanal.color = new Color(0, 0, 0, 0);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.DOColor(Color.black, 2);
-        yield return new WaitForSeconds(5);
-        Screen.fullScreen = true;
-        
+        yield return new WaitForSeconds(4);
+       // Screen.fullScreen = true;
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 2);
         yield return new WaitForSeconds(3);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);

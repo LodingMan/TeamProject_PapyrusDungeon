@@ -234,7 +234,7 @@ public class SkillActiveManager : MonoBehaviour
     public void SkillNone()
     {
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
-
+        gameObject.SetActive(false);
         combatManager.speedComparisonArray.RemoveAt(0);
         combatManager.NextMove();
 
