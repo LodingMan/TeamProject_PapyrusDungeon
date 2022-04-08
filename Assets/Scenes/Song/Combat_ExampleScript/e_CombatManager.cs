@@ -20,6 +20,7 @@ public class e_CombatManager : MonoBehaviour
     public Song.HeroManager heroManager;
     public Song.GuildManager guildManager;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
+    public CombatCameraControll combatCameraControll;
     public Target_Panal_Script target_Panal_Script;
     public Combat_Effect_Manager combat_Effect_Manager;
     public SkillActiveManager skillActiveManager;
@@ -53,42 +54,50 @@ public class e_CombatManager : MonoBehaviour
     {
         if (CombatCamera.gameObject.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (isCombat)
             {
-                Ray ray = CombatCamera.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray.origin, ray.direction, out hit))
+                if (Input.GetMouseButtonUp(0))
                 {
-                    switch(hit.transform.gameObject.name)
-                    {
-                        case "Skill1": skillActiveManager.Skill1();
-                            break;
-                        case "Skill2": skillActiveManager.Skill2();
-                            break;
-                        case "Skill3": skillActiveManager.Skill3();
-                            break;
-                        case "None": skillActiveManager.SkillNone();
-                            break;
+                    Ray ray = CombatCamera.ScreenPointToRay(Input.mousePosition);
 
-                        case "Target1":
-                            hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
-                            StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
-                            break;
-                        case "Target2":
-                            hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
-                            StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
-                            break;
-                        case "Target3":
-                            hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
-                            StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
-                            break;
-                        default:
-                            break;
+                    if (Physics.Raycast(ray.origin, ray.direction, out hit))
+                    {
+                        switch (hit.transform.gameObject.name)
+                        {
+                            case "Skill1":
+                                skillActiveManager.Skill1();
+                                break;
+                            case "Skill2":
+                                skillActiveManager.Skill2();
+                                break;
+                            case "Skill3":
+                                skillActiveManager.Skill3();
+                                break;
+                            case "None":
+                                skillActiveManager.SkillNone();
+                                break;
+
+                            case "Target1":
+                                hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                                break;
+                            case "Target2":
+                                hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                                break;
+                            case "Target3":
+                                hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                                break;
+                            default:
+                                break;
+                        }
+
+
+
+                        Debug.Log(hit.transform.gameObject.name);
                     }
 
-                    
-
-                    Debug.Log(hit.transform.gameObject.name);
                 }
             }
         }
@@ -370,6 +379,11 @@ public class e_CombatManager : MonoBehaviour
 
         }
 
+        if (Damage <= 0)
+        {
+            Damage = 1;
+        }
+
 
         if (Random.Range(0, 100) < speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri)
         {
@@ -402,7 +416,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < enemys.Count; i++)
                 {
-                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((-1.5f * (i-1)), 0, 0), 1);
+                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((1.5f * (i - 1)), 0, 0), 1);
                     Debug.Log(enemys[i] + "이동함");
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
@@ -434,7 +448,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < myParty.Count; i++)
                 {
-                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * (i-1)), 0, 0), 1);
+                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * (i - 1)), 0, 0), 1);
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
@@ -536,13 +550,28 @@ public class e_CombatManager : MonoBehaviour
 
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(0.8f, 0, 0), 3f);
-        myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
+
+
         myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1000);
+
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
+
+        myParty[target_Idx].transform.DOMove(myParty[target_Idx].transform.position - new Vector3(0.8f, 0, 0), 3f);
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.3f, 0.2f, -5.8f), 3f);
+
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         combat_Effect_Manager.HitLight.enabled = true;
         yield return new WaitForSeconds(4);
         myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
+
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 4.84f, -6.05f), 0.5f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(32.3f, 0, 0), 0.5f);
+
         speedComparisonArray[0].transform.position = EnemyPos;
         myParty[target_Idx].transform.position = HeroPos;
 
@@ -586,15 +615,32 @@ public class e_CombatManager : MonoBehaviour
         target.transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
 
-        speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
         target.transform.DOMove(target.transform.position - new Vector3(-0.8f, 0, 0), 3f);
         combat_Effect_Manager.HitLight.enabled = true;
+
+
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.3f, 0.2f, -5.8f), 3f);
+        speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-0.8f, 0, 0), 3f);
+
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
         yield return new WaitForSeconds(4);
+
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
+
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
+
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 4.84f, -6.05f), 0.5f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(32.3f, 0, 0), 0.5f);
+
+
+
         speedComparisonArray[0].transform.position = HeroPos;
         target.transform.position = EnemyPos;
         combat_Effect_Manager.HitLight.enabled = false;
