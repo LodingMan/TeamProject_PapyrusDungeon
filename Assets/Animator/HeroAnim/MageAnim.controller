@@ -443,7 +443,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: herostate
-    m_EventTreshold: -1
+    m_EventTreshold: 30
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7002157877599398303}
   m_Solo: 0

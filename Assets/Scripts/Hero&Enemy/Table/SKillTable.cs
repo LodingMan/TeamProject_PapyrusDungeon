@@ -5,7 +5,7 @@ public class SKillTable
     public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv Ãß°¡
     {
         //Mage
-        { 0, new skill(-1, "SkillName1", 1, 1, 1 ,new int[3] {0,1,2}, new int[3] {0,1,-1  })},
+        { 0, new skill(30, "SkillName1", 1, 1, 1 ,new int[3] {0,1,2}, new int[3] {0,1,-1  })},
         { 2, new skill(2, "SkillName3", 1, 3, 3, new int[3] {0,1,-1}, new int[3] {0,1,-1  })},
         { 1, new skill(1, "SkillName2", 1, 2, 2, new int[3] {0,1,-1}, new int[3] {0,1,-1  })},
         { 3, new skill(3, "SkillName4", 1, 4, 4, new int[3] {0,1,-1}, new int[3] {0,1,-1  })},
