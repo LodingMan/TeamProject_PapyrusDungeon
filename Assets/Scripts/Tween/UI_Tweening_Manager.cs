@@ -8,6 +8,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 {
     public RectTransform UI_guildPanelPos;
     public RectTransform UI_StatusPanelPos;
+    public RectTransform UI_StatusPanel_Tent_Pos;
     public RectTransform UI_DungeonSelectPanelPos;
     public RectTransform UI_churchPanelPos;
     public RectTransform UI_trainingPanelPos;
@@ -123,8 +124,14 @@ public class UI_Tweening_Manager : MonoBehaviour
         UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
         UIStack[StackCount] = UI_StatusPanelPos;
         StackCount++;
+    }
 
+    public void UI_StatusPanel_Tent_On()
+    {
 
+        UI_StatusPanel_Tent_Pos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UIStack[StackCount] = UI_StatusPanel_Tent_Pos;
+        StackCount++;
     }
 
     public void UI_DungeonSelectPanel_On()

@@ -15,7 +15,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Equip[] equips = new Equip[2];
     public skill[] mySkills = new skill[3];
     public int partyNum = -1;
-    public string herojob;
+    public string heroJob;
     public string heroName; //현재 선택된 오브젝트의 이름
     public bool isActive = false; // 중복 클릭 방지를 위한 bool값 입니다.
     public bool alreadySelect = false;
@@ -32,8 +32,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Image[] equips_icon;
     public Image[] skills_icon;
     public GameObject heroStat;
-
-
+    public GameObject statusUI;
 
     private void Start()
     {
@@ -165,8 +164,12 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         Debug.Log("{" + heroName + "} 를 선택 하셨습니다.");
                         InitEquip();
 
+                        //Shin.  
                         heroStat.name = stats.Name;
                         heroStat.transform.GetChild(0).name = stats.Job;
+                        heroStat.transform.GetChild(1).GetComponent<Text>().text = stats.Name;
+                        heroStat.transform.GetChild(2).GetComponent<Text>().text = "HP : " + stats.HP + " / " + stats.MAXHP;
+                        heroStat.transform.GetChild(3).GetComponent<Text>().text = "MP : " + stats.MP + " / " + stats.MAXMP;
                         switch (stats.Job)
                         {
                             case "Babarian":
@@ -191,10 +194,8 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                                 break;
 
                         }
-
-
-
-                        //heroname을 이용하여 UI값들 설정. Shin.  
+                        statusUI.GetComponent<Shin.Tent_HeroStatusInit>().heroPrefab = selectHero;
+                        statusUI.GetComponent<Shin.Tent_HeroStatusInit>().sprite = heroStat.transform.GetChild(0).GetComponent<Image>().sprite;
                     }
 
                 }
