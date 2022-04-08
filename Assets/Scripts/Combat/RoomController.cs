@@ -12,6 +12,7 @@ public class RoomController : MonoBehaviour
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
     public Room_Passage_Event room_Passage_Event;
     public e_CombatManager combatManager;
+    public CombatAnimationScript combatAnimScript;
 
     
     public List<Material> RoomColors;
@@ -109,6 +110,7 @@ public class RoomController : MonoBehaviour
         RoomPrefabs[1].SetActive(false);
         RoomPrefabs[2].SetActive(false);
         RoomPrefabs[0].SetActive(true);
+        combatAnimScript.HeroIdle();
 
     }
     public IEnumerator PassagePrefabLoad()
@@ -117,6 +119,7 @@ public class RoomController : MonoBehaviour
         RoomPrefabs[0].SetActive(false);
         RoomPrefabs[1].SetActive(true);
         RoomPrefabs[2].SetActive(true);
+        combatAnimScript.HeroRun();
     }
 
     public IEnumerator PassageEventDlay(GameObject Room)
