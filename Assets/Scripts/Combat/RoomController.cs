@@ -14,9 +14,11 @@ public class RoomController : MonoBehaviour
     public e_CombatManager combatManager;
     public CombatAnimationScript combatAnimScript;
 
-    
+
     public List<Material> RoomColors;
     public int PreviousRoomNumber;
+
+    public int ClearRoomCnt;
 
     public bool isFirst = true;
 
@@ -28,17 +30,17 @@ public class RoomController : MonoBehaviour
     {
         Debug.Log(Roomnumber);
 
-        for (int i = 0; i<RoomList.Count; i++)
+        for (int i = 0; i < RoomList.Count; i++)
         {
             if (RoomList[i].GetComponent<RoomScript>().roomNumber == Roomnumber)
             {
                 RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
                 Debug.Log(Roomnumber);
-                if(!isFirst)
+                if (!isFirst)
                 {
-                    for(int j = 0; j < RoomList.Count; j++)
+                    for (int j = 0; j < RoomList.Count; j++)
                     {
-                        if(RoomList[j].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.PreviousPlayers)
+                        if (RoomList[j].GetComponent<RoomScript>().roomNumber == inGamePlayerScript.PreviousPlayers)
                         {
                             RoomList[j].GetComponent<MeshRenderer>().material = RoomColors[0];
                             //Debug.Log(inGamePlayerScript.PreviousPlayers);
@@ -48,19 +50,22 @@ public class RoomController : MonoBehaviour
                         }
                     }
 
-                    if(RoomList[i].GetComponent<RoomScript>().roomNumber < 99)
+                    if (RoomList[i].GetComponent<RoomScript>().roomNumber < 99)
                     {
                         switch (RoomList[i].GetComponent<RoomScript>().DungeonEventPram) //룸이벤트
                         {
+                            case -1:
+                                Debug.Log("이미 클리어한 방입니다.");
+                                break;
                             case 0:
-                                
+
                             case 1:
-                               
+
                             case 2:
                                 Debug.Log("전투시작");
                                 StartCoroutine(BattleDlay());
                                 inGamePlayerScript.isMove = false;
-                                
+
                                 //여기서 컴뱃 스타트임.
                                 break;
                             case 3:
@@ -82,7 +87,7 @@ public class RoomController : MonoBehaviour
                     else
                     {
                         StartCoroutine(PassageEventDlay(RoomList[i]));
-                        
+
                     }
                 }
 
@@ -105,7 +110,7 @@ public class RoomController : MonoBehaviour
 
     public IEnumerator RoomPrefabLoad()
     {
-        
+
         yield return new WaitForSeconds(3);
         RoomPrefabs[1].SetActive(false);
         RoomPrefabs[2].SetActive(false);
@@ -144,5 +149,24 @@ public class RoomController : MonoBehaviour
 
     }
 
+    public void RoomCombatClear(int Roomnumber)
+    {
 
+        ClearRoomCnt++;
+        for (int i = 0; i < RoomList.Count; i++)
+        {
+            if (RoomList[i].GetComponent<RoomScript>().roomNumber == Roomnumber)
+            {
+                RoomList[i].GetComponent<RoomScript>().DungeonEventPram = -1;
+            }
+        }
+
+    }
+    public void GameClearCheck()
+    {
+        if(ClearRoomCnt == mapCreate.RoomInsCount)
+        {
+            //게임클리어
+        }
+    }
 }

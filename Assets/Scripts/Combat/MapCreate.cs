@@ -23,6 +23,7 @@ public class MapCreate : MonoBehaviour
     public List<int> selectRoom;
     public List<int> passageRoom;
     public int createRoomCnt = 0;
+    public int RoomInsCount = 3; //생성할 방의 수 (오차범위 0~4)
     public int currentSelectRoom = 0;
 
     public int noneCnt;
@@ -51,7 +52,7 @@ public class MapCreate : MonoBehaviour
         {
             MapIns();
 
-            if (createRoomCnt > 30)
+            if (createRoomCnt > RoomInsCount)
             {
                 break;
             }
