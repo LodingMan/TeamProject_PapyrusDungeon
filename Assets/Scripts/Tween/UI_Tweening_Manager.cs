@@ -20,8 +20,9 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_BackGround_Pos;
     public RectTransform UI_DunGeonEntrance_Pos;
     public RectTransform UI_loadingPanel_Pos;
-    public RectTransform UI_ChurchWarningPanel_Pos;
-    public RectTransform UI_TrainWarningPanel_Pos;
+    public RectTransform UI_ChurchWarning_Pos;
+    public RectTransform UI_TrainWarning_Pos;
+    public RectTransform UI_Option_Pos;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -36,6 +37,9 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool isTentOn = false; // shin
     public bool isShopOn = false;
     public bool isSmith = false;
+    public bool isChurch = false;
+    public bool isTrain = false;
+    public bool isTrainDetail = false;
 
     public ShopManager shopMgr;
     public SmithManager smithMgr;
@@ -67,6 +71,21 @@ public class UI_Tweening_Manager : MonoBehaviour
                 shopMgr.isShop = false;
                 isSmith = false;
                 UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+            }
+            if (isTrain) 
+            {
+                if (isTrainDetail)
+                {
+                    isTrainDetail = false;
+                }
+                else
+                {
+                    isTrain = false;
+                }
+            }
+            if (isChurch)
+            {
+                isChurch = false;
             }
             StackCountFun();
 
@@ -100,8 +119,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
 
     public void UI_GuildPanel_On()
-    {
-
+    { 
         UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_guildPanelPos;
         StackCount++;
@@ -145,6 +163,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_ChurchPanel_On()
     {
+        isChurch = true;
         UI_churchPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_churchPanelPos;
         StackCount++;
@@ -152,59 +171,37 @@ public class UI_Tweening_Manager : MonoBehaviour
 
 
     }
-    public void UI_ChurchWarningPanel_On()
+    public void UI_ChurchWarning_On()
     {
-        UI_ChurchWarningPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_ChurchWarningPanel_Pos;
-        StackCount++;
+        UI_ChurchWarning_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
     }
-    public void UI_ChurchWarningPanel_Off()
+    public void UI_ChurchWarning_Off()
     {
-        if (StackCount > 0)
-        {
-            if (UIStack[StackCount - 1] != null)
-            {
-                UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.25f);
-                UIStack[StackCount - 1] = null;
-                StackCount--;
-            }
-        }
+        UI_ChurchWarning_Pos.DOAnchorPos(new Vector2(0, 800f), 0.5f);
     }
 
     public void UI_TrainingPanel_On()
     {
-
+        isTrain = true;
         UI_trainingPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_trainingPanelPos;
         StackCount++;
         UI_BackGroundPanel_On_Off();
-
     }
-    public void UI_TrainWarningPanel_On()
+    public void UI_TrainWarning_On()
     {
-        UI_TrainWarningPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_TrainWarningPanel_Pos;
-        StackCount++;
+        UI_TrainWarning_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
     }
-    public void UI_TrainWarningPanel_Off()
+    public void UI_TrainWarning_Off()
     {
-        if (StackCount > 0)
-        {
-            if (UIStack[StackCount - 1] != null)
-            {
-                UI_TrainWarningPanel_Pos.DOAnchorPos(new Vector2(0, 1090), 0.25f);
-                UIStack[StackCount - 1] = null;
-                StackCount--;
-            }
-        }
+        UI_TrainWarning_Pos.DOAnchorPos(new Vector2(0, 800f), 0.5f);
     }
     public void UI_TrainingSecPanel_On()
     {
-
+        isTrainDetail = true;
         UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_trainingSecPanelPos;
         StackCount++;
-
 
     }
     public void UI_TrainingSecPanel_Off()
@@ -232,19 +229,14 @@ public class UI_Tweening_Manager : MonoBehaviour
             UI_BackGroundPanel_On_Off();
         }
 
-
-
     }
 
     public void UI_Inventory_PanelPos_On_Off()
     {
-
-
         UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_inventoryPanelPos;
         StackCount++;
         UI_BackGroundPanel_On_Off();
-
 
     }
 
@@ -267,13 +259,9 @@ public class UI_Tweening_Manager : MonoBehaviour
             UI_BackGroundPanel_On_Off();
         }
 
-
-
-
     }
     public void UI_DunGeonEntrance_On()
     {
-
         UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_DunGeonEntrance_Pos;
         StackCount++;
@@ -295,6 +283,12 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
     }
 
+    public void UI_OptionPanel_On()
+    {
+        UI_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_Option_Pos;
+        StackCount++;
+    }
 
     public void TentInvenToOriginInven()
     {
