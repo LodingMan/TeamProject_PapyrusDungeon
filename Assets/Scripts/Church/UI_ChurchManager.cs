@@ -38,18 +38,18 @@ namespace Shin {
         {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             healingList = healing_List_UI_Content.GetComponentsInChildren<Button>();
+            
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (isWarning)
+                if (tweenMgr.isChurch)
                 {
                     EmployedDestroy_UI();
-                    EmployedInit_UI();
                     isWarning = false;
                 }
-                else
-                {
-                    EmployedDestroy_UI();
-                }
+            }
+            if (!isWarning)
+            {
+                tweenMgr.UI_ChurchWarning_Off();
             }
         }
         public void EmployedInit_UI() // 교회 버튼 클릭 시 실행.

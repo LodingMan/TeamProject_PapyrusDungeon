@@ -101,7 +101,7 @@ namespace Shin
             }
             else
             {
-                uI_trainingManager.tweenMgr.UI_TrainWarningPanel_On();
+                uI_trainingManager.tweenMgr.UI_TrainWarning_On();
                 uI_trainingManager.isWarning = true;
                 StartCoroutine(WarningWait());
                 
@@ -110,10 +110,9 @@ namespace Shin
 
         IEnumerator WarningWait()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             if (uI_trainingManager.isWarning)
             {
-                uI_trainingManager.tweenMgr.UI_TrainWarningPanel_Off();
                 uI_trainingManager.isWarning = false;
             }
             
@@ -130,7 +129,7 @@ namespace Shin
             }
             uI_trainingManager.EmployedDestroy_UI();
             uI_trainingManager.EmployedInit_UI();
-            uI_trainingManager.tweenMgr.UI_TrainWarningPanel_Off();
+            uI_trainingManager.tweenMgr.UI_TrainWarning_Off();
             uI_trainingManager.isWarning = false;
             Destroy(gameObject);
         }

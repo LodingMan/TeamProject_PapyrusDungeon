@@ -42,22 +42,27 @@ namespace Shin
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (isWarning)
+                if (tweenMgr.isTrain)
                 {
-                    EmployedDestroy_UI();
-                    EmployedInit_UI();
-                    isWarning = false;
-                }
-                else
-                {
-                    if (heroInfo.activeSelf == false)
+                    if (tweenMgr.isTrainDetail)
                     {
+                        if (heroInfo.activeSelf)
+                        {
+                            heroInfo.SetActive(false);
+                        }
                         EmployedDestroy_UI();
-                        heroInfo.SetActive(false);
+                        EmployedInit_UI();
                     }
+                    else
+                    {
+                        isWarning = false;
+                        EmployedDestroy_UI();
+                    }  
                 }
-
-                
+            }
+            if (!isWarning)
+            {
+                tweenMgr.UI_TrainWarning_Off();
             }
         }
         public void EmployedInit_UI() // 훈련소 버튼 클릭 시 실행.

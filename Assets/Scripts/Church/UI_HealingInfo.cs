@@ -95,18 +95,17 @@ namespace Shin
             }
             else
             {
-                uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_On();
                 uI_ChurchManager.isWarning = true;
+                uI_ChurchManager.tweenMgr.UI_ChurchWarning_On();
                 StartCoroutine(WarningPanelOff());
             }
         }
 
         IEnumerator WarningPanelOff()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             if (uI_ChurchManager.isWarning)
             {
-                uI_ChurchManager.tweenMgr.UI_ChurchWarningPanel_Off();
                 uI_ChurchManager.isWarning = false;
             }
             
