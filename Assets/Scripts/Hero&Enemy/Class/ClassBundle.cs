@@ -8,6 +8,7 @@ using System;
 public class Stat
 {
     public int Index;
+    public int Lv;
     public string Name;
     public string Job;
     public int HP;
