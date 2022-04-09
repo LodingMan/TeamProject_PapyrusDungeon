@@ -568,6 +568,7 @@ public class e_CombatManager : MonoBehaviour
 
 
         myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1000);
+        combat_Effect_Manager.EnemyEffect_On(myParty[target_Idx]); //적이 때릴시 영웅이 맞는 이펙트
 
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
@@ -618,6 +619,8 @@ public class e_CombatManager : MonoBehaviour
         combat_Effect_Manager.HitLight.enabled = true;
 
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
+        combat_Effect_Manager.HeroEffect_On(target); // 공격시 이펙트 0409Yoon
+
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
@@ -628,7 +631,7 @@ public class e_CombatManager : MonoBehaviour
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         yield return new WaitForSeconds(4);
 
-        Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용");
+        Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
 
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
