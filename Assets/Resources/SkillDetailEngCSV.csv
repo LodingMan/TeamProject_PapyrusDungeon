@@ -1,0 +1,31 @@
+JOB,INDEX,Name,Effect
+Mage,1,Fire Ball,Strong single attack(burn)
+Mage,2,Blizzard,Wide-area attack with ice rain
+Mage,3,Meditation,MP recovery
+Mage,4,Black Hole,Wide-area attack by creating a black hole
+Archer,5,Shot,Archor's Basic Attack
+Archer,6,Poison Arrow,poison arrow. Poison debuff on hit
+Archer,7,Back Roll,Roll backwards to increase evasion
+Archer,8,Head Shot,2x damage of basic attack (3x on critical hit)
+Archer,9,Arrow Rain,Wide-area attack with a rain of arrows
+Babarian,10,Swipe,Babarian's Basic Attack
+Babarian,11,Double Strike,Attack twice
+Babarian,12,Guard Break,Defense ignore attack against a single enemy
+Babarian,13,Anger,Increase own attack power
+Babarian,14,The Last Blow,Additional damage when enemy's HP is below 40%
+Knight,15,Sword Attack,Knight's Basic Attack
+Knight,16,Parrying,Increase in Atk
+Knight,17,Maintenance,Increases HP and Def
+Knight,18,Lead Command,Increase Atk and Acc of Party
+Knight,19,Judgment,A wide-area attack on the enemy with judgment
+Barristan,20,Hammering,Barristan's Basic Attack
+Barristan,21,Raise The Shield,Increase Def by Raising shield
+Barristan,22,Shield Slam,Stun by hitting it hard with a shield
+Barristan,23,Taunt,Protect the party by taunting the enemy
+Barristan,24,Raising,Boosts the party and increases the party's Agi.
+Porter,25,Throw Potion, Porter's Basic Attack
+Porter,26,Smoke Shell,Reduces Acc of all enemies by spraying a smoke screen
+Porter,27,Fortune Coin,50% chance of buff or debuff(own's HP)
+Porter,28,Friend Shield,Use team members as friend shields.
+Porter,29,Run Away,You can only be excluded from battle once in this expedition.
+Mage,30,Magic Arrow,Mage's Basic Attack

@@ -42,22 +42,12 @@ namespace Shin
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (tweenMgr.isTrain)
+                if (!tweenMgr.isTrain)
                 {
-                    if (tweenMgr.isTrainDetail)
+                    if (heroInfo.activeSelf)
                     {
-                        if (heroInfo.activeSelf)
-                        {
-                            heroInfo.SetActive(false);
-                        }
-                        EmployedDestroy_UI();
-                        EmployedInit_UI();
-                    }
-                    else
-                    {
-                        isWarning = false;
-                        EmployedDestroy_UI();
-                    }  
+                        heroInfo.SetActive(false);
+                    }     
                 }
             }
             if (!isWarning)

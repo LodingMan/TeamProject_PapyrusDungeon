@@ -28,6 +28,9 @@ namespace Shin
         public Text detail_Detail;
         public Button[] Skill_Btn;
 
+        public Button KorBtn;
+        public Button EngBtn;
+
         public int curWeek;
 
         private void Awake()
@@ -39,6 +42,8 @@ namespace Shin
             Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
             Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
             Skill_Btn[2].onClick.AddListener(Click_Btn_Skill02);
+            
+
         }
         void Start()
         {
@@ -73,6 +78,7 @@ namespace Shin
             heroName.text = statScript.myStat.Name;
 
             IndexInit();
+            Click_Btn_Skill00();
         }
 
         public void TrainingStart()
@@ -125,8 +131,6 @@ namespace Shin
                 default:
                     break;
             }
-
-            Click_Btn_Skill00();
         }
     
         public void Click_Btn_Skill00()
@@ -164,6 +168,10 @@ namespace Shin
                     detail_Detail.text = skillDetailTable.skilldetails[i].skilldetail;
                 }
             }
+        }
+
+        public void ChangeLanguage()
+        { 
         }
     }
 

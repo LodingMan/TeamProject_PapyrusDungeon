@@ -1,6 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
-
+using UnityEngine.UI;
 //==================================================================================================//
 //UI�� �������� Tween���� ��Ʈ�� �Ҷ� TweenManager������Ʈ�� �� ������Ʈ�� �ְ� ���� (Stage �������� ���)//
 //==================================================================================================//
@@ -35,11 +35,13 @@ public class UI_Tweening_Manager : MonoBehaviour
     //bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
     public bool isTentOn = false; // shin
+    public bool isGuild = false;
     public bool isShopOn = false;
     public bool isSmith = false;
     public bool isChurch = false;
     public bool isTrain = false;
     public bool isTrainDetail = false;
+    public bool isOption = false;
 
     public ShopManager shopMgr;
     public SmithManager smithMgr;
@@ -49,7 +51,9 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform[] UIStack = new RectTransform[4];
     public int StackCount = 0;
     public Shin.UI_DungeonInitButton uI_DungeonInitButton;
-
+    public Shin.UI_ChurchManager uI_ChurchManager;
+    public Shin.UI_TrainingManager uI_TrainingManager;
+    public GameObject option_Btn;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -65,30 +69,49 @@ public class UI_Tweening_Manager : MonoBehaviour
                 TentInvenToOriginInven();
                 // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
             }
-            if (isShopOn || isSmith)
+            if (!isOption)
             {
-                isShopOn = false;
-                shopMgr.isShop = false;
-                isSmith = false;
-                UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-            }
-            if (isTrain) 
-            {
-                if (isTrainDetail)
+                if (isShopOn || isSmith)
                 {
-                    isTrainDetail = false;
+                    isShopOn = false;
+                    shopMgr.isShop = false;
+                    isSmith = false;
+                    UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
                 }
-                else
+                if (isGuild)
+                {  
+                    isGuild = false;   
+                }
+                if (isChurch)
                 {
-                    isTrain = false;
+                    isChurch = false;
+                    uI_ChurchManager.EmployedDestroy_UI();
+                    uI_ChurchManager.isWarning = false;
+                }
+                if (isTrain)
+                {
+                    if (isTrainDetail)
+                    {
+                        uI_TrainingManager.EmployedDestroy_UI();
+                        uI_TrainingManager.EmployedInit_UI();
+                        isTrainDetail = false;
+                    }
+                    else
+                    {
+                        uI_TrainingManager.isWarning = false;
+                        uI_TrainingManager.EmployedDestroy_UI();
+                        isTrain = false;
+                    }
                 }
             }
-            if (isChurch)
+            else
             {
-                isChurch = false;
+                isOption = false;
             }
+             
             StackCountFun();
-
+            if (!isTrainDetail)
+                option_Btn.SetActive(true);
         }
     }
 
@@ -119,7 +142,8 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
 
     public void UI_GuildPanel_On()
-    { 
+    {
+        isGuild = true;
         UI_guildPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_guildPanelPos;
         StackCount++;
@@ -199,6 +223,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public void UI_TrainingSecPanel_On()
     {
         isTrainDetail = true;
+        option_Btn.SetActive(false);
         UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_trainingSecPanelPos;
         StackCount++;
@@ -285,6 +310,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_OptionPanel_On()
     {
+        isOption = true;
         UI_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_Option_Pos;
         StackCount++;

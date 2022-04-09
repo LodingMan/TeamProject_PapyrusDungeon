@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Lean;
 using Lean.Common;
 using CW.Common;
+
 
 namespace Lean.Localization
 {
@@ -45,8 +47,8 @@ namespace Lean.Localization
 
 		/// <summary>The language that is currently being used by this instance.</summary>
 		[LeanLanguageName]
-		[SerializeField]
-		private string currentLanguage;
+		//[SerializeField]
+		public string currentLanguage;
 
 		/// <summary>How should the cultures be used to detect the user's device language?</summary>
 		public DetectType DetectLanguage { set { detectLanguage = value; } get { return detectLanguage; } } [SerializeField] private DetectType detectLanguage = DetectType.SystemLanguage;
