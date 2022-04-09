@@ -42,6 +42,7 @@ public class e_CombatManager : MonoBehaviour
     public Vector3 FirstEnemyCreatePos = new Vector3(-2997, 0, 0);
 
     public bool isCombat;
+    public bool isLastCombat;
 
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
 
@@ -448,7 +449,11 @@ public class e_CombatManager : MonoBehaviour
                     IP.isMove = true;
                     RoomController RC = GameObject.Find("RoomController").GetComponent<RoomController>();
                     RC.RoomCombatClear(IP.currentPlayers);
-                    RC.GameClearCheck();
+
+                    if(isLastCombat)
+                    {
+                        RC.GameClearFunc();
+                    }
 
                     return;
                 }

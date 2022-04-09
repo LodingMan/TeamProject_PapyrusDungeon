@@ -80,6 +80,14 @@ public class RoomController : MonoBehaviour
                                 StartCoroutine(BattleDlay());
                                 inGamePlayerScript.isMove = false;//나중에 다 지우셈
                                 break;
+
+                            case 6:
+                                Debug.Log("보스");
+                                StartCoroutine(BattleDlay());
+                                inGamePlayerScript.isMove = false;
+                                combatManager.isLastCombat = true;
+                                break;
+
                             default:
                                 break;
                         }
@@ -133,6 +141,9 @@ public class RoomController : MonoBehaviour
         yield return new WaitForSeconds(5);
         switch (Room.GetComponent<RoomScript>().DungeonEventPram) //복도이벤트
         {
+            case -1:
+                Debug.Log("이미 지나온 복도입니다.");
+                break;
             case 0:
 
             case 1:
@@ -141,6 +152,7 @@ public class RoomController : MonoBehaviour
             case 3:
             case 4:
                 room_Passage_Event.Passage_HpDown_Event();
+                Room.GetComponent<RoomScript>().DungeonEventPram = -1;
                 break;
             default:
                 break;
@@ -148,6 +160,7 @@ public class RoomController : MonoBehaviour
 
 
     }
+
 
     public void RoomCombatClear(int Roomnumber)
     {
@@ -162,11 +175,9 @@ public class RoomController : MonoBehaviour
         }
 
     }
-    public void GameClearCheck()
+    public void GameClearFunc()
     {
-        if(ClearRoomCnt == mapCreate.RoomInsCount)
-        {
-            //게임클리어
-        }
+        inGamePlayerScript.isMove = false;
+
     }
 }
