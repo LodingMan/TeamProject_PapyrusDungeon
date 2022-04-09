@@ -574,12 +574,12 @@ public class e_CombatManager : MonoBehaviour
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
+        ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         yield return new WaitForSeconds(0.5f);
 
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 3f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 1f), 0.1f);
 
-        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.3f, 0.2f, -5.8f), 3f);
-
-        ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
 
         yield return new WaitForSeconds(4);
         myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
@@ -623,12 +623,13 @@ public class e_CombatManager : MonoBehaviour
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
-
-        yield return new WaitForSeconds(0.5f);
-       
-        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.3f, 0.2f, -5.8f), 3f);
-
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
+        yield return new WaitForSeconds(0.5f);
+
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
+
+
         yield return new WaitForSeconds(4);
 
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
