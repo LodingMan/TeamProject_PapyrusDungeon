@@ -345,6 +345,8 @@ public class MapCreate : MonoBehaviour
 
 
         map[bossY, bossX].GetComponent<RoomScript>().InitRoomNumber((bossY * 10) + bossX);// 방에게 현재 방번호 부여
+        map[bossY, bossX].GetComponent<RoomScript>().isBossRoom = true ;// 방에게 현재 방번호 부여
+
 
         map[bossY, bossX].name = "[" + bossY + "," + bossX + "]" + "BOSSROOM";
 
