@@ -509,8 +509,8 @@ ModelImporter:
       name: NormalAttack01_DoubleSword
       takeName: Take 001
       internalID: 0
-      firstFrame: 16.8
-      lastFrame: 18.2
+      firstFrame: 19.2
+      lastFrame: 19.6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
