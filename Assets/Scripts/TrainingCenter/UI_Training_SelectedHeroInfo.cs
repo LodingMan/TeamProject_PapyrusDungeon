@@ -24,9 +24,8 @@ namespace Shin
         public Image heroImage;
 
         public Image detail_Image;
-        public Text detail_Text;
-        public Text detail_Before;
-        public Text detail_After;
+        public Text detail_Name;
+        public Text detail_Detail;
         public Button[] Skill_Btn;
 
         public int curWeek;
@@ -55,16 +54,6 @@ namespace Shin
 
             gameObject.SetActive(false);
             
-        }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (gameObject.activeSelf)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
         }
 
         public void InitHeroInfo()
@@ -147,9 +136,8 @@ namespace Shin
             {
                 if (Skill_Btn[0].name == skillDetailTable.skilldetails[i].skillindex.ToString())
                 {
-                    detail_Text.text = skillDetailTable.skilldetails[i].skillindex.ToString();
-                    detail_Before.text = skillDetailTable.skilldetails[i].skillname;
-                    detail_After.text = skillDetailTable.skilldetails[i].skilldetail;
+                    detail_Name.text = skillDetailTable.skilldetails[i].skillname;
+                    detail_Detail.text = skillDetailTable.skilldetails[i].skilldetail;
                 }
             }
         }
@@ -160,9 +148,8 @@ namespace Shin
             {
                 if (Skill_Btn[1].name == skillDetailTable.skilldetails[i].skillindex.ToString())
                 {
-                    detail_Text.text = skillDetailTable.skilldetails[i].skillindex.ToString();
-                    detail_Before.text = skillDetailTable.skilldetails[i].skillname;
-                    detail_After.text = skillDetailTable.skilldetails[i].skilldetail;
+                    detail_Name.text = skillDetailTable.skilldetails[i].skillname;
+                    detail_Detail.text = skillDetailTable.skilldetails[i].skilldetail;
                 }
             }
         }
@@ -173,9 +160,8 @@ namespace Shin
             {
                 if (Skill_Btn[2].name == skillDetailTable.skilldetails[i].skillindex.ToString())
                 {
-                    detail_Text.text = skillDetailTable.skilldetails[i].skillindex.ToString();
-                    detail_Before.text = skillDetailTable.skilldetails[i].skillname;
-                    detail_After.text = skillDetailTable.skilldetails[i].skilldetail;
+                    detail_Name.text = skillDetailTable.skilldetails[i].skillname;
+                    detail_Detail.text = skillDetailTable.skilldetails[i].skilldetail;
                 }
             }
         }
