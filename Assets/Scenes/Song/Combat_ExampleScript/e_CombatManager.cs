@@ -10,6 +10,9 @@ public class e_CombatManager : MonoBehaviour
     public Enemy_Sequence_Table enemy_Sequence_Table = new Enemy_Sequence_Table(); //에너미 배치를 정해주는 테이블
     public SKillTable sKillTable = new SKillTable(); //스킬테이블
 
+    public int DungeonType;
+    public int DungeonDifficulty;
+
 
     public List<GameObject> myParty = new List<GameObject>(); //GuildManager에서 가져온 PartyHero를 담은 배열
     //public List<GameObject> CreateEnemyPool = new List<GameObject>(); //
@@ -645,5 +648,18 @@ public class e_CombatManager : MonoBehaviour
 
         Debug.Log("Test");
 
+    }
+
+
+    public void PartyExpUp()
+    {
+        for(int i = 0; i< myParty.Count; i++)
+        {
+            myParty[i].GetComponent<StatScript>().MyExp += 40; //이거 던전 난이도에 따라 다르게 넣어야 될 수도 있음
+            if (myParty[i].GetComponent<StatScript>().MyExp >= 100)
+            {
+                myParty[i].GetComponent<StatScript>().LevelUp();
+            }
+        }
     }
 }

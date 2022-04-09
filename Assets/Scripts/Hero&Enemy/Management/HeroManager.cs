@@ -165,6 +165,7 @@ namespace Song
 
             //�ش� ������ �´� ������ �� StatScript�� ����
             CurrentCreateHero.GetComponent<StatScript>().myStat = initStat;
+            CurrentCreateHero.GetComponent<StatScript>().myStat.Lv = 1;
             CurrentCreateHero.GetComponent<HeroScript_SaveAllDataParam>().heroSavingData.ColorType = color;
 
             //�ش� ������ �´� ��ų�� �� SkillScript�� ����
@@ -173,21 +174,9 @@ namespace Song
                 CurrentCreateHero.GetComponent<SkillScript>().skills[skillIndex - JobSkillStartIndex] = skillTable.skillTable_Dictionary[skillIndex];
             }
 
-            //Equip�� ���� ó�� �����ɶ� ������� �����Ѵ� �����ϰ� ���� ����. 
-            //�� Hero������Ʈ�� EquipScript�� Equip�� ���� �Ǿ������� ���� ������� ����.
-
-
 
             unemployedHeroList.Add(CurrentCreateHero); //��忡�� �ش� ����Ʈ�� �޾� ����� ���� ����Ʈ�� ����Ѵ�. 
 
-            //���� ���ӿ� ������Ʈ�� ������ Hero������Ʈ ����Ʈ
-            //CurrentHeroList.Add(CurrentCreateHero); // �� ����Ʈ�� �������� UI������ ����� ��Ʈ�� 
-                                                    // ����� �������ڸ��� CurrentCreateHero����Ʈ�� ���� ������ 
-                                                    // ���� ���� �帧�� ������ ����� �Ŀ��� CurrentHeroList�� ���� �ϱ� ������
-                                                    // �ϴ� ������ ������Ʈ�� '�����' ���� ����Ʈ�� �־�ΰ� UI�� ��� ��,
-                                                    // ����ϸ� '�����' ���� ����Ʈ�� �Ű� �� �� UI������Ʈ�ϴ� ����� �ִٰ� ������  -> ���ϴ�
-                                                    //03-27 ����. CurrentHeroList�� HeroManager�� ����Ǿ������� ����Ʈ�� �ɹ��� �߰��ϴ� ������ ��忡�� ������. 
-                                                    //CurrentHeroList�� ����Ǵ°��� ������ HeroManager�� �����Ƿ� ����ϴµ� ������ ����. 
         }
 
 

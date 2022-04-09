@@ -10,10 +10,11 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public InGame_Player_Script inGame_Player_Script;
     public CombatCameraControll combatCameraControll;
     public SkillActiveManager skillActiveManager;
-
+    public ShopManager shopManager;
+    public ShopEquipScripts shopEquipScripts;
+    public Shin.EquipDetailTable equipDetailTable;
     public List<Button> Go_Back_Btn = new List<Button>();
-    public List<Text> SkillInfo_Text = new List<Text>();
-    public List<Image> SKillInfo_Image = new List<Image>();
+
     public Button MiniMapCommingBtn;
     public Text IngameText;
     public Text EnemySkillNameText;
@@ -23,9 +24,19 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public GameObject EventUIPanal;
 
     public GameObject GameClearPanal;
+    public List<Text> PartyMemberNameList = new List<Text>();
+    public GameObject ClearReward_Create_Point;
+    public GameObject GameClearReward_Equip_Image;
+
+
+
 
     public GameObject Current_Attack_Unit;
+
     public Image Skill_Info_UI;
+    public List<Text> SkillInfo_Text = new List<Text>();
+    public List<Image> SKillInfo_Image = new List<Image>();
+
     public GameObject Player_Targeting;
 
 
@@ -36,9 +47,10 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public List<GameObject> ScaleReFactoring = new List<GameObject>();
 
+    
+
     private void Start()
     {
-        
     }
 
 
@@ -91,7 +103,42 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public void GameClearPanalDown()
     {
+        StatScript CurrentHeroStat;
         GameClearPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, 0), 1f);
+
+        for(int i = 0; i < combatManager.myParty.Count; i++)
+        {
+            CurrentHeroStat = combatManager.myParty[i].GetComponent<StatScript>();
+            PartyMemberNameList[i].text = CurrentHeroStat.myStat.Name + "  " + CurrentHeroStat.PreviousLv + "  -> " + CurrentHeroStat.myStat.Lv;
+        }
+
+
+        for(int i = 0; i < combatManager.DungeonDifficulty; i++)
+        {
+            int RndIdx = Random.Range(1, shopManager.equipList.Count);
+            GameObject CurrentCreateImgae;
+            GameObject InvantoryCreatePrefab;
+
+            CurrentCreateImgae = Instantiate(GameClearReward_Equip_Image);
+
+            CurrentCreateImgae.GetComponent<Image>().sprite = equipDetailTable.sprite[RndIdx]; // shopManager.equipList[RndIdx].transform.GetChild(1).GetComponent<Image>().sprite;
+            CurrentCreateImgae.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
+
+
+            InvantoryCreatePrefab = Instantiate(shopManager.equipList[RndIdx]);
+            shopManager.hasEquipList.Add(InvantoryCreatePrefab);
+            InvantoryCreatePrefab.transform.SetParent(shopManager.inventory.transform);
+            InvantoryCreatePrefab.transform.localPosition = shopManager.inventory.transform.localPosition;
+
+
+            InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+
+
+
+
+        //   GameClearPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, 0), 1f);
 
     }
 
