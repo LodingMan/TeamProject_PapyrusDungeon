@@ -178,6 +178,8 @@ public class RoomController : MonoBehaviour
     public void GameClearFunc()
     {
         inGamePlayerScript.isMove = false;
+        combatManager.PartyExpUp();
+        combat_Event_UI_Manager.GameClearPanalDown();
 
     }
 }
