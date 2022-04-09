@@ -22,6 +22,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     bool isMiniMapOn = false;
     public GameObject EventUIPanal;
 
+    public GameObject GameClearPanal;
+
     public GameObject Current_Attack_Unit;
     public Image Skill_Info_UI;
     public GameObject Player_Targeting;
@@ -86,5 +88,12 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
 
     }
+
+    public void GameClearPanalDown()
+    {
+        GameClearPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, 0), 1f);
+
+    }
+
 
 }
