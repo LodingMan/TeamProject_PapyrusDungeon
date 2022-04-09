@@ -94,10 +94,12 @@ namespace Shin
             uI_trainingManager.trainingHero_UI = Instantiate(uI_trainingManager.trainingHero_UI_Prefab, uI_trainingManager.training_List_UI_Content.transform);
             uI_trainingManager.trainingHero_UI.name = gameObject.name;
             uI_trainingManager.trainingHero_UI.GetComponent<UI_Training_TrainingHeroInfo>().curWeek = curWeek;
-            
+
+            uI_Tweening_Manager.option_Btn.SetActive(true);
             uI_Tweening_Manager.UI_TrainingSecPanel_Off();
             uI_trainingManager.EmployedDestroy_UI();
             uI_trainingManager.EmployedInit_UI();
+
             gameObject.SetActive(false);
         }
 
