@@ -15,29 +15,37 @@ public class Combat_Effect_Manager : MonoBehaviour
 
 
 
-    public void HeroEffect_On(GameObject target)
+    public void HeroEffect_On(GameObject hero, GameObject target)
     {
-        for (int i = 0; i < buffSkillIndex.Count; i++)
+
+        foreach (var item in buffSkillIndex)
         {
-            if (combatMgr.SaveSkill.Index == buffSkillIndex[i])
+            if (buffSkillIndex.Contains(combatMgr.SaveSkill.Index))
             {
-                isBuffSkill = true;
-                break;
-            }
+                    isBuffSkill = true;
+                    break;
+                }
+                else
+                {
+                    isBuffSkill = false;
+                    break;
+                }
+            
         }
+
 
         if (!isBuffSkill)
         {
             GameObject effectHero = Instantiate(heroEffects[combatMgr.SaveSkill.Index]);
             effectHero.transform.position = target.transform.position + new Vector3(0, 0, -1);
-            effectHero.transform.DOMove(effectHero.transform.position - new Vector3(-0.5f, 0f, 0f), 3f).SetLink(effectHero, LinkBehaviour.KillOnDestroy);
+            effectHero.transform.DOMove(effectHero.transform.position - new Vector3(-0.8f, 0f, 0f), 3f).SetLink(effectHero, LinkBehaviour.KillOnDestroy);
             Destroy(effectHero, 3f);
         }
         else
         {
             GameObject effectHero2 = Instantiate(heroEffects[combatMgr.SaveSkill.Index]);
-            effectHero2.transform.position = target.transform.position + new Vector3(0, 0, -1);
-            effectHero2.transform.DOMove(effectHero2.transform.position - new Vector3(-0.5f, 0f, 0f), 3f).SetLink(effectHero2, LinkBehaviour.KillOnDestroy);
+            effectHero2.transform.position = hero.transform.position + new Vector3(0, 0, -1);
+            effectHero2.transform.DOMove(effectHero2.transform.position - new Vector3(-1.4f, 0f, 0f), 3f).SetLink(effectHero2, LinkBehaviour.KillOnDestroy);
             Destroy(effectHero2, 3f);
         }
 
