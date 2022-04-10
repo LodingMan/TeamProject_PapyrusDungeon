@@ -63,7 +63,7 @@ public class Combat_Effect_Manager : MonoBehaviour
     {
         GameObject effectEnemy = Instantiate(enemyEffects[0]);
         effectEnemy.transform.position = target.transform.position + new Vector3(0, 1, -1);
-        audioSource.PlayOneShot(eSfx[combatMgr.SaveSkill.Index]);
+        audioSource.PlayOneShot(eSfx[0]);
         Destroy(effectEnemy, 3f);
 
     }

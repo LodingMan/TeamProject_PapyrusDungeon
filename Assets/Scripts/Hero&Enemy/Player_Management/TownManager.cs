@@ -73,15 +73,15 @@ public class TownManager : MonoBehaviour
         {
             heroManager.CurrentHeroList[i].SetActive(false);
         }
-        for(int i = 0; i < guildManager.unemployedHero.Length; i++)
+        for (int i = 0; i < guildManager.unemployedHero.Length; i++)
         {
-            if(guildManager.unemployedHero[i] != null)
+            if (guildManager.unemployedHero[i] != null)
             {
                 guildManager.unemployedHero[i].SetActive(false);
             }
         }
 
-        for(int i = 0; i < combatManager.myParty.Count; i++)
+        for (int i = 0; i < combatManager.myParty.Count; i++)
         {
             combatManager.myParty[i].SetActive(true);
         }
@@ -151,7 +151,7 @@ public class TownManager : MonoBehaviour
 
 
         DIB.loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
-        DIB.twMgr.isTentOn = false;
+        isTent = false;
         DIB.dgMgr.isTent = false;
         DIB.TownPrefabs.SetActive(true);
         DIB.TentPrefabs.SetActive(false);
