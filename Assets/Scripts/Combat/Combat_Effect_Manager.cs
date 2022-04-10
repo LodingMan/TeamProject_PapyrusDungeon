@@ -37,7 +37,7 @@ public class Combat_Effect_Manager : MonoBehaviour
         if (!isBuffSkill)
         {
             GameObject effectHero = Instantiate(heroEffects[combatMgr.SaveSkill.Index]);
-            effectHero.transform.position = target.transform.position + new Vector3(0, 0, -1);
+            effectHero.transform.position = target.transform.position + new Vector3(0, 0, -1);;
             effectHero.transform.DOMove(effectHero.transform.position - new Vector3(-0.8f, 0f, 0f), 3f).SetLink(effectHero, LinkBehaviour.KillOnDestroy);
             Destroy(effectHero, 3f);
         }

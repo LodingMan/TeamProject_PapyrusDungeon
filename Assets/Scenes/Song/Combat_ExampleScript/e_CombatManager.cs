@@ -286,6 +286,7 @@ public class e_CombatManager : MonoBehaviour
                 if (target.GetComponent<SkillScript>().mySkills[i].MyPosition[j] == currentActiveUnitIndex)
                 {
                     currentActiveSkillList.Add(target.GetComponent<SkillScript>().mySkills[i]);
+                    break;
                 }
             }
         }
@@ -324,11 +325,11 @@ public class e_CombatManager : MonoBehaviour
 
         SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
 
-
         combat_Event_UI_Manager.EnemySkillNameText.enabled = true;
         combat_Event_UI_Manager.EnemySkillNameText.text = SaveSkill.Name;
         combat_Event_UI_Manager.EnemySkillNameText.GetComponent<DOTweenAnimation>().DORestart();
-        Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name);
+        Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name + "::인덱스는" + SaveSkill.Index);
+        currentActiveSkillList.Clear();
 
     }
 
