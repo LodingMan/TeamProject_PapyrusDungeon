@@ -86,7 +86,7 @@ namespace Song
 
         public void Pointer_Drop()
         {
-            Debug.Log("UP");
+            //Debug.Log("UP");
             if (This_Prefab_Object == null && uI_Central.Catch_Hero_Object != null)
             {
                 if (uI_Central.Catch_Hero_Object.GetComponent<HeroScript_Current_State>().isTraining == false

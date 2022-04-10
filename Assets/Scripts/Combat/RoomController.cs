@@ -28,14 +28,14 @@ public class RoomController : MonoBehaviour
 
     public void RoomCheck(int Roomnumber)
     {
-        Debug.Log(Roomnumber);
+        //Debug.Log(Roomnumber);
 
         for (int i = 0; i < RoomList.Count; i++)
         {
             if (RoomList[i].GetComponent<RoomScript>().roomNumber == Roomnumber)
             {
                 RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
-                Debug.Log(Roomnumber);
+                //Debug.Log(Roomnumber);
                 if (!isFirst)
                 {
                     for (int j = 0; j < RoomList.Count; j++)

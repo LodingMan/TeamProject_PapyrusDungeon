@@ -43,7 +43,7 @@ namespace Song
 
         public void Open_Status_UI(GameObject Target_Hero)
         {
-            Debug.Log("UIOpen");
+            //Debug.Log("UIOpen");
             uI_Tweening_Manger.UI_StatusPanel_On();
             This_Prefab_Object = Target_Hero;
 

@@ -32,7 +32,7 @@ public class UI_Central : MonoBehaviour
 
     void BeginDrag(Transform card)
     {
-        Debug.Log("BeginDrag: " + card.name);
+        //Debug.Log("BeginDrag: " + card.name);
         SwapIndexInHierarchy(NoneIndex, card);
     }
     void Drag(Transform card)
@@ -41,7 +41,7 @@ public class UI_Central : MonoBehaviour
     }
     void EndDrag(Transform card)
     {
-        Debug.Log("EndDrag: " + card.name);
+        //Debug.Log("EndDrag: " + card.name);
         SwapIndexInHierarchy(NoneIndex, card);
 
     }

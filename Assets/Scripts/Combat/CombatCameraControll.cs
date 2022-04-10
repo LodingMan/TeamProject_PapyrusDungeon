@@ -87,7 +87,7 @@ public class CombatCameraControll : MonoBehaviour
         {
             if (roomController.RoomList[i].GetComponent<RoomScript>().roomNumber == inGame_Player_Script.currentPlayers)
             {
-                Debug.Log("찾았다");
+                //Debug.Log("찾았다");
                 MinimapCamera.transform.position = roomController.RoomList[i].transform.position - new Vector3(0, 0, 15);
             }
 
