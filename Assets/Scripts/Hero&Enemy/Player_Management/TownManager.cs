@@ -143,12 +143,13 @@ public class TownManager : MonoBehaviour
 
         combatManager.Out_Dungeon_Party(); //ÆÄÆ¼¸É¹ö ¸¶À»·Î ¿Å±è , ³×ºñ ÄÑÁÜ
 
-        if (DIB.camera_Tent.activeSelf) { DIB.camera_Tent.SetActive(false); }
-        if (DIB.camera_Combat.activeSelf) { DIB.camera_Combat.SetActive(false); }
-        if (!DIB.camera_Town.activeSelf)  { DIB.camera_Combat.SetActive(true); }
-        if (DIB.canvas_Tent.activeSelf) { DIB.canvas_Tent.SetActive(false); }
-        if(DIB.canvas_Combat.activeSelf) { DIB.canvas_Combat.SetActive(false); }
-        if (!DIB.canvas_Town.activeSelf) { DIB.canvas_Town.SetActive(true); }
+        if ( DIB.camera_Tent.activeSelf) { DIB.camera_Tent.SetActive(false); }
+        if ( DIB.camera_Combat.activeSelf) { DIB.camera_Combat.SetActive(false); }
+        if ( !DIB.camera_Town.activeSelf)  { DIB.camera_Combat.SetActive(true); }
+
+        if ( DIB.canvas_Tent.activeSelf) { DIB.canvas_Tent.SetActive(false); }
+        if( DIB.canvas_Combat.activeSelf) { DIB.canvas_Combat.SetActive(false); }
+        if ( !DIB.canvas_Town.activeSelf) { DIB.canvas_Town.SetActive(true); }
 
         DIB.loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
         isTown = true;

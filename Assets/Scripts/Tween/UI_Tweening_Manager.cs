@@ -47,6 +47,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool isTrain = false;
     public bool isTrainDetail = false;
     public bool isOption = false;
+    public bool isTentOption = false;
 
     public ShopManager shopMgr;
     public SmithManager smithMgr;
@@ -76,7 +77,8 @@ public class UI_Tweening_Manager : MonoBehaviour
                     TentInvenToOriginInven();
                     // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
                 }
-
+                if (isTentOption)
+                    isTentOption = false;
 
             }
             if (townMgr.isTown == true)
@@ -341,6 +343,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Tent_OptionPanel_On()
     {
+        isTentOption = true;
         UI_Tent_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_Tent_Option_Pos;
         StackCount++;
