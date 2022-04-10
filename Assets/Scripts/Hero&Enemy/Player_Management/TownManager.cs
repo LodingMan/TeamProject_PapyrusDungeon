@@ -32,6 +32,7 @@ public class TownManager : MonoBehaviour
     public bool isTown;
     public bool isTent;
     public bool isCombat;
+
     private void Awake()
     {
         isTown = true;
@@ -151,18 +152,11 @@ public class TownManager : MonoBehaviour
 
 
         DIB.loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
-        DIB.twMgr.isTentOn = false;
+        isTent = false;
         DIB.dgMgr.isTent = false;
         DIB.TownPrefabs.SetActive(true);
         DIB.TentPrefabs.SetActive(false);
         DIB.canvas_Tent.SetActive(false);
-
-
-
-
-
-
-
 
         NextWeek();
 
