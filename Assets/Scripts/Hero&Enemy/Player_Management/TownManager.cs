@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 public class TownManager : MonoBehaviour
 {
     //플레이어의 정보를 관리하는 스크립트. 
-    //해당 스크립트에서 현재 주자, 골드, 각 건물의 레벨현황 
+    //해당 스크립트에서 현재 주자, 골드, 각 건물의 레벨현황
     public int Week = 0;
     public int Gold = 0;
     public int Jewel = 0;
@@ -24,6 +24,16 @@ public class TownManager : MonoBehaviour
     public Text text_Week;
     public Text text_Gold;
     public Text text_Jewel;
+
+    public bool isTown;
+    public bool isTent;
+    public bool isCombat;
+    private void Awake()
+    {
+        isTown = true;
+        isTent = false;
+        isCombat = false;
+    }
     public void Update()
     {
         text_Week.text = Week.ToString();
