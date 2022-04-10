@@ -143,6 +143,7 @@ public class RoomController : MonoBehaviour
         {
             case -1:
                 Debug.Log("이미 지나온 복도입니다.");
+                combat_Event_UI_Manager.Go_Back_On();
                 break;
             case 0:
 

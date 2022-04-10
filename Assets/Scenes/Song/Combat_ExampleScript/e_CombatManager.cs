@@ -456,6 +456,7 @@ public class e_CombatManager : MonoBehaviour
                     if(isLastCombat)
                     {
                         RC.GameClearFunc();
+                        isLastCombat = false;
                     }
 
                     return;

@@ -70,4 +70,36 @@ public class TownManager : MonoBehaviour
         }
 
     }
+
+    public void UpdateManager_All_ON()
+    {
+        // OffControll = GameObject.Find("TentManager");
+        // OffControll.GetComponent<ItemUseManager>().enabled = false;
+        Debug.Log(OffControll.Count);
+        for (int i = 0; i < OffControll.Count; i++)
+        {
+            OffControll[i].SetActive(false); //이 리스트에 들어간놈들 다 꺼버리는데 나중에 이 리스트로 한번에 다시 켜버리면됨.
+
+        }
+
+        for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
+        {
+            heroManager.CurrentHeroList[i].SetActive(false);
+        }
+        for (int i = 0; i < heroManager.unemployedHeroList.Count; i++)
+        {
+            heroManager.unemployedHeroList[i].SetActive(false);
+        }
+
+        for (int i = 0; i < combatManager.myParty.Count; i++)
+        {
+            combatManager.myParty[i].SetActive(true);
+        }
+
+        for (int i = 0; i < OnControll.Count; i++)
+        {
+            OnControll[i].SetActive(true);
+        }
+
+    }
 }
