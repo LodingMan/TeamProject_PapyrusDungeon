@@ -63,7 +63,7 @@ public class SKillTable
         { 105, new skill(105, "SkillName38", 1, 3, 3, new int[3] { 0, 1, -1 }, new int[3]{0,1,-1 })},
 
         { 106, new skill(106, "SkillName36", 1, 1, 1 ,new int[3] {0,1,-1 }, new int[3] {0,1,-1 })},
-        { 107, new skill(107, "SkillName37", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] {0,1,-1 })},
+        { 107, new skill(107, "SkillName107", 1, 2, 2, new int[3] {0,1,-1 }, new int[3] {0,1,-1 })},
         { 108, new skill(108, "SkillName38", 1, 3, 3, new int[3] {0,1,-1 }, new int[3] {0,1,-1 })},
 
 
