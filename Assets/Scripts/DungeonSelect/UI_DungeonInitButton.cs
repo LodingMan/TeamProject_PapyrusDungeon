@@ -35,7 +35,7 @@ namespace Shin
 
         private void Awake()
         {
-            introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
+            //introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>(); //나중에 켜기
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             shopMgr = GameObject.Find("ShopManager").GetComponent<ShopManager>();
             twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
@@ -115,8 +115,8 @@ namespace Shin
             TownPrefabs.SetActive(false);
             TentPrefabs.SetActive(true);
 
-            introSceneScript.audioSS.clip = introSceneScript.audioTent;
-            introSceneScript.audioSS.Play();
+           // introSceneScript.audioSS.clip = introSceneScript.audioTent;
+           // introSceneScript.audioSS.Play();
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
             twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
