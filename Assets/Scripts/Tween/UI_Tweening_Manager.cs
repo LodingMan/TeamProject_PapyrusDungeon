@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //==================================================================================================//
 public class UI_Tweening_Manager : MonoBehaviour
 {
+    public TownManager townMgr;
     public RectTransform UI_guildPanelPos;
     public RectTransform UI_StatusPanelPos;
     public RectTransform UI_StatusPanel_Tent_Pos;
@@ -34,7 +35,10 @@ public class UI_Tweening_Manager : MonoBehaviour
     //bool UI_isInventoryPanel_On = false;
     //bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
-    public bool isTentOn = false; // shin
+    // shin
+    /*public bool isTownOn = false;
+    public bool isTentOn = false; 
+    public bool isCombatOn = false;*/
     public bool isGuild = false;
     public bool isShopOn = false;
     public bool isSmith = false;
@@ -58,7 +62,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isTentOn == true && StackCount == 0)
+            if (townMgr.isTent == true && StackCount == 0)
             {
                 if (uI_DungeonInitButton.canvas_Tent.activeSelf)
                 {

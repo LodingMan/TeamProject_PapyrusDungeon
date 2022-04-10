@@ -10,6 +10,7 @@ namespace Shin
 {
     public class UI_DungeonInitButton : MonoBehaviour
     {
+        public IntroSceneScript introSceneScript;
         public Button btn;
         public GameObject canvas_Town;
         public GameObject camera_Town;
@@ -23,6 +24,7 @@ namespace Shin
         public RectTransform loadingPanel;
         public GuildManager guildMgr;
         public UI_Tweening_Manager twMgr;
+        public TownManager townMgr;
         public Song.UI_DungeonSelect_Manager dgMgr;
         public Transform[] tentPos = new Transform[3];
 
@@ -31,9 +33,11 @@ namespace Shin
 
         private void Awake()
         {
+            introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
             guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
             shopMgr = GameObject.Find("ShopManager").GetComponent<ShopManager>();
             twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+            townMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
             btn.onClick.AddListener(OnClickBtn);
             tentPos[0].position = new Vector3(-32f, 0.95f, -132);
             tentPos[1].position = new Vector3(-32.12f, 0.95f, -135.43f);
@@ -101,9 +105,16 @@ namespace Shin
                 twMgr.UIStack[i] = null;
             }
             twMgr.StackCount = 0;
-            twMgr.isTentOn = true;
+            
+            townMgr.isTown = false;
+            townMgr.isTent = true;
+            townMgr.isCombat = false;
+
             TownPrefabs.SetActive(false);
             TentPrefabs.SetActive(true);
+
+            introSceneScript.audioSS.clip = introSceneScript.audioTent;
+            introSceneScript.audioSS.Play();
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
             twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
@@ -121,10 +132,17 @@ namespace Shin
             if (!canvas_Tent.activeSelf) canvas_Town.SetActive(true);
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
-            twMgr.isTentOn = false;
+
+            townMgr.isTown = true;
+            townMgr.isTent = false;            
+            townMgr.isCombat = false;
+            
             dgMgr.isTent = false;
             TownPrefabs.SetActive(true);
             TentPrefabs.SetActive(false);
+
+            introSceneScript.audioSS.clip = introSceneScript.audioTown;
+            introSceneScript.audioSS.Play();
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {
@@ -141,6 +159,11 @@ namespace Shin
                     guildMgr.heroManager.CurrentHeroList[i].SetActive(true);
                 }
             }
+        }
+
+        public IEnumerator TweenLoadingPanelToDunGeon()
+        {
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
