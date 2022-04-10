@@ -141,6 +141,7 @@ public class CombatCameraControll : MonoBehaviour
         if (TentCamera.transform.gameObject.activeSelf) { TentCamera.transform.gameObject.SetActive(false); }
         introSceneScript.audioSS.Stop();
         CombatCamera.transform.gameObject.SetActive(true);
+        CombatCanvas.transform.gameObject.SetActive(true);
         CombatCanvas.enabled = true;
 
         yield return new WaitForSeconds(2f);

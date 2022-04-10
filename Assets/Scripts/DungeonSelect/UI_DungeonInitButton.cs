@@ -16,6 +16,8 @@ namespace Shin
         public GameObject camera_Town;
         public GameObject canvas_Tent;        
         public GameObject camera_Tent;
+        public GameObject canvas_Combat;
+        public GameObject camera_Combat;
         public GameObject camfire;
 
         public GameObject inventory;
@@ -128,8 +130,10 @@ namespace Shin
             {
                 camera_Tent.SetActive(false);
             }
+            
             if (!camera_Tent.activeSelf) camera_Town.SetActive(true); 
             if (!canvas_Tent.activeSelf) canvas_Town.SetActive(true);
+            
 
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
 
@@ -161,10 +165,6 @@ namespace Shin
             }
         }
 
-        public IEnumerator TweenLoadingPanelToDunGeon()
-        {
-            yield return new WaitForSeconds(0.5f);
-        }
     }
 }
 
