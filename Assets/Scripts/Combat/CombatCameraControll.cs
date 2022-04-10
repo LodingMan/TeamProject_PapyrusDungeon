@@ -62,22 +62,19 @@ public class CombatCameraControll : MonoBehaviour
 
     public void UI_Camera_All_Off()
     {
-         TownCamera.enabled = false;
-       // TownCanvas.enabled = false;
-
-        TentCamera.enabled = false;
-        CombatCamera.enabled = true;
+        TownCamera.gameObject.SetActive(false);
+        TentCamera.gameObject.SetActive(false);      
+        CombatCamera.gameObject.SetActive(true);
 
         MinimapCamera.enabled = true;
 
 
     }
-    public void UI_Camera_All_On()
+    public void UI_Camera_All_On() // 전투 끝나고 마을로 돌아옴.
     {
-        TownCamera.enabled = true;
-
-        TentCamera.enabled = true;
-        CombatCamera.enabled = false;
+        TownCamera.gameObject.SetActive(true);
+        TentCamera.gameObject.SetActive(false);
+        CombatCamera.gameObject.SetActive(false);
 
         MinimapCamera.enabled = false;
 
