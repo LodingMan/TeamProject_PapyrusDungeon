@@ -24,6 +24,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_ChurchWarning_Pos;
     public RectTransform UI_TrainWarning_Pos;
     public RectTransform UI_Option_Pos;
+    public RectTransform UI_Tent_Option_Pos;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -40,7 +41,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool isTentOn = false; 
     public bool isCombatOn = false;*/
     public bool isGuild = false;
-    public bool isShopOn = false;
+    public bool isShop = false;
     public bool isSmith = false;
     public bool isChurch = false;
     public bool isTrain = false;
@@ -62,60 +63,75 @@ public class UI_Tweening_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (townMgr.isTent == true && StackCount == 0)
+            if (townMgr.isTent == true)
             {
-                if (uI_DungeonInitButton.canvas_Tent.activeSelf)
+                if (StackCount == 0)
                 {
-                    uI_DungeonInitButton.canvas_Tent.SetActive(false);
-                }
-                UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-                StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
-                TentInvenToOriginInven();
-                // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
-            }
-            if (!isOption)
-            {
-                if (isShopOn || isSmith)
-                {
-                    isShopOn = false;
-                    shopMgr.isShop = false;
-                    isSmith = false;
-                    UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-                }
-                if (isGuild)
-                {  
-                    isGuild = false;   
-                }
-                if (isChurch)
-                {
-                    isChurch = false;
-                    uI_ChurchManager.EmployedDestroy_UI();
-                    uI_ChurchManager.isWarning = false;
-                }
-                if (isTrain)
-                {
-                    if (isTrainDetail)
+                    if (uI_DungeonInitButton.canvas_Tent.activeSelf)
                     {
-                        uI_TrainingManager.EmployedDestroy_UI();
-                        uI_TrainingManager.EmployedInit_UI();
-                        isTrainDetail = false;
+                        uI_DungeonInitButton.canvas_Tent.SetActive(false);
                     }
-                    else
+                    UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+                    StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
+                    TentInvenToOriginInven();
+                    // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
+                }
+
+
+            }
+            if (townMgr.isTown == true)
+            {        
+                if (isOption == false)
+                {
+                    if (isShop)
                     {
-                        uI_TrainingManager.isWarning = false;
-                        uI_TrainingManager.EmployedDestroy_UI();
-                        isTrain = false;
+                        isShop = false;
+                        shopMgr.isShop = false;
+                        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                    }
+                    if (isSmith)
+                    {
+                        isSmith = false;
+                        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                    }
+                    if (isGuild)
+                    {
+                        isGuild = false;
+                    }
+                    if (isChurch)
+                    {
+                        isChurch = false;
+                        uI_ChurchManager.EmployedDestroy_UI();
+                        uI_ChurchManager.isWarning = false;
+                    }
+                    if (isTrain)
+                    {
+                        if (isTrainDetail)
+                        {
+                            uI_TrainingManager.EmployedDestroy_UI();
+                            uI_TrainingManager.EmployedInit_UI();
+                            isTrainDetail = false;
+                        }
+                        else
+                        {
+                            uI_TrainingManager.isWarning = false;
+                            uI_TrainingManager.EmployedDestroy_UI();
+                            isTrain = false;
+                        }
                     }
                 }
+                else // 옵션이 켜져있는 상태
+                {
+                    isOption = false;
+                }
+
+                if (!isTrainDetail)
+                    option_Btn.SetActive(true);
             }
-            else
-            {
-                isOption = false;
-            }
+            
              
             StackCountFun();
-            if (!isTrainDetail)
-                option_Btn.SetActive(true);
+            
         }
     }
 
@@ -128,7 +144,6 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
-                isShopOn = false;
                 smithMgr.EquipReturnToInven();
 
             }
@@ -248,14 +263,18 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Shop_PanelPos_On_Off()
     {
-        if (!isShopOn)
+        if (!isShop)
         {
-            isShopOn = true;
+            isShop = true;
             UI_shopPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
             UIStack[StackCount] = UI_shopPanelPos;
             StackCount++;
             UI_BackGroundPanel_On_Off();
+        }
+        else
+        {
+            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
         }
 
     }
@@ -313,6 +332,14 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
 
     public void UI_OptionPanel_On()
+    {
+        isOption = true;
+        UI_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_Option_Pos;
+        StackCount++;
+    }
+
+    public void UI_Tent_OptionPanel_On()
     {
         isOption = true;
         UI_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);

@@ -500,7 +500,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public void EquipSell()
     {
 
-        if (itemData.isShop && twMgr.isShopOn)
+        if (itemData.isShop && twMgr.isShop)
         {
             equipBtn.gameObject.SetActive(false);
             sell++;
