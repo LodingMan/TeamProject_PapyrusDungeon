@@ -65,12 +65,11 @@ public class CombatCameraControll : MonoBehaviour
         TownCamera.gameObject.SetActive(false);
         TentCamera.gameObject.SetActive(false);      
         CombatCamera.gameObject.SetActive(true);
-
         MinimapCamera.enabled = true;
 
 
     }
-    public void UI_Camera_All_On() // ÀüÅõ ³¡³ª°í ¸¶À»·Î µ¹¾Æ¿È.
+    public void UI_Camera_All_On() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½.
     {
         TownCamera.gameObject.SetActive(true);
         TentCamera.gameObject.SetActive(false);
@@ -80,14 +79,14 @@ public class CombatCameraControll : MonoBehaviour
 
     }
 
-    public void CameraCurrentPosSet() //»ç¿ëÇÏ¸é ÇöÀç ¹æ À§Ä¡·Î Ä«¸Þ¶ó µ¹·ÁÁÜ. (Åë·Î Æ÷ÇÔ.)
+    public void CameraCurrentPosSet() //ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. (ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.)
     {
 
         for(int i = 0; i < roomController.RoomList.Count; i++)
         {
             if (roomController.RoomList[i].GetComponent<RoomScript>().roomNumber == inGame_Player_Script.currentPlayers)
             {
-                //Debug.Log("Ã£¾Ò´Ù");
+                //Debug.Log("Ã£ï¿½Ò´ï¿½");
                 MinimapCamera.transform.position = roomController.RoomList[i].transform.position - new Vector3(0, 0, 15);
             }
 
@@ -100,7 +99,7 @@ public class CombatCameraControll : MonoBehaviour
         // MinimapCamera.transform = roomController.RoomList[inGame_Player_Script.currentPlayers]
     }
 
-    public void MiniMapCameraMove() //¹Ì´Ï¸Ê Ã¢ÀÌ ºÎµå·´°Ô °¡¿îµ¥¿¡ ¶ß°Ô ¸¸µë
+    public void MiniMapCameraMove() //ï¿½Ì´Ï¸ï¿½ Ã¢ï¿½ï¿½ ï¿½Îµå·´ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         if(!isMiniMapOn)
         {
@@ -118,14 +117,14 @@ public class CombatCameraControll : MonoBehaviour
         }
     }
 
-    public IEnumerator MinimapDlay() //º¹µµ·Î ÀÌµ¿ÇÏ°í 1ÃÊµÚ¿¡ ¹Ì´Ï¸Ê ´ÝÈ÷µµ·ÏÇÔ
+    public IEnumerator MinimapDlay() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï°ï¿½ 1ï¿½ÊµÚ¿ï¿½ ï¿½Ì´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         yield return new WaitForSeconds(1);
         MiniMapCameraMove();
     }
 
 
-    public void BlackFade_Out() //ÀüÅõ½ÃÀÛ ´­·¶À»¶§ ·ÎµùÇÏ´Â°ÍÃ³·³ º¸ÀÌ°Ô ÇÏ±â
+    public void BlackFade_Out() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½Ï´Â°ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ï±ï¿½
     {
 
         StartCoroutine(FadeOutDlay());
@@ -135,7 +134,7 @@ public class CombatCameraControll : MonoBehaviour
     {
         StartCoroutine(FadeInDlay());
     }
-    IEnumerator FadeOutDlay() //À§¸¦ ÇÏ±â À§ÇÑ ÄÚ·çÆ¾
+    IEnumerator FadeOutDlay() //ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     {
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.color = Color.black;
