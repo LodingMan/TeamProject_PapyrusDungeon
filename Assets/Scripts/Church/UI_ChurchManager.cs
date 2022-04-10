@@ -39,14 +39,6 @@ namespace Shin {
             employedList = employer_List_UI_Content.GetComponentsInChildren<Button>();
             healingList = healing_List_UI_Content.GetComponentsInChildren<Button>();
             
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (tweenMgr.isChurch)
-                {
-                    EmployedDestroy_UI();
-                    isWarning = false;
-                }
-            }
             if (!isWarning)
             {
                 tweenMgr.UI_ChurchWarning_Off();

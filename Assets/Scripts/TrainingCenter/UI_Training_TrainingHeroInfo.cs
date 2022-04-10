@@ -103,8 +103,7 @@ namespace Shin
             {
                 uI_trainingManager.tweenMgr.UI_TrainWarning_On();
                 uI_trainingManager.isWarning = true;
-                StartCoroutine(WarningWait());
-                
+                StartCoroutine(WarningWait());                
             }
         }    
 

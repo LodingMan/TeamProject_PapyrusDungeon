@@ -622,7 +622,7 @@ public class e_CombatManager : MonoBehaviour
         combat_Effect_Manager.HitLight.enabled = true;
 
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
-        combat_Effect_Manager.HeroEffect_On(target); // 공격시 이펙트 0409Yoon
+        combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0],target); // 공격시 이펙트 0409Yoon
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
