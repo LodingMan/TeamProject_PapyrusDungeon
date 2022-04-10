@@ -27,6 +27,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public List<Text> PartyMemberNameList = new List<Text>();
     public GameObject ClearReward_Create_Point;
     public GameObject GameClearReward_Equip_Image;
+    public List<GameObject> ImageSaveList = new List<GameObject>();
 
 
 
@@ -46,16 +47,6 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public Text TestUI;
 
     public List<GameObject> ScaleReFactoring = new List<GameObject>();
-
-    
-
-    private void Start()
-    {
-    }
-
-
-
-
     public void Go_Back_On()
     {
         Go_Back_Btn[0].gameObject.SetActive(true);
@@ -120,9 +111,9 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             GameObject InvantoryCreatePrefab;
 
             CurrentCreateImgae = Instantiate(GameClearReward_Equip_Image);
-
             CurrentCreateImgae.GetComponent<Image>().sprite = equipDetailTable.sprite[RndIdx]; // shopManager.equipList[RndIdx].transform.GetChild(1).GetComponent<Image>().sprite;
             CurrentCreateImgae.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
+            ImageSaveList.Add(CurrentCreateImgae);
 
 
             InvantoryCreatePrefab = Instantiate(shopManager.equipList[RndIdx]);
@@ -133,12 +124,21 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
             InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
         }
+    }
+    public void GameClearPanalUp()
+    {
+        for (int i = 0; i < combatManager.myParty.Count; i++)
+        {
+            PartyMemberNameList[i].text = "";
+        }
 
+        for(int i = ImageSaveList.Count-1; i >= 0; i--)
+        {
+            ImageSaveList.RemoveAt(i);
+            //Destroy(ImageSaveList[i]);
+        }
+        GameClearPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, 1090), 1f);
 
-
-
-
-        //   GameClearPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, 0), 1f);
 
     }
 

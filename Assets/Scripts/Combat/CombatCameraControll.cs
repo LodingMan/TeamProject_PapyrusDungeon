@@ -72,6 +72,16 @@ public class CombatCameraControll : MonoBehaviour
 
 
     }
+    public void UI_Camera_All_On()
+    {
+        TownCamera.enabled = true;
+
+        TentCamera.enabled = true;
+        CombatCamera.enabled = false;
+
+        MinimapCamera.enabled = false;
+
+    }
 
     public void CameraCurrentPosSet() //사용하면 현재 방 위치로 카메라 돌려줌. (통로 포함.)
     {
@@ -161,6 +171,7 @@ public class CombatCameraControll : MonoBehaviour
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 2);
         yield return new WaitForSeconds(2f);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
+        LoadingPanal.color = Color.black;
 
 
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class e_CombatManager : MonoBehaviour
 {
@@ -125,6 +126,19 @@ public class e_CombatManager : MonoBehaviour
             myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(1.5f * (i + 1), 0, 0);
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
         }
+    }
+
+    public void Out_Dungeon_Party()
+    {
+
+        for (int i = 0; i < myParty.Count; i++)
+        {
+            myParty[i].transform.position = new Vector3(0, 0, 0);
+            myParty[i].GetComponent<NavMeshAgent>().enabled = true;
+            myParty[i].GetComponent<Shin.NaviMeshHero>().enabled = true;
+        }
+        myParty.Clear();
+
 
 
     }
@@ -331,6 +345,7 @@ public class e_CombatManager : MonoBehaviour
         Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name + "::인덱스는" + SaveSkill.Index);
         currentActiveSkillList.Clear();
 
+
     }
 
     public void EnemySkillUse()
@@ -480,9 +495,36 @@ public class e_CombatManager : MonoBehaviour
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
 
+                ////////////////////UI지우기///////////////
+                for (int i = 0; i < guildManager.Party_Hero_UI_List.Count; i++)
+                {
+                    if (guildManager.Party_Hero_UI_List[i].This_Prefab_Object == target)
+                    {
+                        guildManager.Party_Hero_UI_List[i].SlotClear();
+                    }
+                }
+
+
+                for (int i = 0; i < guildManager.Current_Hero_UI_List.Count; i++)
+                {
+                    if(guildManager.Current_Hero_UI_List[i].GetComponent<Song.Current_Hero_UI_Script>().This_Prefab_Object == target)
+                    {
+                        Destroy(guildManager.Current_Hero_UI_List[i]);
+                        guildManager.Current_Hero_UI_List.RemoveAt(i);
+                    }
+                }
+
+
+
+
                 myParty.Remove(target);
                 heroManager.CurrentHeroList.Remove(target);
                 Destroy(target);
+
+
+
+
+
             }
         }
 
