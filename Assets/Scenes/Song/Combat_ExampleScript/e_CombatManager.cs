@@ -571,7 +571,8 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-        myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1000);
+        myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 1000); // 영웅이 맞는 애니메이션 yoon
+        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", SaveSkill.Index); // 적이 때리는 애니메이션 yoon
         combat_Effect_Manager.EnemyEffect_On(myParty[target_Idx]); //적이 때릴시 영웅이 맞는 이펙트
 
 
@@ -586,7 +587,8 @@ public class e_CombatManager : MonoBehaviour
 
 
         yield return new WaitForSeconds(4);
-        myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998);
+        myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); //영웅 애니메이션 IDLE로 변경
+        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);//적 애니메이션 IDLE로 변경
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 4.84f, -6.05f), 0.5f);
@@ -623,6 +625,7 @@ public class e_CombatManager : MonoBehaviour
         combat_Effect_Manager.HitLight.enabled = true;
 
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
+        target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 1000); //적이 맞는 애니메이션 yoon
         combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0],target); // 공격시 이펙트 0409Yoon
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
@@ -638,6 +641,7 @@ public class e_CombatManager : MonoBehaviour
 
         Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
+        target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);
 
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
 
