@@ -133,7 +133,6 @@ public class UI_Tweening_Manager : MonoBehaviour
             
              
             StackCountFun();
-            
         }
     }
 
