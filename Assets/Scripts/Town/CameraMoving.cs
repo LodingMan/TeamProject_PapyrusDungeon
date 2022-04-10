@@ -31,6 +31,7 @@ public class CameraMoving : MonoBehaviour
     private void Start()
     {
         camAnim = cam.GetComponent<Animator>();
+        DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 800, sequencesCapacity: 200);
     }
 
     private void Update()
