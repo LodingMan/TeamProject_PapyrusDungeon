@@ -9,6 +9,7 @@ public class SetVolume : MonoBehaviour
     private void Start()
     {
         audioS = GameObject.Find("BGM_Manager").GetComponent<AudioSource>();
+
         if (PlayerPrefs.HasKey("Vol"))
         {
             gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Vol");
@@ -18,7 +19,12 @@ public class SetVolume : MonoBehaviour
         {
             gameObject.GetComponent<Slider>().value = audioS.volume;
         }
+        
 
+    }
+    private void Update()
+    {
+        SetBGM();
     }
 
     public void SetBGM()

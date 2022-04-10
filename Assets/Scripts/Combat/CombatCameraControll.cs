@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class CombatCameraControll : MonoBehaviour
 {
+    public IntroSceneScript introSceneScript;
+    public TownManager townMgr;
     public Camera CombatCamera;
 
     public Camera MinimapCamera;
@@ -27,7 +29,11 @@ public class CombatCameraControll : MonoBehaviour
 
     public bool isFirst = true;
 
-
+    private void Start()
+    {
+        townMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
+        introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -126,12 +132,23 @@ public class CombatCameraControll : MonoBehaviour
     {
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.color = Color.black;
-        yield return new WaitForSeconds(4);
-        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 4);
-        CombatCamera.transform.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
-        LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
+        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 4);
+
+        townMgr.isTown = false; townMgr.isTent = false;
+        townMgr.isCombat = true;
+        if (TownCamera.transform.gameObject.activeSelf) { TownCamera.transform.gameObject.SetActive(false); }
+        if (TentCamera.transform.gameObject.activeSelf) { TentCamera.transform.gameObject.SetActive(false); }
+        introSceneScript.audioSS.Stop();
+        CombatCamera.transform.gameObject.SetActive(true);
+        CombatCanvas.transform.gameObject.SetActive(true);
         CombatCanvas.enabled = true;
+
+        yield return new WaitForSeconds(2f);
+        introSceneScript.audioSS.clip = introSceneScript.audioCombat;
+        introSceneScript.audioSS.Play();
+        LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
+        
 
     }
     IEnumerator FadeInDlay()
@@ -139,10 +156,10 @@ public class CombatCameraControll : MonoBehaviour
         LoadingPanal.color = new Color(0, 0, 0, 0);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.DOColor(Color.black, 2);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3f);
        // Screen.fullScreen = true;
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 2);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2f);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
 
 

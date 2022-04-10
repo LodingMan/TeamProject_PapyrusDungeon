@@ -181,7 +181,7 @@ public class ItemScripts : MonoBehaviour
 
     public void ItemSell()
     {
-        if (shopManager.isShop && twMgr.isShopOn)
+        if (shopManager.isShop && twMgr.isShop)
         {
             useBtn.gameObject.SetActive(false);
             sell++;
