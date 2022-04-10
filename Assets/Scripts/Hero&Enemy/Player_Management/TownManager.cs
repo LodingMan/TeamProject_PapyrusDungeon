@@ -32,6 +32,7 @@ public class TownManager : MonoBehaviour
     public bool isTown;
     public bool isTent;
     public bool isCombat;
+
     private void Awake()
     {
         isTown = true;
@@ -73,15 +74,15 @@ public class TownManager : MonoBehaviour
         {
             heroManager.CurrentHeroList[i].SetActive(false);
         }
-        for (int i = 0; i < guildManager.unemployedHero.Length; i++)
+        for(int i = 0; i < guildManager.unemployedHero.Length; i++)
         {
-            if (guildManager.unemployedHero[i] != null)
+            if(guildManager.unemployedHero[i] != null)
             {
                 guildManager.unemployedHero[i].SetActive(false);
             }
         }
 
-        for (int i = 0; i < combatManager.myParty.Count; i++)
+        for(int i = 0; i < combatManager.myParty.Count; i++)
         {
             combatManager.myParty[i].SetActive(true);
         }
@@ -142,27 +143,22 @@ public class TownManager : MonoBehaviour
 
         combatManager.Out_Dungeon_Party(); //ÆÄÆ¼¸É¹ö ¸¶À»·Î ¿Å±è , ³×ºñ ÄÑÁÜ
 
-        if (DIB.camera_Tent.activeSelf)
-        {
-            DIB.camera_Tent.SetActive(false);
-        }
-        if (!DIB.camera_Tent.activeSelf) DIB.camera_Town.SetActive(true);
-        if (!DIB.canvas_Tent.activeSelf) DIB.canvas_Town.SetActive(true);
-
+        if (DIB.camera_Tent.activeSelf) { DIB.camera_Tent.SetActive(false); }
+        if (DIB.camera_Combat.activeSelf) { DIB.camera_Combat.SetActive(false); }
+        if (!DIB.camera_Town.activeSelf)  { DIB.camera_Combat.SetActive(true); }
+        if (DIB.canvas_Tent.activeSelf) { DIB.canvas_Tent.SetActive(false); }
+        if(DIB.canvas_Combat.activeSelf) { DIB.canvas_Combat.SetActive(false); }
+        if (!DIB.canvas_Town.activeSelf) { DIB.canvas_Town.SetActive(true); }
 
         DIB.loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
+        isTown = true;
         isTent = false;
+        isCombat = false;
+        
         DIB.dgMgr.isTent = false;
         DIB.TownPrefabs.SetActive(true);
         DIB.TentPrefabs.SetActive(false);
         DIB.canvas_Tent.SetActive(false);
-
-
-
-
-
-
-
 
         NextWeek();
 

@@ -341,9 +341,8 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_Tent_OptionPanel_On()
     {
-        isOption = true;
-        UI_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-        UIStack[StackCount] = UI_Option_Pos;
+        UI_Tent_Option_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_Tent_Option_Pos;
         StackCount++;
     }
 
