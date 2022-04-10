@@ -153,8 +153,6 @@ namespace Shin
                 guildMgr.Party_Hero_Member[i].transform.position = new Vector3(0,0,0); // 이거를 TownPos로 변경.
                 guildMgr.Party_Hero_Member[i].GetComponent<NavMeshAgent>().enabled = true;
                 guildMgr.Party_Hero_Member[i].GetComponent<NaviMeshHero>().enabled = true;
-                
-                // 여기서 
             }
             for (int i = 0; i < guildMgr.heroManager.CurrentHeroList.Count; i++)//여기서 검사해서.
             {

@@ -5,6 +5,8 @@ public class MapCreate : MonoBehaviour
 {
 
     public GameObject[,] map = new GameObject[8, 8];
+    public List<GameObject> PassageList = new List<GameObject>();
+
     public List<GameObject> passages;
 
     public GameObject nomalRoomPrefab;
@@ -345,7 +347,7 @@ public class MapCreate : MonoBehaviour
 
 
         map[bossY, bossX].GetComponent<RoomScript>().InitRoomNumber((bossY * 10) + bossX);// 방에게 현재 방번호 부여
-        map[bossY, bossX].GetComponent<RoomScript>().isBossRoom = true ;// 방에게 현재 방번호 부여
+        map[bossY, bossX].GetComponent<RoomScript>().isBossRoom = true;// 방에게 현재 방번호 부여
 
 
         map[bossY, bossX].name = "[" + bossY + "," + bossX + "]" + "BOSSROOM";
@@ -421,6 +423,37 @@ public class MapCreate : MonoBehaviour
         int tmp = arr[num1];
         arr[num1] = arr[num2];
         arr[num2] = tmp;
+    }
+
+    public void MapDestroy()
+    {
+        //for (int i = 0; i < 8; i++)
+        //{
+        //    for (int j = 0; j < 8; j++)
+        //    {
+        //        if (map[i, j] != null)
+        //        {
+        //            Destroy(map[i, j]);
+        //        }
+        //    }
+        //}
+        //for (int i = RC.RoomList.Count - 1; i >= 0; i--)
+        //{
+
+        //}
+
+
+        for(int i = RC.RoomList.Count-1; i >= 0; i--)
+        {
+            Destroy(RC.RoomList[i]);
+            RC.RoomList.RemoveAt(i);
+
+        }
+        selectRoom.Clear();
+        passageRoom.Clear();
+        currentSelectRoom = 0;
+        Debug.Log("다지움");
+
     }
 
 }
