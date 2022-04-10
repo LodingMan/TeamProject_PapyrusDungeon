@@ -7,13 +7,13 @@ using DG.Tweening;
 
 public class TownManager : MonoBehaviour
 {
-    //ÇÃ·¹ÀÌ¾îÀÇ Á¤º¸¸¦ °ü¸®ÇÏ´Â ½ºÅ©¸³Æ®. 
-    //ÇØ´ç ½ºÅ©¸³Æ®¿¡¼­ ÇöÀç ÁÖÀÚ, °ñµå, °¢ °Ç¹°ÀÇ ·¹º§ÇöÈ²
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®. 
+    //ï¿½Ø´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È²
     public int Week = 0;
     public int Gold = 0;
     public int Jewel = 0;
 
-    public Song.HeroManager heroManager; // inspectorÃ¢¿¡ HeroManager³Ö¾úÀ½
+    public Song.HeroManager heroManager; // inspectorÃ¢ï¿½ï¿½ HeroManagerï¿½Ö¾ï¿½ï¿½ï¿½
     public Song.GuildManager guildManager;
     public Shin.UI_ChurchManager churchManager;
     public e_CombatManager combatManager;
@@ -45,10 +45,10 @@ public class TownManager : MonoBehaviour
         text_Gold.text = Gold.ToString();
         text_Jewel.text = Jewel.ToString();
     }
-    public void NextWeek() // ÀüÅõ Á¾·á , Ã³À½ °ÔÀÓ ½ÃÀÛ µîÀÇ ÀÌÀ¯·Î ÇÃ·¹ÀÌ¾îÀÇ ÁøÇàµµ°¡ ´ÙÀ½ÁÖ·Î ³Ñ¾î°¨.      
+    public void NextWeek() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ , Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½àµµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ ï¿½Ñ¾î°¨.      
     {
-        Week++;          // ÇØ´ç ÇÔ¼ö°¡ ½ÇÇà µÇ¾úÀ»¶§ HeroManager¿¡¼­ ÀÓÀÇÀÇ ¼ö¸¸Å­ Hero¸¦ ·£´ýÀ¸·Î »ý¼ºÇÏ´Âµ¥ 
-        heroManager.RandomHeroCreate();  // »ý¼ºµÇ´Â ¼ö´Â HeroManager¿¡ ¼±¾ðµÇ¾îÀÖ´Â guildManagerÀÇ oneDayCreateHeroCount º¯¼ö¸¦ ÂüÁ¶ÇÑ´Ù.
+        Week++;          // ï¿½Ø´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ HeroManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å­ Heroï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Âµï¿½ 
+        heroManager.RandomHeroCreate();  // ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ HeroManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ö´ï¿½ guildManagerï¿½ï¿½ oneDayCreateHeroCount ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         shopMgr.ItemSpawn();
 
         //Combat_Event_UI_Manager CEUM = GameObject.Find("Combat_Event_UI_Manger").GetComponent<Combat_Event_UI_Manager>();
@@ -57,7 +57,7 @@ public class TownManager : MonoBehaviour
 
 
 
-    } //Á¤¸®ÇÏÀÚ¸é TownManager´Â HeroManager¿¡°Ô ¿µ¿õÀ» »ý¼ºÇÏ¶ó ¸í·ÉÇÏ°í, HeroManager´Â Guild¿¡°Ô ¸î¸¶¸® »ý¼ºÇØ¾ß ÇÏ´ÂÁö °ªÀ» ¹Þ¾Æ »ý¼ºÇÑ´Ù. 
+    } //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ TownManagerï¿½ï¿½ HeroManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, HeroManagerï¿½ï¿½ Guildï¿½ï¿½ï¿½ï¿½ ï¿½î¸¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
 
     public void UpdateManager_All_Off()
     {
@@ -66,7 +66,7 @@ public class TownManager : MonoBehaviour
         Debug.Log(OffControll.Count);
         for (int i = 0; i < OffControll.Count; i++)
         {
-            OffControll[i].SetActive(false); //ÀÌ ¸®½ºÆ®¿¡ µé¾î°£³ðµé ´Ù ²¨¹ö¸®´Âµ¥ ³ªÁß¿¡ ÀÌ ¸®½ºÆ®·Î ÇÑ¹ø¿¡ ´Ù½Ã ÄÑ¹ö¸®¸éµÊ.
+            OffControll[i].SetActive(false); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
         }
 
@@ -96,7 +96,7 @@ public class TownManager : MonoBehaviour
 
     public void UpdateManager_All_ON()
     {
-        Debug.Log("ÀÌ°Å ÄÑÁö¸é ¾ÈµÊ");
+        Debug.Log("ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½");
     }
 
     public void LoadTownFunc()
@@ -118,7 +118,7 @@ public class TownManager : MonoBehaviour
 
         for (int i = 0; i < OffControll.Count; i++)
         {
-            OffControll[i].SetActive(true); //ÀÌ ¸®½ºÆ®¿¡ µé¾î°£³ðµé ´Ù ²¨¹ö¸®´Âµ¥ ³ªÁß¿¡ ÀÌ ¸®½ºÆ®·Î ÇÑ¹ø¿¡ ´Ù½Ã ÄÑ¹ö¸®¸éµÊ.
+            OffControll[i].SetActive(true); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         }
 
         for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
@@ -141,7 +141,7 @@ public class TownManager : MonoBehaviour
         }
 
 
-        combatManager.Out_Dungeon_Party(); //ÆÄÆ¼¸É¹ö ¸¶À»·Î ¿Å±è , ³×ºñ ÄÑÁÜ
+        combatManager.Out_Dungeon_Party(); //ï¿½ï¿½Æ¼ï¿½É¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ , ï¿½×ºï¿½ ï¿½ï¿½ï¿½ï¿½
 
         if (DIB.camera_Tent.activeSelf) { DIB.camera_Tent.SetActive(false); }
         if (DIB.camera_Combat.activeSelf) { DIB.camera_Combat.SetActive(false); }
@@ -154,7 +154,7 @@ public class TownManager : MonoBehaviour
         isTown = true;
         isTent = false;
         isCombat = false;
-        
+
         DIB.dgMgr.isTent = false;
         DIB.TownPrefabs.SetActive(true);
         DIB.TentPrefabs.SetActive(false);
