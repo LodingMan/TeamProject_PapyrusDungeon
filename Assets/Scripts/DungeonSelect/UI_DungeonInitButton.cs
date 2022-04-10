@@ -145,8 +145,8 @@ namespace Shin
             TownPrefabs.SetActive(true);
             TentPrefabs.SetActive(false);
 
-            introSceneScript.audioSS.clip = introSceneScript.audioTown;
-            introSceneScript.audioSS.Play();
+            //introSceneScript.audioSS.clip = introSceneScript.audioTown;
+            //introSceneScript.audioSS.Play();
 
             for (int i = 0; i < guildMgr.Party_Hero_Member.Length; i++)
             {

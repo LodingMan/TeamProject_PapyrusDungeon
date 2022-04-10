@@ -8,7 +8,7 @@ public class SetVolume : MonoBehaviour
     public AudioSource audioS;
     private void Start()
     {
-      //  audioS = GameObject.Find("BGM_Manager").GetComponent<AudioSource>();
+        audioS = GameObject.Find("BGM_Manager").GetComponent<AudioSource>();
 
         if (PlayerPrefs.HasKey("Vol"))
         {
@@ -17,7 +17,7 @@ public class SetVolume : MonoBehaviour
         }
         else
         {
-         //   gameObject.GetComponent<Slider>().value = audioS.volume;
+           gameObject.GetComponent<Slider>().value = audioS.volume;
         }
         
 
@@ -29,7 +29,7 @@ public class SetVolume : MonoBehaviour
 
     public void SetBGM() //나중에 켜기
     {
-       // audioS.volume = gameObject.GetComponent<Slider>().value;
-       // PlayerPrefs.SetFloat("Vol", audioS.volume);
+       audioS.volume = gameObject.GetComponent<Slider>().value;
+       PlayerPrefs.SetFloat("Vol", audioS.volume);
     }
 }
