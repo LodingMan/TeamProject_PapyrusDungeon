@@ -30,58 +30,39 @@ namespace Song
             heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             root = transform.root;
         }
-        private void Update()
-        {
-            if(isPointerDown)
-            {
-                downTime += Time.deltaTime;
-            }
-            else
-            {
-                downTime = 0;
-            }
-
-            if(downTime > 2)
-            {
-                SlotClear();
-                downTime = 0;
-                isPointerDown = false;
-            }
-
-            
-        }
 
         public void PointerDown()
         {
             isPointerDown = true;
-        }
-        public void PointerUp()
-        {
-            isPointerDown = false;
-        }
+            SlotClear();
 
+        }
         public void SlotClear()
         {
 
-            This_Prefab_Object.GetComponent<HeroScript_Current_State>().isParty = false;
-            isParty_Hero_In = false;
-            gameObject.transform.GetChild(0).GetComponent<Text>().text = "";
-            gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
-            gameObject.transform.GetChild(3).GetComponent<Text>().text = "";
-            gameObject.transform.GetChild(4).GetComponent<Text>().text = "";
-            gameObject.transform.GetChild(2).GetComponent<Image>().sprite = heroImageTable.sprite[6];
-
-            for (int i = 0; i < guildManager.Party_Hero_Member.Length; i++)
+            if(isParty_Hero_In == true)
             {
+                This_Prefab_Object.GetComponent<HeroScript_Current_State>().isParty = false;
+                isParty_Hero_In = false;
+                gameObject.transform.GetChild(0).GetComponent<Text>().text = "";
+                gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
+                gameObject.transform.GetChild(3).GetComponent<Text>().text = "";
+                gameObject.transform.GetChild(4).GetComponent<Text>().text = "";
+                gameObject.transform.GetChild(2).GetComponent<Image>().sprite = heroImageTable.sprite[6];
 
-                if(guildManager.Party_Hero_Member[i] == This_Prefab_Object)
+                for (int i = 0; i < guildManager.Party_Hero_Member.Length; i++)
                 {
-                    guildManager.Party_Hero_Member[i] = null;
+
+                    if (guildManager.Party_Hero_Member[i] == This_Prefab_Object)
+                    {
+                        guildManager.Party_Hero_Member[i] = null;
+                    }
+
                 }
 
+                This_Prefab_Object = null;
             }
 
-            This_Prefab_Object = null;
         }
 
         public void Pointer_Drop()
