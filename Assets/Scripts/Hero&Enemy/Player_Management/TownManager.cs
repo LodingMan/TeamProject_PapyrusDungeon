@@ -41,6 +41,8 @@ public class TownManager : MonoBehaviour
         isTent = false;
         isCombat = false;
     }
+
+   
     public void Update()
     {
         text_Week.text = Week.ToString();

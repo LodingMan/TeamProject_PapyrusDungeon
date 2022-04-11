@@ -10,6 +10,7 @@ namespace Shin
 {
     public class UI_DungeonInitButton : MonoBehaviour
     {
+        public ManagerTable MgrTable;
         public IntroSceneScript introSceneScript;
         public Button btn;
         public GameObject canvas_Town;
@@ -32,19 +33,18 @@ namespace Shin
 
         public GameObject TownPrefabs;
         public GameObject TentPrefabs;
-
-        private void Awake()
+        private void Start()
         {
             introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>(); //나중에 켜기
-            guildMgr = GameObject.Find("GuildManager").GetComponent<GuildManager>();
-            shopMgr = GameObject.Find("ShopManager").GetComponent<ShopManager>();
-            twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-            townMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
+            guildMgr = MgrTable.guildManager;
+            shopMgr = MgrTable.shopManager;
+            twMgr = MgrTable.tweenManager;
+            townMgr = MgrTable.townManager;
             btn.onClick.AddListener(OnClickBtn);
             tentPos[0].position = new Vector3(-32f, 0.95f, -132);
             tentPos[1].position = new Vector3(-32.12f, 0.95f, -135.43f);
             tentPos[2].position = new Vector3(-35.29f, 0.95f, -135.98f);
-
         }
 
         public void OnClickBtn() // �� ��ư�� ������ town off, tent on.    
@@ -69,12 +69,15 @@ namespace Shin
             {
                 canvas_Town.SetActive(false);
             }
-            StartCoroutine(TweenLoadingPanelToTent()); 
+            
+            StartCoroutine(TweenLoadingPanelToTent());
+            
         }
 
         public IEnumerator TweenLoadingPanelToTent()
         {
             yield return new WaitForSeconds(2f);
+
             if (camera_Town.activeSelf)
             {
                 camera_Town.SetActive(false);
@@ -122,6 +125,7 @@ namespace Shin
             twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             twMgr.UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             
+            twMgr.isTuto = false;
         }
         public IEnumerator TweenLoadingPanelToTown()
         {
@@ -161,6 +165,7 @@ namespace Shin
                     guildMgr.heroManager.CurrentHeroList[i].SetActive(true);
                 }
             }
+
         }
 
     }

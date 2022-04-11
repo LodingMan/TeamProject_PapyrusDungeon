@@ -18,14 +18,16 @@ namespace Song
         public GameObject This_Prefab_Object; //내가 무슨 오브젝트를 가리키고 있나
         static int Current_Hero_Prefab_Count = 0;
         public Image heroImage; // shin
+        public Button hireBtn;
         private void Start()
         {
             MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
             soundMgr = MgrTable.soundMgr; // shin
             guildManager = MgrTable.guildManager;
             heroImageTable = MgrTable.heroImageTable;
-            gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(BtnFunc);
-            gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(soundMgr.PlayClipGold); // shin
+            
+            hireBtn.onClick.AddListener(BtnFunc);
+            hireBtn.onClick.AddListener(soundMgr.PlayClipGold); // shin
             
             switch (gameObject.transform.GetChild(1).GetComponent<Text>().text) // shin
             {
@@ -110,7 +112,7 @@ namespace Song
             gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(false);
 
 
-
+            MgrTable.TutorialMgr.GuildTuto01Off();
 
         }
     }

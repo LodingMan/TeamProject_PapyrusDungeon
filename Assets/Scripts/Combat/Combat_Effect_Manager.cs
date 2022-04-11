@@ -13,7 +13,7 @@ public class Combat_Effect_Manager : MonoBehaviour
     public List<AudioClip> sfx = new List<AudioClip>(); //스킬 사운드
     public List<AudioClip> eSfx = new List<AudioClip>(); //적 스킬 사운드
     public AudioSource audioSource;
-
+    public GameObject buffEffect;
     public bool isBuffSkill = false;
 
 
@@ -39,19 +39,19 @@ public class Combat_Effect_Manager : MonoBehaviour
 
         if (!isBuffSkill)
         {
-            GameObject effectHero = Instantiate(heroEffects[combatMgr.SaveSkill.Index]);
-            effectHero.transform.position = target.transform.position + new Vector3(0, 0, -1);;
+            GameObject effectHero = Instantiate(heroEffects[combatMgr.SaveSkill.Index], target.transform);
+            effectHero.transform.SetParent(target.transform);
             audioSource.PlayOneShot(sfx[combatMgr.SaveSkill.Index]);
             effectHero.transform.DOMove(effectHero.transform.position - new Vector3(-0.8f, 0f, 0f), 3f).SetLink(effectHero, LinkBehaviour.KillOnDestroy);
-            Destroy(effectHero, 3f);
+            Destroy(effectHero, 4f);
         }
         else
         {
-            GameObject effectHero2 = Instantiate(heroEffects[combatMgr.SaveSkill.Index]);
-            effectHero2.transform.position = hero.transform.position + new Vector3(0, 0, -1);
+            GameObject effectHero2 = Instantiate(heroEffects[combatMgr.SaveSkill.Index], hero.transform);
+            effectHero2.transform.SetParent(hero.transform);
             audioSource.PlayOneShot(sfx[combatMgr.SaveSkill.Index]);
             effectHero2.transform.DOMove(effectHero2.transform.position - new Vector3(-1.4f, 0f, 0f), 3f).SetLink(effectHero2, LinkBehaviour.KillOnDestroy);
-            Destroy(effectHero2, 3f);
+            Destroy(effectHero2, 4f);
         }
 
 
@@ -64,7 +64,7 @@ public class Combat_Effect_Manager : MonoBehaviour
         GameObject effectEnemy = Instantiate(enemyEffects[0]);
         effectEnemy.transform.position = target.transform.position + new Vector3(0, 1, -1);
         audioSource.PlayOneShot(eSfx[0]);
-        Destroy(effectEnemy, 3f);
+        Destroy(effectEnemy, 4f);
 
     }
 
