@@ -13,6 +13,7 @@ public class TownManager : MonoBehaviour
     public int Gold = 0;
     public int Jewel = 0;
 
+    public IntroSceneScript introSceneScript;
     public Song.HeroManager heroManager; // inspectorâ�� HeroManager�־���
     public Song.GuildManager guildManager;
     public Shin.UI_ChurchManager churchManager;
@@ -35,6 +36,7 @@ public class TownManager : MonoBehaviour
 
     private void Awake()
     {
+        introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>(); //나중에 켜기
         isTown = true;
         isTent = false;
         isCombat = false;
@@ -155,6 +157,8 @@ public class TownManager : MonoBehaviour
         isTown = true;
         isTent = false;
         isCombat = false;
+        introSceneScript.audioSS.clip = introSceneScript.audioTown;
+        introSceneScript.audioSS.Play();
 
         DIB.dgMgr.isTent = false;
         DIB.TownPrefabs.SetActive(true);
