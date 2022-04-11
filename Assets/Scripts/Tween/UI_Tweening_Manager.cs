@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UI_Tweening_Manager : MonoBehaviour
 {
     public TownManager townMgr;
+    public ManagerTable MgrTable;
     public RectTransform UI_guildPanelPos;
     public RectTransform UI_StatusPanelPos;
     public RectTransform UI_StatusPanel_Tent_Pos;
@@ -41,6 +42,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     /*public bool isTownOn = false;
     public bool isTentOn = false; 
     public bool isCombatOn = false;*/
+    public bool isTuto = false;
     public bool isGuild = false;
     public bool isShop = false;
     public bool isSmith = false;
@@ -63,79 +65,102 @@ public class UI_Tweening_Manager : MonoBehaviour
     public GameObject option_Btn;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isTuto)
         {
-            if (townMgr.isTent == true)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (StackCount == 0)
+                if (townMgr.isTent == true)
                 {
-                    if (uI_DungeonInitButton.canvas_Tent.activeSelf)
+                    if (StackCount == 0)
                     {
-                        uI_DungeonInitButton.canvas_Tent.SetActive(false);
+                        if (uI_DungeonInitButton.canvas_Tent.activeSelf)
+                        {
+                            uI_DungeonInitButton.canvas_Tent.SetActive(false);
+                        }
+                        UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+                        StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
+                        TentInvenToOriginInven();
+                        // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
                     }
-                    UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
-                    StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
-                    TentInvenToOriginInven();
-                    // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
+                    if (isTentOption)
+                        isTentOption = false;
+
                 }
-                if (isTentOption)
-                    isTentOption = false;
+                if (townMgr.isTown == true)
+                {
+                    if (isOption == false)
+                    {
+                        if (isShop)
+                        {
+                            isShop = false;
+                            shopMgr.isShop = false;
+                            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                        }
+                        if (isSmith)
+                        {
+                            isSmith = false;
+                            UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                        }
+                        if (isGuild)
+                        {
+                            isGuild = false;
+                        }
+                        if (isChurch)
+                        {
+                            isChurch = false;
+                            uI_ChurchManager.EmployedDestroy_UI();
+                            uI_ChurchManager.isWarning = false;
+                        }
+                        if (isTrain)
+                        {
+                            if (isTrainDetail)
+                            {
+                                uI_TrainingManager.EmployedDestroy_UI();
+                                uI_TrainingManager.EmployedInit_UI();
+                                isTrainDetail = false;
+                            }
+                            else
+                            {
+                                uI_TrainingManager.isWarning = false;
+                                uI_TrainingManager.EmployedDestroy_UI();
+                                isTrain = false;
+                            }
+                        }
+                    }
+                    else // 옵션이 켜져있는 상태
+                    {
+                        isOption = false;
+                    }
+
+                    if (!isTrainDetail)
+                        option_Btn.SetActive(true);
+                }
+
+                StackCountFun();
+
 
             }
-            if (townMgr.isTown == true)
+        }
+        else
+        {
+            if (townMgr.Week == 1)
             {
-                if (isOption == false)
+                if (isGuild && Input.GetKeyDown(KeyCode.Escape))
                 {
-                    if (isShop)
-                    {
-                        isShop = false;
-                        shopMgr.isShop = false;
-                        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-                    }
-                    if (isSmith)
-                    {
-                        isSmith = false;
-                        UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-                    }
-                    if (isGuild)
+                    if (MgrTable.TutorialMgr.guildTuto[3])
                     {
                         isGuild = false;
+                        MgrTable.TutorialMgr.GuildTuto03Off();
+                        StackCountFun();
                     }
-                    if (isChurch)
-                    {
-                        isChurch = false;
-                        uI_ChurchManager.EmployedDestroy_UI();
-                        uI_ChurchManager.isWarning = false;
-                    }
-                    if (isTrain)
-                    {
-                        if (isTrainDetail)
-                        {
-                            uI_TrainingManager.EmployedDestroy_UI();
-                            uI_TrainingManager.EmployedInit_UI();
-                            isTrainDetail = false;
-                        }
-                        else
-                        {
-                            uI_TrainingManager.isWarning = false;
-                            uI_TrainingManager.EmployedDestroy_UI();
-                            isTrain = false;
-                        }
-                    }
+                    
                 }
-                else // 옵션이 켜져있는 상태
-                {
-                    isOption = false;
-                }
-
-                if (!isTrainDetail)
-                    option_Btn.SetActive(true);
+                
+                
             }
-
-            StackCountFun();
-
             
         }
+        
     }
 
     public void StackCountFun()
