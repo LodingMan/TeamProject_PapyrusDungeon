@@ -32,7 +32,7 @@ public class CombatCameraControll : MonoBehaviour
     private void Start()
     {
         townMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
-        //introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
+        introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
     }
     private void Update()
     {
@@ -145,16 +145,19 @@ public class CombatCameraControll : MonoBehaviour
         townMgr.isCombat = true;
         if (TownCamera.transform.gameObject.activeSelf) { TownCamera.transform.gameObject.SetActive(false); }
         if (TentCamera.transform.gameObject.activeSelf) { TentCamera.transform.gameObject.SetActive(false); }
-        //introSceneScript.audioSS.Stop();
+       introSceneScript.audioSS.Stop();
         CombatCamera.transform.gameObject.SetActive(true);
         CombatCanvas.transform.gameObject.SetActive(true);
         CombatCanvas.enabled = true;
 
+        yield return new WaitForSeconds(2f);
+        introSceneScript.audioSS.clip = introSceneScript.audioCombat;
+        introSceneScript.audioSS.Play();
         yield return new WaitForSeconds(3f);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
 
-        //introSceneScript.audioSS.clip = introSceneScript.audioCombat;
-        //  introSceneScript.audioSS.Play();
+        introSceneScript.audioSS.clip = introSceneScript.audioCombat;
+        introSceneScript.audioSS.Play();
 
 
     }
