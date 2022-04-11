@@ -25,7 +25,7 @@ public class MapCreate : MonoBehaviour
     public List<int> selectRoom;
     public List<int> passageRoom;
     public int createRoomCnt = 0;
-    public int RoomInsCount = 3; //생성할 방의 수 (오차범위 0~4)
+    public int RoomInsCount = 10; //생성할 방의 수 (오차범위 0~4)
     public int currentSelectRoom = 0;
 
     public int noneCnt;
@@ -81,10 +81,12 @@ public class MapCreate : MonoBehaviour
 
         selectRoom.Add((6 * 10) + rnd);
         RC.RoomList.Add(map[6, rnd]);
+        RC.RoomList[0].GetComponent<RoomScript>().DungeonEventPram = -1;
 
         startRoomNumber = selectRoom[0];
 
         // players.StartWarp(selectRoom[0]);
+
 
 
     }
@@ -427,23 +429,19 @@ public class MapCreate : MonoBehaviour
 
     public void MapDestroy()
     {
-        //for (int i = 0; i < 8; i++)
-        //{
-        //    for (int j = 0; j < 8; j++)
-        //    {
-        //        if (map[i, j] != null)
-        //        {
-        //            Destroy(map[i, j]);
-        //        }
-        //    }
-        //}
-        //for (int i = RC.RoomList.Count - 1; i >= 0; i--)
-        //{
-
-        //}
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                if (map[i, j] != null)
+                {
+                    Destroy(map[i, j]);
+                }
+            }
+        }
 
 
-        for(int i = RC.RoomList.Count-1; i >= 0; i--)
+        for (int i = RC.RoomList.Count-1; i >= 0; i--)
         {
             Destroy(RC.RoomList[i]);
             RC.RoomList.RemoveAt(i);
@@ -452,6 +450,7 @@ public class MapCreate : MonoBehaviour
         selectRoom.Clear();
         passageRoom.Clear();
         currentSelectRoom = 0;
+        createRoomCnt = 0;
         Debug.Log("다지움");
 
     }

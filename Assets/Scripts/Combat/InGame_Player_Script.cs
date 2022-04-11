@@ -106,6 +106,7 @@ public class InGame_Player_Script : MonoBehaviour
         currentPlayers = roomnumber;
         RC.RoomCheck(currentPlayers);
         combat_Event_UI_Manager.MinimapGuide();
+        isMove = true;
     }
 
     

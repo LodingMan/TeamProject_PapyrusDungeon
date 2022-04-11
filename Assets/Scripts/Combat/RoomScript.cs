@@ -8,6 +8,7 @@ public class RoomScript : MonoBehaviour
     public int roomNumber;
 
     public bool isBossRoom = false;
+    public bool isFirstRoom = false;
 
 
     public int DungeonEventPram = 0; //0 ¾Æ¹«°Íµµ¾øÀ½ , 1 ÀüÅõ , 2 °ñµåÈ¹µæ , 3 ¾ÆÀÌÅÛ È¹µæ , 6 º¸½º·ë
