@@ -9,6 +9,7 @@ namespace Song
     {
         public List<GameObject> buttons;  //���� �ִ���ư �ϴ� ��Ȱ��ȭ �����ֱ�
         public UI_Tweening_Manager uI_Tweening_Manager;
+        public UI_SoundMgr soundMgr;
         public bool isDungeonSelect = false;
         public bool isTent = false;
         public int DungeonType;
@@ -17,7 +18,7 @@ namespace Song
         private void Start()
         {
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-
+            soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
         }
 
         private void Update()
@@ -41,10 +42,12 @@ namespace Song
             {
                 if (guildManager.Party_Hero_Member[i] == null)
                 {
-                    Debug.Log("����3���� ��Ƽ�� �־��ּ���");
+                    Debug.Log("no member");
+                    soundMgr.FailClipDungeonSelect();
                     return;
                 }
             }
+            soundMgr.PlayClipDungeonSelect();
             //ī�޶� �̵�
             for (int i = 0; i < buttons.Count; i++)
             {
