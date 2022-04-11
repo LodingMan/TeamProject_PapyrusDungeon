@@ -7,17 +7,23 @@ public class TutorialManager : MonoBehaviour
 {
     public ManagerTable MgrTable;
     public TownManager townMgr;
+    public GameObject guildTuto00;
     public GameObject guildTuto01;
     public GameObject guildTuto02;
     public GameObject guildTuto03;
     public GameObject guildTuto04;
-    public GameObject guildTuto05;
+    public GameObject EnterTuto00;
+    public GameObject EnterTuto01;
+    public bool[] guildTuto;
+    public bool[] enterTuto;
     // Start is called before the first frame update
     void Start()
     {
         MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
         townMgr = MgrTable.townManager;
-        
+        guildTuto = new bool[5];
+        enterTuto = new bool[2];
+        guildTuto[0] = true;
         if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
         {
             townMgr.Week = PlayerPrefs.GetInt("Week");
@@ -27,7 +33,8 @@ public class TutorialManager : MonoBehaviour
             townMgr.NextWeek();
             if (townMgr.Week == 1)
             {
-                guildTuto01.SetActive(true);
+                guildTuto00.SetActive(true);
+                MgrTable.tweenManager.isTuto = true;
                 // 길드 튜토리얼 시작.
             }
 
@@ -36,59 +43,126 @@ public class TutorialManager : MonoBehaviour
     }
     private void Update()
     {
-        if (townMgr.Week == 1)
+        if (townMgr.Week != 1)
         {
-            if (guildTuto04.activeSelf)
+            MgrTable.tweenManager.isTuto = false;
+        }
+/*        if (townMgr.Week == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && MgrTable.tweenManager.isTuto)
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (MgrTable.tweenManager.isGuild == false)
                 {
-                    guildTuto04.SetActive(false);
-                    guildTuto05.SetActive(true);
+                    GuildTuto04Off();
                 }
             }
+        }*/
+    }
+    public void GuildTuto00On()
+    {
+        if (guildTuto[0])
+        {
+            guildTuto[0] = true;
+            guildTuto00.SetActive(true);
         }
+    }
+    public void GuildTuto00Off()
+    {
+        guildTuto00.SetActive(false);
+        GuildTuto01On();
     }
     public void GuildTuto01On()
     {
-        guildTuto01.SetActive(true);
-    }
-    public void GuildTuto01Off()
-    {
-        guildTuto01.SetActive(false);
-        GuildTuto02On();
-    }
-    public void GuildTuto02On()
-    {
-        if (townMgr.Week == 1)
+        if (townMgr.Week == 1 && guildTuto[0])
         {
-            guildTuto02.SetActive(true);
+            guildTuto[0] = false;
+            guildTuto[1] = true;
+            guildTuto01.SetActive(true);
         }
     }
 
-    public void GuildTuto02Off()
+    public void GuildTuto01Off()
     {
         if (MgrTable.heroManager.CurrentHeroList.Count >= 3)
         {
-            guildTuto02.SetActive(false);
-            guildTuto03.SetActive(true);
+            guildTuto01.SetActive(false);
+            GuildTuto02On();
         }
     }
-    public void GuildTuto03Off()
+    public void GuildTuto02On()
+    {
+        if (townMgr.Week == 1 && guildTuto[1])
+        {
+            guildTuto[1] = false;
+            guildTuto[2] = true;
+            guildTuto02.SetActive(true);
+        }
+    }
+    public void GuildTuto02Off()
     {
         if (MgrTable.guildManager.Party_Hero_Member[0] != null 
             && MgrTable.guildManager.Party_Hero_Member[1] != null 
             && MgrTable.guildManager.Party_Hero_Member[2] != null)  
         {
-            guildTuto03.SetActive(false);
-            guildTuto04.SetActive(true);
-            
+            guildTuto02.SetActive(false);
+            GuildTuto03On();
         }
     }
-
-    public void GuildTuto05Off()
+    public void GuildTuto03On()
     {
-        guildTuto05.SetActive(false);
+        if (townMgr.Week == 1 && guildTuto[2])
+        {
+            guildTuto[2] = false;
+            guildTuto[3] = true;
+            guildTuto03.SetActive(true);
+        }
+    }
+    public void GuildTuto03Off()
+    {
+        guildTuto03.SetActive(false);
+        GuildTuto04On();
+    }
+    public void GuildTuto04On()
+    {
+        if (townMgr.Week == 1 && guildTuto[3])
+        {
+            guildTuto[3] = false;
+            guildTuto[4] = true;
+            guildTuto04.SetActive(true);
+        }
+    }
+    public void GuildTuto04Off()
+    {
+        guildTuto04.SetActive(false);
     }
 
+    public void EnterTuto00On()
+    {
+        if (townMgr.Week == 1 && guildTuto[4])
+        {
+            guildTuto[4] = false;
+            enterTuto[0] = true;
+            EnterTuto00.SetActive(true);
+        }
+    }
+    public void EnterTuto00Off()
+    {
+        EnterTuto00.SetActive(false);
+        EnterTuto01On();
+    }
+    public void EnterTuto01On()
+    {
+        if (townMgr.Week == 1 && enterTuto[0])
+        {
+            enterTuto[0] = false;
+            enterTuto[1] = true;
+            EnterTuto01.SetActive(true);
+        }
+        
+    }
+    public void EnterTuto01Off()
+    {
+        EnterTuto01.SetActive(false);
+    }
 
 }
