@@ -5,9 +5,9 @@ public class SKillTable
     public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv �߰�
     {
         //Mage
-        { 0, new skill(30, "SkillName1", 1, 1, 0 , 0 ,new int[3] {0,1,2}, new int[3] {0,1,-1  },2)}, // Type = 공격 , 버프 구분
-        { 2, new skill(2, "SkillName3", 1, 3, 0, 0 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)}, // Pram = 들어갈 버프의 종류
-        { 1, new skill(1, "SkillName2", 1, 2, 0, 0 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)},
+        { 0, new skill(30, "SkillName1", 1, 10, 0 , 0 ,new int[3] {0,1,2}, new int[3] {0,1,-1  },2)}, // Type = 공격 , 버프 구분
+        { 2, new skill(2, "SkillName3", 1, 15, 0, 0 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)}, // Pram = 들어갈 버프의 종류
+        { 1, new skill(1, "SkillName2", 1, 15, 0, 0 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)},
         { 3, new skill(3, "SkillName4", 1, 4, 1, 2 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)},
         { 4, new skill(4, "SkillName5", 1, 5, 0, 0 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)},
         //Archer
