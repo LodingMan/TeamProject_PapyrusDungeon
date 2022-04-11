@@ -41,6 +41,7 @@ public class e_CombatManager : MonoBehaviour
 
     int Damage; //총 합산 데미지
     int StatPram;
+    int Turn;
     public GameObject CurrentCreateEnemy;
 
     public Vector3 FirstHeroCreatePos = new Vector3(-3000, 0, 0);
@@ -193,7 +194,6 @@ public class e_CombatManager : MonoBehaviour
 
                     CurrentCreateEnemy.GetComponent<StatScript>().myStat = new Stat(enemy_Stat_Table.Enemys[Sequence_Rnd[i]]);
                     SkillNumber = 6;
-
                     break;
                 default:
                     break;
@@ -219,7 +219,7 @@ public class e_CombatManager : MonoBehaviour
     }
     public void TurnStart() //전투가 시작되면 모든 유닛의 속도를 비교해 주어야 하므로 6칸 짜리 배열에 모든 오브젝트를 때려넣는다. 
     {
-
+        Turn++;
 
 
         for (int i = 0; i < myParty.Count; i++)
@@ -412,6 +412,8 @@ public class e_CombatManager : MonoBehaviour
 
     public void SkillResultInit(GameObject target)
     {
+        StatScript targetStat = target.GetComponent<StatScript>();
+        StatScript CurrentMyStat = speedComparisonArray[0].GetComponent<StatScript>();
         if (speedComparisonArray[0].tag == "Player")
         {
             switch(SaveSkill.Type)
@@ -434,26 +436,30 @@ public class e_CombatManager : MonoBehaviour
             Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk);
         }
 
-        if (speedComparisonArray[0].tag == "Player")
-        {
-            Damage -= target.GetComponent<StatScript>().myStat.Def;
 
-        }
-        else
-        {
-            Damage -= target.GetComponent<StatScript>().myStat.Def
-                 + target.GetComponent<EquipScript>().myEquip[0].Def + target.GetComponent<EquipScript>().myEquip[1].Def;
-
-        }
-
-        if (Damage <= 0)
-        {
-            Damage = 1;
-        }
 
 
         if(SaveSkill.Type == 0)
         {
+
+            if (speedComparisonArray[0].tag == "Player")
+            {
+                Damage -= targetStat.myStat.Def;
+            }
+            else
+            {
+                Damage -= targetStat.myStat.Def
+                     + target.GetComponent<EquipScript>().myEquip[0].Def + target.GetComponent<EquipScript>().myEquip[1].Def;
+
+            }
+
+            if (Damage <= 0)
+            {
+                Damage = 1;
+            }
+
+
+
             if (Random.Range(0, 100) < speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri)
             {
                 Damage += (int)(Damage / 2);
@@ -467,20 +473,85 @@ public class e_CombatManager : MonoBehaviour
             }
             target.GetComponent<StatScript>().myStat.HP -= Damage;
         }
-        else
+        else if(SaveSkill.Type == 1)
         {
+            switch(SaveSkill.Pram)
+            {
+                case 1:
+                    targetStat.myStat.Atk += SaveSkill.ATK;
+                    break;
+                case 2:
+                    targetStat.myStat.Def += SaveSkill.ATK;
+                    break;
+                case 3:
+                    targetStat.myStat.Cri += SaveSkill.ATK;
+                    break;
+                case 4:
+                    targetStat.myStat.Acc += SaveSkill.ATK;
+                    break;
+                case 5:
+                    targetStat.myStat.Agi += SaveSkill.ATK;
+                    break;
+                case 6:
+                    targetStat.myStat.Speed += SaveSkill.ATK;
+                    break;
+                default:
+                    break;
+            }
+
+            targetStat.BuffPram.Add(SaveSkill.Pram);
+            targetStat.BuffValue.Add(SaveSkill.ATK);
+            targetStat.myBuffTime.Add(SaveSkill.BuffTime);
+            targetStat.BuffCount++;
+
+            //여기서 히어로한테 mybufftime숫자를 대입한다. 대입값은 스킬의 buffTime이다 
+            //Turn이 증가할때마다 myBuffTime이 감소하고 0이되면 감소를 멈추고 버프를 지운다. 
             Debug.Log("여기서 스탯, HP버프");
             Debug.Log(speedComparisonArray[0] + "이" + target + "에게 버프함.");
         }
 
 
+        for(int i = 0; i < CurrentMyStat.BuffCount; i++)
+        {
+           if(CurrentMyStat.myBuffTime[i] != 0)
+            {
+                CurrentMyStat.myBuffTime[i]--; //버프타임 감소
+                if (CurrentMyStat.myBuffTime[i] <= 0)//버프가 다 떨어졌다면 
+                {
+                    switch (CurrentMyStat.BuffPram[i]) //상황에 맞는 값 감소
+                    {
+                        case 1:
+                            Debug.Log(i);
+                            CurrentMyStat.myStat.Atk -= CurrentMyStat.BuffValue[i];
+                            break;
+                        case 2:
+                            CurrentMyStat.myStat.Def -= CurrentMyStat.BuffValue[i];
+                            break;
+                        case 3:
+                            CurrentMyStat.myStat.Cri -= CurrentMyStat.BuffValue[i];
+                            break;
+                        case 4:
+                            CurrentMyStat.myStat.Acc -= CurrentMyStat.BuffValue[i];
+                            break;
+                        case 5:
+                            CurrentMyStat.myStat.Agi -= CurrentMyStat.BuffValue[i];
+                            break;
+                        case 6:
+                            CurrentMyStat.myStat.Speed -= CurrentMyStat.BuffValue[i];
+                            break;
+                        default:
+                            break;
+                    }
+                    CurrentMyStat.BuffPram.RemoveAt(i);
+                    CurrentMyStat.BuffValue.RemoveAt(i);
+                    CurrentMyStat.myBuffTime.RemoveAt(i);
 
+                }
+            }
+        }
 
         Damage = 0;
         StatPram = 0;
-
-
-
 
     }
 

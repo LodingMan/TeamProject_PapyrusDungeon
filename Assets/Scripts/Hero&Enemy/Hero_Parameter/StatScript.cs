@@ -7,6 +7,10 @@ public class StatScript : MonoBehaviour
     public Stat myStat;
     public int MyExp;
     public int PreviousLv = 1;
+    public int BuffCount = 0;
+    public List<int> BuffValue = new List<int>();
+    public List<int> BuffPram = new List<int>();
+    public List<int> myBuffTime = new List<int>();
 
 
    public float SaveNum; //float값을 int로 바꾸기 위해 있음

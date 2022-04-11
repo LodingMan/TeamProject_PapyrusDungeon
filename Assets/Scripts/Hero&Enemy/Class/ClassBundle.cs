@@ -69,8 +69,10 @@ public class skill // 03-26 Lv 추가
     public int Pram;
     public int[] MyPosition;
     public int[] EnemyPosition;
+    public int BuffTime;
    
-    public skill(int index, string name, int lv, int atk, int type , int pram, int[] myPosition, int[] enemyPosition)
+    //Pram순서는 앞에서부터 그대로, 1atk 2def 3cri 4acc 5agi 6speed
+    public skill(int index, string name, int lv, int atk, int type , int pram, int[] myPosition, int[] enemyPosition, int buffTime)
     {
         this.Index = index;
         this.Name = name;
@@ -80,6 +82,7 @@ public class skill // 03-26 Lv 추가
         this.Pram = pram;
         this.MyPosition = myPosition;
         this.EnemyPosition = enemyPosition;
+        this.BuffTime = buffTime;
     }
 }
 
