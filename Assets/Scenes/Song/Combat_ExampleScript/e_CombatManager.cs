@@ -40,6 +40,7 @@ public class e_CombatManager : MonoBehaviour
 
 
     int Damage; //총 합산 데미지
+    int StatPram;
     public GameObject CurrentCreateEnemy;
 
     public Vector3 FirstHeroCreatePos = new Vector3(-3000, 0, 0);
@@ -85,15 +86,27 @@ public class e_CombatManager : MonoBehaviour
 
                             case "Target1":
                                 hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
-                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
                                 break;
                             case "Target2":
                                 hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
-                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
                                 break;
                             case "Target3":
                                 hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
-                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Enemy_Target_Script>().This_TargetObject));
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
+                                break;
+                            case "_Target1":
+                                hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
+                                break;
+                            case "_Target2":
+                                hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
+                                break;
+                            case "_Target3":
+                                hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
+                                StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
                                 break;
                             default:
                                 break;
@@ -401,8 +414,20 @@ public class e_CombatManager : MonoBehaviour
     {
         if (speedComparisonArray[0].tag == "Player")
         {
-            Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk +
-                speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Atk + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Atk);
+            switch(SaveSkill.Type)
+            {
+                case 0:
+                    Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk +
+               speedComparisonArray[0].GetComponent<EquipScript>().myEquip[0].Atk + speedComparisonArray[0].GetComponent<EquipScript>().myEquip[1].Atk);
+                    break;
+                case 1:
+                    StatPram += (SaveSkill.ATK);
+
+                    break;
+                default:
+                    break;
+            }
+           
         }
         else
         {
@@ -427,24 +452,32 @@ public class e_CombatManager : MonoBehaviour
         }
 
 
-        if (Random.Range(0, 100) < speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri)
+        if(SaveSkill.Type == 0)
         {
-            Damage += (int)(Damage / 2);
-            Debug.Log("Crit!");
+            if (Random.Range(0, 100) < speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri)
+            {
+                Damage += (int)(Damage / 2);
+                Debug.Log("Crit!");
+            }
+
+            if (Random.Range(0, speedComparisonArray[0].GetComponent<StatScript>().myStat.Acc) < target.GetComponent<StatScript>().myStat.Agi)
+            {
+                Debug.Log("회피!");
+                Damage = 0;
+            }
+            target.GetComponent<StatScript>().myStat.HP -= Damage;
+        }
+        else
+        {
+            Debug.Log("여기서 스탯, HP버프");
+            Debug.Log(speedComparisonArray[0] + "이" + target + "에게 버프함.");
         }
 
-        if (Random.Range(0, speedComparisonArray[0].GetComponent<StatScript>().myStat.Acc) < target.GetComponent<StatScript>().myStat.Agi)
-        {
-            Debug.Log("회피!");
-            Damage = 0;
-        }
 
-        target.GetComponent<StatScript>().myStat.HP -= Damage;
-
-        
 
 
         Damage = 0;
+        StatPram = 0;
 
 
 
@@ -472,7 +505,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < enemys.Count; i++)
                 {
-                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((1.5f * (i - 1)), 0, 0), 1);
+                    enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((2.0f * (i - 1)), 0, 0), 1);
                     Debug.Log(enemys[i] + "이동함");
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
@@ -511,7 +544,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = destroyIdx + 1; i < myParty.Count; i++)
                 {
-                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-1.5f * (i - 1)), 0, 0), 1);
+                    myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-2.0f * (i - 1)), 0, 0), 1);
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
@@ -541,6 +574,24 @@ public class e_CombatManager : MonoBehaviour
                 myParty.Remove(target);
                 heroManager.CurrentHeroList.Remove(target);
                 Destroy(target);
+
+                if(myParty.Count == 0 )
+                {
+                    speedComparisonArray.Clear();
+                    isCombat = false;
+                    InGame_Player_Script IP = GameObject.Find("InGamePlayer").GetComponent<InGame_Player_Script>();
+                    IP.isMove = true;
+                    RoomController RC = GameObject.Find("RoomController").GetComponent<RoomController>();
+                    //RC.RoomCombatClear(IP.currentPlayers);
+                    isLastCombat = false;
+
+                    if (isLastCombat)
+                    {
+                        RC.GameClearFunc();
+                    }
+                    ppCon.ChromaticAberration_On_Off(ppCon);
+                    return;
+                }
 
 
             }
@@ -672,52 +723,98 @@ public class e_CombatManager : MonoBehaviour
 
         target_Panal_Script.TargetAllOff();
 
+
         Vector3 HeroPos = speedComparisonArray[0].transform.position;
         Vector3 EnemyPos = target.transform.position;
 
+        switch(SaveSkill.Type)
+        {
+            case 0: //어택
 
-        speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+                speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
 
-        target.transform.position = new Vector3(-2996.85f, 0, -3.12f);
+                target.transform.position = new Vector3(-2996.85f, 0, -3.12f);
 
+                target.transform.DOMove(target.transform.position - new Vector3(-1.3f, 0, 0), 3f);
+                speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
+                combat_Effect_Manager.HitLight.enabled = true;
+                speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
+                target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 1000); //적이 맞는 애니메이션 yoon
+                combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0], target); // 공격시 이펙트 0409Yoon
 
-        target.transform.DOMove(target.transform.position - new Vector3(-1.3f, 0, 0), 3f);
-        speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
-
-        combat_Effect_Manager.HitLight.enabled = true;
-
-        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
-        target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 1000); //적이 맞는 애니메이션 yoon
-        combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0],target); // 공격시 이펙트 0409Yoon
-
-        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
-        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
-        ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
-        yield return new WaitForSeconds(0.5f);
-        SkillResultInit(target);
-        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
-        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
 
-        yield return new WaitForSeconds(4);
-
-        Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
-        speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
-        target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);
-
-        ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
-
-        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 4.84f, -6.05f), 0.5f);
-        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(32.3f, 0, 0), 0.5f);
+                ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
 
 
-        speedComparisonArray[0].transform.position = HeroPos;
-        target.transform.position = EnemyPos;
-        combat_Effect_Manager.HitLight.enabled = false;
+                yield return new WaitForSeconds(0.5f);
+                SkillResultInit(target);
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
 
-        LastResult(target);
+                yield return new WaitForSeconds(4);
 
-        Debug.Log("Test");
+                Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
+                speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
+                target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);
+
+                ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
+
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 4.84f, -6.05f), 0.5f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(32.3f, 0, 0), 0.5f);
+
+                speedComparisonArray[0].transform.position = HeroPos;
+                target.transform.position = EnemyPos;
+                combat_Effect_Manager.HitLight.enabled = false;
+
+                LastResult(target);
+
+                Debug.Log("Test");
+
+                break;
+            case 1: //버프
+                speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+                speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
+                combat_Effect_Manager.HitLight.enabled = true;
+                speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
+                //적이 맞는 애니메이션 일단 없음.
+                combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0], target); // 공격시 이펙트 0409Yoon
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
+                ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
+                yield return new WaitForSeconds(0.5f);
+                SkillResultInit(target);
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
+
+                yield return new WaitForSeconds(4);
+
+                Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
+                speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
+             //   target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);
+
+                ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
+
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 4.84f, -6.05f), 0.5f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(32.3f, 0, 0), 0.5f);
+
+                speedComparisonArray[0].transform.position = HeroPos;
+
+                combat_Effect_Manager.HitLight.enabled = false;
+
+                LastResult(target);
+
+                Debug.Log("Test");
+
+                break;
+            default:
+                Debug.Log("오류");
+                break;
+
+
+        }
 
     }
 
