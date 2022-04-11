@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
     public TownManager townMgr;
     public GameObject guildTuto01;
     public GameObject guildTuto02;
+    public GameObject guildTuto03;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +29,20 @@ public class TutorialManager : MonoBehaviour
             }
 
         }
-        if (townMgr.Week == 1)
-        {
-            GuildTuto02Off();
-        }
+        
        
 
 
 
     }
-
+    private void Update()
+    {
+        if (townMgr.Week == 1)
+        {
+            GuildTuto02Off();
+            GuildTuto03Off();
+        }
+    }
     public void GuildTuto01On()
     {
         guildTuto01.SetActive(true);
@@ -57,9 +62,19 @@ public class TutorialManager : MonoBehaviour
 
     public void GuildTuto02Off()
     {
-        if (MgrTable.heroManager.CurrentHeroList.Count >= 2)
+        if (MgrTable.heroManager.CurrentHeroList.Count >= 3)
         {
             guildTuto02.SetActive(false);
+            guildTuto03.SetActive(true);
+        }
+    }
+    public void GuildTuto03Off()
+    {
+        if (MgrTable.guildManager.Party_Hero_Member[0] != null 
+            && MgrTable.guildManager.Party_Hero_Member[1] != null 
+            && MgrTable.guildManager.Party_Hero_Member[2] != null)  
+        {
+            guildTuto03.SetActive(false);
         }
     }
 }
