@@ -25,6 +25,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_TrainWarning_Pos;
     public RectTransform UI_Option_Pos;
     public RectTransform UI_Tent_Option_Pos;
+    public RectTransform UI_QuitPanel_Pos;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -83,10 +84,6 @@ public class UI_Tweening_Manager : MonoBehaviour
             }
             if (townMgr.isTown == true)
             {
-                if (StackCount == 0)
-                {
-                    ///application.Quit();
-                }
                 if (isOption == false)
                 {
                     if (isShop)
@@ -134,9 +131,10 @@ public class UI_Tweening_Manager : MonoBehaviour
                 if (!isTrainDetail)
                     option_Btn.SetActive(true);
             }
-            
-             
+
             StackCountFun();
+
+            
         }
     }
 
@@ -153,14 +151,17 @@ public class UI_Tweening_Manager : MonoBehaviour
 
             }
         }
-
+        else if (StackCount == 0)
+        {
+            if (townMgr.isTown)
+                UI_QuitPanel_On();
+        }
         if (StackCount == 0)
         {
             if (!UI_isBackground_On) // 패널 올라가고 나서 ESC 누르면 아래 패널 내려가는거 방지 04/06 윤성근
             {
                 UI_BackGroundPanel_On_Off();
             }
-
             camMove.ReturnToOrigin();
         }
     }
@@ -352,6 +353,24 @@ public class UI_Tweening_Manager : MonoBehaviour
         StackCount++;
     }
 
+    public void UI_QuitPanel_On()
+    {
+        UI_QuitPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        UIStack[StackCount] = UI_QuitPanel_Pos;
+        StackCount++;
+    }
+    public void UI_QuitPanel_Off()
+    {
+        if (StackCount > 0)
+        {
+            if (UIStack[StackCount - 1] != null)
+            {
+                UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UIStack[StackCount - 1] = null;
+                StackCount--;
+            }
+        }
+    }
     public void TentInvenToOriginInven()
     {
         for (int i = 0; i < shopMgr.hasItemList.Count; i++)
