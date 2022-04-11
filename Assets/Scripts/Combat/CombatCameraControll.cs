@@ -139,7 +139,7 @@ public class CombatCameraControll : MonoBehaviour
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.color = Color.black;
         yield return new WaitForSeconds(3);
-        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 4);
+        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 3);
 
         townMgr.isTown = false; townMgr.isTent = false;
         townMgr.isCombat = true;
@@ -150,11 +150,12 @@ public class CombatCameraControll : MonoBehaviour
         CombatCanvas.transform.gameObject.SetActive(true);
         CombatCanvas.enabled = true;
 
-        yield return new WaitForSeconds(2f);
-        introSceneScript.audioSS.clip = introSceneScript.audioCombat;
-        introSceneScript.audioSS.Play();
+        yield return new WaitForSeconds(3f);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
-        
+
+        //introSceneScript.audioSS.clip = introSceneScript.audioCombat;
+        //  introSceneScript.audioSS.Play();
+
 
     }
     IEnumerator FadeInDlay()
@@ -164,8 +165,8 @@ public class CombatCameraControll : MonoBehaviour
         LoadingPanal.DOColor(Color.black, 2);
         yield return new WaitForSeconds(3f);
        // Screen.fullScreen = true;
-        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 2);
-        yield return new WaitForSeconds(2f);
+        LoadingPanal.DOColor(new Color(0, 0, 0, 0), 3);
+        yield return new WaitForSeconds(3f);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);
         LoadingPanal.color = Color.black;
 

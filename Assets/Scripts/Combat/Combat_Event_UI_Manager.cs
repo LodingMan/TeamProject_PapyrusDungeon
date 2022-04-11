@@ -35,7 +35,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public GameObject Current_Attack_Unit;
 
     public Image Skill_Info_UI;
-    public List<Text> SkillInfo_Text = new List<Text>();
+    public List<Text> SkillInfo_Text = new List<Text>(); // 0 ¿Ã∏ß 2 ATK 3 DEF
     public List<Image> SKillInfo_Image = new List<Image>();
 
     public GameObject Player_Targeting;
