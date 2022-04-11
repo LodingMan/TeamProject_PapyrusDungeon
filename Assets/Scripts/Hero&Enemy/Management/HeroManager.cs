@@ -227,10 +227,10 @@ namespace Song
                 CurrentHeroDataList[i] = CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData; // �� hero�� savingdata����
             }
 
-            //if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
-            //{
-            //    Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
-            //}
+            if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
+            }
 
             string jdata = JsonConvert.SerializeObject(CurrentHeroDataList);
             File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", jdata);
