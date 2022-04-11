@@ -506,6 +506,11 @@ public class e_CombatManager : MonoBehaviour
 
             //여기서 히어로한테 mybufftime숫자를 대입한다. 대입값은 스킬의 buffTime이다 
             //Turn이 증가할때마다 myBuffTime이 감소하고 0이되면 감소를 멈추고 버프를 지운다. 
+
+            GameObject buffeffect = Instantiate(combat_Effect_Manager.buffEffect);
+            buffeffect.transform.SetParent(target.transform);
+            buffeffect.transform.localPosition = new Vector3(0,-0.5f,0);
+
             Debug.Log("여기서 스탯, HP버프");
             Debug.Log(speedComparisonArray[0] + "이" + target + "에게 버프함.");
         }
@@ -545,6 +550,18 @@ public class e_CombatManager : MonoBehaviour
                     CurrentMyStat.BuffPram.RemoveAt(i);
                     CurrentMyStat.BuffValue.RemoveAt(i);
                     CurrentMyStat.myBuffTime.RemoveAt(i);
+                    CurrentMyStat.BuffCount--;
+                    if (CurrentMyStat.BuffCount == 0)
+                    {
+                        for (int f = 0; f < CurrentMyStat.transform.childCount; f++)
+                        {
+                            if (CurrentMyStat.transform.GetChild(f).tag == "Effect")
+                            {
+                                Destroy(CurrentMyStat.transform.GetChild(f).gameObject);
+                            }
+                        }
+                    }
+
 
                 }
             }

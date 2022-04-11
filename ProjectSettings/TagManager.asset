@@ -12,6 +12,8 @@ TagManager:
   - Inven
   - Enemy
   - Equip
+  - FxTemporaire
+  - Effect
   layers:
   - Default
   - TransparentFX
