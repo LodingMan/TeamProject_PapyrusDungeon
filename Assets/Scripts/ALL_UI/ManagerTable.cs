@@ -22,6 +22,7 @@ public class ManagerTable : MonoBehaviour
     public SkillDetailTable skillDetailTable;
     public EquipDetailTable equipDetailTable;
     public UI_SoundMgr soundMgr;
+    public TutorialManager TutorialMgr;
     private void Awake()
     {
         tweenManager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
@@ -40,6 +41,7 @@ public class ManagerTable : MonoBehaviour
         skillDetailTable = GameObject.Find("Skill_EquipDetailManager").GetComponent<SkillDetailTable>();
         equipDetailTable = GameObject.Find("Skill_EquipDetailManager").GetComponent<EquipDetailTable>();
         soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
+        TutorialMgr = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
     }
 
 }

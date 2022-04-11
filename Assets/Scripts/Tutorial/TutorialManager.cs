@@ -10,11 +10,14 @@ public class TutorialManager : MonoBehaviour
     public GameObject guildTuto01;
     public GameObject guildTuto02;
     public GameObject guildTuto03;
+    public GameObject guildTuto04;
+    public GameObject guildTuto05;
     // Start is called before the first frame update
     void Start()
     {
         MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
         townMgr = MgrTable.townManager;
+        
         if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
         {
             townMgr.Week = PlayerPrefs.GetInt("Week");
@@ -30,17 +33,19 @@ public class TutorialManager : MonoBehaviour
 
         }
         
-       
-
-
-
     }
     private void Update()
     {
         if (townMgr.Week == 1)
         {
-            GuildTuto02Off();
-            GuildTuto03Off();
+            if (guildTuto04.activeSelf)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    guildTuto04.SetActive(false);
+                    guildTuto05.SetActive(true);
+                }
+            }
         }
     }
     public void GuildTuto01On()
@@ -75,6 +80,15 @@ public class TutorialManager : MonoBehaviour
             && MgrTable.guildManager.Party_Hero_Member[2] != null)  
         {
             guildTuto03.SetActive(false);
+            guildTuto04.SetActive(true);
+            
         }
     }
+
+    public void GuildTuto05Off()
+    {
+        guildTuto05.SetActive(false);
+    }
+
+
 }

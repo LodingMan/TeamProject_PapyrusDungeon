@@ -150,6 +150,7 @@ namespace Song
             canvasGroup.blocksRaycasts = true;
             uI_Central.Catch_Hero_Object = null;
             soundMgr.PlayClipOption();
+            MgrTable.TutorialMgr.GuildTuto03Off();
         }
 
     }

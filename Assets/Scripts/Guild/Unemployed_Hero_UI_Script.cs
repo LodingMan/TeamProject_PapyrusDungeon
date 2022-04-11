@@ -112,7 +112,7 @@ namespace Song
             gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(false);
 
 
-
+            MgrTable.TutorialMgr.GuildTuto02Off();
 
         }
     }
