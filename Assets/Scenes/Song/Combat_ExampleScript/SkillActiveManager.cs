@@ -148,6 +148,11 @@ public class SkillActiveManager : MonoBehaviour
 
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0,0), 1);
 
+        combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[1].Name;
+        combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : "+currentSkills[1].ATK;
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL DEF : "+currentSkills[1].DEF;
+
+
         for (int i = 0; i < 3; i++)
         {
             if (currentSkills[1].MyPosition[i] == -1)

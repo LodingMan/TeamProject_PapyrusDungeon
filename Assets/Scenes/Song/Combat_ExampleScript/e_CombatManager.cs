@@ -47,6 +47,7 @@ public class e_CombatManager : MonoBehaviour
 
     public bool isCombat;
     public bool isLastCombat;
+    public bool isAISkillNone = false;
 
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
 
@@ -123,7 +124,7 @@ public class e_CombatManager : MonoBehaviour
 
         for (int i = 0; i < myParty.Count - 1; i++)
         {
-            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(1.5f * (i + 1), 0, 0);
+            myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(2.0f * (i + 1), 0, 0);
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
@@ -144,6 +145,7 @@ public class e_CombatManager : MonoBehaviour
     }
     public void EnemyInit()
     {
+        ppCon.ChromaticAberration_On_Off(ppCon);
         isCombat = true;
         List<int> Sequence_Rnd = new List<int>();
         int SequenceSaveNumber = Random.Range(0, enemy_Sequence_Table.Enemy_Sequence.Count);
@@ -189,7 +191,7 @@ public class e_CombatManager : MonoBehaviour
                 CurrentCreateEnemy.GetComponent<SkillScript>().mySkills[j] = sKillTable.skillTable_Dictionary[SkillNumber + j + 100];
             }
 
-            CurrentCreateEnemy.transform.position = FirstEnemyCreatePos + new Vector3(1.5f * i, 0, 0);
+            CurrentCreateEnemy.transform.position = FirstEnemyCreatePos + new Vector3(2.0f * i, 0, 0);
             CurrentCreateEnemy.transform.rotation = Quaternion.Euler(0, -90, 0);
 
             enemys.Add(CurrentCreateEnemy);
@@ -334,15 +336,21 @@ public class e_CombatManager : MonoBehaviour
         // 이제 스킬을 골라야됨.
         if (currentActiveSkillList.Count == 0) //사용할 스킬이 없다면
         {
-            //아무튼 취소하는내용
+            Debug.Log("사용할 스킬 없음 다음턴으로 넘어감");
+            isAISkillNone = true;
+
+        }
+        else
+        {
+            SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
+
+            combat_Event_UI_Manager.EnemySkillNameText.enabled = true;
+            combat_Event_UI_Manager.EnemySkillNameText.text = SaveSkill.Name;
+            combat_Event_UI_Manager.EnemySkillNameText.GetComponent<DOTweenAnimation>().DORestart();
+            Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name + "::인덱스는" + SaveSkill.Index);
         }
 
-        SaveSkill = currentActiveSkillList[Random.Range(0, currentActiveSkillList.Count)];
-
-        combat_Event_UI_Manager.EnemySkillNameText.enabled = true;
-        combat_Event_UI_Manager.EnemySkillNameText.text = SaveSkill.Name;
-        combat_Event_UI_Manager.EnemySkillNameText.GetComponent<DOTweenAnimation>().DORestart();
-        Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name + "::인덱스는" + SaveSkill.Index);
+       
         currentActiveSkillList.Clear();
 
 
@@ -350,6 +358,20 @@ public class e_CombatManager : MonoBehaviour
 
     public void EnemySkillUse()
     {
+
+
+
+        if(isAISkillNone)
+        {
+            combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
+            speedComparisonArray.RemoveAt(0);
+            NextMove();
+            isAISkillNone = false;
+            return;
+        }
+
+
+
         int UseIndex;
         while (true)
         {
@@ -426,7 +448,6 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-        LastResult(target);
 
     }
 
@@ -474,7 +495,7 @@ public class e_CombatManager : MonoBehaviour
                         RC.GameClearFunc();
                         isLastCombat = false;
                     }
-
+                    ppCon.ChromaticAberration_On_Off(ppCon);
                     return;
                 }
             }
@@ -520,9 +541,6 @@ public class e_CombatManager : MonoBehaviour
                 myParty.Remove(target);
                 heroManager.CurrentHeroList.Remove(target);
                 Destroy(target);
-
-
-
 
 
             }
@@ -582,9 +600,9 @@ public class e_CombatManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         EnemySkillSelect(speedComparisonArray[0]); //이 함수가 호출되고 난 뒤에는 SaveSkill에 Enemy가 사용할 스킬이 저장되어있다. 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         EnemySkillUse();
 
@@ -602,9 +620,9 @@ public class e_CombatManager : MonoBehaviour
         Vector3 EnemyPos = speedComparisonArray[0].transform.position;
         Vector3 HeroPos = myParty[target_Idx].transform.position;
 
-        speedComparisonArray[0].transform.position = new Vector3(-2997.85f, 0, -3.12f);
+        speedComparisonArray[0].transform.position = new Vector3(-2996.85f, 0, -3.12f);
 
-        myParty[target_Idx].transform.position = new Vector3(-2999.58f, 0, -3.12f);
+        myParty[target_Idx].transform.position = new Vector3(-3000.58f, 0, -3.12f);
 
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(1.3f, 0, 0), 3f);
@@ -643,6 +661,7 @@ public class e_CombatManager : MonoBehaviour
         combat_Effect_Manager.HitLight.enabled = false;
 
         SkillResultInit(myParty[target_Idx]);
+        LastResult(myParty[target_Idx]);
 
     }
     public IEnumerator HeroAttackDlay(GameObject target)
@@ -657,9 +676,9 @@ public class e_CombatManager : MonoBehaviour
         Vector3 EnemyPos = target.transform.position;
 
 
-        speedComparisonArray[0].transform.position = new Vector3(-2999.58f, 0, -3.12f);
+        speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
 
-        target.transform.position = new Vector3(-2997.85f, 0, -3.12f);
+        target.transform.position = new Vector3(-2996.85f, 0, -3.12f);
 
 
         target.transform.DOMove(target.transform.position - new Vector3(-1.3f, 0, 0), 3f);
@@ -675,7 +694,7 @@ public class e_CombatManager : MonoBehaviour
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
         yield return new WaitForSeconds(0.5f);
-
+        SkillResultInit(target);
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
 
@@ -696,7 +715,7 @@ public class e_CombatManager : MonoBehaviour
         target.transform.position = EnemyPos;
         combat_Effect_Manager.HitLight.enabled = false;
 
-        SkillResultInit(target);
+        LastResult(target);
 
         Debug.Log("Test");
 
