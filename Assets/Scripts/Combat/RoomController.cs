@@ -181,6 +181,11 @@ public class RoomController : MonoBehaviour
         inGamePlayerScript.isMove = false;
         combatManager.PartyExpUp();
         combat_Event_UI_Manager.GameClearPanalDown();
-
+    }
+    public void GameFailFunc()
+    {
+       // inGamePlayerScript.isMove = false;
+       // combatManager.PartyExpUp();
+        combat_Event_UI_Manager.GameClearPanalDown();
     }
 }
