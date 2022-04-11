@@ -6,6 +6,10 @@ using DG.Tweening;
 
 public class SkillActiveManager : MonoBehaviour
 {
+    public TownManager townManager;
+    public Combat_Guide_Script combat_Guide_Script;
+
+
     public RectTransform rectTransform;
     public RectTransform Lever;
     [Range(10, 150)]
@@ -71,6 +75,7 @@ public class SkillActiveManager : MonoBehaviour
 
     public void Skill1()
     {
+
         //Debug.Log("Test");
         combatManager.SaveSkill = currentSkills[0];
         for(int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
@@ -148,6 +153,13 @@ public class SkillActiveManager : MonoBehaviour
     {
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 728), 1);
 
+        if (townManager.Week == 1)
+        {
+            combat_Guide_Script.Combat_Skill_Guide_Off();
+            combat_Guide_Script.isCombat_Skill_Guide = true;
+
+        }
+
     }
 
     public void Skill2()
@@ -190,7 +202,7 @@ public class SkillActiveManager : MonoBehaviour
 
         combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[1].Name;
         combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : "+currentSkills[1].ATK;
-        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL DEF : "+currentSkills[1].Type;
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + currentSkills[1].Type;
 
 
         for (int i = 0; i < 3; i++)
@@ -268,7 +280,7 @@ public class SkillActiveManager : MonoBehaviour
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 0), 1);
         combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[2].Name;
         combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : " + currentSkills[2].ATK;
-        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL DEF : " + currentSkills[2].Type;
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + currentSkills[2].Type;
 
         for (int i = 0; i < 3; i++)
         {

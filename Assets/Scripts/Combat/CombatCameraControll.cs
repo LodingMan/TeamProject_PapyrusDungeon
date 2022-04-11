@@ -1,8 +1,7 @@
+using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class CombatCameraControll : MonoBehaviour
 {
@@ -19,15 +18,19 @@ public class CombatCameraControll : MonoBehaviour
     public Canvas CombatCanvas;
 
     public Image LoadingPanal;
-    
+
 
     public RoomController roomController;
     public InGame_Player_Script inGame_Player_Script;
+
+    public Combat_Guide_Script combat_Guide_Script;
+    public TownManager townManager;
 
 
     public bool isMiniMapOn = false;
 
     public bool isFirst = true;
+
 
     private void Start()
     {
@@ -47,14 +50,19 @@ public class CombatCameraControll : MonoBehaviour
                 {
                     if (inGame_Player_Script.isRoom)
                     {
-                        if(inGame_Player_Script.isMove)
+                        if (inGame_Player_Script.isMove)
                         {
                             inGame_Player_Script.PlayerWarp(hit.collider.gameObject.GetComponent<RoomScript>().roomNumber - inGame_Player_Script.currentPlayers);
                             Debug.Log(hit.collider.gameObject.GetComponent<RoomScript>().roomNumber - inGame_Player_Script.currentPlayers);
-                            
+                            if (townMgr.Week == 1)
+                            {
+                                combat_Guide_Script.MinimapTouchGuide_Off();
+
+                            }
+
                         }
                     }
-                   
+
                 }
             }
         }
@@ -63,7 +71,7 @@ public class CombatCameraControll : MonoBehaviour
     public void UI_Camera_All_Off()
     {
         TownCamera.gameObject.SetActive(false);
-        TentCamera.gameObject.SetActive(false);      
+        TentCamera.gameObject.SetActive(false);
         CombatCamera.gameObject.SetActive(true);
         MinimapCamera.enabled = true;
 
@@ -82,7 +90,7 @@ public class CombatCameraControll : MonoBehaviour
     public void CameraCurrentPosSet() //����ϸ� ���� �� ��ġ�� ī�޶� ������. (��� ����.)
     {
 
-        for(int i = 0; i < roomController.RoomList.Count; i++)
+        for (int i = 0; i < roomController.RoomList.Count; i++)
         {
             if (roomController.RoomList[i].GetComponent<RoomScript>().roomNumber == inGame_Player_Script.currentPlayers)
             {
@@ -91,7 +99,7 @@ public class CombatCameraControll : MonoBehaviour
             }
 
         }
-        if(!isFirst)
+        if (!isFirst)
         {
             BlackFade_In();
         }
@@ -101,7 +109,7 @@ public class CombatCameraControll : MonoBehaviour
 
     public void MiniMapCameraMove() //�̴ϸ� â�� �ε巴�� ����� �߰� ����
     {
-        if(!isMiniMapOn)
+        if (!isMiniMapOn)
         {
             //MinimapCamera.enabled = true;
 
@@ -112,7 +120,7 @@ public class CombatCameraControll : MonoBehaviour
         {
             MinimapCamera.DORect(new Rect(0f, 0f, 0f, 0f), 0.5f);
             isMiniMapOn = false;
-          //  MinimapCamera.enabled = false;
+            //  MinimapCamera.enabled = false;
 
         }
     }
@@ -145,7 +153,7 @@ public class CombatCameraControll : MonoBehaviour
         townMgr.isCombat = true;
         if (TownCamera.transform.gameObject.activeSelf) { TownCamera.transform.gameObject.SetActive(false); }
         if (TentCamera.transform.gameObject.activeSelf) { TentCamera.transform.gameObject.SetActive(false); }
-       introSceneScript.audioSS.Stop();
+        introSceneScript.audioSS.Stop();
         CombatCamera.transform.gameObject.SetActive(true);
         CombatCanvas.transform.gameObject.SetActive(true);
         CombatCanvas.enabled = true;
@@ -159,6 +167,14 @@ public class CombatCameraControll : MonoBehaviour
         introSceneScript.audioSS.clip = introSceneScript.audioCombat;
         introSceneScript.audioSS.Play();
 
+        if (townManager.Week == 1)
+        {
+            combat_Guide_Script.MinimapButtonGuide.SetActive(true);
+            //combat_Guide_Script.isMinimapButtonGuide = true;
+        }
+
+
+
 
     }
     IEnumerator FadeInDlay()
@@ -167,7 +183,7 @@ public class CombatCameraControll : MonoBehaviour
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(0, 0);
         LoadingPanal.DOColor(Color.black, 2);
         yield return new WaitForSeconds(3f);
-       // Screen.fullScreen = true;
+        // Screen.fullScreen = true;
         LoadingPanal.DOColor(new Color(0, 0, 0, 0), 3);
         yield return new WaitForSeconds(3f);
         LoadingPanal.rectTransform.anchoredPosition = new Vector2(1470, -16);

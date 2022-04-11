@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class e_CombatManager : MonoBehaviour
 {
+    public TownManager townManager;
+    public Combat_Guide_Script combat_Guide_Script;
+
+
+
     public List<GameObject> enemyPrefabs = new List<GameObject>();  //랜덤으로 생성될 에너미 종류
     public Enemy_Stat_Table enemy_Stat_Table = new Enemy_Stat_Table();  // 에너미 프리펩에 맞는 에너미 스텟 부여
     public Enemy_Sequence_Table enemy_Sequence_Table = new Enemy_Sequence_Table(); //에너미 배치를 정해주는 테이블
@@ -50,6 +56,7 @@ public class e_CombatManager : MonoBehaviour
     public bool isCombat;
     public bool isLastCombat;
     public bool isAISkillNone = false;
+    public bool isGameOver = false;
 
     public List<skill> currentActiveSkillList = new List<skill>(); // 확인하려고 꺼내놓은것. 다쓰고 EnemySkillSelect에 다시 넣어놓을것.
 
@@ -256,6 +263,16 @@ public class e_CombatManager : MonoBehaviour
 
     public void SpeedComparison()
     {
+        if(townManager.Week == 1)
+        {
+            if (!combat_Guide_Script.isCombat_Skill_Guide)
+            {
+                for (int i = 0; i < enemys.Count; i++) enemys[i].GetComponent<StatScript>().myStat.Speed = 0;
+                combat_Guide_Script.Combat_Skill_Guide_On();
+            }
+        }
+
+
         Debug.Log("속도계산");
         for (int i = speedComparisonArray.Count - 1; i > 0; i--) // 버블 오름차순 정렬
             for (int j = 0; j < i; j++)
@@ -472,6 +489,24 @@ public class e_CombatManager : MonoBehaviour
                 Damage = 0;
             }
             target.GetComponent<StatScript>().myStat.HP -= Damage;
+
+
+            combat_Event_UI_Manager.DamageText.SetActive(true);
+            combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 1);
+            combat_Event_UI_Manager.DamageText.GetComponent<Text>().text = "-" + Damage;
+
+            //RectTransform DamageTextPos = combat_Event_UI_Manager.DamageText.GetComponent<RectTransform>();
+            //Vector2 EmptyPos = DamageTextPos.anchoredPosition;
+            //Vector3 TextScale = DamageTextPos.localScale;
+
+            //combat_Event_UI_Manager.DamageText.SetActive(true);
+
+            //DamageTextPos.DOAnchorPos(DamageTextPos.anchoredPosition - new Vector2(0, -100), 2f);
+            //DamageTextPos.DOScale(new Vector3(0, 0, 0), 2f);
+
+
+
+
         }
         else if(SaveSkill.Type == 1)
         {
@@ -561,6 +596,7 @@ public class e_CombatManager : MonoBehaviour
                             }
                         }
                     }
+
 
 
                 }
@@ -665,18 +701,14 @@ public class e_CombatManager : MonoBehaviour
 
                 if(myParty.Count == 0 )
                 {
-                    speedComparisonArray.Clear();
-                    isCombat = false;
-                    InGame_Player_Script IP = GameObject.Find("InGamePlayer").GetComponent<InGame_Player_Script>();
-                    IP.isMove = true;
-                    RoomController RC = GameObject.Find("RoomController").GetComponent<RoomController>();
-                    //RC.RoomCombatClear(IP.currentPlayers);
+                    isGameOver = true;
                     isLastCombat = false;
+                    isCombat = false;
 
-                    if (isLastCombat)
-                    {
-                        RC.GameClearFunc();
-                    }
+                    speedComparisonArray.Clear();
+                    RoomController RC = GameObject.Find("RoomController").GetComponent<RoomController>();
+                    RC.GameFailFunc();
+
                     ppCon.ChromaticAberration_On_Off(ppCon);
                     return;
                 }
@@ -684,7 +716,6 @@ public class e_CombatManager : MonoBehaviour
 
             }
         }
-
 
         speedComparisonArray.RemoveAt(0);
         NextMove();
@@ -780,6 +811,8 @@ public class e_CombatManager : MonoBehaviour
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
+
+        SkillResultInit(myParty[target_Idx]);
         yield return new WaitForSeconds(0.5f);
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 3f);
@@ -799,7 +832,9 @@ public class e_CombatManager : MonoBehaviour
 
         combat_Effect_Manager.HitLight.enabled = false;
 
-        SkillResultInit(myParty[target_Idx]);
+        combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
+        combat_Event_UI_Manager.DamageText.SetActive(false);
+
         LastResult(myParty[target_Idx]);
 
     }
@@ -835,10 +870,8 @@ public class e_CombatManager : MonoBehaviour
 
 
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
-
-
-                yield return new WaitForSeconds(0.5f);
                 SkillResultInit(target);
+                yield return new WaitForSeconds(0.5f);
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
 
@@ -857,8 +890,6 @@ public class e_CombatManager : MonoBehaviour
                 target.transform.position = EnemyPos;
                 combat_Effect_Manager.HitLight.enabled = false;
 
-                LastResult(target);
-
                 Debug.Log("Test");
 
                 break;
@@ -872,8 +903,8 @@ public class e_CombatManager : MonoBehaviour
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
-                yield return new WaitForSeconds(0.5f);
                 SkillResultInit(target);
+                yield return new WaitForSeconds(0.5f);
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
 
@@ -892,7 +923,6 @@ public class e_CombatManager : MonoBehaviour
 
                 combat_Effect_Manager.HitLight.enabled = false;
 
-                LastResult(target);
 
                 Debug.Log("Test");
 
@@ -903,6 +933,12 @@ public class e_CombatManager : MonoBehaviour
 
 
         }
+
+        combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
+        combat_Event_UI_Manager.DamageText.SetActive(false);
+        LastResult(target);
+
+
 
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+    public TownManager townManager;
+    public Combat_Guide_Script combat_Guide_Script;
     public MapCreate mapCreate;
     public List<GameObject> RoomList;
     public RoomScript roomScript;
@@ -159,6 +161,17 @@ public class RoomController : MonoBehaviour
                 break;
         }
 
+        if(!combat_Guide_Script.isPassageEventGuide)
+        {
+            if (townManager.Week == 1)
+            {
+                combat_Guide_Script.PassageEventGuide_On();
+
+            }
+            combat_Guide_Script.isPassageEventGuide = true;
+        }
+
+
 
     }
 
@@ -184,7 +197,7 @@ public class RoomController : MonoBehaviour
     }
     public void GameFailFunc()
     {
-       // inGamePlayerScript.isMove = false;
+        inGamePlayerScript.isMove = false;
        // combatManager.PartyExpUp();
         combat_Event_UI_Manager.GameClearPanalDown();
     }

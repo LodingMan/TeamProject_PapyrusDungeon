@@ -1,11 +1,11 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class Combat_Event_UI_Manager : MonoBehaviour
 {
+    public TownManager townManager;
     public e_CombatManager combatManager;
     public InGame_Player_Script inGame_Player_Script;
     public CombatCameraControll combatCameraControll;
@@ -29,13 +29,20 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public GameObject GameClearReward_Equip_Image;
     public List<GameObject> ImageSaveList = new List<GameObject>();
 
+    public Image Victory_Fail_Image;
+    public Sprite VictorySprite;
+    public Sprite FailSprite;
+
+
+    public GameObject DamageText;
+    public Animator TextAnim;
 
 
 
     public GameObject Current_Attack_Unit;
 
     public Image Skill_Info_UI;
-    public List<Text> SkillInfo_Text = new List<Text>(); // 0 이름 2 ATK 3 DEF
+    public List<Text> SkillInfo_Text = new List<Text>(); // 0 이름 2 ATK 3 Type
     public List<Image> SKillInfo_Image = new List<Image>();
 
     public GameObject Player_Targeting;
@@ -51,6 +58,10 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     {
         Go_Back_Btn[0].gameObject.SetActive(true);
         Go_Back_Btn[1].gameObject.SetActive(true);
+        if(townManager.Week == 1)
+        {
+
+        }
     }
     public void Go_Back_Off()
     {
@@ -60,9 +71,9 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public void MinimapGuide()
     {
-        if(!combatManager.isCombat)
+        if (!combatManager.isCombat)
         {
-            if(inGame_Player_Script.isRoom)
+            if (inGame_Player_Script.isRoom)
             {
                 IngameText.rectTransform.anchoredPosition = new Vector2(-44, 316);
                 IngameText.text = "다른 지역으로 이동을 위해 미니맵을 눌러주세요";
@@ -97,46 +108,60 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         StatScript CurrentHeroStat;
         GameClearPanal.GetComponent<Image>().rectTransform.DOAnchorPos(new Vector2(0, 0), 1f);
 
-        for(int i = 0; i < combatManager.myParty.Count; i++)
+        for (int i = 0; i < combatManager.myParty.Count; i++)
         {
             CurrentHeroStat = combatManager.myParty[i].GetComponent<StatScript>();
             PartyMemberNameList[i].text = CurrentHeroStat.myStat.Name + "  " + CurrentHeroStat.PreviousLv + "  -> " + CurrentHeroStat.myStat.Lv;
         }
 
-
-        for(int i = 0; i < combatManager.DungeonDifficulty; i++)
+        if(combatManager.isGameOver)
         {
-            int RndIdx = Random.Range(1, shopManager.equipList.Count);
-            GameObject CurrentCreateImgae;
-            GameObject InvantoryCreatePrefab;
+            Debug.Log("게임오버");
+            Victory_Fail_Image.sprite = FailSprite;
 
-            CurrentCreateImgae = Instantiate(GameClearReward_Equip_Image);
-            CurrentCreateImgae.GetComponent<Image>().sprite = equipDetailTable.sprite[RndIdx]; // shopManager.equipList[RndIdx].transform.GetChild(1).GetComponent<Image>().sprite;
-            CurrentCreateImgae.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
-            ImageSaveList.Add(CurrentCreateImgae);
-
-
-            InvantoryCreatePrefab = Instantiate(shopManager.equipList[RndIdx]);
-            shopManager.hasEquipList.Add(InvantoryCreatePrefab);
-            InvantoryCreatePrefab.transform.SetParent(shopManager.inventory.transform);
-            InvantoryCreatePrefab.transform.localPosition = shopManager.inventory.transform.localPosition;
-
-
-            InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
         }
-
-        for (int i = 0; i < shopManager.hasItemList.Count; i++)  // 인벤토리로 아이템 옮기기 Yoon
+        else
         {
-            shopManager.hasItemList[i].transform.SetParent(shopManager.inventory.transform);
-            shopManager.hasItemList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
-            shopManager.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
+            Victory_Fail_Image.sprite = VictorySprite;
+
         }
-        for (int i = 0; i < shopManager.hasEquipList.Count; i++)
+        if (!combatManager.isGameOver)
         {
-            shopManager.hasEquipList[i].transform.SetParent(shopManager.inventory.transform);
-            shopManager.hasEquipList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
-            shopManager.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
+            for (int i = 0; i < combatManager.DungeonDifficulty; i++)
+            {
+                int RndIdx = Random.Range(1, shopManager.equipList.Count);
+                GameObject CurrentCreateImgae;
+                GameObject InvantoryCreatePrefab;
+
+                CurrentCreateImgae = Instantiate(GameClearReward_Equip_Image);
+                CurrentCreateImgae.GetComponent<Image>().sprite = equipDetailTable.sprite[RndIdx]; // shopManager.equipList[RndIdx].transform.GetChild(1).GetComponent<Image>().sprite;
+                CurrentCreateImgae.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
+                ImageSaveList.Add(CurrentCreateImgae);
+
+
+                InvantoryCreatePrefab = Instantiate(shopManager.equipList[RndIdx]);
+                shopManager.hasEquipList.Add(InvantoryCreatePrefab);
+                InvantoryCreatePrefab.transform.SetParent(shopManager.inventory.transform);
+                InvantoryCreatePrefab.transform.localPosition = shopManager.inventory.transform.localPosition;
+
+
+                InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            for (int i = 0; i < shopManager.hasItemList.Count; i++)  // 인벤토리로 아이템 옮기기 Yoon
+            {
+                shopManager.hasItemList[i].transform.SetParent(shopManager.inventory.transform);
+                shopManager.hasItemList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
+                shopManager.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
+            }
+            for (int i = 0; i < shopManager.hasEquipList.Count; i++)
+            {
+                shopManager.hasEquipList[i].transform.SetParent(shopManager.inventory.transform);
+                shopManager.hasEquipList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
+                shopManager.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
+            }
         }
+        
     }
     public void GameClearPanalUp()
     {
@@ -145,7 +170,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             PartyMemberNameList[i].text = "";
         }
 
-        for(int i = ImageSaveList.Count-1; i >= 0; i--)
+        for (int i = ImageSaveList.Count - 1; i >= 0; i--)
         {
             ImageSaveList.RemoveAt(i);
             //Destroy(ImageSaveList[i]);
