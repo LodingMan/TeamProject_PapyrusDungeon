@@ -12,10 +12,13 @@ public class ShopEquipScripts : MonoBehaviour
     public GameObject inventory;
     public int equipIdx;
     public Button BuyBtn;
-
+    public bool isSelect = false;
+    public GameObject selectImg;
+    public GameObject shopPanel;
     public void Start() //아이템 생성시 필요한 정보를 가져오는 코드입니다.
     {
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
+        shopPanel = shopManager.shopPanel;
         inventory = shopManager.inventory;
         hasEquipList = shopManager.hasEquipList;
         BuyBtn = shopManager.BuyBtn;
@@ -158,5 +161,34 @@ public class ShopEquipScripts : MonoBehaviour
         {
             Debug.Log("인벤토리가 다 찼습니다.");
         }
+    }
+    public void SelectImage()
+    {
+        if (!isSelect)
+        {
+            for (int i = 0; i < shopPanel.transform.childCount; i++)
+            {
+                if (shopPanel.transform.GetChild(i).tag == "Item")
+                {
+                    shopPanel.transform.GetChild(i).GetComponent<ShopItemScripts>().isSelect = false;
+                    shopPanel.transform.GetChild(i).GetComponent<ShopItemScripts>().selectImg.SetActive(false);
+                }
+                else if (shopPanel.transform.GetChild(i).tag == "Equip")
+                {
+                    shopPanel.transform.GetChild(i).GetComponent<ShopEquipScripts>().isSelect = false;
+                    shopPanel.transform.GetChild(i).GetComponent<ShopEquipScripts>().selectImg.SetActive(false);
+                }
+            }
+            isSelect = true;
+            selectImg.SetActive(true);
+        }
+        else
+        {
+            isSelect = false;
+            selectImg.SetActive(false);
+            BuyBtn.onClick.RemoveAllListeners();
+        }
+
+
     }
 }

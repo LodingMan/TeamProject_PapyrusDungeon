@@ -124,6 +124,19 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
             InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
         }
+
+        for (int i = 0; i < shopManager.hasItemList.Count; i++)  // 인벤토리로 아이템 옮기기 Yoon
+        {
+            shopManager.hasItemList[i].transform.SetParent(shopManager.inventory.transform);
+            shopManager.hasItemList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
+            shopManager.hasItemList[i].transform.localScale = new Vector3(1, 1, 1);
+        }
+        for (int i = 0; i < shopManager.hasEquipList.Count; i++)
+        {
+            shopManager.hasEquipList[i].transform.SetParent(shopManager.inventory.transform);
+            shopManager.hasEquipList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
+            shopManager.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
+        }
     }
     public void GameClearPanalUp()
     {
