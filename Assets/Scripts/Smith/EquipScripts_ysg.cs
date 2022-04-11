@@ -498,7 +498,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public void EquipSell()
     {
 
-        if (itemData.isShop && twMgr.isShop)
+        if (twMgr.isShop)
         {
             equipBtn.gameObject.SetActive(false);
             sell++;
@@ -517,7 +517,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 equipBtn.gameObject.SetActive(false);
                 Destroy(gameObject);
                 Debug.Log("판매완료");
-                itemData.ItemSave();
+                itemData.SellItemSave();
 
             }
 
