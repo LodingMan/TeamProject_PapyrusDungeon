@@ -87,6 +87,7 @@ public class ShopItemScripts : MonoBehaviour
             buyItem.transform.SetParent(inventory.transform);
             buyItem.transform.localPosition = inventory.transform.localPosition;
             buyItem.transform.localScale = new Vector3(1, 1, 1);
+            shopManager.ItemSave();
         }
         else
         {

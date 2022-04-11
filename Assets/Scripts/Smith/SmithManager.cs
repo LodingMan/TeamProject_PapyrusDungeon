@@ -65,6 +65,7 @@ public class SmithManager : MonoBehaviour
                 equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
                 Debug.Log("강화 성공! 레벨: "+ equip.Lv +",확률 :" + upgradeChance + "%");
 
+
             }
             else
             {
@@ -79,6 +80,7 @@ public class SmithManager : MonoBehaviour
                 equip.Cost = smithEquipOriginStats.Cost;
 
                 Debug.Log("강화 실패! 레벨: " + equip.Lv + ",확률 :" + upgradeChance +"%");
+
             }
             smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
             smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
@@ -91,13 +93,14 @@ public class SmithManager : MonoBehaviour
             {
                 shopManager.hasEquipList.Remove(smithEquip);
                 shopManager.hasEquipList.Add(smithEquip);
+                shopManager.ItemSave();
 
 
             }
             else
             {
                 shopManager.hasEquipList.Add(smithEquip);
-
+                shopManager.ItemSave();
 
 
             }
