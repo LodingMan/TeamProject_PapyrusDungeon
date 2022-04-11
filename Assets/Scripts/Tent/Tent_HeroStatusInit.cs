@@ -6,9 +6,10 @@ namespace Shin
 {
     public class Tent_HeroStatusInit : MonoBehaviour
     {
+        public ManagerTable MgrTable;
         public ItemUseManager itemUseManager;
         public Button Btn_Info;
-        UI_Tweening_Manager twMgr;
+        UI_Tweening_Manager tweenMgr;
         public GameObject heroPrefab;
         public Sprite sprite;
         public Image heroIcon;
@@ -17,15 +18,16 @@ namespace Shin
         public Image[] Image_Equips;
         private void Awake()
         {
-            itemUseManager = GameObject.Find("TentManager").GetComponent<ItemUseManager>();
-            twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
+            itemUseManager = MgrTable.itemUseMgr;
+            tweenMgr = MgrTable.tweenManager;
             text_status = new Text[9];
             for (int i = 0; i < text_status.Length; i++)
             {
                 text_status[i] = transform.GetChild(i).GetComponent<Text>();
             }
 
-            Btn_Info.onClick.AddListener(twMgr.UI_StatusPanel_Tent_On);
+            Btn_Info.onClick.AddListener(tweenMgr.UI_StatusPanel_Tent_On);
             Btn_Info.onClick.AddListener(StatusInit);
         }
 

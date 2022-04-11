@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using Song;
 
 namespace Shin
 {
     public class UI_Training_EmployedInfo : MonoBehaviour
     {
-        public Song.HeroManager heroManager;
-        public Shin.UI_TrainingManager uI_trainingManager;
-        public UI_Tweening_Manager uI_Tweening_Manager;
-        public TownManager twMgr;
-        HeroImageTable heroImageTable;
+        UI_TrainingManager trainingManager;
+        Song.HeroManager heroManager;
+        UI_Tweening_Manager tweenMgr;
+        TownManager townMgr;
+        public HeroImageTable heroImageTable;
 
         public StatScript statScript;
         public SkillScript skillScript;
@@ -27,24 +28,25 @@ namespace Shin
         public int curWeek;
         Button btn;
 
-        private void Awake()
+        private void Start()
         {
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
-            uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
-            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
+            trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+            heroManager = trainingManager.heroManager;
+            tweenMgr = trainingManager.tweenMgr;
+            heroImageTable = trainingManager.heroImageTable;
+            townMgr = trainingManager.townMgr;
+
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
-            
+
 
             heroInfo = GameObject.Find("Training_HeroInfo").transform.GetChild(0).GetComponent<Image>();
             btn = GetComponent<Button>();
 
-            btn.onClick.AddListener(uI_Tweening_Manager.UI_TrainingSecPanel_On); // 버튼이 눌리면
+            btn.onClick.AddListener(tweenMgr.UI_TrainingSecPanel_On); // 버튼이 눌리면
             btn.onClick.AddListener(ShowHeroDetail);
-            
+            btn.onClick.AddListener(trainingManager.MgrTable.soundMgr.PlayClipBtn);
         }
         private void Update()
         {
@@ -53,7 +55,7 @@ namespace Shin
 
         public void Init_UI()
         {
-            curWeek = twMgr.Week;
+            curWeek = townMgr.Week;
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름으로 비교해서 찾고

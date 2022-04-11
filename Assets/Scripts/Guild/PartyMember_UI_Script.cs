@@ -9,6 +9,7 @@ namespace Song
 
     public class PartyMember_UI_Script : MonoBehaviour//, IDropHandler
     {
+        public ManagerTable MgrTable;
         public GameObject This_Prefab_Object;
         public Song.GuildManager guildManager;
         Transform root;
@@ -25,9 +26,11 @@ namespace Song
 
         private void Start()
         {
-            guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
+            guildManager = MgrTable.guildManager;
+            heroImageTable = MgrTable.heroImageTable;
             uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+            
             root = transform.root;
         }
 

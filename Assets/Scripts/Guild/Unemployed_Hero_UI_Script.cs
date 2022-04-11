@@ -10,6 +10,7 @@ namespace Song
 
     public class Unemployed_Hero_UI_Script : MonoBehaviour
     {
+        public ManagerTable MgrTable;
         UI_SoundMgr soundMgr; // shin
         GuildManager guildManager;
         Shin.HeroImageTable heroImageTable;
@@ -19,12 +20,12 @@ namespace Song
         public Image heroImage; // shin
         private void Start()
         {
-            soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>(); // shin
-            guildManager = GameObject.Find("GuildManager").GetComponent<GuildManager>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
+            soundMgr = MgrTable.soundMgr; // shin
+            guildManager = MgrTable.guildManager;
+            heroImageTable = MgrTable.heroImageTable;
             gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(BtnFunc);
             gameObject.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(soundMgr.PlayClipGold); // shin
-            //gameObject.transform.GetChild(2).GetComponent<Button>().gameObject.SetActive(true);
             
             switch (gameObject.transform.GetChild(1).GetComponent<Text>().text) // shin
             {

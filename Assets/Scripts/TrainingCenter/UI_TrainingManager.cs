@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using Song;
 
 namespace Shin
 {
     public class UI_TrainingManager : MonoBehaviour
     {
+        public ManagerTable MgrTable;
         public Song.HeroManager heroManager;
-        public TownManager twMgr;
+        public TownManager townMgr;
         public UI_Tweening_Manager tweenMgr;
+        public HeroImageTable heroImageTable;
 
         public GameObject employer_List_UI_Content; // ½ºÅ©·Ñºä content
         public GameObject training_List_UI_Content;
@@ -27,11 +30,13 @@ namespace Shin
         public Button TrainButton;
         public bool isWarning = false;
 
-        private void Awake()
+        private void Start()
         {
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
-            tweenMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
+            heroManager = MgrTable.heroManager;
+            townMgr = MgrTable.townManager;
+            tweenMgr = MgrTable.tweenManager;
+            heroImageTable = MgrTable.heroImageTable;
 
             TrainButton.onClick.AddListener(EmployedInit_UI);
         }

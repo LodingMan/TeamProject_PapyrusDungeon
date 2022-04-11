@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Song;
 
 namespace Shin {
     public class UI_ChurchManager : MonoBehaviour
     {
+        public ManagerTable MgrTable;
         public Song.HeroManager heroManager;
         public TownManager townMgr;
         public UI_Tweening_Manager tweenMgr;
@@ -28,11 +30,12 @@ namespace Shin {
         public bool isWarning = false;
         void Start()
         {
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            townMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
-            tweenMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-            soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
+            heroManager = MgrTable.heroManager;
+            townMgr = MgrTable.townManager;
+            tweenMgr = MgrTable.tweenManager;
+            soundMgr = MgrTable.soundMgr;
+            heroImageTable = MgrTable.heroImageTable;
 
             ChurchButton.onClick.AddListener(EmployedInit_UI);
         }

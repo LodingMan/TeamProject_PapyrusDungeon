@@ -11,7 +11,7 @@ namespace Shin
         Shin.UI_ChurchManager uI_ChurchManager;
         Song.HeroManager heroManager;
         HeroImageTable heroImageTable;
-        public TownManager townManager;
+        TownManager townManager;
         public StatScript statScript;
         public HeroScript_Current_State heroScript_Current_State;
         public Text text_Name;
@@ -35,7 +35,7 @@ namespace Shin
 
             btn = GetComponent<Button>();//초기화
             btn.onClick.AddListener(HealingEnd);
-            //btn.onClick.AddListener(uI_ChurchManager.soundMgr.PlayClipOption);
+
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // 리스트 길이만큼.
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름 비교해서

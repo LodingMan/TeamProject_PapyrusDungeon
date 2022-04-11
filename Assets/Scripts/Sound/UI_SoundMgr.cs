@@ -11,7 +11,7 @@ public class UI_SoundMgr : MonoBehaviour
     public AudioClip audioGold;
     public AudioClip audioDungeon;
     public AudioClip audioDungeonFail;
-
+    public AudioClip audioTrainStart;
     void Start()
     {
         if (PlayerPrefs.HasKey("VolSE"))
@@ -45,5 +45,9 @@ public class UI_SoundMgr : MonoBehaviour
     {
         audioSE.clip = audioDungeonFail;
         audioSE.Play();
+    }
+    public void PlayClipTrainStart()
+    {
+
     }
 }

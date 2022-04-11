@@ -11,11 +11,7 @@ namespace Shin {
         public Text testText00;
         public Text testText01;
         Button btn;
-        private void Awake()
-        {
-            btn = GetComponent<Button>();
-            btn.onClick.AddListener(ShowHeroDetail);
-        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -23,6 +19,9 @@ namespace Shin {
             heroInfo = uI_Training_EmployedInfo.heroInfo;
             testText00 = heroInfo.transform.GetChild(0).GetComponent<Text>();
             testText01 = heroInfo.transform.GetChild(1).GetComponent<Text>();
+
+            btn = GetComponent<Button>();
+            btn.onClick.AddListener(ShowHeroDetail);
         }
 
         void ShowHeroDetail()

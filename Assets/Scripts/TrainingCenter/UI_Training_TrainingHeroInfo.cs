@@ -8,35 +8,30 @@ namespace Shin
     public class UI_Training_TrainingHeroInfo : MonoBehaviour
     {
         Song.HeroManager heroManager;
-        Shin.UI_TrainingManager uI_trainingManager;
+        Shin.UI_TrainingManager trainingManager;
+        Shin.HeroImageTable heroImageTable;
         public StatScript statScript;
         public SkillScript skillScript;
         public HeroScript_Current_State heroScript_Current_State;
-        Shin.HeroImageTable heroImageTable;
+
 
         Button btn; // 자기자신버튼
-        //public Button btn_ReturnTrain;
         public Image heroIcon;
         public Text heroName;
         public int curWeek;
-        private void Awake()
-        {
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
 
-            btn = GetComponent<Button>();
-            //btn_ReturnTrain = GameObject.Find("Btn_ReturnTrain").GetComponent<Button>();
-            btn.onClick.AddListener(TrainingEnd);
-            //btn_ReturnTrain.onClick.AddListener(ForceReturn);
-        }
-        // Start is called before the first frame update
         void Start()
         {
+            trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+            heroManager = trainingManager.heroManager;
+            heroImageTable = trainingManager.heroImageTable;
 
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
+
+            btn = GetComponent<Button>();
+            btn.onClick.AddListener(TrainingEnd);
         }
 
         private void Update()
@@ -84,7 +79,7 @@ namespace Shin
         //TrainingStart() 함수는 UI_Training_SelectedHeroInfo 스크립트에 있음.
         public void TrainingEnd()
         {
-            if ((uI_trainingManager.twMgr.Week - curWeek >= 1))
+            if ((trainingManager.townMgr.Week - curWeek >= 1))
             {
                 heroScript_Current_State.isTraining = false;
                 for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
@@ -95,14 +90,14 @@ namespace Shin
                         // 스킬레벨업
                     }
                 }
-                uI_trainingManager.EmployedDestroy_UI();
-                uI_trainingManager.EmployedInit_UI();
+                trainingManager.EmployedDestroy_UI();
+                trainingManager.EmployedInit_UI();
                 Destroy(gameObject);
             }
             else
             {
-                uI_trainingManager.tweenMgr.UI_TrainWarning_On();
-                uI_trainingManager.isWarning = true;
+                trainingManager.tweenMgr.UI_TrainWarning_On();
+                trainingManager.isWarning = true;
                 StartCoroutine(WarningWait());                
             }
         }    
@@ -110,9 +105,9 @@ namespace Shin
         IEnumerator WarningWait()
         {
             yield return new WaitForSeconds(1f);
-            if (uI_trainingManager.isWarning)
+            if (trainingManager.isWarning)
             {
-                uI_trainingManager.isWarning = false;
+                trainingManager.isWarning = false;
             }
             
         }
@@ -126,10 +121,10 @@ namespace Shin
                     heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining = false;
                 }
             }
-            uI_trainingManager.EmployedDestroy_UI();
-            uI_trainingManager.EmployedInit_UI();
-            uI_trainingManager.tweenMgr.UI_TrainWarning_Off();
-            uI_trainingManager.isWarning = false;
+            trainingManager.EmployedDestroy_UI();
+            trainingManager.EmployedInit_UI();
+            trainingManager.tweenMgr.UI_TrainWarning_Off();
+            trainingManager.isWarning = false;
             Destroy(gameObject);
         }
     }

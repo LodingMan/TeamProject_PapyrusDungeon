@@ -7,12 +7,12 @@ namespace Shin
 {
     public class UI_Training_SelectedHeroInfo : MonoBehaviour
     {
+        Shin.UI_TrainingManager trainingManager;
         Song.HeroManager heroManager;
-        Shin.UI_TrainingManager uI_trainingManager;
         public Shin.SkillDetailTable skillDetailTable;
         Shin.HeroImageTable heroImageTable;
 
-        UI_Tweening_Manager uI_Tweening_Manager;
+        UI_Tweening_Manager TweenMgr;
         public StatScript statScript;
         public SkillScript skillScript;
         public EquipScript equipScript;
@@ -33,29 +33,26 @@ namespace Shin
 
         public int curWeek;
 
-        private void Awake()
-        {
-            training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
-            uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
-            training_Start.onClick.AddListener(TrainingStart);
-            
-            Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
-            Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
-            Skill_Btn[2].onClick.AddListener(Click_Btn_Skill02);
-            
-
-        }
         void Start()
         {
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            uI_trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+            trainingManager = GameObject.Find("TrainingManager").GetComponent<Shin.UI_TrainingManager>();
+            heroManager = trainingManager.heroManager;
+            heroImageTable = trainingManager.heroImageTable;
+            TweenMgr = trainingManager.tweenMgr;
+
             statScript = GetComponent<StatScript>();
             skillScript = GetComponent<SkillScript>();
             equipScript = GetComponent<EquipScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
             heroName = transform.GetChild(0).GetComponent<Text>();
             heroImage = transform.GetChild(1).GetComponent<Image>();
+
+            training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
+            training_Start.onClick.AddListener(TrainingStart);
+
+            Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);
+            Skill_Btn[1].onClick.AddListener(Click_Btn_Skill01);
+            Skill_Btn[2].onClick.AddListener(Click_Btn_Skill02);
 
             gameObject.SetActive(false);
             
@@ -91,14 +88,14 @@ namespace Shin
                     heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isTraining = heroScript_Current_State.isTraining;
                 }
             }
-            uI_trainingManager.trainingHero_UI = Instantiate(uI_trainingManager.trainingHero_UI_Prefab, uI_trainingManager.training_List_UI_Content.transform);
-            uI_trainingManager.trainingHero_UI.name = gameObject.name;
-            uI_trainingManager.trainingHero_UI.GetComponent<UI_Training_TrainingHeroInfo>().curWeek = curWeek;
+            trainingManager.trainingHero_UI = Instantiate(trainingManager.trainingHero_UI_Prefab, trainingManager.training_List_UI_Content.transform);
+            trainingManager.trainingHero_UI.name = gameObject.name;
+            trainingManager.trainingHero_UI.GetComponent<UI_Training_TrainingHeroInfo>().curWeek = curWeek;
 
-            uI_Tweening_Manager.option_Btn.SetActive(true);
-            uI_Tweening_Manager.UI_TrainingSecPanel_Off();
-            uI_trainingManager.EmployedDestroy_UI();
-            uI_trainingManager.EmployedInit_UI();
+            TweenMgr.option_Btn.SetActive(true);
+            TweenMgr.UI_TrainingSecPanel_Off();
+            trainingManager.EmployedDestroy_UI();
+            trainingManager.EmployedInit_UI();
 
             gameObject.SetActive(false);
         }

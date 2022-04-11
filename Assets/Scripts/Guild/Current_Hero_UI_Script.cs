@@ -21,9 +21,10 @@ namespace Song
         public GameObject This_Prefab_Object; //해당 UI하나가 어떤 오브젝트를 가리키고 있는지 보여줌.
         public UI_Central uI_Central;
         public Song.Hero_Status_UI_Script hero_Status_UI_Script;
-        
+
 
         //shin
+        public ManagerTable MgrTable;
         Shin.HeroImageTable heroImageTable;
         UI_SoundMgr soundMgr;
         public Text HP;
@@ -34,10 +35,11 @@ namespace Song
 
         private void Start()
         {
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
             hero_Status_UI_Script = GameObject.Find("Status_UI").GetComponent<Song.Hero_Status_UI_Script>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
-            soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
+            heroImageTable = MgrTable.heroImageTable;
+            soundMgr = MgrTable.soundMgr;
             root = transform.root;
             canvasGroup = GetComponent<CanvasGroup>();
             switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)

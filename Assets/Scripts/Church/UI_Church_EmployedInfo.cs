@@ -8,8 +8,8 @@ namespace Shin
     // 고용중인 영웅 버튼 클릭에 달려 있음.
     public class UI_Church_EmployedInfo : MonoBehaviour
     {
+        Shin.UI_ChurchManager ChurchManager;
         Song.HeroManager heroManager;
-        Shin.UI_ChurchManager uI_ChurchManager;
         TownManager townMgr;
         HeroImageTable heroImageTable;
 
@@ -27,16 +27,16 @@ namespace Shin
 
         private void Start()
         {
-            uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
-            heroManager = uI_ChurchManager.heroManager;
-            townMgr = uI_ChurchManager.townMgr;
-            heroImageTable = uI_ChurchManager.heroImageTable;
+            ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
+            heroManager = ChurchManager.heroManager;
+            townMgr = ChurchManager.townMgr;
+            heroImageTable = ChurchManager.heroImageTable;
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
             btn = GetComponent<Button>();
             btn.onClick.AddListener(Create_HealingHero_UI_Prefab); // 버튼이 눌리면
-            btn.onClick.AddListener(uI_ChurchManager.soundMgr.PlayClipOption);
+            btn.onClick.AddListener(ChurchManager.MgrTable.soundMgr.PlayClipOption);
 
             // 초기화
             curWeek = townMgr.Week;
@@ -86,12 +86,12 @@ namespace Shin
                 { heroManager.CurrentHeroList[i].GetComponent<HeroScript_Current_State>().isHealing = true; }
             }
 
-            uI_ChurchManager.healingHero_UI = Instantiate(uI_ChurchManager.healingHero_UI_Prefab, uI_ChurchManager.healing_List_UI_Content.transform);
-            uI_ChurchManager.healingHero_UI.name = gameObject.name;
-            uI_ChurchManager.healingHero_UI.GetComponent<UI_HealingInfo>().curWeek = curWeek;
+            ChurchManager.healingHero_UI = Instantiate(ChurchManager.healingHero_UI_Prefab, ChurchManager.healing_List_UI_Content.transform);
+            ChurchManager.healingHero_UI.name = gameObject.name;
+            ChurchManager.healingHero_UI.GetComponent<UI_HealingInfo>().curWeek = curWeek;
 
-            uI_ChurchManager.EmployedDestroy_UI();
-            uI_ChurchManager.EmployedInit_UI();
+            ChurchManager.EmployedDestroy_UI();
+            ChurchManager.EmployedInit_UI();
         }
     }
 }
