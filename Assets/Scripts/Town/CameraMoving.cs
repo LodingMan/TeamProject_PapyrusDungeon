@@ -8,6 +8,7 @@ using UnityEngine;
 public class CameraMoving : MonoBehaviour
 {
     public GameObject cam;
+    public ShopManager shopMgr;
     public Animator camAnim;
     public CamState camState;
     public int camStateChecker = 0;
@@ -30,6 +31,7 @@ public class CameraMoving : MonoBehaviour
 
     private void Start()
     {
+        shopMgr.WipeInventory();
         camAnim = cam.GetComponent<Animator>();
         DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 800, sequencesCapacity: 200);
     }

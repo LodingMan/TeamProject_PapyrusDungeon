@@ -150,6 +150,8 @@ public class ShopEquipScripts : MonoBehaviour
             buyEquip.transform.SetParent(inventory.transform);
             buyEquip.transform.localPosition = inventory.transform.localPosition;
             buyEquip.transform.localScale = new Vector3(1, 1, 1);
+            hasEquipList.Add(buyEquip);
+            shopManager.ItemSave();
             Destroy(gameObject);
         }
         else

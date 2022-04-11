@@ -15,6 +15,7 @@ public class ItemScripts : MonoBehaviour
     public ItemUseManager itemUseManager;
     public ShopManager shopManager;
     public ItemTable itemTable = new ItemTable();
+    public ItemDataSave itemDataSave;
     public Button useBtn;
     public Song.UI_DungeonSelect_Manager dgMgr;
     public UI_Tweening_Manager twMgr;
@@ -85,6 +86,7 @@ public class ItemScripts : MonoBehaviour
         item.Pram = itemTable.Item_Dictionary[itemIndex].Pram;
         item.cost = itemTable.Item_Dictionary[itemIndex].cost;
         item.TargetStatus = itemTable.Item_Dictionary[itemIndex].TargetStatus;
+        itemDataSave.itemSavingData.item = item;
         gameObject.name = item.Name;
     }
 
@@ -108,6 +110,7 @@ public class ItemScripts : MonoBehaviour
                                 shopManager.hasItemList.RemoveAt(i);
                             }
                         }
+                        shopManager.ItemSave();
                         Destroy(gameObject);
 
                     }
@@ -127,6 +130,7 @@ public class ItemScripts : MonoBehaviour
                                 shopManager.hasItemList.RemoveAt(i);
                             }
                         }
+                        shopManager.ItemSave();
                         Destroy(gameObject);
 
                     }
@@ -199,6 +203,7 @@ public class ItemScripts : MonoBehaviour
                 }
                 useBtn.gameObject.SetActive(false);
                 Debug.Log("판매 완료");
+                shopManager.ItemSave();
                 Destroy(gameObject);
 
             }

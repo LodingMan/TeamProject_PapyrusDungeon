@@ -147,6 +147,12 @@ public class EquipSavingData
     public Equip equip;
 }
 
+[System.Serializable]
+public class ItemSavingData
+{
+    public Item item;
+}
+
 namespace Shin
 {
     public class SkillDetail

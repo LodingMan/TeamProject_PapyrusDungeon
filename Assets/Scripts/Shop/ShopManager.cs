@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class ShopManager : MonoBehaviour
     public List<GameObject> hasItemList = new List<GameObject>(); //가지고 있는 아이템 리스트입니다. 데이터 저장 할때 필요합니다.
     public List<GameObject> hasEquipList = new List<GameObject>(); //가지고 있는 장비 리스트입니다. 데이터 저장 할때 필요합니다.
     public List<EquipSavingData> equipSavingDatas = new List<EquipSavingData>(); //무기, 장비 데이터를 저장 할때 필요합니다.
+    public List<ItemSavingData> itemSavingDatas = new List<ItemSavingData>(); //아이템 저장 할때 필요합니다.
 
 
     public GameObject inventory; // 인벤토리 패널 위치
@@ -33,6 +35,8 @@ public class ShopManager : MonoBehaviour
     public bool isShop = false; // 상점이 열려있는지 확인하는 bool값입니다.
 
     public Button BuyBtn; // 구매 버튼
+    public bool isClear1 = false;
+    public bool isClear2 = false;
 
     public void IsShop()
     {
@@ -83,11 +87,22 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < hasItemList.Count; i++)
         {
 
-            item.Add(hasItemList[i].GetComponent<ItemScripts>().item);
+            if (itemSavingDatas != null && !isClear1)
+            {
+                isClear1 = true;
+                itemSavingDatas.Clear();
+            }
+            itemSavingDatas.Add(hasItemList[i].GetComponent<ItemDataSave>().itemSavingData);
 
         }
         for (int i = 0; i < hasEquipList.Count; i++)
         {
+
+            if (equipSavingDatas != null && !isClear2)
+            {
+                isClear2 = true;
+                equipSavingDatas.Clear();
+            }
             equipSavingDatas.Add(hasEquipList[i].GetComponent<EquipDataSave>().equipSavingData);
         }
 
@@ -96,16 +111,19 @@ public class ShopManager : MonoBehaviour
             Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
         }
 
-        string jdata = JsonConvert.SerializeObject(item);
+        string jdata = JsonConvert.SerializeObject(itemSavingDatas);
         string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
         File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
         File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
 
+        isClear1 = false;
+        isClear2 = false;
+
     }
 
-    public void LoadItemCreate(Item LodingItemSavingData) // 이름에 맞게 아이템을 인벤토리에 생성합니다.
+    public void LoadItemCreate(ItemSavingData LodingItemSavingData) // 이름에 맞게 아이템을 인벤토리에 생성합니다.
     {
-        switch (LodingItemSavingData.Name)
+        switch (LodingItemSavingData.item.Name)
         {
             case "체력물약":
                 itemPrefab = Instantiate(itemList[0]);
@@ -123,7 +141,7 @@ public class ShopManager : MonoBehaviour
             default:
                 break;
         }
-
+        itemPrefab.GetComponent<ItemDataSave>().itemSavingData.item = LodingItemSavingData.item;
         hasItemList.Add(itemPrefab); // 아이템을 인벤토리 리스트에 추가합니다.
 
     }
@@ -132,18 +150,161 @@ public class ShopManager : MonoBehaviour
         switch (LodingEquipSavingData.equip.Name)
         {
             case "Sword":
-                equipPrefab = Instantiate(equipList[0]);
+                equipPrefab = Instantiate(equipList[1]);
                 equipPrefab.transform.SetParent(inventory.transform); // 인벤토리 위치에 생성을 합니다.
                 equipPrefab.transform.localPosition = inventory.transform.localPosition;
                 equipPrefab.transform.localScale = new Vector3(1, 1, 1);
                 break;
-            case "Shield":
-                equipPrefab = Instantiate(equipList[1]);
+            case "Axe":
+                equipPrefab = Instantiate(equipList[2]);
                 equipPrefab.transform.SetParent(inventory.transform);
                 equipPrefab.transform.localPosition = inventory.transform.localPosition;
                 equipPrefab.transform.localScale = new Vector3(1, 1, 1);
                 break;
-
+            case "Bow":
+                equipPrefab = Instantiate(equipList[3]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Knife":
+                equipPrefab = Instantiate(equipList[4]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "DoubleAxe":
+                equipPrefab = Instantiate(equipList[5]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Saber":
+                equipPrefab = Instantiate(equipList[6]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Wand":
+                equipPrefab = Instantiate(equipList[7]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Amulet1":
+                equipPrefab = Instantiate(equipList[8]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Amulet2":
+                equipPrefab = Instantiate(equipList[9]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Amulet3":
+                equipPrefab = Instantiate(equipList[10]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Armor1":
+                equipPrefab = Instantiate(equipList[11]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Armor2":
+                equipPrefab = Instantiate(equipList[12]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Boot1":
+                equipPrefab = Instantiate(equipList[13]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Boot2":
+                equipPrefab = Instantiate(equipList[14]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Boot3":
+                equipPrefab = Instantiate(equipList[15]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Armor3":
+                equipPrefab = Instantiate(equipList[16]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Armor4":
+                equipPrefab = Instantiate(equipList[17]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Glove1":
+                equipPrefab = Instantiate(equipList[18]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Glove2":
+                equipPrefab = Instantiate(equipList[19]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Armor5":
+                equipPrefab = Instantiate(equipList[20]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Helmet1":
+                equipPrefab = Instantiate(equipList[21]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Helmet2":
+                equipPrefab = Instantiate(equipList[22]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Helmet3":
+                equipPrefab = Instantiate(equipList[23]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Ring1":
+                equipPrefab = Instantiate(equipList[24]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Ring2":
+                equipPrefab = Instantiate(equipList[25]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case "Shield":
+                equipPrefab = Instantiate(equipList[26]);
+                equipPrefab.transform.SetParent(inventory.transform);
+                equipPrefab.transform.localPosition = inventory.transform.localPosition;
+                equipPrefab.transform.localScale = new Vector3(1, 1, 1);
+                break;
             default:
                 break;
         }
@@ -160,16 +321,16 @@ public class ShopManager : MonoBehaviour
     {
         string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/ItemSave.Json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
         string jdata2 = File.ReadAllText(Application.persistentDataPath + "/Resources/EquipSave.Json");
-        item = JsonConvert.DeserializeObject<List<Item>>(jdata);
+        itemSavingDatas = JsonConvert.DeserializeObject<List<ItemSavingData>>(jdata);
         equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(jdata2);
 
-        for (int i = 0; i < item.Count; i++)
+        for (int i = 0; i < itemSavingDatas.Count; i++)
         {
-            if (item[i].Name == "") // item이 배열이였을때 빈 공간까지 아이템으로 채워지는 오류가 있어서 리스트로 바꾸고, 아이템 Name에 공백이 있으면 스킵하는 방식으로 수정 하였습니다.
+            if (itemSavingDatas[i].item.Name == "") // item이 배열이였을때 빈 공간까지 아이템으로 채워지는 오류가 있어서 리스트로 바꾸고, 아이템 Name에 공백이 있으면 스킵하는 방식으로 수정 하였습니다.
             {
                 break;
             }
-            LoadItemCreate(item[i]);
+            LoadItemCreate(itemSavingDatas[i]);
         }
         for (int i = 0; i < equipSavingDatas.Count; i++)
         {
@@ -179,5 +340,31 @@ public class ShopManager : MonoBehaviour
             }
             LoadEquipCreate(equipSavingDatas[i]);
         }
+
+    }
+
+    public void WipeInventory()
+    {
+        StartCoroutine(WipeInventoryCo());
+
+        if (!File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && !File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json"))
+        {
+            File.Create(Application.persistentDataPath + "/Resources/ItemSave.Json");
+            File.Create(Application.persistentDataPath + "/Resources/EquipSave.Json");
+        }
+        else
+        {
+            ItemLoad();
+        }
+
+    }
+
+    IEnumerator WipeInventoryCo()
+    {
+        if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
+        }
+        yield return new WaitForEndOfFrame();
     }
 }

@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 1437876566852177031}
   - component: {fileID: 1437876566852177028}
   - component: {fileID: 1437876566852177029}
+  - component: {fileID: -4136409439849763197}
   m_Layer: 5
   m_Name: HP_POTION
   m_TagString: Item
@@ -271,6 +272,7 @@ MonoBehaviour:
     Cost: 0
   itemUseManager: {fileID: 0}
   shopManager: {fileID: 0}
+  itemDataSave: {fileID: -4136409439849763197}
   useBtn: {fileID: 0}
   dgMgr: {fileID: 0}
   twMgr: {fileID: 0}
@@ -278,6 +280,25 @@ MonoBehaviour:
   isUsed: 0
   isDungeon: 0
   sell: 0
+--- !u!114 &-4136409439849763197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437876566852177027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f430dd65a6fb142b6ec8384459921e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSavingData:
+    item:
+      Index: 0
+      Name: "\uCCB4\uB825\uBB3C\uC57D"
+      Pram: 10
+      cost: 100
+      TargetStatus: HP
 --- !u!1 &5901043816602793896
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 //==================================================================================================//
 //무기, 장비 장착 및 해제 스크립트입니다. 03-28 윤성근
 //==================================================================================================//
-public class EquipScripts_ysg : MonoBehaviour 
+public class EquipScripts_ysg : MonoBehaviour
 {
     public Equip equip;
     public ItemUseManager itemUseManager;
@@ -28,8 +26,8 @@ public class EquipScripts_ysg : MonoBehaviour
     public Image equipImg;
     public Transform smithSlot;
 
-   
-    
+
+
 
     void Start()
     {
@@ -44,7 +42,7 @@ public class EquipScripts_ysg : MonoBehaviour
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
 
 
-        itemData.hasEquipList.Add(gameObject);
+        //itemData.hasEquipList.Add(gameObject);
 
 
         switch (gameObject.name) //현재 게임오브젝트의 이름에 맞는 함수를 출력합니다.
@@ -211,7 +209,7 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (!isArmorEquip)
         {
-            switch(equip.Index)
+            switch (equip.Index)
             {
                 case 8:
                     EquipArmor();
@@ -519,6 +517,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 equipBtn.gameObject.SetActive(false);
                 Destroy(gameObject);
                 Debug.Log("판매완료");
+                itemData.ItemSave();
 
             }
 
@@ -551,6 +550,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.InitEquip();
                 equipImg.gameObject.SetActive(true);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
+
                 //equipBtn.gameObject.SetActive(false);
             }
             equipBtn.gameObject.SetActive(false);
@@ -608,7 +608,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 //equipBtn.gameObject.SetActive(false);
             }
             equipBtn.gameObject.SetActive(false);
- 
+
 
         }
     }
@@ -636,6 +636,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.InitEquip();
                 equipImg.gameObject.SetActive(false);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
+
                 //equipBtn.gameObject.SetActive(false);
             }
             equipBtn.gameObject.SetActive(false);
@@ -647,22 +648,22 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (!smithManager.isSlotFull && smithManager.isActive)
         {
-                smithManager.isSlotFull = true;
-                smithManager.equip.Index = equip.Index;
-                smithManager.equip.Name = equip.Name;
-                smithManager.equip.Job = equip.Job;
-                smithManager.equip.Lv = equip.Lv;
-                smithManager.equip.Hp = equip.Hp;
-                smithManager.equip.Mp = equip.Mp;
-                smithManager.equip.Atk = equip.Atk;
-                smithManager.equip.Def = equip.Def;
-                smithManager.equip.Cri = equip.Cri;
-                smithManager.equip.Acc = equip.Acc;
-                gameObject.transform.SetParent(smithSlot);
-                gameObject.transform.localPosition = smithSlot.localPosition;
-                gameObject.transform.localScale = smithSlot.localScale;
+            smithManager.isSlotFull = true;
+            smithManager.equip.Index = equip.Index;
+            smithManager.equip.Name = equip.Name;
+            smithManager.equip.Job = equip.Job;
+            smithManager.equip.Lv = equip.Lv;
+            smithManager.equip.Hp = equip.Hp;
+            smithManager.equip.Mp = equip.Mp;
+            smithManager.equip.Atk = equip.Atk;
+            smithManager.equip.Def = equip.Def;
+            smithManager.equip.Cri = equip.Cri;
+            smithManager.equip.Acc = equip.Acc;
+            gameObject.transform.SetParent(smithSlot);
+            gameObject.transform.localPosition = smithSlot.localPosition;
+            gameObject.transform.localScale = smithSlot.localScale;
 
-                equipBtn.gameObject.SetActive(false);   
+            equipBtn.gameObject.SetActive(false);
         }
 
 
