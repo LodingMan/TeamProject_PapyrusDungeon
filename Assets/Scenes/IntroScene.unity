@@ -676,7 +676,6 @@ GameObject:
   - component: {fileID: 1948670101}
   - component: {fileID: 1948670100}
   - component: {fileID: 1948670099}
-  - component: {fileID: 1948670102}
   m_Layer: 0
   m_Name: BGM_Manager
   m_TagString: Untagged
@@ -810,20 +809,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1948670102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948670098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e73676de2ac994b9125bb8ceb9c07d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicInfoText: {fileID: 0}
-  staticInfoText: {fileID: 0}
 --- !u!1 &2084052765
 GameObject:
   m_ObjectHideFlags: 0
