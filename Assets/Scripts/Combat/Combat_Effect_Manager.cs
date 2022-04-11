@@ -43,7 +43,7 @@ public class Combat_Effect_Manager : MonoBehaviour
             effectHero.transform.SetParent(target.transform);
             audioSource.PlayOneShot(sfx[combatMgr.SaveSkill.Index]);
             effectHero.transform.DOMove(effectHero.transform.position - new Vector3(-0.8f, 0f, 0f), 3f).SetLink(effectHero, LinkBehaviour.KillOnDestroy);
-            Destroy(effectHero, 3f);
+            Destroy(effectHero, 4f);
         }
         else
         {
@@ -51,7 +51,7 @@ public class Combat_Effect_Manager : MonoBehaviour
             effectHero2.transform.SetParent(hero.transform);
             audioSource.PlayOneShot(sfx[combatMgr.SaveSkill.Index]);
             effectHero2.transform.DOMove(effectHero2.transform.position - new Vector3(-1.4f, 0f, 0f), 3f).SetLink(effectHero2, LinkBehaviour.KillOnDestroy);
-            Destroy(effectHero2, 3f);
+            Destroy(effectHero2, 4f);
         }
 
 
@@ -64,7 +64,7 @@ public class Combat_Effect_Manager : MonoBehaviour
         GameObject effectEnemy = Instantiate(enemyEffects[0]);
         effectEnemy.transform.position = target.transform.position + new Vector3(0, 1, -1);
         audioSource.PlayOneShot(eSfx[0]);
-        Destroy(effectEnemy, 3f);
+        Destroy(effectEnemy, 4f);
 
     }
 
