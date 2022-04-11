@@ -21,7 +21,6 @@ public class TownManager : MonoBehaviour
     public ShopManager shopMgr;
     public Shin.UI_DungeonInitButton DIB;
     public Song.UI_DungeonSelect_Manager uI_DungeonSelect_Manager;
-    public IntroSceneScript introSceneScript;
 
     public List<GameObject> OnControll = new List<GameObject>(); 
 
