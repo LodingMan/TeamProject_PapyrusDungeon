@@ -15,7 +15,7 @@ public class SkillActiveManager : MonoBehaviour
     public Image Root;
 
     public e_CombatManager combatManager;
-    public Target_Panal_Script enemyTargetScript;
+    public Target_Panal_Script target_Panal_Script;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
     public Shin.SkillDetailTable skillDetailTable;
 
@@ -77,12 +77,31 @@ public class SkillActiveManager : MonoBehaviour
         {
            if( combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveUnitIndex)
             {
-                enemyTargetScript.TargetView();
-                gameObject.SetActive(false);
-                Debug.Log("1번스킬 사용!");
-                InfoOut();
+                switch(combatManager.SaveSkill.Type)
+                {
+                    case 0:
+                        Debug.Log("AttackSkill");
+                        target_Panal_Script.EnemyTargetView();
+                        gameObject.SetActive(false);
+                        Debug.Log("1번스킬 사용!");
+                        InfoOut();
+
+                        break;
+                    case 1:
+                        Debug.Log("BuffSkill");
+                        target_Panal_Script.PlayerTargetView();
+                        gameObject.SetActive(false);
+                        combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
+                        Debug.Log("1번스킬 사용!");
+                        InfoOut();
+
+
+
+                        break;
+                }
                 return;
             }
+
         }
         Debug.Log("사용불가");
 
@@ -91,6 +110,11 @@ public class SkillActiveManager : MonoBehaviour
     {
 
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 0), 1);
+
+        combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[0].Name;
+        combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : " + currentSkills[0].ATK;
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + currentSkills[0].Type;
+
         for (int i = 0; i< 3; i++)
         {
             if (currentSkills[0].MyPosition[i] == -1)
@@ -129,18 +153,34 @@ public class SkillActiveManager : MonoBehaviour
     public void Skill2()
     {
         combatManager.SaveSkill = currentSkills[1];
+
         for (int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
         {
             if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveUnitIndex)
             {
-                enemyTargetScript.TargetView();
-                gameObject.SetActive(false);
-                Debug.Log("2번스킬 사용!");
-                InfoOut();
+                switch (combatManager.SaveSkill.Type)
+                {
+                    case 0:
+                        Debug.Log("AttackSkill");
+                        target_Panal_Script.EnemyTargetView();
+                        gameObject.SetActive(false);
+                        Debug.Log("2번스킬 사용!");
+                        InfoOut();
 
+                        break;
+                    case 1:
+                        Debug.Log("BuffSkill");
+                        target_Panal_Script.PlayerTargetView();
+                        gameObject.SetActive(false);
+                        combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
+                        Debug.Log("2번스킬 사용!");
+                        InfoOut();
+                        break;
+                }
                 return;
             }
         }
+
         Debug.Log("사용불가");
     }
     public void Skill2_Info()
@@ -150,7 +190,7 @@ public class SkillActiveManager : MonoBehaviour
 
         combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[1].Name;
         combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : "+currentSkills[1].ATK;
-        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL DEF : "+currentSkills[1].DEF;
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL DEF : "+currentSkills[1].Type;
 
 
         for (int i = 0; i < 3; i++)
@@ -186,17 +226,39 @@ public class SkillActiveManager : MonoBehaviour
     public void Skill3()
     {
         combatManager.SaveSkill = currentSkills[2];
+
         for (int i = 0; i < combatManager.SaveSkill.MyPosition.Length; i++)
         {
             if (combatManager.SaveSkill.MyPosition[i] == combatManager.currentActiveUnitIndex)
             {
-                enemyTargetScript.TargetView();
-                gameObject.SetActive(false);
-                Debug.Log("3번스킬 사용!");
-                InfoOut();
+                switch (combatManager.SaveSkill.Type)
+                {
+                    case 0:
+                        Debug.Log("AttackSkill");
+                        target_Panal_Script.EnemyTargetView();
+                        gameObject.SetActive(false);
+                        Debug.Log("3번스킬 사용!");
+                        InfoOut();
+
+                        break;
+                    case 1:
+                        Debug.Log("BuffSkill");
+                        target_Panal_Script.PlayerTargetView();
+                        gameObject.SetActive(false);
+                        combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
+                        Debug.Log("3번스킬 사용!");
+                        InfoOut();
+
+
+
+                        break;
+                }
                 return;
             }
+
         }
+
+
         Debug.Log("사용불가");
 
     }
@@ -204,6 +266,9 @@ public class SkillActiveManager : MonoBehaviour
     {
 
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 0), 1);
+        combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[2].Name;
+        combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : " + currentSkills[2].ATK;
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL DEF : " + currentSkills[2].Type;
 
         for (int i = 0; i < 3; i++)
         {

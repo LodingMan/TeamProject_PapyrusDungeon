@@ -21,9 +21,11 @@ namespace Song
         public GameObject This_Prefab_Object; //해당 UI하나가 어떤 오브젝트를 가리키고 있는지 보여줌.
         public UI_Central uI_Central;
         public Song.Hero_Status_UI_Script hero_Status_UI_Script;
+        
 
         //shin
         Shin.HeroImageTable heroImageTable;
+        UI_SoundMgr soundMgr;
         public Text HP;
         public Text MP;
         public Text curStateText;
@@ -35,6 +37,7 @@ namespace Song
             hero_Status_UI_Script = GameObject.Find("Status_UI").GetComponent<Song.Hero_Status_UI_Script>();
             heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
             uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
+            soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
             root = transform.root;
             canvasGroup = GetComponent<CanvasGroup>();
             switch (This_Prefab_Object.GetComponent<StatScript>().myStat.Job)
@@ -102,6 +105,7 @@ namespace Song
                 //Debug.Log("스테이터스창 출력");
                // root.BroadcastMessage("Open_Status_UI", SendMessageOptions.DontRequireReceiver); // 현재 transform 정보를 UI_Central(Hierarchy에 존재하는 Canvers)의 "Drag"라는 이름의 함수에 전해줌. 
                 hero_Status_UI_Script.Open_Status_UI(This_Prefab_Object);
+                soundMgr.PlayClipBtn();
                 PointerDonwTime = 0;
                 isPointerDown = false;
             }
@@ -127,6 +131,7 @@ namespace Song
             {
                 gameObject.transform.position = eventData.position; //드래그하면 따라옴
                 root.BroadcastMessage("Drag", transform, SendMessageOptions.DontRequireReceiver); // 현재 transform 정보를 UI_Central(Hierarchy에 존재하는 Canvers)의 "Drag"라는 이름의 함수에 전해줌. 
+                
             }
         }
         public void OnBeginDrag(PointerEventData eventData)
@@ -134,8 +139,7 @@ namespace Song
             root.BroadcastMessage("BeginDrag", transform, SendMessageOptions.DontRequireReceiver);
             isPointerDown = false;
             canvasGroup.blocksRaycasts = false;
-
-
+            soundMgr.PlayClipOption();
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -143,7 +147,7 @@ namespace Song
             root.BroadcastMessage("EndDrag", transform, SendMessageOptions.DontRequireReceiver);
             canvasGroup.blocksRaycasts = true;
             uI_Central.Catch_Hero_Object = null;
-
+            soundMgr.PlayClipOption();
         }
 
     }

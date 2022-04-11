@@ -65,17 +65,17 @@ public class skill // 03-26 Lv Ãß°¡
     public string Name;
     public int LV;
     public int ATK;
-    public int DEF;
+    public int Type;
     public int[] MyPosition;
     public int[] EnemyPosition;
    
-    public skill(int index, string name, int lv, int atk, int def , int[] myPosition, int[] enemyPosition)
+    public skill(int index, string name, int lv, int atk, int type , int[] myPosition, int[] enemyPosition)
     {
         this.Index = index;
         this.Name = name;
         this.LV = lv;
         this.ATK = atk;
-        this.DEF = def;
+        this.Type = type;
         this.MyPosition = myPosition;
         this.EnemyPosition = enemyPosition;
     }

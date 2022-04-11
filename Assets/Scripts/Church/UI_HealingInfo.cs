@@ -22,22 +22,20 @@ namespace Shin
         public int curWeek;
         public static int healingCnt; // 회복중인 영웅 리스트 순서에 사용할 static int
         //public Button btn_ReturnChurch;
-        private void Awake()
+
+        void Start()
         {
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            townManager = GameObject.Find("TownManager").GetComponent<TownManager>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+            heroManager = uI_ChurchManager.heroManager;
+            townManager = uI_ChurchManager.townMgr;
+            heroImageTable = uI_ChurchManager.heroImageTable;
 
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
             btn = GetComponent<Button>();//초기화
             btn.onClick.AddListener(HealingEnd);
-        }
-
-        void Start()
-        {
+            //btn.onClick.AddListener(uI_ChurchManager.soundMgr.PlayClipOption);
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++) // 리스트 길이만큼.
             {
                 if (gameObject.name == heroManager.CurrentHeroList[i].name) // 이름 비교해서
@@ -79,6 +77,7 @@ namespace Shin
             // **예외조건으로 1주 이상이 지나야 회복조건이 발동되도록 수정해야함.
             // 자기 자신만 되도록 변경.
             if((townManager.Week - curWeek >= 1)) {
+                uI_ChurchManager.soundMgr.PlayClipOption();
                 for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
                 {
                     if (gameObject.name == heroManager.CurrentHeroList[i].name)
@@ -95,6 +94,7 @@ namespace Shin
             }
             else
             {
+                uI_ChurchManager.soundMgr.FailClipDungeonSelect();
                 uI_ChurchManager.isWarning = true;
                 uI_ChurchManager.tweenMgr.UI_ChurchWarning_On();
                 StartCoroutine(WarningPanelOff());

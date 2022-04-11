@@ -10,9 +10,8 @@ namespace Shin
     {
         Song.HeroManager heroManager;
         Shin.UI_ChurchManager uI_ChurchManager;
-        TownManager twMgr;
+        TownManager townMgr;
         HeroImageTable heroImageTable;
-        //public HeroSavingData healingHeroData = new HeroSavingData();
 
         public StatScript statScript;
         public HeroScript_Current_State heroScript_Current_State;
@@ -25,24 +24,22 @@ namespace Shin
         public Button btn; // 자기 자신의 버튼.
         int num;
         public int curWeek;
-        //static public int EmployedCnt = 0;
 
-        private void Awake()
-        {
-            btn = GetComponent<Button>();
-            btn.onClick.AddListener(Create_HealingHero_UI_Prefab); // 버튼이 눌리면
-        }
         private void Start()
         {
             uI_ChurchManager = GameObject.Find("ChurchManager").GetComponent<Shin.UI_ChurchManager>();
-            heroManager = GameObject.Find("HeroManager").GetComponent<Song.HeroManager>();
-            twMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
-            heroImageTable = GameObject.Find("HeroImageManager").GetComponent<Shin.HeroImageTable>();
+            heroManager = uI_ChurchManager.heroManager;
+            townMgr = uI_ChurchManager.townMgr;
+            heroImageTable = uI_ChurchManager.heroImageTable;
             statScript = GetComponent<StatScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
-            
+
+            btn = GetComponent<Button>();
+            btn.onClick.AddListener(Create_HealingHero_UI_Prefab); // 버튼이 눌리면
+            btn.onClick.AddListener(uI_ChurchManager.soundMgr.PlayClipOption);
+
             // 초기화
-            curWeek = twMgr.Week;
+            curWeek = townMgr.Week;
 
             for (int i = 0; i < heroManager.CurrentHeroList.Count; i++)
             {
