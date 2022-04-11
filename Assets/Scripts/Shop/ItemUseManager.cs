@@ -138,7 +138,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
     public void SelectHero()
     {
-        if (dgMgr.isTent && !alreadySelect && !twMgr.isTentOption)
+        if (dgMgr.isTent && !alreadySelect && twMgr.isTentOption == false)
         {
             guildMgr = GameObject.Find("GuildManager").GetComponent<Song.GuildManager>().Party_Hero_Member;
 

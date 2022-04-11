@@ -13,6 +13,7 @@ public class TownManager : MonoBehaviour
     public int Gold = 0;
     public int Jewel = 0;
 
+    public IntroSceneScript introSceneScript;
     public Song.HeroManager heroManager; // inspectorâ�� HeroManager�־���
     public Song.GuildManager guildManager;
     public Shin.UI_ChurchManager churchManager;
@@ -20,7 +21,6 @@ public class TownManager : MonoBehaviour
     public ShopManager shopMgr;
     public Shin.UI_DungeonInitButton DIB;
     public Song.UI_DungeonSelect_Manager uI_DungeonSelect_Manager;
-    public IntroSceneScript introSceneScript;
 
     public List<GameObject> OnControll = new List<GameObject>(); 
 

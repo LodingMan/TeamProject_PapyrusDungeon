@@ -82,7 +82,11 @@ public class UI_Tweening_Manager : MonoBehaviour
 
             }
             if (townMgr.isTown == true)
-            {        
+            {
+                if (StackCount == 0)
+                {
+                    ///application.Quit();
+                }
                 if (isOption == false)
                 {
                     if (isShop)
