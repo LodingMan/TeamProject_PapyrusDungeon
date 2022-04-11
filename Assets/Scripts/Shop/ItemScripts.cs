@@ -185,7 +185,7 @@ public class ItemScripts : MonoBehaviour
 
     public void ItemSell()
     {
-        if (shopManager.isShop && twMgr.isShop)
+        if (twMgr.isShop)
         {
             useBtn.gameObject.SetActive(false);
             sell++;
@@ -203,7 +203,7 @@ public class ItemScripts : MonoBehaviour
                 }
                 useBtn.gameObject.SetActive(false);
                 Debug.Log("판매 완료");
-                shopManager.ItemSave();
+                shopManager.SellItemSave();
                 Destroy(gameObject);
 
             }

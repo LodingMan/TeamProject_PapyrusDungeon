@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class SKillTable
 {
-    public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv Ãß°¡
+    public Dictionary<int, skill> skillTable_Dictionary = new Dictionary<int, skill>() // 03-26 Lv ï¿½ß°ï¿½
     {
         //Mage
         { 0, new skill(30, "SkillName1", 1, 1, 0 , 0 ,new int[3] {0,1,2}, new int[3] {0,1,-1  },2)},
@@ -40,6 +40,7 @@ public class SKillTable
         { 27, new skill(27, "SkillName28", 1, 3, 1, 0 , new int[3] {0,1,-1 }, new int[3] {0,1,-1  },2)},
         { 28, new skill(28, "SkillName29", 1, 4, 0, 0 , new int[3] {0,1,-1 }, new int[3] {0,1,-1  },2)},
         { 29, new skill(29, "SkillName30", 1, 5, 0, 0 , new int[3] {0,1,-1 }, new int[3] {0,1,-1  },2)},
+
         //
         { 30, new skill(30, "SkillName31", 1, 1, 0, 0  ,new int[3] {0,1,-1 }, new int[3] { 0,1,-1  },2)},
         { 31, new skill(31, "SkillName32", 1, 2, 0, 0 , new int[3] {0,1,-1 }, new int[3] { 0,1,-1  },2)},
@@ -53,7 +54,7 @@ public class SKillTable
         { 38, new skill(38, "SkillName39", 1, 4, 0, 0 , new int[3] {0,1,-1 }, new int[3] {0,1,-1   },2)},
         { 39, new skill(39, "SkillName40", 1, 5, 0, 0 , new int[3] {0,1,-1 }, new int[3] {0,1,-1   },2)},
 
-        //100ÀÌÈÄ·Î ¸ó½ºÅÍ ½ºÅ³
+        //100ï¿½ï¿½ï¿½Ä·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³
         { 100, new skill(100, "SkillName101", 1, 1, 0, 0 ,new int[3] { 0,1,-1 }, new int[3] { 0,1,-1 },0)},
         { 101, new skill(101, "SkillName102", 1, 2, 0, 0 , new int[3] { 0,1,-1 }, new int[3] { 0,1,-1 },0)},
         { 102, new skill(102, "SkillName103", 1, 3, 0, 0 , new int[3] { 0,1,-1 }, new int[3] { 0,1,-1 },0)},

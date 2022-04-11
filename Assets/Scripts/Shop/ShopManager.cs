@@ -87,22 +87,15 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < hasItemList.Count; i++)
         {
 
-            if (itemSavingDatas != null && !isClear1)
-            {
-                isClear1 = true;
-                itemSavingDatas.Clear();
-            }
+
+            itemSavingDatas.Clear();
             itemSavingDatas.Add(hasItemList[i].GetComponent<ItemDataSave>().itemSavingData);
 
         }
         for (int i = 0; i < hasEquipList.Count; i++)
         {
 
-            if (equipSavingDatas != null && !isClear2)
-            {
-                isClear2 = true;
-                equipSavingDatas.Clear();
-            }
+            equipSavingDatas.Clear();
             equipSavingDatas.Add(hasEquipList[i].GetComponent<EquipDataSave>().equipSavingData);
         }
 
@@ -118,6 +111,25 @@ public class ShopManager : MonoBehaviour
 
         isClear1 = false;
         isClear2 = false;
+
+    }
+    public void SellItemSave() // item 배열에 있는 정보를 Json에 저장합니다.
+    {
+
+        itemSavingDatas.Clear();
+
+        equipSavingDatas.Clear();
+
+
+        if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
+        }
+
+        string jdata = JsonConvert.SerializeObject(itemSavingDatas);
+        string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
 
     }
 
