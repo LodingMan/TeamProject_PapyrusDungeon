@@ -36,7 +36,7 @@ public class TownManager : MonoBehaviour
 
     private void Awake()
     {
-        introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>(); //나중에 켜기
+        //introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>(); //나중에 켜기
         isTown = true;
         isTent = false;
         isCombat = false;
@@ -157,8 +157,8 @@ public class TownManager : MonoBehaviour
         isTown = true;
         isTent = false;
         isCombat = false;
-        introSceneScript.audioSS.clip = introSceneScript.audioTown;
-        introSceneScript.audioSS.Play();
+        /*introSceneScript.audioSS.clip = introSceneScript.audioTown;
+        introSceneScript.audioSS.Play();*/
 
         DIB.dgMgr.isTent = false;
         DIB.TownPrefabs.SetActive(true);
