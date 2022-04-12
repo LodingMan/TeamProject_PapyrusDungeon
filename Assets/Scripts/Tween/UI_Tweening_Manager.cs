@@ -194,9 +194,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1] = null;
                 StackCount--;
                 smithMgr.isActive = false;
-                smithMgr.EquipReturnToInven();
-                
-                
+                smithMgr.EquipReturnToInven();    
 
             }
         }
@@ -237,7 +235,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public void UI_StatusPanel_On()
     {
 
-        UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_StatusPanelPos;
         StackCount++;
     }
@@ -245,7 +243,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public void UI_StatusPanel_Tent_On()
     {
         isTentStatus = true;
-        UI_StatusPanel_Tent_Pos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UI_StatusPanel_Tent_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_StatusPanel_Tent_Pos;
         StackCount++;
     }
@@ -253,7 +251,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public void UI_DungeonSelectPanel_On()
     {
 
-        UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 1f);
+        UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_DungeonSelectPanelPos;
         StackCount++;
 

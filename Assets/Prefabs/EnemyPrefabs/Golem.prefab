@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 614076157150829885}
   - component: {fileID: 6133790894964216816}
   - component: {fileID: 633097203143947100}
+  - component: {fileID: -8062924805295390419}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Enemy
@@ -128,60 +129,76 @@ MonoBehaviour:
     Name: 
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 
     EnemyPosition: 
+    BuffTime: 0
   - Index: 0
     Name: 
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 
     EnemyPosition: 
+    BuffTime: 0
   - Index: 0
     Name: 
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 
     EnemyPosition: 
+    BuffTime: 0
   - Index: 0
     Name: 
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 
     EnemyPosition: 
+    BuffTime: 0
   - Index: 0
     Name: 
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 
     EnemyPosition: 
+    BuffTime: 0
   SkillIndex: 000000000000000000000000
   mySkills:
   - Index: 0
     Name: "1\uBC88"
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 000000000100000002000000
     EnemyPosition: 000000000100000002000000
+    BuffTime: 0
   - Index: 0
     Name: "2\uBC88"
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 00000000ffffffff02000000
     EnemyPosition: ffffffffffffffff02000000
+    BuffTime: 0
   - Index: 0
     Name: "3\uBC88"
     LV: 0
     ATK: 0
-    DEF: 0
+    Type: 0
+    Pram: 0
     MyPosition: 00000000ffffffff02000000
     EnemyPosition: ffffffff01000000ffffffff
+    BuffTime: 0
 --- !u!114 &633097203143947100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +228,29 @@ MonoBehaviour:
     Speed: 6
   MyExp: 0
   PreviousLv: 1
+  BuffCount: 0
+  BuffValue: 
+  BuffPram: 
+  myBuffTime: 
   SaveNum: 0
+--- !u!114 &-8062924805295390419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614076157150829884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &5060030788347932005
 PrefabInstance:
   m_ObjectHideFlags: 0
