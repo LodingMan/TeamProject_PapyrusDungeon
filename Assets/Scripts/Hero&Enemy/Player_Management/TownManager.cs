@@ -176,7 +176,6 @@ public class TownManager : MonoBehaviour
         DIB.canvas_Tent.SetActive(false);
 
         NextWeek();
-        MgrTable.TutorialMgr.GuildTuto05On();
         
     }
 

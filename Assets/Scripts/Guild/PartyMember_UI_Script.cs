@@ -64,7 +64,6 @@ namespace Song
                 }
 
                 This_Prefab_Object = null;
-                MgrTable.TutorialMgr.GuildTuto06Off();
             }
 
         }

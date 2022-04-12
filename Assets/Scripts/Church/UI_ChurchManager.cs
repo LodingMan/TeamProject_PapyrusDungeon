@@ -48,11 +48,6 @@ namespace Shin {
             {
                 tweenMgr.UI_ChurchWarning_Off();
             }
-            if (MgrTable.townManager.Week == 2 && healingList.Length >= 1)
-            {
-                MgrTable.TutorialMgr.ChurchTuto01Off();
-                MgrTable.TutorialMgr.ChurchTuto02On();
-            }
         }
         public void EmployedInit_UI() // 교회 버튼 클릭 시 실행.
         {

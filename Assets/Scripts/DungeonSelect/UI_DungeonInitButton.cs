@@ -125,7 +125,6 @@ namespace Shin
             twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             twMgr.UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             
-            twMgr.isTuto = false;
         }
         public IEnumerator TweenLoadingPanelToTown()
         {
