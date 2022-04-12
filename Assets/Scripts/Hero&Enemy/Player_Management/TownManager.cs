@@ -22,6 +22,9 @@ public class TownManager : MonoBehaviour
     public ShopManager shopMgr;
     public Shin.UI_DungeonInitButton DIB;
     public Song.UI_DungeonSelect_Manager uI_DungeonSelect_Manager;
+    public GameObject equipInfoCanvus;
+    public Image equipImage;
+    public Text[] equipInfos = new Text[4];
 
     public List<GameObject> OnControll = new List<GameObject>(); 
 
@@ -34,6 +37,7 @@ public class TownManager : MonoBehaviour
     public bool isTown;
     public bool isTent;
     public bool isCombat;
+    public bool isInven;
 
     
     private void Awake()
@@ -174,5 +178,10 @@ public class TownManager : MonoBehaviour
         NextWeek();
         MgrTable.TutorialMgr.GuildTuto05On();
         
+    }
+
+    public void ClickInven()
+    {
+        isInven = true;
     }
 }

@@ -314,6 +314,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2394076951339629642}
+        m_TargetAssemblyTypeName: EquipScripts_ysg, Assembly-CSharp
+        m_MethodName: EquipInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2394076951339629642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +355,7 @@ MonoBehaviour:
   smithManager: {fileID: 0}
   dgSelectMgr: {fileID: 0}
   twMgr: {fileID: 0}
+  townMgr: {fileID: 0}
   equipIndex: 0
   sell: 0
   isEquip: 0
