@@ -790,9 +790,9 @@ public class e_CombatManager : MonoBehaviour
         Vector3 EnemyPos = speedComparisonArray[0].transform.position;
         Vector3 HeroPos = myParty[target_Idx].transform.position;
 
-        speedComparisonArray[0].transform.position = new Vector3(-2996.85f, 0, -3.12f);
+        speedComparisonArray[0].transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
-        myParty[target_Idx].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+        myParty[target_Idx].transform.position = new Vector3(-3000, 0, -3.12f);
 
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(1.3f, 0, 0), 3f);
@@ -854,9 +854,9 @@ public class e_CombatManager : MonoBehaviour
         {
             case 0: //어택
 
-                speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+                speedComparisonArray[0].transform.position = new Vector3(-3000f, 0, -3.12f);
 
-                target.transform.position = new Vector3(-2996.85f, 0, -3.12f);
+                target.transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
                 target.transform.DOMove(target.transform.position - new Vector3(-1.3f, 0, 0), 3f);
                 speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
@@ -894,7 +894,7 @@ public class e_CombatManager : MonoBehaviour
 
                 break;
             case 1: //버프
-                speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+                speedComparisonArray[0].transform.position = new Vector3(-3000f, 0, -3.12f);
                 speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
                 combat_Effect_Manager.HitLight.enabled = true;
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
