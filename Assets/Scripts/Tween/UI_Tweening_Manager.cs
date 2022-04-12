@@ -375,7 +375,7 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
         else
         {
-            UI_BackGround_Pos.DOAnchorPos(new Vector2(0, 150), 0.5f);
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(0, 140), 0.5f);
             UI_isBackground_On = true;
         }
     }

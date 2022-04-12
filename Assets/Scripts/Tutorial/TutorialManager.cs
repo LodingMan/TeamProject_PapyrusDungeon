@@ -16,13 +16,15 @@ public class TutorialManager : MonoBehaviour
     public GameObject EnterTuto01;
     public bool[] guildTuto;
     public bool[] enterTuto;
+    public bool[] churchTuto;
     // Start is called before the first frame update
     void Start()
     {
         MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
         townMgr = MgrTable.townManager;
-        guildTuto = new bool[5];
+        guildTuto = new bool[7];
         enterTuto = new bool[2];
+        churchTuto = new bool[3];
         guildTuto[0] = true;
         if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
         {
@@ -165,4 +167,33 @@ public class TutorialManager : MonoBehaviour
         EnterTuto01.SetActive(false);
     }
 
+
+    public void GuildTuto05On()
+    {
+
+    }
+    public void GuildTuto05Off()
+    {
+
+    }
+
+    public void GuildTuto06On()
+    {
+
+    }
+    public void GuildTuto06Off()
+    {
+
+    }
+    
+    public void ChurchTuto00On()
+    {
+
+    }
+    public void ChurchTuto00Off()
+    {
+
+    }
+    
 }
+
