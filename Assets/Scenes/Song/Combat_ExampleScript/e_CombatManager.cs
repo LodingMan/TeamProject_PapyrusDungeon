@@ -825,6 +825,7 @@ public class e_CombatManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        //카메라 흔들림
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 3f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 1f), 0.1f);
 
@@ -882,8 +883,11 @@ public class e_CombatManager : MonoBehaviour
 
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
                 yield return new WaitForSeconds(0.5f);
+
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
+                combatCameraControll.CombatCamera.transform.DOShakePosition(3,0.5f);
+
 
                 yield return new WaitForSeconds(4);
 
