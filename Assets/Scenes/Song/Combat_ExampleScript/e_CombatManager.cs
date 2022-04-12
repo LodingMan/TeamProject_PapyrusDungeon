@@ -970,4 +970,25 @@ public class e_CombatManager : MonoBehaviour
             }
         }
     }
+
+    public void DungeonClearBuffOff() //버프 이펙트 삭제 및 효과 삭제 0412 윤성근
+    {
+        for (int i = 0; i < myParty.Count; i++)
+        {
+            for (int j = 0; j < myParty[i].transform.childCount; j++)
+            {
+                if (myParty[i].transform.GetChild(j).tag == "Effect")
+                {
+                    StatScript CurrentMyStat = myParty[i].gameObject.transform.GetComponent<StatScript>();
+                    
+                    CurrentMyStat.BuffPram.Clear();
+                    CurrentMyStat.BuffValue.Clear();
+                    CurrentMyStat.myBuffTime.Clear();
+                    CurrentMyStat.BuffCount = 0;
+                    Destroy(myParty[i].transform.GetChild(j).gameObject);
+                }
+            }
+        }
+    }
+
 }

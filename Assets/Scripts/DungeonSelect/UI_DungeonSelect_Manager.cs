@@ -92,5 +92,9 @@ namespace Song
                 isTent = false;
             }
         }
+
+        public void EnterDungeon(){
+            isTent = false;
+        }
     }
 }
