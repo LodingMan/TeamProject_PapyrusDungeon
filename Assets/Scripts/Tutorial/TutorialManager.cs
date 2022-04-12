@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour
 {
     public ManagerTable MgrTable;
+    public QuestionPanel questionPanel;
     public TownManager townMgr;
     public GameObject guildTuto00;
     public GameObject guildTuto01;
@@ -14,9 +15,16 @@ public class TutorialManager : MonoBehaviour
     public GameObject guildTuto04;
     public GameObject EnterTuto00;
     public GameObject EnterTuto01;
+    public GameObject QuestionPanel;
 
     public bool[] guildTuto;
     public bool[] enterTuto;
+
+    public bool isChurch;
+    public bool isTrain;
+    public bool isInven;
+    public bool isShop;
+    public bool isSmith;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,28 +32,9 @@ public class TutorialManager : MonoBehaviour
         townMgr = MgrTable.townManager;
         guildTuto = new bool[5];
         enterTuto = new bool[2];
-        guildTuto[0] = true;
-        if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
-        {
-            townMgr.Week = PlayerPrefs.GetInt("Week");
-        }
-        else
-        {
-            townMgr.NextWeek();
-            if (townMgr.Week == 1)
-            {
-                guildTuto00.SetActive(true);
-                MgrTable.tweenManager.isTuto = true;
-                // 길드 튜토리얼 시작.
-            }
+        guildTuto[0] = true; 
+    }
 
-        }
-        
-    }
-    private void Update()
-    {
-        
-    }
     public void GuildTuto00On()
     {
         if (guildTuto[0])
@@ -154,5 +143,27 @@ public class TutorialManager : MonoBehaviour
         EnterTuto01.SetActive(false);
     }
 
+    public void QuestionOn()
+    {
+        QuestionPanel.SetActive(true);
+        questionPanel.Church.SetActive(true);
+        isChurch = true;
+    }
+    public void QuestionOff()
+    {
+        questionPanel.Church.SetActive(false);
+        questionPanel.Train.SetActive(false);
+        questionPanel.Inven.SetActive(false);
+        questionPanel.Shop.SetActive(false);
+        questionPanel.Smith.SetActive(false);
+        isChurch = false;
+        isTrain = false;
+        isInven = false;
+        isShop = false;
+        isSmith = false;
+        QuestionPanel.SetActive(false);
+
+        
+    }
 }
 
