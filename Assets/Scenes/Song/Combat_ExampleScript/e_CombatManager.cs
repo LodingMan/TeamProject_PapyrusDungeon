@@ -489,10 +489,20 @@ public class e_CombatManager : MonoBehaviour
                 Damage = 0;
             }
             target.GetComponent<StatScript>().myStat.HP -= Damage;
-
-
             combat_Event_UI_Manager.DamageText.SetActive(true);
-            combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 1);
+
+
+            if (speedComparisonArray[0].tag == "Player")
+            {
+                combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 2);
+
+            }
+            else
+            {
+                combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 1);
+
+            }
+
             combat_Event_UI_Manager.DamageText.GetComponent<Text>().text = "-" + Damage;
 
             //RectTransform DamageTextPos = combat_Event_UI_Manager.DamageText.GetComponent<RectTransform>();
@@ -806,13 +816,13 @@ public class e_CombatManager : MonoBehaviour
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", SaveSkill.Index); // 적이 때리는 애니메이션 yoon
         combat_Effect_Manager.EnemyEffect_On(myParty[target_Idx]); //적이 때릴시 영웅이 맞는 이펙트
 
+        SkillResultInit(myParty[target_Idx]);
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
 
-        SkillResultInit(myParty[target_Idx]);
         yield return new WaitForSeconds(0.5f);
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 3f);
@@ -864,13 +874,13 @@ public class e_CombatManager : MonoBehaviour
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
                 target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 1000); //적이 맞는 애니메이션 yoon
                 combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0], target); // 공격시 이펙트 0409Yoon
+                SkillResultInit(target);
 
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
 
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
-                SkillResultInit(target);
                 yield return new WaitForSeconds(0.5f);
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
