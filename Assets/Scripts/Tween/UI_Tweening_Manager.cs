@@ -190,6 +190,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
+                smithMgr.isActive = false;
                 smithMgr.EquipReturnToInven();
 
             }
