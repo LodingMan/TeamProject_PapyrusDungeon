@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Song
 {
@@ -14,6 +17,8 @@ namespace Song
         public bool isTent = false;
         public int DungeonType;
         public GuildManager guildManager;
+        public RectTransform warningDungeonSelect;
+        
 
         private void Start()
         {
@@ -43,6 +48,8 @@ namespace Song
                 if (guildManager.Party_Hero_Member[i] == null)
                 {
                     Debug.Log("no member");
+                    warningDungeonSelect.DOAnchorPos(new Vector2(0, 0), 0.5f);
+                    StartCoroutine(WarningDungeonSelect());
                     soundMgr.FailClipDungeonSelect();
                     return;
                 }
@@ -91,6 +98,11 @@ namespace Song
             {
                 isTent = false;
             }
+        }
+        public IEnumerator WarningDungeonSelect() // shin
+        {
+            yield return new WaitForSeconds(1f);
+            warningDungeonSelect.DOAnchorPos(new Vector2(0, 1090), 0.5f);
         }
     }
 }
