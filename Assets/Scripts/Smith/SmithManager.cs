@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 //==================================================================================================//
-// 대장간 스크립트입니다. 장비 강화 및 강화 수치 반환을 담당합니다. 03-29 윤성근
+// 장비 강화 스크립트입니다.. 03-29 윤성근
 //==================================================================================================//
 public class SmithManager : MonoBehaviour
 {
@@ -26,11 +26,12 @@ public class SmithManager : MonoBehaviour
     {
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         isActive = false;
+        
     }
 
 
 
-    public void SmithSetting() // 대장간이 켜져있는지 체크
+    public void SmithSetting() // ?????? ????????? ??
     {
         if (isActive)
         {
@@ -42,7 +43,7 @@ public class SmithManager : MonoBehaviour
         }
     }
 
-    public void Upgrade() // 장비 강화 함수입니다.
+    public void Upgrade() // ??? ??? ???????.
     {
         if (equip.Name != "")
         {
@@ -68,7 +69,7 @@ public class SmithManager : MonoBehaviour
                 equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
                 upgradeText.text = "강화 성공! : 레벨 :" + equip.Lv;
                 StartCoroutine(UpgradeTextDelay());
-                Debug.Log("강화 성공! 레벨: "+ equip.Lv +",확률 :" + upgradeChance + "%");
+                //Debug.Log("??? ????! ????: "+ equip.Lv +",??? :" + upgradeChance + "%");
 
 
             }
@@ -85,7 +86,7 @@ public class SmithManager : MonoBehaviour
                 equip.Cost = smithEquipOriginStats.Cost;
                 upgradeText.text = "강화 실패! : 레벨 :" + equip.Lv;
                 StartCoroutine(UpgradeTextDelay());
-                Debug.Log("강화 실패! 레벨: " + equip.Lv + ",확률 :" + upgradeChance +"%");
+                //Debug.Log("??? ????! ????: " + equip.Lv + ",??? :" + upgradeChance +"%");
 
             }
             smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;

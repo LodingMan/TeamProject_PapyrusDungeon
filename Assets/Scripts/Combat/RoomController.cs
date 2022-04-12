@@ -193,6 +193,7 @@ public class RoomController : MonoBehaviour
     {
         inGamePlayerScript.isMove = false;
         combatManager.PartyExpUp();
+        combatManager.DungeonClearBuffOff();
         combat_Event_UI_Manager.GameClearPanalDown();
     }
     public void GameFailFunc()

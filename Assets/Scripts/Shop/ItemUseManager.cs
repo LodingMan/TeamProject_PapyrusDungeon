@@ -104,11 +104,12 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (twMgr.StackCount == 0)
-            {
-                partyNum = -1;
-            }
+        if (twMgr.StackCount <= 1)
+        {
 
+            partyNum = -1;
+
+        }
         }
 
         switch (partyNum)

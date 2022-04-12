@@ -66,7 +66,6 @@ public class Combat_Effect_Manager : MonoBehaviour
         effectEnemy.transform.position = target.transform.position + new Vector3(0, 1, -1);
         audioSource.PlayOneShot(eSfx[rnd]);
         Destroy(effectEnemy, 4f);
-
     }
 
 

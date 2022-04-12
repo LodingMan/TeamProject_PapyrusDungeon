@@ -103,6 +103,11 @@ namespace Song
         {
             yield return new WaitForSeconds(1f);
             warningDungeonSelect.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-        }
+		}
+        public void EnterDungeon(){
+            isTent = false;
+            }
+        
+        
     }
 }
