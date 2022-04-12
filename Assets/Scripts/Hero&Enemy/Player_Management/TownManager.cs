@@ -49,7 +49,17 @@ public class TownManager : MonoBehaviour
         isCombat = false;
     }
 
-   
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
+        {
+            Week = PlayerPrefs.GetInt("Week");
+        }
+        else // 없으면, 0주차 => game first start
+        {
+            NextWeek(); // -> 1 week    
+        }
+    }
     public void Update()
     {
         text_Week.text = Week.ToString();
@@ -61,10 +71,18 @@ public class TownManager : MonoBehaviour
         Week++;          // �ش� �Լ��� ���� �Ǿ����� HeroManager���� ������ ����ŭ Hero�� �������� �����ϴµ� 
         heroManager.RandomHeroCreate();  // �����Ǵ� ���� HeroManager�� ����Ǿ��ִ� guildManager�� oneDayCreateHeroCount ������ �����Ѵ�.
         shopMgr.ItemSpawn();
-
         //Combat_Event_UI_Manager CEUM = GameObject.Find("Combat_Event_UI_Manger").GetComponent<Combat_Event_UI_Manager>();
         
-
+        //// shin ////
+        if (Week == 1) // Tutorial start
+        {
+            MgrTable.tweenManager.isTuto = true;
+            MgrTable.TutorialMgr.guildTuto00.SetActive(true); // guild tuto start
+        }
+        if (Week == 2) // Question Tutorial start
+        {
+            MgrTable.TutorialMgr.QuestionOn();
+        }
 
 
 

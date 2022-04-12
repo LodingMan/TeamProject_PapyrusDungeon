@@ -179,12 +179,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                     }
 
                 }
-            }
-            else if (townMgr.Week == 2)
-            {
-                
-            }
-            
+            }     
         }
         
     }
