@@ -13,6 +13,7 @@ public class TownManager : MonoBehaviour
     public int Gold = 0;
     public int Jewel = 0;
 
+    public ManagerTable MgrTable;
     public IntroSceneScript introSceneScript;
     public Song.HeroManager heroManager; // inspectorâ�� HeroManager�־���
     public Song.GuildManager guildManager;
@@ -34,9 +35,11 @@ public class TownManager : MonoBehaviour
     public bool isTent;
     public bool isCombat;
 
+    
     private void Awake()
     {
         introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
+        MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
         isTown = true;
         isTent = false;
         isCombat = false;
@@ -169,6 +172,7 @@ public class TownManager : MonoBehaviour
         DIB.canvas_Tent.SetActive(false);
 
         NextWeek();
-
+        MgrTable.TutorialMgr.GuildTuto05On();
+        
     }
 }

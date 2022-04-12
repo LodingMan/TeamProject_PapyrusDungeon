@@ -14,6 +14,9 @@ public class TutorialManager : MonoBehaviour
     public GameObject guildTuto04;
     public GameObject EnterTuto00;
     public GameObject EnterTuto01;
+    public GameObject guildTuto05;
+    public GameObject guildTuto06;
+
     public bool[] guildTuto;
     public bool[] enterTuto;
     public bool[] churchTuto;
@@ -170,20 +173,33 @@ public class TutorialManager : MonoBehaviour
 
     public void GuildTuto05On()
     {
-
+        if (townMgr.Week == 2 && enterTuto[1])
+        {
+            enterTuto[1] = false;
+            guildTuto[5] = true;
+            guildTuto05.SetActive(true);
+        }
     }
     public void GuildTuto05Off()
     {
-
+        guildTuto05.SetActive(false);
     }
 
     public void GuildTuto06On()
     {
-
+        if (townMgr.Week == 2 && guildTuto[5])
+        {
+            guildTuto[5] = false;
+            guildTuto[6] = true;
+            guildTuto06.SetActive(true);
+        }
     }
     public void GuildTuto06Off()
     {
-
+        if (MgrTable.guildManager.Party_Hero_Member[0] == null && MgrTable.guildManager.Party_Hero_Member[1] == null && MgrTable.guildManager.Party_Hero_Member[2] == null)
+        {
+            guildTuto06.SetActive(false);
+        }  
     }
     
     public void ChurchTuto00On()
