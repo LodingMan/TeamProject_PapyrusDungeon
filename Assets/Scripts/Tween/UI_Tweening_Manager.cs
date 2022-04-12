@@ -171,10 +171,20 @@ public class UI_Tweening_Manager : MonoBehaviour
                         MgrTable.TutorialMgr.GuildTuto03Off();
                         StackCountFun();
                     }
-                    
+
                 }
-                
-                
+            }
+            else if (townMgr.Week == 2)
+            {
+                if (isGuild && Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (MgrTable.TutorialMgr.guildTuto[7])
+                    {
+                        isGuild = false;
+                        MgrTable.TutorialMgr.GuildTuto07Off();
+                        StackCountFun();
+                    }
+                }
             }
             
         }
