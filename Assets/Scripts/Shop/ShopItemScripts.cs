@@ -57,10 +57,12 @@ public class ShopItemScripts : MonoBehaviour
         switch (itemIdx) // 대입한 인덱스 번호에 맞게 프리팹을 생성하는 함수를 호출합니다.
         {
             case 0:
+                itemIdx = 0;
                 ItemInstantiate();
 
                 break;
             case 1:
+                itemIdx = 1;
                 ItemInstantiate();
                 break;
 
