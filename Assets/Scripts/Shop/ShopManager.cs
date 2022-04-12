@@ -333,7 +333,6 @@ public class ShopManager : MonoBehaviour
         equipPrefab.GetComponent<EquipDataSave>().equipSavingData.equip = LodingEquipSavingData.equip;
         equipPrefab.GetComponent<EquipScripts_ysg>().equip = LodingEquipSavingData.equip;
 
-        Debug.Log("생성");
         hasEquipList.Add(equipPrefab); // 아이템을 인벤토리 리스트에 추가합니다.
 
     }
