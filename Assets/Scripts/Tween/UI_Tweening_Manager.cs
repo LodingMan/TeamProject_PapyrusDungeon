@@ -27,6 +27,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_Option_Pos;
     public RectTransform UI_Tent_Option_Pos;
     public RectTransform UI_QuitPanel_Pos;
+    public RectTransform UI_EquipInfo_Pos;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -144,6 +145,11 @@ public class UI_Tweening_Manager : MonoBehaviour
                                 isTrain = false;
                             }
                         }
+                        if (townMgr.isInven)
+                        {
+                            townMgr.isInven = false;
+                            townMgr.equipInfoCanvus.SetActive(false);
+                        }
                     }
                     else // 옵션이 켜져있는 상태
                     {
@@ -171,10 +177,52 @@ public class UI_Tweening_Manager : MonoBehaviour
                         MgrTable.TutorialMgr.GuildTuto03Off();
                         StackCountFun();
                     }
-                    
+
                 }
-                
-                
+            }
+            else if (townMgr.Week == 2)
+            {
+                if (isGuild && Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (MgrTable.TutorialMgr.guildTuto[7])
+                    {
+                        isGuild = false;
+                        MgrTable.TutorialMgr.GuildTuto07Off();
+                        StackCountFun();
+                    }
+                }
+                if (isChurch && Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (MgrTable.TutorialMgr.churchTuto[2])
+                    {
+                        isChurch = false;
+                        MgrTable.TutorialMgr.ChurchTuto02Off();
+                        uI_ChurchManager.EmployedDestroy_UI();
+                        uI_ChurchManager.isWarning = false;
+                        StackCountFun();
+                    }
+                }
+                if (isTrain)
+                {
+                    if (isTrainDetail)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            isTrainDetail = false;
+                            uI_TrainingManager.EmployedDestroy_UI();
+                            uI_TrainingManager.EmployedInit_UI();
+                            
+                            StackCountFun();
+                        }
+                    }
+                    else
+                    {
+                        isTrain = false;
+                        uI_TrainingManager.isWarning = false;
+                        uI_TrainingManager.EmployedDestroy_UI();                   
+                        StackCountFun();
+                    }
+                }
             }
             
         }
@@ -190,7 +238,10 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
+                smithMgr.isActive = false;
                 smithMgr.EquipReturnToInven();
+                
+                
 
             }
         }
@@ -375,7 +426,7 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
         else
         {
-            UI_BackGround_Pos.DOAnchorPos(new Vector2(0, 150), 0.5f);
+            UI_BackGround_Pos.DOAnchorPos(new Vector2(0, 140), 0.5f);
             UI_isBackground_On = true;
         }
     }
@@ -414,6 +465,7 @@ public class UI_Tweening_Manager : MonoBehaviour
             }
         }
     }
+
     public void TentInvenToOriginInven()
     {
         for (int i = 0; i < shopMgr.hasItemList.Count; i++)

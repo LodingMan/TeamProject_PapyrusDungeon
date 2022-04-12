@@ -12,6 +12,8 @@ public class EquipScripts_ysg : MonoBehaviour
     public SmithManager smithManager;
     public Song.UI_DungeonSelect_Manager dgSelectMgr;
     public UI_Tweening_Manager twMgr;
+    public TownManager townMgr;
+    public Shin.EquipDetailTable equipDetailTable;
 
     public int equipIndex;
     public int sell = 0;
@@ -21,6 +23,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public bool isSmith = false;
     public bool isSelled = false;
     public bool isDungeon = false;
+    public Text itemRank;
 
     public Button equipBtn;
     public Image equipImg;
@@ -38,8 +41,10 @@ public class EquipScripts_ysg : MonoBehaviour
         itemData = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         equipBtn = gameObject.transform.GetChild(1).GetComponent<Button>();
         equipImg = gameObject.transform.GetChild(3).GetComponent<Image>();
+        townMgr = GameObject.Find("TownManager").GetComponent<TownManager>();
         dgSelectMgr = GameObject.Find("DungeonSelectManager").GetComponent<Song.UI_DungeonSelect_Manager>();
         twMgr = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
+        equipDetailTable = GameObject.Find("HeroManager").transform.GetChild(1).GetComponent<Shin.EquipDetailTable>();
 
 
         //itemData.hasEquipList.Add(gameObject);
@@ -202,6 +207,7 @@ public class EquipScripts_ysg : MonoBehaviour
             equip.Cost = equipTable.initEquip[equipIndex].Cost;
         }
         gameObject.name = equip.Name;
+        gameObject.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
         equip.Cost = equipTable.initEquip[equipIndex].Cost;
     }
 
@@ -646,7 +652,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
-        if (!smithManager.isSlotFull && smithManager.isActive)
+        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf)
         {
             smithManager.isSlotFull = true;
             smithManager.equip.Index = equip.Index;
@@ -689,6 +695,22 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 equipBtn.gameObject.SetActive(false);
             }
+        }
+
+    }
+
+    public void EquipInfo()
+    {
+        if (townMgr.isInven)
+        {
+            townMgr.equipImage.sprite = equipDetailTable.sprite[equip.Index];
+            townMgr.equipInfos[0].text = equip.Name;
+            townMgr.equipInfos[1].text = equip.Lv.ToString();
+            townMgr.equipInfos[2].text = equip.Atk.ToString();
+            townMgr.equipInfos[3].text = equip.Def.ToString();
+
+            townMgr.equipInfoCanvus.SetActive(true);
+
         }
 
     }

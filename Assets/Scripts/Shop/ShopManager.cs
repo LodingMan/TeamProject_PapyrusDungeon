@@ -26,6 +26,7 @@ public class ShopManager : MonoBehaviour
     public List<GameObject> hasEquipList = new List<GameObject>(); //가지고 있는 장비 리스트입니다. 데이터 저장 할때 필요합니다.
     public List<EquipSavingData> equipSavingDatas = new List<EquipSavingData>(); //무기, 장비 데이터를 저장 할때 필요합니다.
     public List<ItemSavingData> itemSavingDatas = new List<ItemSavingData>(); //아이템 저장 할때 필요합니다.
+    public string textData = null;
 
 
     public GameObject inventory; // 인벤토리 패널 위치
@@ -35,8 +36,7 @@ public class ShopManager : MonoBehaviour
     public bool isShop = false; // 상점이 열려있는지 확인하는 bool값입니다.
 
     public Button BuyBtn; // 구매 버튼
-    public bool isClear1 = false;
-    public bool isClear2 = false;
+
 
     public void IsShop()
     {
@@ -86,17 +86,28 @@ public class ShopManager : MonoBehaviour
     {
         for (int i = 0; i < hasItemList.Count; i++)
         {
+            if (itemSavingDatas != null)
+            {
+                itemSavingDatas.Clear();
+            }
 
+            for (int f = 0; f < hasItemList.Count; f++)
+            {
+                itemSavingDatas.Add(hasItemList[f].GetComponent<ItemDataSave>().itemSavingData);
+            }
 
-            itemSavingDatas.Clear();
-            itemSavingDatas.Add(hasItemList[i].GetComponent<ItemDataSave>().itemSavingData);
 
         }
-        for (int i = 0; i < hasEquipList.Count; i++)
+        for (int j = 0; j < hasEquipList.Count; j++)
         {
-
-            equipSavingDatas.Clear();
-            equipSavingDatas.Add(hasEquipList[i].GetComponent<EquipDataSave>().equipSavingData);
+            if (equipSavingDatas != null)
+            {
+                equipSavingDatas.Clear();
+            }
+            for (int k = 0; k < hasEquipList.Count; k++)
+            {
+                equipSavingDatas.Add(hasEquipList[k].GetComponent<EquipDataSave>().equipSavingData);
+            }
         }
 
         if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
@@ -109,8 +120,6 @@ public class ShopManager : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
         File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
 
-        isClear1 = false;
-        isClear2 = false;
 
     }
     public void SellItemSave() // item 배열에 있는 정보를 Json에 저장합니다.
@@ -324,50 +333,53 @@ public class ShopManager : MonoBehaviour
         equipPrefab.GetComponent<EquipDataSave>().equipSavingData.equip = LodingEquipSavingData.equip;
         equipPrefab.GetComponent<EquipScripts_ysg>().equip = LodingEquipSavingData.equip;
 
-
         hasEquipList.Add(equipPrefab); // 아이템을 인벤토리 리스트에 추가합니다.
 
     }
 
     public void ItemLoad() // Json파일을 불러온 다음 LoadItemCreate 함수를 실행 시킵니다.
     {
+
         string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/ItemSave.Json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
         string jdata2 = File.ReadAllText(Application.persistentDataPath + "/Resources/EquipSave.Json");
         itemSavingDatas = JsonConvert.DeserializeObject<List<ItemSavingData>>(jdata);
         equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(jdata2);
 
-        for (int i = 0; i < itemSavingDatas.Count; i++)
+        if (jdata != "null" && jdata2 != "null")
         {
-            if (itemSavingDatas[i].item.Name == "") // item이 배열이였을때 빈 공간까지 아이템으로 채워지는 오류가 있어서 리스트로 바꾸고, 아이템 Name에 공백이 있으면 스킵하는 방식으로 수정 하였습니다.
+            for (int i = 0; i < itemSavingDatas.Count; i++)
             {
-                break;
+                if (itemSavingDatas[i].item.Name == "") // item이 배열이였을때 빈 공간까지 아이템으로 채워지는 오류가 있어서 리스트로 바꾸고, 아이템 Name에 공백이 있으면 스킵하는 방식으로 수정 하였습니다.
+                {
+                    break;
+                }
+
+                LoadItemCreate(itemSavingDatas[i]);
+
             }
-            LoadItemCreate(itemSavingDatas[i]);
-        }
-        for (int i = 0; i < equipSavingDatas.Count; i++)
-        {
-            if (equipSavingDatas[i].equip.Name == "")
+            for (int i = 0; i < equipSavingDatas.Count; i++)
             {
-                break;
+                if (equipSavingDatas[i].equip.Name == "")
+                {
+                    break;
+                }
+                LoadEquipCreate(equipSavingDatas[i]);
+
             }
-            LoadEquipCreate(equipSavingDatas[i]);
         }
+
+
 
     }
 
     public void WipeInventory()
     {
         StartCoroutine(WipeInventoryCo());
-
-        if (!File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && !File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json"))
-        {
-            File.Create(Application.persistentDataPath + "/Resources/ItemSave.Json");
-            File.Create(Application.persistentDataPath + "/Resources/EquipSave.Json");
-        }
-        else
+        if (File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json"))
         {
             ItemLoad();
         }
+
 
     }
 
@@ -378,5 +390,10 @@ public class ShopManager : MonoBehaviour
             Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
         }
         yield return new WaitForEndOfFrame();
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(2f);
     }
 }

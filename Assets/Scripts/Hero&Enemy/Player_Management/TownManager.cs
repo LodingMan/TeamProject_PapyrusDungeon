@@ -13,6 +13,7 @@ public class TownManager : MonoBehaviour
     public int Gold = 0;
     public int Jewel = 0;
 
+    public ManagerTable MgrTable;
     public IntroSceneScript introSceneScript;
     public Song.HeroManager heroManager; // inspectorâ�� HeroManager�־���
     public Song.GuildManager guildManager;
@@ -21,6 +22,9 @@ public class TownManager : MonoBehaviour
     public ShopManager shopMgr;
     public Shin.UI_DungeonInitButton DIB;
     public Song.UI_DungeonSelect_Manager uI_DungeonSelect_Manager;
+    public GameObject equipInfoCanvus;
+    public Image equipImage;
+    public Text[] equipInfos = new Text[4];
 
     public List<GameObject> OnControll = new List<GameObject>(); 
 
@@ -33,10 +37,13 @@ public class TownManager : MonoBehaviour
     public bool isTown;
     public bool isTent;
     public bool isCombat;
+    public bool isInven;
 
+    
     private void Awake()
     {
         introSceneScript = GameObject.Find("BGM_Manager").GetComponent<IntroSceneScript>();
+        MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
         isTown = true;
         isTent = false;
         isCombat = false;
@@ -169,6 +176,12 @@ public class TownManager : MonoBehaviour
         DIB.canvas_Tent.SetActive(false);
 
         NextWeek();
+        MgrTable.TutorialMgr.GuildTuto05On();
+        
+    }
 
+    public void ClickInven()
+    {
+        isInven = true;
     }
 }

@@ -89,9 +89,11 @@ namespace Shin
             ChurchManager.healingHero_UI = Instantiate(ChurchManager.healingHero_UI_Prefab, ChurchManager.healing_List_UI_Content.transform);
             ChurchManager.healingHero_UI.name = gameObject.name;
             ChurchManager.healingHero_UI.GetComponent<UI_HealingInfo>().curWeek = curWeek;
+            
 
             ChurchManager.EmployedDestroy_UI();
             ChurchManager.EmployedInit_UI();
+            
         }
     }
 }

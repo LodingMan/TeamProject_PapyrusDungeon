@@ -489,10 +489,20 @@ public class e_CombatManager : MonoBehaviour
                 Damage = 0;
             }
             target.GetComponent<StatScript>().myStat.HP -= Damage;
-
-
             combat_Event_UI_Manager.DamageText.SetActive(true);
-            combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 1);
+
+
+            if (speedComparisonArray[0].tag == "Player")
+            {
+                combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 2);
+
+            }
+            else
+            {
+                combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 1);
+
+            }
+
             combat_Event_UI_Manager.DamageText.GetComponent<Text>().text = "-" + Damage;
 
             //RectTransform DamageTextPos = combat_Event_UI_Manager.DamageText.GetComponent<RectTransform>();
@@ -737,7 +747,7 @@ public class e_CombatManager : MonoBehaviour
 
     IEnumerator SkillUISetting()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
 
         GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
         textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
@@ -756,7 +766,7 @@ public class e_CombatManager : MonoBehaviour
 
     IEnumerator EnemyActive()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         Debug.Log("행동할 유딧 대상 지정 완료");
         for (int i = 0; i < enemys.Count; i++)
         {
@@ -770,9 +780,9 @@ public class e_CombatManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         EnemySkillSelect(speedComparisonArray[0]); //이 함수가 호출되고 난 뒤에는 SaveSkill에 Enemy가 사용할 스킬이 저장되어있다. 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         EnemySkillUse();
 
@@ -781,7 +791,7 @@ public class e_CombatManager : MonoBehaviour
 
     IEnumerator EnemyAttack(int target_Idx)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
         combat_Event_UI_Manager.Player_Targeting.SetActive(false);
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
@@ -790,9 +800,9 @@ public class e_CombatManager : MonoBehaviour
         Vector3 EnemyPos = speedComparisonArray[0].transform.position;
         Vector3 HeroPos = myParty[target_Idx].transform.position;
 
-        speedComparisonArray[0].transform.position = new Vector3(-2996.85f, 0, -3.12f);
+        speedComparisonArray[0].transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
-        myParty[target_Idx].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+        myParty[target_Idx].transform.position = new Vector3(-3000, 0, -3.12f);
 
 
         speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(1.3f, 0, 0), 3f);
@@ -806,20 +816,23 @@ public class e_CombatManager : MonoBehaviour
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", SaveSkill.Index); // 적이 때리는 애니메이션 yoon
         combat_Effect_Manager.EnemyEffect_On(myParty[target_Idx]); //적이 때릴시 영웅이 맞는 이펙트
 
+        SkillResultInit(myParty[target_Idx]);
 
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
         combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
 
         ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
 
-        SkillResultInit(myParty[target_Idx]);
         yield return new WaitForSeconds(0.5f);
 
-        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 3f);
-        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 1f), 0.1f);
+        //카메라 흔들림
+        combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 2f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 3f), 0.1f);
+        combatCameraControll.CombatCamera.transform.DOShakePosition(1f, 0.08f);
 
 
-        yield return new WaitForSeconds(4);
+
+        yield return new WaitForSeconds(3);
         myParty[target_Idx].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); //영웅 애니메이션 IDLE로 변경
         speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);//적 애니메이션 IDLE로 변경
         ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
@@ -854,9 +867,9 @@ public class e_CombatManager : MonoBehaviour
         {
             case 0: //어택
 
-                speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+                speedComparisonArray[0].transform.position = new Vector3(-3000f, 0, -3.12f);
 
-                target.transform.position = new Vector3(-2996.85f, 0, -3.12f);
+                target.transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
                 target.transform.DOMove(target.transform.position - new Vector3(-1.3f, 0, 0), 3f);
                 speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
@@ -864,18 +877,21 @@ public class e_CombatManager : MonoBehaviour
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
                 target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 1000); //적이 맞는 애니메이션 yoon
                 combat_Effect_Manager.HeroEffect_On(speedComparisonArray[0], target); // 공격시 이펙트 0409Yoon
+                SkillResultInit(target);
 
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f, 0.2f, -5.8f), 0.5f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 0), 0.5f);
-
-
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
-                SkillResultInit(target);
                 yield return new WaitForSeconds(0.5f);
-                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
-                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 2f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -3f), 0.1f);
+                combatCameraControll.CombatCamera.transform.DOShakePosition(1f, 0.08f);
+               // combatCameraControll.CombatCamera.transform.DOShakeRotation(1f, 0.08f);
 
-                yield return new WaitForSeconds(4);
+
+
+
+                yield return new WaitForSeconds(3);
 
                 Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
@@ -894,7 +910,7 @@ public class e_CombatManager : MonoBehaviour
 
                 break;
             case 1: //버프
-                speedComparisonArray[0].transform.position = new Vector3(-3000.58f, 0, -3.12f);
+                speedComparisonArray[0].transform.position = new Vector3(-3000f, 0, -3.12f);
                 speedComparisonArray[0].transform.DOMove(speedComparisonArray[0].transform.position - new Vector3(-1.3f, 0, 0), 3f);
                 combat_Effect_Manager.HitLight.enabled = true;
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", SaveSkill.Index); // 스킬 인덱스에 맞게 애니메이션 출력 yoon
@@ -905,10 +921,10 @@ public class e_CombatManager : MonoBehaviour
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
                 SkillResultInit(target);
                 yield return new WaitForSeconds(0.5f);
-                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 3f);
+                combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 2f);
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -1f), 0.1f);
 
-                yield return new WaitForSeconds(4);
+                yield return new WaitForSeconds(3);
 
                 Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈

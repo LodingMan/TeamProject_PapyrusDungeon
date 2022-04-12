@@ -27,9 +27,13 @@ public class Combat_Guide_Script : MonoBehaviour
     }
     public void MinimapTouchGuide_On()
     {
-        if (townManager.Week == 1)
+        if(!isMinimapTouchGuide)
         {
-            MinimapTouchGuide.SetActive(true);
+            if (townManager.Week == 1)
+            {
+                MinimapTouchGuide.SetActive(true);
+                isMinimapTouchGuide = true;
+            }
         }
     }
     public void MinimapTouchGuide_Off()
