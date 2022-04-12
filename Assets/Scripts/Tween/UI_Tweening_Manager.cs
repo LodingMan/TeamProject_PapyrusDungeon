@@ -145,6 +145,11 @@ public class UI_Tweening_Manager : MonoBehaviour
                                 isTrain = false;
                             }
                         }
+                        if (townMgr.isInven)
+                        {
+                            townMgr.isInven = false;
+                            townMgr.equipInfoCanvus.SetActive(false);
+                        }
                     }
                     else // 옵션이 켜져있는 상태
                     {
@@ -235,8 +240,8 @@ public class UI_Tweening_Manager : MonoBehaviour
                 StackCount--;
                 smithMgr.isActive = false;
                 smithMgr.EquipReturnToInven();
-                townMgr.isInven = false;
-                townMgr.equipInfoCanvus.SetActive(false);
+                
+                
 
             }
         }
