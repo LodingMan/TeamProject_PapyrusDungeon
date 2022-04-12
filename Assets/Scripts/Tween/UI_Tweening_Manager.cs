@@ -194,9 +194,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1] = null;
                 StackCount--;
                 smithMgr.isActive = false;
-                smithMgr.EquipReturnToInven();
-                
-                
+                smithMgr.EquipReturnToInven();    
 
             }
         }
