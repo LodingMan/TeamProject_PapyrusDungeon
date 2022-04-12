@@ -122,7 +122,6 @@ public class SmithManager : MonoBehaviour
 
         }
         isSlotFull = false;
-        isActive = false;
     }
 
 
