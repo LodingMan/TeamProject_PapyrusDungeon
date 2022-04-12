@@ -33,7 +33,6 @@ public class CameraMoving : MonoBehaviour
     {
         shopMgr.WipeInventory();
         camAnim = cam.GetComponent<Animator>();
-        DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 800, sequencesCapacity: 200);
     }
 
     private void Update()
