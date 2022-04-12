@@ -38,6 +38,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     //bool UI_isInventoryPanel_On = false;
     //bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
+    
     // shin
     /*public bool isTownOn = false;
     public bool isTentOn = false; 
@@ -51,6 +52,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool isTrainDetail = false;
     public bool isOption = false;
     public bool isTentOption = false;
+    public bool isTentStatus = false;
 
     public ShopManager shopMgr;
     public SmithManager smithMgr;
@@ -81,6 +83,22 @@ public class UI_Tweening_Manager : MonoBehaviour
                         StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
                         TentInvenToOriginInven();
                         // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
+                    }
+                    else
+                    {
+                        if (!isTentOption)
+                        {
+                            if (isTentStatus)
+                            {
+                                isTentStatus = false;
+                            }
+                            else
+                            {
+                                if (!MgrTable.itemUseMgr.TentText01.gameObject.activeSelf)
+                                    MgrTable.itemUseMgr.TentText01.gameObject.SetActive(true);
+                            }
+                            
+                        }
                     }
                     if (isTentOption)
                         isTentOption = false;
@@ -220,7 +238,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_StatusPanel_Tent_On()
     {
-
+        isTentStatus = true;
         UI_StatusPanel_Tent_Pos.DOAnchorPos(new Vector2(0, 0), 1f);
         UIStack[StackCount] = UI_StatusPanel_Tent_Pos;
         StackCount++;

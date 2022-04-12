@@ -33,6 +33,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public Image[] skills_icon;
     public GameObject heroStat;
     public GameObject statusUI;
+    public Text TentText01;
 
     private void Start()
     {
@@ -196,6 +197,8 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         }
                         statusUI.GetComponent<Shin.Tent_HeroStatusInit>().heroPrefab = selectHero;
                         statusUI.GetComponent<Shin.Tent_HeroStatusInit>().sprite = heroStat.transform.GetChild(0).GetComponent<Image>().sprite;
+
+                        TentText01.gameObject.SetActive(false);
                     }
 
                 }
