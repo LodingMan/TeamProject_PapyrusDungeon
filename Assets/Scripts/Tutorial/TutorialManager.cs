@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject guildTuto07;
     public GameObject churchTuto00;
     public GameObject churchTuto01;
+    public GameObject churchTuto02;
 
     public bool[] guildTuto;
     public bool[] enterTuto;
@@ -231,6 +232,22 @@ public class TutorialManager : MonoBehaviour
             churchTuto01.SetActive(true);
         }
     }
-    
+    public void ChurchTuto01Off()
+    {
+        churchTuto01.SetActive(false);
+    }
+    public void ChurchTuto02On()
+    {
+        if (townMgr.Week == 2 && churchTuto[1])
+        {
+            churchTuto[1] = false;
+            churchTuto[2] = true;
+            churchTuto02.SetActive(true);   
+        }
+    }
+    public void ChurchTuto02Off()
+    {
+        churchTuto02.SetActive(false);
+    }
 }
 

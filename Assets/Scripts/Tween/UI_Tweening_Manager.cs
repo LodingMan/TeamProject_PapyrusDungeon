@@ -185,6 +185,38 @@ public class UI_Tweening_Manager : MonoBehaviour
                         StackCountFun();
                     }
                 }
+                if (isChurch && Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (MgrTable.TutorialMgr.churchTuto[2])
+                    {
+                        isChurch = false;
+                        MgrTable.TutorialMgr.ChurchTuto02Off();
+                        uI_ChurchManager.EmployedDestroy_UI();
+                        uI_ChurchManager.isWarning = false;
+                        StackCountFun();
+                    }
+                }
+                if (isTrain)
+                {
+                    if (isTrainDetail)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            isTrainDetail = false;
+                            uI_TrainingManager.EmployedDestroy_UI();
+                            uI_TrainingManager.EmployedInit_UI();
+                            
+                            StackCountFun();
+                        }
+                    }
+                    else
+                    {
+                        isTrain = false;
+                        uI_TrainingManager.isWarning = false;
+                        uI_TrainingManager.EmployedDestroy_UI();                   
+                        StackCountFun();
+                    }
+                }
             }
             
         }
