@@ -90,6 +90,7 @@ public class SmithManager : MonoBehaviour
             }
             smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
             smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
+            smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
             smithEquip.GetComponent<EquipDataSave>().SaveEquip();
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;

@@ -21,6 +21,7 @@ public class EquipScripts_ysg : MonoBehaviour
     public bool isSmith = false;
     public bool isSelled = false;
     public bool isDungeon = false;
+    public Text itemRank;
 
     public Button equipBtn;
     public Image equipImg;
@@ -202,6 +203,7 @@ public class EquipScripts_ysg : MonoBehaviour
             equip.Cost = equipTable.initEquip[equipIndex].Cost;
         }
         gameObject.name = equip.Name;
+        gameObject.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
         equip.Cost = equipTable.initEquip[equipIndex].Cost;
     }
 
