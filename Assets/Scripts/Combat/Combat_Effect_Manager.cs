@@ -61,12 +61,11 @@ public class Combat_Effect_Manager : MonoBehaviour
 
     public void EnemyEffect_On(GameObject target)
     {
-        int rnd = Random.Range(0, 4);
+        int rnd = Random.Range(0, 3);
         GameObject effectEnemy = Instantiate(enemyEffects[0]);
         effectEnemy.transform.position = target.transform.position + new Vector3(0, 1, -1);
         audioSource.PlayOneShot(eSfx[rnd]);
         Destroy(effectEnemy, 4f);
-
     }
 
 
