@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 //==================================================================================================//
 // 대장간 스크립트입니다. 장비 강화 및 강화 수치 반환을 담당합니다. 03-29 윤성근
 //==================================================================================================//
@@ -18,6 +19,8 @@ public class SmithManager : MonoBehaviour
 
     public bool isActive = false;
     public bool isSlotFull = false;
+
+    public Text upgradeText;
 
     private void Start()
     {
@@ -63,6 +66,8 @@ public class SmithManager : MonoBehaviour
                 equip.Def = (equip.Def * 1) + equip.Lv + 1;
                 equip.Cri = (equip.Cri * 1) + equip.Lv + 1;
                 equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
+                upgradeText.text = "강화 성공! : 레벨 :" + equip.Lv;
+                StartCoroutine(UpgradeTextDelay());
                 Debug.Log("강화 성공! 레벨: "+ equip.Lv +",확률 :" + upgradeChance + "%");
 
 
@@ -78,7 +83,8 @@ public class SmithManager : MonoBehaviour
                 equip.Cri = smithEquipOriginStats.Cri;
                 equip.Acc = smithEquipOriginStats.Acc;
                 equip.Cost = smithEquipOriginStats.Cost;
-
+                upgradeText.text = "강화 실패! : 레벨 :" + equip.Lv;
+                StartCoroutine(UpgradeTextDelay());
                 Debug.Log("강화 실패! 레벨: " + equip.Lv + ",확률 :" + upgradeChance +"%");
 
             }
@@ -122,6 +128,14 @@ public class SmithManager : MonoBehaviour
 
         }
         isSlotFull = false;
+    }
+
+    IEnumerator UpgradeTextDelay()
+    {
+        upgradeText.transform.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        upgradeText.transform.gameObject.SetActive(false);
+
     }
 
 
