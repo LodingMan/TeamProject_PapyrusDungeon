@@ -27,6 +27,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_Option_Pos;
     public RectTransform UI_Tent_Option_Pos;
     public RectTransform UI_QuitPanel_Pos;
+    public RectTransform UI_EquipInfo_Pos;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -202,6 +203,8 @@ public class UI_Tweening_Manager : MonoBehaviour
                 StackCount--;
                 smithMgr.isActive = false;
                 smithMgr.EquipReturnToInven();
+                townMgr.isInven = false;
+                townMgr.equipInfoCanvus.SetActive(false);
 
             }
         }
@@ -425,6 +428,7 @@ public class UI_Tweening_Manager : MonoBehaviour
             }
         }
     }
+
     public void TentInvenToOriginInven()
     {
         for (int i = 0; i < shopMgr.hasItemList.Count; i++)
