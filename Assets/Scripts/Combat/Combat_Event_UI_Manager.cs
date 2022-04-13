@@ -15,6 +15,13 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public Shin.EquipDetailTable equipDetailTable;
     public List<Button> Go_Back_Btn = new List<Button>();
 
+
+
+    public GameObject Bars;
+    public List<GameObject> Hero_HP_Bar = new List<GameObject>();
+    public List<GameObject> Enemy_HP_Bar = new List<GameObject>();
+
+
     public Button MiniMapCommingBtn;
     public Text IngameText;
     public Text EnemySkillNameText;

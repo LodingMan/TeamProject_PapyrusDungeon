@@ -35,9 +35,10 @@ namespace Song
 
         private void Start()
         {
+            uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
+            Debug.Log(uI_Central);
             MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
             hero_Status_UI_Script = GameObject.Find("Status_UI").GetComponent<Song.Hero_Status_UI_Script>();
-            uI_Central = GameObject.Find("Canvas").GetComponent<UI_Central>();
             heroImageTable = MgrTable.heroImageTable;
             soundMgr = MgrTable.soundMgr;
             root = transform.root;

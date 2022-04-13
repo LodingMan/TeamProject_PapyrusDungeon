@@ -41,6 +41,7 @@ public class e_CombatManager : MonoBehaviour
     public int currentActiveUnitIndex; //현재 스킬을 사용할 히어로가 몇번째에 위치하는지 
 
     public Camera CombatCamera;
+    public GameObject CombatCamera_ShakeObj;
     public Canvas CombatCanvas;
     public Canvas Skill_Targeting_Canvas;
     public Transform CanvasTransform;
@@ -125,8 +126,6 @@ public class e_CombatManager : MonoBehaviour
                                 break;
                         }
 
-
-
                         Debug.Log(hit.transform.gameObject.name);
                     }
 
@@ -154,12 +153,22 @@ public class e_CombatManager : MonoBehaviour
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
         }
 
-        for(int i = 0; i < myParty.Count; i++)
+        for (int i = 0; i < myParty.Count; i++)
         {
             outline = myParty[i].GetComponent<quick_outline.quick_outline>();
+            outline.OutlineColor = Color.white;
             outline.enabled = true;
+
+            combat_Event_UI_Manager.Hero_HP_Bar[i].SetActive(true);
+            combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<Slider>().maxValue =
+                myParty[i].GetComponent<StatScript>().myStat.MAXHP;
+            combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<Slider>().value =
+                myParty[i].GetComponent<StatScript>().myStat.HP;
         }
     }
+
+
+
 
     public void Out_Dungeon_Party()
     {
@@ -169,15 +178,36 @@ public class e_CombatManager : MonoBehaviour
             myParty[i].transform.position = new Vector3(0, 0, 0);
             myParty[i].GetComponent<NavMeshAgent>().enabled = true;
             myParty[i].GetComponent<Shin.NaviMeshHero>().enabled = true;
+
+            outline = myParty[i].GetComponent<quick_outline.quick_outline>();
+            outline.OutlineColor = Color.white;
+            outline.enabled = true;
+
+            combat_Event_UI_Manager.Hero_HP_Bar[i].SetActive(false);
         }
         myParty.Clear();
 
 
 
     }
+    public void BarUpdate()
+    {
+        for (int i = 0; i < myParty.Count; i++)
+        {
+            combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<Slider>().value =
+                myParty[i].GetComponent<StatScript>().myStat.HP;
+        }
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            combat_Event_UI_Manager.Enemy_HP_Bar[i].GetComponent<Slider>().value =
+                enemys[i].GetComponent<StatScript>().myStat.HP;
+        }
+    }
+
     public void EnemyInit()
     {
         ppCon.ChromaticAberration_On_Off(ppCon);
+        ppCon.CombatSeeting();
         isCombat = true;
         List<int> Sequence_Rnd = new List<int>();
         int SequenceSaveNumber = Random.Range(0, enemy_Sequence_Table.Enemy_Sequence.Count);
@@ -230,7 +260,15 @@ public class e_CombatManager : MonoBehaviour
         }
 
 
+        for(int i = 0; i < enemys.Count; i++)
+        {
+            combat_Event_UI_Manager.Enemy_HP_Bar[i].SetActive(true);
 
+            combat_Event_UI_Manager.Enemy_HP_Bar[i].GetComponent<Slider>().maxValue =
+                enemys[i].GetComponent<StatScript>().myStat.MAXHP;
+            combat_Event_UI_Manager.Enemy_HP_Bar[i].GetComponent<Slider>().value =
+                enemys[i].GetComponent<StatScript>().myStat.HP;
+        }
 
         TurnStart();
 
@@ -274,7 +312,7 @@ public class e_CombatManager : MonoBehaviour
 
     public void SpeedComparison()
     {
-        if(townManager.Week == 1)
+        if (townManager.Week == 1)
         {
             if (!combat_Guide_Script.isCombat_Skill_Guide)
             {
@@ -317,9 +355,7 @@ public class e_CombatManager : MonoBehaviour
 
                 }
             }
-            outline = speedComparisonArray[0].GetComponent<quick_outline.quick_outline>();
-            outline.OutlineWidth = 7;
-            outline.OutlineColor = (Color.green);
+
             StartCoroutine(SkillUISetting());
         }
         if (speedComparisonArray[0].tag == "Enemy")
@@ -394,7 +430,7 @@ public class e_CombatManager : MonoBehaviour
             Debug.Log("사용할 스킬 결정! 스킬의 이름은 " + SaveSkill.Name + "::인덱스는" + SaveSkill.Index);
         }
 
-       
+
         currentActiveSkillList.Clear();
 
 
@@ -405,7 +441,7 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-        if(isAISkillNone)
+        if (isAISkillNone)
         {
             combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
             speedComparisonArray.RemoveAt(0);
@@ -447,7 +483,7 @@ public class e_CombatManager : MonoBehaviour
         StatScript CurrentMyStat = speedComparisonArray[0].GetComponent<StatScript>();
         if (speedComparisonArray[0].tag == "Player")
         {
-            switch(SaveSkill.Type)
+            switch (SaveSkill.Type)
             {
                 case 0:
                     Damage += (SaveSkill.ATK + speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk +
@@ -460,7 +496,7 @@ public class e_CombatManager : MonoBehaviour
                 default:
                     break;
             }
-           
+
         }
         else
         {
@@ -470,7 +506,7 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-        if(SaveSkill.Type == 0)
+        if (SaveSkill.Type == 0)
         {
 
             if (speedComparisonArray[0].tag == "Player")
@@ -532,9 +568,9 @@ public class e_CombatManager : MonoBehaviour
 
 
         }
-        else if(SaveSkill.Type == 1)
+        else if (SaveSkill.Type == 1)
         {
-            switch(SaveSkill.Pram)
+            switch (SaveSkill.Pram)
             {
                 case 1:
                     targetStat.myStat.Atk += SaveSkill.ATK;
@@ -568,16 +604,16 @@ public class e_CombatManager : MonoBehaviour
 
             GameObject buffeffect = Instantiate(combat_Effect_Manager.buffEffect);
             buffeffect.transform.SetParent(target.transform);
-            buffeffect.transform.localPosition = new Vector3(0,-0.5f,0);
+            buffeffect.transform.localPosition = new Vector3(0, -0.5f, 0);
 
             Debug.Log("여기서 스탯, HP버프");
             Debug.Log(speedComparisonArray[0] + "이" + target + "에게 버프함.");
         }
 
 
-        for(int i = 0; i < CurrentMyStat.BuffCount; i++)
+        for (int i = 0; i < CurrentMyStat.BuffCount; i++)
         {
-           if(CurrentMyStat.myBuffTime[i] != 0)
+            if (CurrentMyStat.myBuffTime[i] != 0)
             {
                 CurrentMyStat.myBuffTime[i]--; //버프타임 감소
                 if (CurrentMyStat.myBuffTime[i] <= 0)//버프가 다 떨어졌다면 
@@ -670,13 +706,13 @@ public class e_CombatManager : MonoBehaviour
                     IP.isMove = true;
                     RoomController RC = GameObject.Find("RoomController").GetComponent<RoomController>();
                     RC.RoomCombatClear(IP.currentPlayers);
-
-                    if(isLastCombat)
+                    ppCon.ChromaticAberration_On_Off(ppCon);
+                    ppCon.CombatEndSeeting();
+                    if (isLastCombat)
                     {
                         RC.GameClearFunc();
                         isLastCombat = false;
                     }
-                    ppCon.ChromaticAberration_On_Off(ppCon);
                     return;
                 }
             }
@@ -709,7 +745,7 @@ public class e_CombatManager : MonoBehaviour
 
                 for (int i = 0; i < guildManager.Current_Hero_UI_List.Count; i++)
                 {
-                    if(guildManager.Current_Hero_UI_List[i].GetComponent<Song.Current_Hero_UI_Script>().This_Prefab_Object == target)
+                    if (guildManager.Current_Hero_UI_List[i].GetComponent<Song.Current_Hero_UI_Script>().This_Prefab_Object == target)
                     {
                         Destroy(guildManager.Current_Hero_UI_List[i]);
                         guildManager.Current_Hero_UI_List.RemoveAt(i);
@@ -723,7 +759,7 @@ public class e_CombatManager : MonoBehaviour
                 heroManager.CurrentHeroList.Remove(target);
                 Destroy(target);
 
-                if(myParty.Count == 0 )
+                if (myParty.Count == 0)
                 {
                     isGameOver = true;
                     isLastCombat = false;
@@ -734,6 +770,7 @@ public class e_CombatManager : MonoBehaviour
                     RC.GameFailFunc();
 
                     ppCon.ChromaticAberration_On_Off(ppCon);
+                    ppCon.CombatEndSeeting();
                     return;
                 }
 
@@ -761,7 +798,20 @@ public class e_CombatManager : MonoBehaviour
 
     IEnumerator SkillUISetting()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < myParty.Count; i++)
+        {
+            outline = myParty[i].GetComponent<quick_outline.quick_outline>();
+            outline.OutlineColor = Color.white;
+            outline.OutlineWidth = 4;
+        }
+
+
+
+        outline = speedComparisonArray[0].GetComponent<quick_outline.quick_outline>();
+        outline.OutlineWidth = 7;
+        outline.OutlineColor = (Color.green);
 
         GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
         textobj.GetComponent<Combat_Event_UI_Manager>().TextClear();
@@ -841,8 +891,8 @@ public class e_CombatManager : MonoBehaviour
 
         //카메라 흔들림
         combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f - 0.6f, 0.2f, -5.8f), 2f);
-        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 3f), 0.1f);
-        combatCameraControll.CombatCamera.transform.DOShakePosition(1f, 0.08f);
+        combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, 3f), 2f);
+        CombatCamera_ShakeObj.transform.DOShakePosition(1f, 0.1f);
 
 
 
@@ -862,6 +912,9 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
         combat_Event_UI_Manager.DamageText.SetActive(false);
 
+
+
+        BarUpdate();
         LastResult(myParty[target_Idx]);
 
     }
@@ -877,7 +930,7 @@ public class e_CombatManager : MonoBehaviour
         Vector3 HeroPos = speedComparisonArray[0].transform.position;
         Vector3 EnemyPos = target.transform.position;
 
-        switch(SaveSkill.Type)
+        switch (SaveSkill.Type)
         {
             case 0: //어택
 
@@ -898,9 +951,9 @@ public class e_CombatManager : MonoBehaviour
                 ppCon.DepthOfFieldOnOff(ppCon); // 전투 시 블러 처리 yoon
                 yield return new WaitForSeconds(0.5f);
                 combatCameraControll.CombatCamera.transform.DOMove(new Vector3(-2998.72f + 0.6f, 0.2f, -5.8f), 2f);
-                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -3f), 0.1f);
-                combatCameraControll.CombatCamera.transform.DOShakePosition(1f, 0.08f);
-               // combatCameraControll.CombatCamera.transform.DOShakeRotation(1f, 0.08f);
+                combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -3f), 2f);
+                CombatCamera_ShakeObj.transform.DOShakePosition(1f, 0.1f);
+                // combatCameraControll.CombatCamera.transform.DOShakeRotation(1f, 0.08f);
 
 
 
@@ -942,7 +995,7 @@ public class e_CombatManager : MonoBehaviour
 
                 Debug.Log(target + "를 대상으로" + SaveSkill.Name + "스킬 사용" + "::스킬인덱스 =" + SaveSkill.Index);
                 speedComparisonArray[0].transform.GetChild(0).GetComponent<Animator>().SetInteger("herostate", 998); // 애니메이션 IDLE로 바꿈
-             //   target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);
+                                                                                                                     //   target.transform.GetChild(0).GetComponent<Animator>().SetInteger("enemystate", 998);
 
                 ppCon.DepthOfFieldOnOff(ppCon); // 블러 끄기
 
@@ -963,23 +1016,19 @@ public class e_CombatManager : MonoBehaviour
 
         }
 
-        outline.OutlineColor = Color.white;
-        outline.OutlineWidth = 4;
-
-
-
         combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
         combat_Event_UI_Manager.DamageText.SetActive(false);
+
+
         LastResult(target);
 
-
-
+        BarUpdate();
     }
 
 
     public void PartyExpUp()
     {
-        for(int i = 0; i< myParty.Count; i++)
+        for (int i = 0; i < myParty.Count; i++)
         {
             myParty[i].GetComponent<StatScript>().MyExp += 40; //이거 던전 난이도에 따라 다르게 넣어야 될 수도 있음
             if (myParty[i].GetComponent<StatScript>().MyExp >= 100)
@@ -998,7 +1047,7 @@ public class e_CombatManager : MonoBehaviour
                 if (myParty[i].transform.GetChild(j).tag == "Effect")
                 {
                     StatScript CurrentMyStat = myParty[i].gameObject.transform.GetComponent<StatScript>();
-                    
+
                     CurrentMyStat.BuffPram.Clear();
                     CurrentMyStat.BuffValue.Clear();
                     CurrentMyStat.myBuffTime.Clear();
