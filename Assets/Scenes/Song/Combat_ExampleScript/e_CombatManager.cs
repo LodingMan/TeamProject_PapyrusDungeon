@@ -45,6 +45,10 @@ public class e_CombatManager : MonoBehaviour
     public Transform CanvasTransform;
 
 
+    public quick_outline.quick_outline outline;
+
+
+
     int Damage; //총 합산 데미지
     int StatPram;
     int Turn;
@@ -147,6 +151,12 @@ public class e_CombatManager : MonoBehaviour
         {
             myParty[i + 1].transform.position = FirstHeroCreatePos - new Vector3(2.0f * (i + 1), 0, 0);
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+
+        for(int i = 0; i < myParty.Count; i++)
+        {
+            outline = myParty[i].GetComponent<quick_outline.quick_outline>();
+            outline.enabled = true;
         }
     }
 
@@ -306,6 +316,9 @@ public class e_CombatManager : MonoBehaviour
 
                 }
             }
+            outline = speedComparisonArray[0].GetComponent<quick_outline.quick_outline>();
+            outline.OutlineWidth = 7;
+            outline.OutlineColor = (Color.green);
             StartCoroutine(SkillUISetting());
         }
         if (speedComparisonArray[0].tag == "Enemy")
@@ -947,8 +960,12 @@ public class e_CombatManager : MonoBehaviour
                 Debug.Log("오류");
                 break;
 
-
         }
+
+        outline.OutlineColor = Color.white;
+        outline.OutlineWidth = 4;
+
+
 
         combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
         combat_Event_UI_Manager.DamageText.SetActive(false);
