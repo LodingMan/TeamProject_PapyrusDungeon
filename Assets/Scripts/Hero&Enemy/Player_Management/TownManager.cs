@@ -10,8 +10,7 @@ public class TownManager : MonoBehaviour
     //�÷��̾��� ������ �����ϴ� ��ũ��Ʈ. 
     //�ش� ��ũ��Ʈ���� ���� ����, ���, �� �ǹ��� ������Ȳ
     public int Week = 0;
-    public int Gold = 0;
-    public int Jewel = 0;
+
 
     public ManagerTable MgrTable;
     public IntroSceneScript introSceneScript;
@@ -31,8 +30,7 @@ public class TownManager : MonoBehaviour
     public List<GameObject> OffControll = new List<GameObject>();
 
     public Text text_Week;
-    public Text text_Gold;
-    public Text text_Jewel;
+
 
     public bool isTown;
     public bool isTent;
@@ -58,20 +56,12 @@ public class TownManager : MonoBehaviour
         {
             NextWeek(); // -> 1 week    
         }
-        if (PlayerPrefs.HasKey("Gold"))
-        {
-            Gold = PlayerPrefs.GetInt("Gold");
-        }
-        else
-        {
-            Gold = 1000;
-        }
+
     }
     public void Update()
     {
         text_Week.text = Week.ToString();
-        text_Gold.text = GetThousandCommaText(Gold).ToString();
-        text_Jewel.text = Jewel.ToString();
+
     }
     public string GetThousandCommaText(int data)
     {

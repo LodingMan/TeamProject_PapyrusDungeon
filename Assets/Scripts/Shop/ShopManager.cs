@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 //==================================================================================================//
 // 전체적인 아이템 및 장비 저장 불러오기 스크립트입니다. 이름 변경 예정입니다. 03-29 윤성근
 //==================================================================================================//
@@ -36,6 +37,8 @@ public class ShopManager : MonoBehaviour
     public bool isShop = false; // 상점이 열려있는지 확인하는 bool값입니다.
 
     public Button BuyBtn; // 구매 버튼
+
+    public Text popupText;
 
 
     public void IsShop()
@@ -395,5 +398,19 @@ public class ShopManager : MonoBehaviour
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(2f);
+    }
+
+
+    public void NotEnoughMoney()
+    {
+        StartCoroutine(MoneyDelay());
+    }
+
+    IEnumerator MoneyDelay()
+    {
+        popupText.text = "재화가 부족합니다!";
+        popupText.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
+        yield return new WaitForSeconds(1f);
+        popupText.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
     }
 }

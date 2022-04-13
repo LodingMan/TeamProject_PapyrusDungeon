@@ -145,8 +145,8 @@ public class ShopEquipScripts : MonoBehaviour
         BuyBtn.onClick.AddListener(BuyEquip);
     }
 
-    public void EquipInstantiate() 
-    {  
+    public void EquipInstantiate()
+    {
         if (shopManager.money > equipTable.initEquip[equipIdx].Cost)
         {
             GameObject buyEquip = Instantiate(shopManager.equipList[equipIdx]);
@@ -159,7 +159,7 @@ public class ShopEquipScripts : MonoBehaviour
         }
         else
         {
-            Debug.Log("재화가 부족합니다.");
+            shopManager.NotEnoughMoney();
         }
     }
     public void SelectImage()
