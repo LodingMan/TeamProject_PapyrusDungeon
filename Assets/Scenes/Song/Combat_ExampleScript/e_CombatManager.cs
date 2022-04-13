@@ -1019,10 +1019,10 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
         combat_Event_UI_Manager.DamageText.SetActive(false);
 
+        BarUpdate();
 
         LastResult(target);
 
-        BarUpdate();
     }
 
 
