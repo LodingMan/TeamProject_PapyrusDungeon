@@ -38,7 +38,6 @@ public class TownManager : MonoBehaviour
     public bool isTent;
     public bool isCombat;
     public bool isInven;
-
     
     private void Awake()
     {
@@ -65,14 +64,18 @@ public class TownManager : MonoBehaviour
         }
         else
         {
-            Gold = 100;
+            Gold = 1000;
         }
     }
     public void Update()
     {
         text_Week.text = Week.ToString();
-        text_Gold.text = Gold.ToString();
+        text_Gold.text = GetThousandCommaText(Gold).ToString();
         text_Jewel.text = Jewel.ToString();
+    }
+    public string GetThousandCommaText(int data)
+    {
+        return string.Format("{0:#,###}", data);
     }
     public void NextWeek() // ���� ���� , ó�� ���� ���� ���� ������ �÷��̾��� ���൵�� �����ַ� �Ѿ.      
     {
