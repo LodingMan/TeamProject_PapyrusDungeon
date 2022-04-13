@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3df4a970a8c815e44aa1f08274abc4b0, type: 2}
+  - {fileID: 2100000, guid: d9d84bf291981044f8a47027ad0956fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,4 +112,7 @@ MonoBehaviour:
   Renderer: {fileID: 0}
   inGame_Player_Script: {fileID: 0}
   roomNumber: 0
+  isBossRoom: 0
+  isFirstRoom: 0
+  DungeonEventPram: 0
   moveDir: 0
