@@ -50,7 +50,6 @@ public class e_CombatManager : MonoBehaviour
     public quick_outline.quick_outline outline;
 
 
-
     int Damage; //총 합산 데미지
     int StatPram;
     int Turn;
@@ -97,7 +96,6 @@ public class e_CombatManager : MonoBehaviour
                             case "None":
                                 skillActiveManager.SkillNone();
                                 break;
-
                             case "Target1":
                                 hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
                                 StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
@@ -126,6 +124,32 @@ public class e_CombatManager : MonoBehaviour
                                 break;
                         }
 
+                        if(hit.transform.gameObject.tag == "Player" || hit.transform.gameObject.tag == "Enemy")
+                        {
+                            combat_Event_UI_Manager.HeroStatInfo_Text[0].text = "" +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Name;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[1].text = "" +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Job;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[2].text = "ATK : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Atk;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[3].text = "DEF : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Def;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[4].text = "CRI : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Cri;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[5].text = "ACC : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Acc;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[6].text = "AGI : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Agi;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[7].text = "SPEED : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.Speed;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[8].text = "HP : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.HP
+                                + "/" + hit.transform.gameObject.GetComponent<StatScript>().myStat.MAXHP;
+                            combat_Event_UI_Manager.HeroStatInfo_Text[9].text = "MP : " +
+                                hit.transform.gameObject.GetComponent<StatScript>().myStat.MP
+                                + "/" + hit.transform.gameObject.GetComponent<StatScript>().myStat.MAXMP;
+                        }
+                       
                         Debug.Log(hit.transform.gameObject.name);
                     }
 
@@ -136,13 +160,12 @@ public class e_CombatManager : MonoBehaviour
     }
 
 
+
     public void Init_Dungeon_Party()
     {
         for (int i = 0; i < 3; i++)
         {
             myParty.Add(guildManager.Party_Hero_Member[i]);
-
-
         }
         myParty[0].transform.position = FirstHeroCreatePos;
         myParty[0].transform.rotation = Quaternion.Euler(0, 90, 0);
@@ -153,17 +176,26 @@ public class e_CombatManager : MonoBehaviour
             myParty[i + 1].transform.rotation = Quaternion.Euler(0, 90, 0);
         }
 
+        combat_Event_UI_Manager.Bars.SetActive(true);
+         combat_Event_UI_Manager.Hero_HP_Bar.Clear();
         for (int i = 0; i < myParty.Count; i++)
         {
             outline = myParty[i].GetComponent<quick_outline.quick_outline>();
             outline.OutlineColor = Color.white;
             outline.enabled = true;
 
+            combat_Event_UI_Manager.Hero_HP_Bar.Add(combat_Event_UI_Manager.Defalt_Hero_Hp_Bar[i]);
+
+            combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<RectTransform>().anchoredPosition =
+                combat_Event_UI_Manager.Hero_Hp_Bar_Pos[i];
+
             combat_Event_UI_Manager.Hero_HP_Bar[i].SetActive(true);
             combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<Slider>().maxValue =
                 myParty[i].GetComponent<StatScript>().myStat.MAXHP;
             combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<Slider>().value =
                 myParty[i].GetComponent<StatScript>().myStat.HP;
+            combat_Event_UI_Manager.Hero_Hp_Bar_Pos.Add
+                (combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<RectTransform>().anchoredPosition);
         }
     }
 
@@ -172,7 +204,7 @@ public class e_CombatManager : MonoBehaviour
 
     public void Out_Dungeon_Party()
     {
-
+        combat_Event_UI_Manager.Bars.SetActive(false);
         for (int i = 0; i < myParty.Count; i++)
         {
             myParty[i].transform.position = new Vector3(0, 0, 0);
@@ -204,8 +236,16 @@ public class e_CombatManager : MonoBehaviour
         }
     }
 
+
+    //=====================================================================================================// 여기서부터 시작
     public void EnemyInit()
     {
+        Turn = 0;
+        combat_Event_UI_Manager.TurnText.text = "" + Turn;
+        combat_Event_UI_Manager.TurnTextImg.SetActive(true);
+
+
+        
         ppCon.ChromaticAberration_On_Off(ppCon);
         ppCon.CombatSeeting();
         isCombat = true;
@@ -259,9 +299,15 @@ public class e_CombatManager : MonoBehaviour
 
         }
 
-
-        for(int i = 0; i < enemys.Count; i++)
+        combat_Event_UI_Manager.Enemy_HP_Bar.Clear();
+        for (int i = 0; i < enemys.Count; i++)
         {
+            combat_Event_UI_Manager.Enemy_HP_Bar.Add(combat_Event_UI_Manager.Defalt_Enemy_Hp_Bar[i]);
+
+            combat_Event_UI_Manager.Enemy_HP_Bar[i].GetComponent<RectTransform>().anchoredPosition =
+                combat_Event_UI_Manager.Enemy_Hp_Bar_Pos[i];
+
+
             combat_Event_UI_Manager.Enemy_HP_Bar[i].SetActive(true);
 
             combat_Event_UI_Manager.Enemy_HP_Bar[i].GetComponent<Slider>().maxValue =
@@ -276,6 +322,9 @@ public class e_CombatManager : MonoBehaviour
     public void TurnStart() //전투가 시작되면 모든 유닛의 속도를 비교해 주어야 하므로 6칸 짜리 배열에 모든 오브젝트를 때려넣는다. 
     {
         Turn++;
+        combat_Event_UI_Manager.TurnText.text = "" + Turn;
+        combat_Event_UI_Manager.TurnText.GetComponent<DOTweenAnimation>().DORestart();
+        speedComparisonArray.Clear();
 
 
         for (int i = 0; i < myParty.Count; i++)
@@ -355,7 +404,8 @@ public class e_CombatManager : MonoBehaviour
 
                 }
             }
-
+            HeroInfo_Init();
+            combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(Vector2.zero, 1);
             StartCoroutine(SkillUISetting());
         }
         if (speedComparisonArray[0].tag == "Enemy")
@@ -656,9 +706,6 @@ public class e_CombatManager : MonoBehaviour
                             }
                         }
                     }
-
-
-
                 }
             }
         }
@@ -690,16 +737,29 @@ public class e_CombatManager : MonoBehaviour
                 for (int i = destroyIdx + 1; i < enemys.Count; i++)
                 {
                     enemys[i].transform.DOMove(FirstEnemyCreatePos + new Vector3((2.0f * (i - 1)), 0, 0), 1);
+
+                    combat_Event_UI_Manager.Enemy_HP_Bar[i].GetComponent<RectTransform>().DOAnchorPos(
+                        combat_Event_UI_Manager.Enemy_HP_Bar[i - 1].GetComponent<RectTransform>().anchoredPosition, 1);
+                    // new Vector2(-165 * (i-1),0),1); //hp바 앞으로 당기기
+
                     Debug.Log(enemys[i] + "이동함");
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
 
 
+                //  Destroy(combat_Event_UI_Manager.Enemy_HP_Bar[destroyIdx]);
+                combat_Event_UI_Manager.Enemy_HP_Bar[destroyIdx].SetActive(false);
+                combat_Event_UI_Manager.Enemy_HP_Bar.RemoveAt(destroyIdx); //Hp바 삭제
+
                 enemys.Remove(target);
                 Destroy(target);
                 if (enemys.Count == 0)
                 {
+
+                    combat_Event_UI_Manager.TurnTextImg.SetActive(false);
+
+                    outline.OutlineColor = Color.white;
                     speedComparisonArray.Clear();
                     isCombat = false;
                     InGame_Player_Script IP = GameObject.Find("InGamePlayer").GetComponent<InGame_Player_Script>();
@@ -729,6 +789,11 @@ public class e_CombatManager : MonoBehaviour
                 for (int i = destroyIdx + 1; i < myParty.Count; i++)
                 {
                     myParty[i].transform.DOMove(FirstHeroCreatePos + new Vector3((-2.0f * (i - 1)), 0, 0), 1);
+
+
+                    combat_Event_UI_Manager.Hero_HP_Bar[i].GetComponent<RectTransform>().DOAnchorPos(
+                        combat_Event_UI_Manager.Hero_HP_Bar[i - 1].GetComponent<RectTransform>().anchoredPosition, 1);
+                    //new Vector2(165 * (i - 1), 0), 1); //hp바 앞으로 당기기
                 }
                 for (int i = 0; i < speedComparisonArray.Count; i++)
                     if (speedComparisonArray[i] == target) speedComparisonArray.Remove(target);
@@ -754,6 +819,9 @@ public class e_CombatManager : MonoBehaviour
 
 
 
+                //    Destroy(combat_Event_UI_Manager.Hero_HP_Bar[destroyIdx]);
+                combat_Event_UI_Manager.Hero_HP_Bar[destroyIdx].SetActive(false);
+                combat_Event_UI_Manager.Hero_HP_Bar.RemoveAt(destroyIdx); //Hp바 삭제
 
                 myParty.Remove(target);
                 heroManager.CurrentHeroList.Remove(target);
@@ -761,11 +829,22 @@ public class e_CombatManager : MonoBehaviour
 
                 if (myParty.Count == 0)
                 {
+                    combat_Event_UI_Manager.TurnTextImg.SetActive(false);
+
                     isGameOver = true;
                     isLastCombat = false;
                     isCombat = false;
 
+                    for(int i = enemys.Count-1; i >= 0; i--)
+                    {
+                        Debug.Log(i);
+                        Destroy(enemys[i]);
+                        enemys.Remove(enemys[i]);
+                        combat_Event_UI_Manager.Enemy_HP_Bar[i].SetActive(false);
+                    }
+
                     speedComparisonArray.Clear();
+
                     RoomController RC = GameObject.Find("RoomController").GetComponent<RoomController>();
                     RC.GameFailFunc();
 
@@ -779,6 +858,8 @@ public class e_CombatManager : MonoBehaviour
         }
 
         speedComparisonArray.RemoveAt(0);
+
+        BarUpdate();//갱신
         NextMove();
 
     }
@@ -855,7 +936,9 @@ public class e_CombatManager : MonoBehaviour
 
     IEnumerator EnemyAttack(int target_Idx)
     {
+        combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1280, 0), 1);
         yield return new WaitForSeconds(1);
+        combat_Event_UI_Manager.Bars.SetActive(false);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
         combat_Event_UI_Manager.Player_Targeting.SetActive(false);
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
@@ -913,6 +996,7 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.DamageText.SetActive(false);
 
 
+        combat_Event_UI_Manager.Bars.SetActive(true);
 
         BarUpdate();
         LastResult(myParty[target_Idx]);
@@ -920,6 +1004,7 @@ public class e_CombatManager : MonoBehaviour
     }
     public IEnumerator HeroAttackDlay(GameObject target)
     {
+        combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1280,0), 1);
         //여기부터 공격을 시작한 히어로의 움직임
         yield return new WaitForSeconds(0.5f);
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
@@ -929,13 +1014,13 @@ public class e_CombatManager : MonoBehaviour
 
         Vector3 HeroPos = speedComparisonArray[0].transform.position;
         Vector3 EnemyPos = target.transform.position;
+        combat_Event_UI_Manager.Bars.SetActive(false);
 
         switch (SaveSkill.Type)
         {
             case 0: //어택
 
                 speedComparisonArray[0].transform.position = new Vector3(-3000f, 0, -3.12f);
-
                 target.transform.position = new Vector3(-2997.85f, 0, -3.12f);
 
                 target.transform.DOMove(target.transform.position - new Vector3(-1.3f, 0, 0), 3f);
@@ -954,8 +1039,6 @@ public class e_CombatManager : MonoBehaviour
                 combatCameraControll.CombatCamera.transform.DORotate(new Vector3(-5.7f, 0, -3f), 2f);
                 CombatCamera_ShakeObj.transform.DOShakePosition(1f, 0.1f);
                 // combatCameraControll.CombatCamera.transform.DOShakeRotation(1f, 0.08f);
-
-
 
 
                 yield return new WaitForSeconds(3);
@@ -1015,6 +1098,8 @@ public class e_CombatManager : MonoBehaviour
                 break;
 
         }
+        combat_Event_UI_Manager.Bars.SetActive(true);
+
 
         combat_Event_UI_Manager.TextAnim.SetInteger("TextState", 0);
         combat_Event_UI_Manager.DamageText.SetActive(false);
@@ -1056,6 +1141,32 @@ public class e_CombatManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void HeroInfo_Init()
+    {
+        combat_Event_UI_Manager.HeroStatInfo_Text[0].text = "" +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Name;
+        combat_Event_UI_Manager.HeroStatInfo_Text[1].text = "" +
+           speedComparisonArray[0].GetComponent<StatScript>().myStat.Job;
+        combat_Event_UI_Manager.HeroStatInfo_Text[2].text = "ATK : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Atk;
+        combat_Event_UI_Manager.HeroStatInfo_Text[3].text = "DEF : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Def;
+        combat_Event_UI_Manager.HeroStatInfo_Text[4].text = "CRI : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Cri;
+        combat_Event_UI_Manager.HeroStatInfo_Text[5].text = "ACC : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Acc;
+        combat_Event_UI_Manager.HeroStatInfo_Text[6].text = "AGI : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Agi;
+        combat_Event_UI_Manager.HeroStatInfo_Text[7].text = "SPEED : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.Speed;
+        combat_Event_UI_Manager.HeroStatInfo_Text[8].text = "HP : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.HP
+            + "/" + speedComparisonArray[0].GetComponent<StatScript>().myStat.MAXHP;
+        combat_Event_UI_Manager.HeroStatInfo_Text[9].text = "MP : " +
+            speedComparisonArray[0].GetComponent<StatScript>().myStat.MP
+            + "/" + speedComparisonArray[0].GetComponent<StatScript>().myStat.MAXMP;
     }
 
 }

@@ -23,6 +23,9 @@ public class CombatCameraControll : MonoBehaviour
     public RoomController roomController;
     public InGame_Player_Script inGame_Player_Script;
 
+    public Combat_Event_UI_Manager combat_Event_UI_Manager;
+
+
     public Combat_Guide_Script combat_Guide_Script;
     public TownManager townManager;
 
@@ -111,6 +114,8 @@ public class CombatCameraControll : MonoBehaviour
     {
         if (!isMiniMapOn)
         {
+            combat_Event_UI_Manager.Bars.SetActive(false);
+
             //MinimapCamera.enabled = true;
 
             MinimapCamera.DORect(new Rect(0.18f, 0.18f, 0.65f, 0.65f), 0.5f);
@@ -118,6 +123,8 @@ public class CombatCameraControll : MonoBehaviour
         }
         else
         {
+            combat_Event_UI_Manager.Bars.SetActive(true);
+
             MinimapCamera.DORect(new Rect(0f, 0f, 0f, 0f), 0.5f);
             isMiniMapOn = false;
             //  MinimapCamera.enabled = false;

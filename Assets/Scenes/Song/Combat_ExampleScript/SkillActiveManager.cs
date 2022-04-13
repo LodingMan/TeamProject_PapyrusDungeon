@@ -114,11 +114,53 @@ public class SkillActiveManager : MonoBehaviour
     public void Skill1_Info()
     {
 
-        combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 0), 1);
 
+
+        combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 0), 1);
         combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[0].Name;
         combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : " + currentSkills[0].ATK;
-        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + currentSkills[0].Type;
+
+        string TypeText;
+        string PramText;
+
+        if (currentSkills[0].Type == 0)
+        {
+            TypeText = "Attack";
+        }
+        else
+        {
+            TypeText = "Buff";
+        }
+
+        switch(currentSkills[0].Pram)
+        {
+            case 1:
+                PramText = "ATK";
+                break;
+            case 2:
+                PramText = "DEF";
+                break;
+            case 3:
+                PramText = "CRI";
+                break;
+            case 4:
+                PramText = "ACC";
+                break;
+            case 5:
+                PramText = "AGI";
+                break;
+            case 6:
+                PramText = "SPD";
+                break;
+            default :
+                PramText = "None";
+                break;
+        }
+
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + TypeText;
+        combat_Event_UI_Manager.SkillInfo_Text[4].text = "Buff Stat : " + PramText;
+        combat_Event_UI_Manager.SkillInfo_Text[5].text = "Buff Time : " + currentSkills[0].BuffTime;
+
 
         for (int i = 0; i< 3; i++)
         {
@@ -202,7 +244,47 @@ public class SkillActiveManager : MonoBehaviour
 
         combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[1].Name;
         combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : "+currentSkills[1].ATK;
-        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + currentSkills[1].Type;
+
+        string TypeText;
+        string PramText;
+
+        if (currentSkills[1].Type == 0)
+        {
+            TypeText = "Attack";
+        }
+        else
+        {
+            TypeText = "Buff";
+        }
+
+        switch (currentSkills[1].Pram)
+        {
+            case 1:
+                PramText = "ATK";
+                break;
+            case 2:
+                PramText = "DEF";
+                break;
+            case 3:
+                PramText = "CRI";
+                break;
+            case 4:
+                PramText = "ACC";
+                break;
+            case 5:
+                PramText = "AGI";
+                break;
+            case 6:
+                PramText = "SPD";
+                break;
+            default:
+                PramText = "None";
+                break;
+        }
+
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + TypeText;
+        combat_Event_UI_Manager.SkillInfo_Text[4].text = "Buff Stat : " + PramText;
+        combat_Event_UI_Manager.SkillInfo_Text[5].text = "Buff Time : " + currentSkills[1].BuffTime;
 
 
         for (int i = 0; i < 3; i++)
@@ -280,7 +362,47 @@ public class SkillActiveManager : MonoBehaviour
         combat_Event_UI_Manager.Skill_Info_UI.rectTransform.DOAnchorPos(new Vector2(0, 0), 1);
         combat_Event_UI_Manager.SkillInfo_Text[0].text = currentSkills[2].Name;
         combat_Event_UI_Manager.SkillInfo_Text[2].text = "SKILL ATK : " + currentSkills[2].ATK;
-        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + currentSkills[2].Type;
+
+        string TypeText;
+        string PramText;
+
+        if (currentSkills[2].Type == 0)
+        {
+            TypeText = "Attack";
+        }
+        else
+        {
+            TypeText = "Buff";
+        }
+
+        switch (currentSkills[2].Pram)
+        {
+            case 1:
+                PramText = "ATK";
+                break;
+            case 2:
+                PramText = "DEF";
+                break;
+            case 3:
+                PramText = "CRI";
+                break;
+            case 4:
+                PramText = "ACC";
+                break;
+            case 5:
+                PramText = "AGI";
+                break;
+            case 6:
+                PramText = "SPD";
+                break;
+            default:
+                PramText = "None";
+                break;
+        }
+
+        combat_Event_UI_Manager.SkillInfo_Text[3].text = "SKILL TYPE : " + TypeText;
+        combat_Event_UI_Manager.SkillInfo_Text[4].text = "Buff Stat : " + PramText;
+        combat_Event_UI_Manager.SkillInfo_Text[5].text = "Buff Time : " + currentSkills[2].BuffTime;
 
         for (int i = 0; i < 3; i++)
         {

@@ -17,9 +17,21 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
 
 
+    public GameObject HeroStatusInfo_Panel;
+    public List<Text> HeroStatInfo_Text = new List<Text>();
+    // 0 이름 1 직업 2 Atk 3 DEF 4 CIR 5 ACC 6 AGI 7 SPEED 8 HP 9 MP
+
+
     public GameObject Bars;
+    public List<GameObject> Defalt_Hero_Hp_Bar = new List<GameObject>();
     public List<GameObject> Hero_HP_Bar = new List<GameObject>();
+    public List<GameObject> Defalt_Enemy_Hp_Bar = new List<GameObject>();
     public List<GameObject> Enemy_HP_Bar = new List<GameObject>();
+    public List<Vector2> Hero_Hp_Bar_Pos = new List<Vector2>();
+    public List<Vector2> Enemy_Hp_Bar_Pos = new List<Vector2>();
+
+    public Text TurnText;
+    public GameObject TurnTextImg;
 
 
     public Button MiniMapCommingBtn;
@@ -49,7 +61,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public GameObject Current_Attack_Unit;
 
     public Image Skill_Info_UI;
-    public List<Text> SkillInfo_Text = new List<Text>(); // 0 이름 2 ATK 3 Type
+    public List<Text> SkillInfo_Text = new List<Text>(); // 0 이름 2 ATK 3 Type 4 pram 5 BuffTime
     public List<Image> SKillInfo_Image = new List<Image>();
 
     public GameObject Player_Targeting;
