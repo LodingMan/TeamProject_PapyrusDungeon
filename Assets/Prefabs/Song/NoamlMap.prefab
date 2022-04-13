@@ -112,4 +112,7 @@ MonoBehaviour:
   Renderer: {fileID: 0}
   inGame_Player_Script: {fileID: 0}
   roomNumber: 0
+  isBossRoom: 0
+  isFirstRoom: 0
+  DungeonEventPram: 0
   moveDir: 0
