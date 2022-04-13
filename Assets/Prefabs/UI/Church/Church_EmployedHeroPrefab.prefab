@@ -277,7 +277,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 345, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6375537934540642704
 CanvasRenderer:
@@ -408,6 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myStat:
     Index: 0
+    Lv: 0
     Name: 
     Job: 
     HP: 0
@@ -420,6 +421,13 @@ MonoBehaviour:
     Acc: 0
     Agi: 0
     Speed: 0
+  MyExp: 0
+  PreviousLv: 1
+  BuffCount: 0
+  BuffValue: 
+  BuffPram: 
+  myBuffTime: 
+  SaveNum: 0
 --- !u!114 &7812423451466261334
 MonoBehaviour:
   m_ObjectHideFlags: 0
