@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class e_CombatManager : MonoBehaviour
 {
     public TownManager townManager;
+    public ShopManager shopManager;
     public Combat_Guide_Script combat_Guide_Script;
 
 

@@ -194,6 +194,7 @@ public class ItemScripts : MonoBehaviour
             {
                 isUsed = true;
                 shopManager.money += item.cost;
+                shopManager.GoldRefresh();
                 for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
                 {
                     if (shopManager.hasItemList[i].GetComponent<ItemScripts>().isUsed)

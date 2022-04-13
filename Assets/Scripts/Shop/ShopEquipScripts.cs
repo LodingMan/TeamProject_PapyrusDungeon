@@ -149,6 +149,8 @@ public class ShopEquipScripts : MonoBehaviour
     {
         if (shopManager.money > equipTable.initEquip[equipIdx].Cost)
         {
+            shopManager.money -= equipTable.initEquip[equipIdx].Cost;
+            shopManager.GoldRefresh();
             GameObject buyEquip = Instantiate(shopManager.equipList[equipIdx]);
             buyEquip.transform.SetParent(inventory.transform);
             buyEquip.transform.localPosition = inventory.transform.localPosition;
@@ -157,7 +159,7 @@ public class ShopEquipScripts : MonoBehaviour
             shopManager.ItemSave();
             Destroy(gameObject);
         }
-        else
+        else if(shopManager.money < equipTable.initEquip[equipIdx].Cost)
         {
             shopManager.NotEnoughMoney();
         }

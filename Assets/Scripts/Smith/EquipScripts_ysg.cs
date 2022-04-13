@@ -513,6 +513,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 isSelled = true;
                 itemData.money += equip.Cost;
+                itemData.GoldRefresh();
                 for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-30 윤성근
                 {
                     if (itemData.hasEquipList[i].GetComponent<EquipScripts_ysg>().isSelled)
@@ -521,9 +522,10 @@ public class EquipScripts_ysg : MonoBehaviour
                     }
                 }
                 equipBtn.gameObject.SetActive(false);
-                Destroy(gameObject);
                 Debug.Log("판매완료");
                 itemData.SellItemSave();
+                Destroy(gameObject);
+
 
             }
 
@@ -672,7 +674,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
             equipBtn.gameObject.SetActive(false);
         }
-        else if (itemData.money < 100)
+        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100)
         {
             itemData.NotEnoughMoney();
         }

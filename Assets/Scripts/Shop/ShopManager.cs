@@ -40,7 +40,13 @@ public class ShopManager : MonoBehaviour
 
     public Text popupText;
 
+    public Text goldText;
 
+
+    private void Start()
+    {
+        GoldRefresh();
+    }
     public void IsShop()
     {
         isShop = true;
@@ -120,8 +126,10 @@ public class ShopManager : MonoBehaviour
 
         string jdata = JsonConvert.SerializeObject(itemSavingDatas);
         string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
+        string jdata3 = JsonConvert.SerializeObject(money);
         File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
         File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/MoneySave.Json", jdata3);
 
 
     }
@@ -140,8 +148,10 @@ public class ShopManager : MonoBehaviour
 
         string jdata = JsonConvert.SerializeObject(itemSavingDatas);
         string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
+        string jdata3 = JsonConvert.SerializeObject(money);
         File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
         File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/MoneySave.Json", jdata3);
 
     }
 
@@ -345,8 +355,10 @@ public class ShopManager : MonoBehaviour
 
         string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/ItemSave.Json"); //ItemSave.Json 파일에 인벤토리 아이템을 저장합니다.
         string jdata2 = File.ReadAllText(Application.persistentDataPath + "/Resources/EquipSave.Json");
+        string jdata3 = File.ReadAllText(Application.persistentDataPath + "/Resources/MoneySave.Json");
         itemSavingDatas = JsonConvert.DeserializeObject<List<ItemSavingData>>(jdata);
         equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(jdata2);
+        money = JsonConvert.DeserializeObject<int>(jdata3);
 
         if (jdata != "null" && jdata2 != "null")
         {
@@ -378,7 +390,7 @@ public class ShopManager : MonoBehaviour
     public void WipeInventory()
     {
         StartCoroutine(WipeInventoryCo());
-        if (File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json"))
+        if (File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/MoneySave.Json"))
         {
             ItemLoad();
         }
@@ -412,5 +424,17 @@ public class ShopManager : MonoBehaviour
         popupText.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
         popupText.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
+    }
+
+    public void GoldRefresh()
+    {
+        goldText.text = money.ToString();
+    }
+
+    public void DungeonClearItemSave(int gold)
+    {
+        money += gold;
+        GoldRefresh();
+        ItemSave();
     }
 }

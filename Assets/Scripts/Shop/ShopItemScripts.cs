@@ -88,6 +88,7 @@ public class ShopItemScripts : MonoBehaviour
         if (shopManager.money > itemTable.Item_Dictionary[itemIdx].cost)
         {
             shopManager.money -= itemTable.Item_Dictionary[itemIdx].cost;
+            shopManager.GoldRefresh();
             GameObject buyItem = Instantiate(shopManager.itemList[itemIdx]);
             hasItemList.Add(buyItem);
             buyItem.transform.SetParent(inventory.transform);
@@ -95,8 +96,9 @@ public class ShopItemScripts : MonoBehaviour
             buyItem.transform.localScale = new Vector3(1, 1, 1);
             shopManager.ItemSave();
         }
-        else
+        else if(shopManager.money < itemTable.Item_Dictionary[itemIdx].cost)
         {
+
             shopManager.NotEnoughMoney();
         }
 
