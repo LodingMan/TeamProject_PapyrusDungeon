@@ -886,6 +886,7 @@ public class e_CombatManager : MonoBehaviour
             outline = myParty[i].GetComponent<quick_outline.quick_outline>();
             outline.OutlineColor = Color.white;
             outline.OutlineWidth = 4;
+            outline.enabled = true;
         }
 
 
