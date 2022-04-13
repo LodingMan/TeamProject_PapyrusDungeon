@@ -46,7 +46,7 @@ namespace Shin
 
             btn.onClick.AddListener(tweenMgr.UI_TrainingSecPanel_On); // 버튼이 눌리면
             btn.onClick.AddListener(ShowHeroDetail);
-            btn.onClick.AddListener(trainingManager.MgrTable.soundMgr.PlayClipBtn);
+            btn.onClick.AddListener(trainingManager.MgrTable.soundMgr.PlayClipContent);
         }
         private void Update()
         {

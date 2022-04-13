@@ -141,7 +141,7 @@ namespace Song
             root.BroadcastMessage("BeginDrag", transform, SendMessageOptions.DontRequireReceiver);
             isPointerDown = false;
             canvasGroup.blocksRaycasts = false;
-            soundMgr.PlayClipOption();
+            soundMgr.PlayClipContent();
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -149,7 +149,7 @@ namespace Song
             root.BroadcastMessage("EndDrag", transform, SendMessageOptions.DontRequireReceiver);
             canvasGroup.blocksRaycasts = true;
             uI_Central.Catch_Hero_Object = null;
-            soundMgr.PlayClipOption();
+            soundMgr.PlayClipContent();
             MgrTable.TutorialMgr.GuildTuto02Off();
         }
 

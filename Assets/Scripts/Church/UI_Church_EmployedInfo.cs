@@ -36,7 +36,7 @@ namespace Shin
 
             btn = GetComponent<Button>();
             btn.onClick.AddListener(Create_HealingHero_UI_Prefab); // 버튼이 눌리면
-            btn.onClick.AddListener(ChurchManager.MgrTable.soundMgr.PlayClipOption);
+            btn.onClick.AddListener(ChurchManager.MgrTable.soundMgr.PlayClipContent);
 
             // 초기화
             curWeek = townMgr.Week;

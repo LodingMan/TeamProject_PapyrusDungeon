@@ -64,6 +64,7 @@ namespace Song
                 }
 
                 This_Prefab_Object = null;
+                MgrTable.soundMgr.PlayClipMenu();
             }
 
         }

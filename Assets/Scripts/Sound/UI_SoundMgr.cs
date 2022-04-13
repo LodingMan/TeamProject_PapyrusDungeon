@@ -11,9 +11,13 @@ public class UI_SoundMgr : MonoBehaviour
     public AudioClip audioGold;
     public AudioClip audioDungeon;
     public AudioClip audioDungeonFail;
+    public AudioClip audioMenu;
     public AudioClip audioTrainStart;
+    public AudioClip audioContent;
+    public AudioClip audioDungeonStart;
     void Start()
     {
+        audioSE = GetComponent<AudioSource>();
         if (PlayerPrefs.HasKey("VolSE"))
         {
             audioSE.volume = PlayerPrefs.GetFloat("VolSE");
@@ -46,8 +50,21 @@ public class UI_SoundMgr : MonoBehaviour
         audioSE.clip = audioDungeonFail;
         audioSE.Play();
     }
-    public void PlayClipTrainStart()
+    public void PlayClipMenu()
     {
+        audioSE.clip = audioMenu;
+        audioSE.Play();
 
+    }
+    public void PlayClipContent()
+    {
+        audioSE.clip = audioContent;
+        audioSE.Play();
+    }
+
+    public void PlayClipDGStart()
+    {
+        audioSE.clip = audioDungeonStart;
+        audioSE.Play();
     }
 }
