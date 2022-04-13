@@ -181,7 +181,7 @@ public class e_CombatManager : MonoBehaviour
 
             outline = myParty[i].GetComponent<quick_outline.quick_outline>();
             outline.OutlineColor = Color.white;
-            outline.enabled = true;
+            outline.enabled = false;
 
             combat_Event_UI_Manager.Hero_HP_Bar[i].SetActive(false);
         }
