@@ -539,7 +539,7 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         if (itemUseManager.isActive) // 영웅이 선택 되었다면 실행합니다.
         {
-            if (itemUseManager.equips[0].Name == "" && !isEquip && itemUseManager.stats.Job == equip.Job)
+            if (itemUseManager.equips[0].Name == "" && !isEquip)
             {
                 isEquip = true;
                 //itemUseManager.isActive = false;

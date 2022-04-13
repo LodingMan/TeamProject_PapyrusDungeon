@@ -45,7 +45,7 @@ public class SmithManager : MonoBehaviour
 
     public void Upgrade() // ??? ??? ???????.
     {
-        if (equip.Name != "")
+        if (equip.Name != "" && isSlotFull)
         {
             upgradeChance = 100;
             isSlotFull = false;
