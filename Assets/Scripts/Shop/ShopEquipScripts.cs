@@ -147,7 +147,7 @@ public class ShopEquipScripts : MonoBehaviour
 
     public void EquipInstantiate() 
     {  
-        if (hasEquipList.Count < 10)
+        if (shopManager.money > equipTable.initEquip[equipIdx].Cost)
         {
             GameObject buyEquip = Instantiate(shopManager.equipList[equipIdx]);
             buyEquip.transform.SetParent(inventory.transform);
@@ -159,7 +159,7 @@ public class ShopEquipScripts : MonoBehaviour
         }
         else
         {
-            Debug.Log("인벤토리가 다 찼습니다.");
+            Debug.Log("재화가 부족합니다.");
         }
     }
     public void SelectImage()

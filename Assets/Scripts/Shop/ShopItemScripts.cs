@@ -84,9 +84,10 @@ public class ShopItemScripts : MonoBehaviour
 
 
     public void ItemInstantiate() //아이템 구매 시 인벤토리에 프리팹을 생성합니다.
-    {                                       // 아이템 구매 시 인벤토리 사이즈에 맞게 구매 가능하게 변경 하였습니다. 03-28 윤성근
-        if (hasItemList.Count < 10)
+    {                                       // 아이템 구매 시 돈이 감소합니다.
+        if (shopManager.money > itemTable.Item_Dictionary[itemIdx].cost)
         {
+            shopManager.money -= itemTable.Item_Dictionary[itemIdx].cost;
             GameObject buyItem = Instantiate(shopManager.itemList[itemIdx]);
             hasItemList.Add(buyItem);
             buyItem.transform.SetParent(inventory.transform);
@@ -96,8 +97,9 @@ public class ShopItemScripts : MonoBehaviour
         }
         else
         {
-            Debug.Log("인벤토리가 다 찼습니다.");
+            Debug.Log("재화가 부족합니다.");
         }
+
     }
 
     public void SelectImage()
@@ -111,7 +113,7 @@ public class ShopItemScripts : MonoBehaviour
                     shopPanel.transform.GetChild(i).GetComponent<ShopItemScripts>().isSelect = false;
                     shopPanel.transform.GetChild(i).GetComponent<ShopItemScripts>().selectImg.SetActive(false);
                 }
-                else if(shopPanel.transform.GetChild(i).tag == "Equip")
+                else if (shopPanel.transform.GetChild(i).tag == "Equip")
                 {
                     shopPanel.transform.GetChild(i).GetComponent<ShopEquipScripts>().isSelect = false;
                     shopPanel.transform.GetChild(i).GetComponent<ShopEquipScripts>().selectImg.SetActive(false);

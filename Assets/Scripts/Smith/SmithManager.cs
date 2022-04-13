@@ -134,10 +134,9 @@ public class SmithManager : MonoBehaviour
 
     IEnumerator UpgradeTextDelay()
     {
-        upgradeText.transform.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        upgradeText.transform.gameObject.SetActive(false);
-
+        upgradeText.transform.DOLocalMove(new Vector3(0,300,0), 1f);
+        yield return new WaitForSeconds(1f);
+        upgradeText.transform.DOLocalMove(new Vector3(0,450,0) , 1f);
     }
 
 
