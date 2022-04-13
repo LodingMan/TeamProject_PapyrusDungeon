@@ -10,6 +10,7 @@ namespace Song
 
     public class UI_DungeonSelect_Manager : MonoBehaviour
     {
+        public ManagerTable MgrTable;
         public List<GameObject> buttons;  //���� �ִ���ư �ϴ� ��Ȱ��ȭ �����ֱ�
         public UI_Tweening_Manager uI_Tweening_Manager;
         public UI_SoundMgr soundMgr;
@@ -22,6 +23,7 @@ namespace Song
 
         private void Start()
         {
+            MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
             uI_Tweening_Manager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
             soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
         }
@@ -54,6 +56,7 @@ namespace Song
                     return;
                 }
             }
+            MgrTable.tweenManager.UI_BackGroundPanel_On_Off();
             soundMgr.PlayClipBtn();
             //ī�޶� �̵�
             for (int i = 0; i < buttons.Count; i++)
