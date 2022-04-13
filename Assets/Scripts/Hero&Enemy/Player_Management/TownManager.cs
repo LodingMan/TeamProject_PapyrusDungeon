@@ -59,6 +59,14 @@ public class TownManager : MonoBehaviour
         {
             NextWeek(); // -> 1 week    
         }
+        if (PlayerPrefs.HasKey("Gold"))
+        {
+            Gold = PlayerPrefs.GetInt("Gold");
+        }
+        else
+        {
+            Gold = 100;
+        }
     }
     public void Update()
     {
