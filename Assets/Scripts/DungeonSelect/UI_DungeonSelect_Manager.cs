@@ -18,7 +18,7 @@ namespace Song
         public int DungeonType;
         public GuildManager guildManager;
         public RectTransform warningDungeonSelect;
-        
+
 
         private void Start()
         {
@@ -103,11 +103,12 @@ namespace Song
         {
             yield return new WaitForSeconds(1f);
             warningDungeonSelect.DOAnchorPos(new Vector2(0, 1090), 0.5f);
-		}
-        public void EnterDungeon(){
+        }
+        public void EnterDungeon()
+        {
             isTent = false;
-            }
-        
-        
+        }
+
+
     }
 }
