@@ -54,7 +54,7 @@ namespace Song
                     return;
                 }
             }
-            soundMgr.PlayClipDungeonSelect();
+            soundMgr.PlayClipBtn();
             //ī�޶� �̵�
             for (int i = 0; i < buttons.Count; i++)
             {
