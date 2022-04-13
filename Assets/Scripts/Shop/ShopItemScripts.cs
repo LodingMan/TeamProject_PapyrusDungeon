@@ -97,7 +97,7 @@ public class ShopItemScripts : MonoBehaviour
         }
         else
         {
-            Debug.Log("재화가 부족합니다.");
+            shopManager.NotEnoughMoney();
         }
 
     }

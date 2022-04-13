@@ -26,7 +26,7 @@ public class SmithManager : MonoBehaviour
     {
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         isActive = false;
-        
+
     }
 
 
@@ -113,8 +113,8 @@ public class SmithManager : MonoBehaviour
 
             }
 
-            
-            
+
+
 
         }
     }
@@ -134,9 +134,9 @@ public class SmithManager : MonoBehaviour
 
     IEnumerator UpgradeTextDelay()
     {
-        upgradeText.transform.DOLocalMove(new Vector3(0,300,0), 1f);
+        upgradeText.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        upgradeText.transform.DOLocalMove(new Vector3(0,450,0) , 1f);
+        upgradeText.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
     }
 
 
