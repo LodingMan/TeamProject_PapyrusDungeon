@@ -8,8 +8,8 @@ using UnityEngine.UI;
 //아이템 사용 눌렀을 시 이벤트를 실행합니다.
 //==================================================================================================//
 
-public class ItemScripts : MonoBehaviour 
-{                                        
+public class ItemScripts : MonoBehaviour
+{
     public Item item;
     public Equip equip;
     public ItemUseManager itemUseManager;
@@ -58,7 +58,7 @@ public class ItemScripts : MonoBehaviour
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "사용";
         }
-        else if(shopManager.isShop)
+        else if (shopManager.isShop)
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "판매";
         }
@@ -72,7 +72,7 @@ public class ItemScripts : MonoBehaviour
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "사용";
         }
-        else if(shopManager.isShop)
+        else if (shopManager.isShop)
         {
             useBtn.transform.GetChild(0).GetComponent<Text>().text = "판매";
         }
@@ -146,7 +146,7 @@ public class ItemScripts : MonoBehaviour
         //    {
         //        case "HP":
         //                isUsed = true;
-                    
+
         //                itemUseManager.isActive = false;
         //                itemUseManager.stats = null;
         //                shopManager.money += item.cost;
@@ -189,6 +189,8 @@ public class ItemScripts : MonoBehaviour
         {
             useBtn.gameObject.SetActive(false);
             sell++;
+            shopManager.sellPrice.gameObject.SetActive(true);
+            shopManager.sellPrice.text = "판매가 : " + item.cost + "원";
 
             if (sell == 2)
             {
@@ -204,6 +206,7 @@ public class ItemScripts : MonoBehaviour
                 }
                 useBtn.gameObject.SetActive(false);
                 Debug.Log("판매 완료");
+                shopManager.sellPrice.gameObject.SetActive(false);
                 shopManager.SellItemSave();
                 Destroy(gameObject);
 
@@ -221,6 +224,7 @@ public class ItemScripts : MonoBehaviour
     {
         sell = 0;
         isUsed = false;
+        shopManager.sellPrice.gameObject.SetActive(false);
     }
 
     public void ShowBtnOnlyDungeon()

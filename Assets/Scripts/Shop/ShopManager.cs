@@ -42,6 +42,8 @@ public class ShopManager : MonoBehaviour
 
     public Text goldText;
 
+    public Text sellPrice;
+
 
     private void Start()
     {
