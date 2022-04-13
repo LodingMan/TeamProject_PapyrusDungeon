@@ -78,6 +78,9 @@ public class ShopItemScripts : MonoBehaviour
             BuyBtn.onClick.RemoveAllListeners();
         }
         BuyBtn.onClick.AddListener(BuyItem);
+        shopManager.sellPrice.text = "구입가 : " + itemTable.Item_Dictionary[itemIdx].cost + "원";
+        shopManager.sellPrice.gameObject.SetActive(true);
+
     }
 
 

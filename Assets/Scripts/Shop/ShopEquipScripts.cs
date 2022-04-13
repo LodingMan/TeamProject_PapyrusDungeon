@@ -143,6 +143,8 @@ public class ShopEquipScripts : MonoBehaviour
             BuyBtn.onClick.RemoveAllListeners();
         }
         BuyBtn.onClick.AddListener(BuyEquip);
+        shopManager.sellPrice.text = "구입가 : " + equipTable.initEquip[equipIdx].Cost + "원";
+        shopManager.sellPrice.gameObject.SetActive(true);
     }
 
     public void EquipInstantiate()

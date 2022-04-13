@@ -39,7 +39,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     //bool UI_isInventoryPanel_On = false;
     //bool UI_isSmithPanel_On = false;
     public bool UI_isStatusPanel_On = false;
-    
+
     // shin
     /*public bool isTownOn = false;
     public bool isTentOn = false; 
@@ -98,7 +98,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                                 if (!MgrTable.itemUseMgr.TentText01.gameObject.activeSelf)
                                     MgrTable.itemUseMgr.TentText01.gameObject.SetActive(true);
                             }
-                            
+
                         }
                     }
                     if (isTentOption)
@@ -113,6 +113,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                         {
                             isShop = false;
                             shopMgr.isShop = false;
+                            InvenSellRefresh();
                             UI_inventoryPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
                         }
                         if (isSmith)
@@ -179,9 +180,9 @@ public class UI_Tweening_Manager : MonoBehaviour
                     }
 
                 }
-            }     
+            }
         }
-        
+
     }
 
     public void StackCountFun()
@@ -193,8 +194,9 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
+                shopMgr.sellPrice.gameObject.SetActive(false);
                 smithMgr.isActive = false;
-                smithMgr.EquipReturnToInven();    
+                smithMgr.EquipReturnToInven();
 
             }
         }
@@ -432,6 +434,29 @@ public class UI_Tweening_Manager : MonoBehaviour
             shopMgr.hasEquipList[i].transform.SetParent(originInven.transform);
             shopMgr.hasEquipList[i].transform.localPosition = originInven.transform.localPosition;
             shopMgr.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    public void InvenSellRefresh() //상점 닫을때 아이템들 변수를 초기화 해주는 함수입니다.
+    {
+        for (int i = 0; i < shopMgr.inventory.transform.childCount; i++)
+        {
+            if (shopMgr.inventory.transform.GetChild(i).tag == "Item")
+            {
+                shopMgr.inventory.transform.GetChild(i).GetComponent<ItemScripts>().sell = 0;
+            }
+            else if (shopMgr.inventory.transform.GetChild(i).tag == "Equip")
+            {
+                shopMgr.inventory.transform.GetChild(i).GetComponent<EquipScripts_ysg>().sell = 0;
+            }
+        }
+
+        for (int i = 0; i < shopMgr.shopPanel.transform.childCount; i++)
+        {
+            if (shopMgr.shopPanel.transform.GetChild(i).tag == "Item" || shopMgr.shopPanel.transform.GetChild(i).tag == "Equip")
+            {
+                shopMgr.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(false);
+            }
         }
     }
 

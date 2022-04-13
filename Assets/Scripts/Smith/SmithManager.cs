@@ -93,6 +93,8 @@ public class SmithManager : MonoBehaviour
             smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
             smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
             smithEquip.GetComponent<EquipDataSave>().SaveEquip();
+            shopManager.money -= 10;
+            shopManager.GoldRefresh();
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
             smithEquip.transform.localScale = new Vector3(1, 1, 1);

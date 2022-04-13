@@ -508,6 +508,9 @@ public class EquipScripts_ysg : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(false);
             sell++;
+            itemData.sellPrice.gameObject.SetActive(true);
+            itemData.sellPrice.text = "판매가 : " + equip.Cost + "원";
+            
 
             if (sell == 2)
             {
@@ -523,6 +526,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 }
                 equipBtn.gameObject.SetActive(false);
                 Debug.Log("판매완료");
+                itemData.sellPrice.gameObject.SetActive(false);
                 itemData.SellItemSave();
                 Destroy(gameObject);
 
@@ -654,9 +658,8 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
-        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money > 100)
+        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 10)
         {
-            itemData.money -= 100;
             smithManager.isSlotFull = true;
             smithManager.equip.Index = equip.Index;
             smithManager.equip.Name = equip.Name;
@@ -674,7 +677,7 @@ public class EquipScripts_ysg : MonoBehaviour
 
             equipBtn.gameObject.SetActive(false);
         }
-        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100)
+        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 10)
         {
             itemData.NotEnoughMoney();
         }
@@ -689,6 +692,7 @@ public class EquipScripts_ysg : MonoBehaviour
     {
         sell = 0;
         isSelled = false;
+        itemData.sellPrice.gameObject.SetActive(false);
     }
 
     public void ShowBtnOnlyDungeon() // 던전에 입장 시 버튼 표시를 합니다.
