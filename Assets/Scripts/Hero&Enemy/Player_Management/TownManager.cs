@@ -194,6 +194,7 @@ public class TownManager : MonoBehaviour
         DIB.TentPrefabs.SetActive(false);
         DIB.canvas_Tent.SetActive(false);
         MgrTable.tweenManager.UI_BackGroundPanel_On_Off();
+        guildManager.UpdateMember();
         NextWeek();
         
     }

@@ -20,6 +20,7 @@ TagManager:
   - Goblin
   - Mimic
   - Golem
+  - Passage
   layers:
   - Default
   - TransparentFX

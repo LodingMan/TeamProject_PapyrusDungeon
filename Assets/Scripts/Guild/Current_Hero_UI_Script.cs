@@ -105,12 +105,6 @@ namespace Song
             HP.text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXHP;
             MP.text = "MP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.MP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXMP;
 
-            //if (PointerDonwTime > 0.5f)
-            //{
-
-
-            //}
-
 
             if (isPointerDown)
             {

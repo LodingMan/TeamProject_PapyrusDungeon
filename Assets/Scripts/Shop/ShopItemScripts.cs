@@ -78,8 +78,11 @@ public class ShopItemScripts : MonoBehaviour
             BuyBtn.onClick.RemoveAllListeners();
         }
         BuyBtn.onClick.AddListener(BuyItem);
-        shopManager.sellPrice.text = "구입가 : " + itemTable.Item_Dictionary[itemIdx].cost + "원";
+
+        shopManager.sellPrice.text = itemTable.Item_Dictionary[itemIdx].cost + " G ";
         shopManager.sellPrice.gameObject.SetActive(true);
+        shopManager.shopPriceText.gameObject.SetActive(false);
+        shopManager.shopPriceTextForBuy.gameObject.SetActive(true);
 
     }
 
@@ -98,8 +101,11 @@ public class ShopItemScripts : MonoBehaviour
             buyItem.transform.localPosition = inventory.transform.localPosition;
             buyItem.transform.localScale = new Vector3(1, 1, 1);
             shopManager.ItemSave();
+            shopManager.sellPrice.gameObject.SetActive(false);
+            shopManager.shopPriceTextForBuy.gameObject.SetActive(false);
+
         }
-        else if(shopManager.money < itemTable.Item_Dictionary[itemIdx].cost)
+        else if (shopManager.money < itemTable.Item_Dictionary[itemIdx].cost)
         {
 
             shopManager.NotEnoughMoney(itemTable.Item_Dictionary[itemIdx].cost + " G");

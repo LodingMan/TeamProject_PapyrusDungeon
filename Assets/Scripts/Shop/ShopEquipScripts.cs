@@ -143,8 +143,10 @@ public class ShopEquipScripts : MonoBehaviour
             BuyBtn.onClick.RemoveAllListeners();
         }
         BuyBtn.onClick.AddListener(BuyEquip);
-        shopManager.sellPrice.text = "구입가 : " + equipTable.initEquip[equipIdx].Cost + "원";
+        shopManager.sellPrice.text = equipTable.initEquip[equipIdx].Cost + " G ";
         shopManager.sellPrice.gameObject.SetActive(true);
+        shopManager.shopPriceText.gameObject.SetActive(false);
+        shopManager.shopPriceTextForBuy.gameObject.SetActive(true);
     }
 
     public void EquipInstantiate()
@@ -158,10 +160,12 @@ public class ShopEquipScripts : MonoBehaviour
             buyEquip.transform.localPosition = inventory.transform.localPosition;
             buyEquip.transform.localScale = new Vector3(1, 1, 1);
             hasEquipList.Add(buyEquip);
+            shopManager.sellPrice.gameObject.SetActive(false);
+            shopManager.shopPriceTextForBuy.gameObject.SetActive(false);
             shopManager.ItemSave();
             Destroy(gameObject);
         }
-        else if(shopManager.money < equipTable.initEquip[equipIdx].Cost)
+        else if (shopManager.money < equipTable.initEquip[equipIdx].Cost)
         {
             shopManager.NotEnoughMoney(equipTable.initEquip[equipIdx].Cost + " G ");
         }
