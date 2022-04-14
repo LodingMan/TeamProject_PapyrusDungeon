@@ -405,12 +405,17 @@ public class e_CombatManager : MonoBehaviour
                 }
             }
             HeroInfo_Init();
-            combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(Vector2.zero, 1);
+            combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(Vector2.zero, 0.5f);
             StartCoroutine(SkillUISetting());
         }
         if (speedComparisonArray[0].tag == "Enemy")
         {
 
+            for (int i = 0; i < myParty.Count; i++)
+            {
+                outline = myParty[i].GetComponent<quick_outline.quick_outline>();
+                outline.OutlineColor = Color.white;
+            }
 
             StartCoroutine(EnemyActive());
 
@@ -892,7 +897,6 @@ public class e_CombatManager : MonoBehaviour
 
 
         outline = speedComparisonArray[0].GetComponent<quick_outline.quick_outline>();
-        outline.OutlineWidth = 7;
         outline.OutlineColor = (Color.green);
 
         GameObject textobj = GameObject.Find("Combat_Event_UI_Manger");
@@ -937,7 +941,7 @@ public class e_CombatManager : MonoBehaviour
 
     IEnumerator EnemyAttack(int target_Idx)
     {
-        combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1280, 0), 1);
+        combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1280, 0), 0.5f);
         yield return new WaitForSeconds(1);
         combat_Event_UI_Manager.Bars.SetActive(false);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
@@ -1005,7 +1009,7 @@ public class e_CombatManager : MonoBehaviour
     }
     public IEnumerator HeroAttackDlay(GameObject target)
     {
-        combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1280,0), 1);
+        combat_Event_UI_Manager.HeroStatusInfo_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1280,0), 0.5f);
         //여기부터 공격을 시작한 히어로의 움직임
         yield return new WaitForSeconds(0.5f);
         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);

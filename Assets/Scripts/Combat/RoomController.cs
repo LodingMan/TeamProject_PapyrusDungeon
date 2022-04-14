@@ -36,7 +36,14 @@ public class RoomController : MonoBehaviour
         {
             if (RoomList[i].GetComponent<RoomScript>().roomNumber == Roomnumber)
             {
-                RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
+                if(RoomList[i].gameObject.tag == "Up" || RoomList[i].gameObject.tag == "Right")
+                {
+                    RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[1];
+                }
+                else
+                {
+                    RoomList[i].GetComponent<MeshRenderer>().material = RoomColors[2];
+                }
                 //Debug.Log(Roomnumber);
                 if (!isFirst)
                 {

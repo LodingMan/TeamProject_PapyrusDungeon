@@ -95,7 +95,7 @@ namespace Song
 
         public void FireFunc()     
         {
-            guildManager.UpdateMember(This_Prefab_Object);
+            guildManager.FireMember(This_Prefab_Object);
         }
     }
 }
