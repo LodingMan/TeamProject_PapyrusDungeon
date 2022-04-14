@@ -520,26 +520,6 @@ public class EquipScripts_ysg : MonoBehaviour
                 }
             }
 
-            for (int i = 0; i < itemData.inventory.transform.childCount; i++)
-            {
-                if (itemData.inventory.transform.GetChild(i).tag == "Item")
-                {
-                    if (itemData.inventory.transform.GetChild(i).transform.gameObject.GetComponent<ItemScripts>().sell > 0)
-                    {
-                        itemData.inventory.transform.GetChild(i).transform.gameObject.GetComponent<ItemScripts>().sell = 0;
-                    }
-                }
-                else if (itemData.inventory.transform.GetChild(i).tag == "Equip")
-                {
-                    if (itemData.inventory.transform.GetChild(i).transform.gameObject.GetComponent<EquipScripts_ysg>().sell > 0)
-                    {
-                        itemData.inventory.transform.GetChild(i).transform.gameObject.GetComponent<EquipScripts_ysg>().sell = 0;
-                    }
-                }
-
-            }
-            sell++;
-
 
             if (sell == 2)
             {

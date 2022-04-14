@@ -151,7 +151,7 @@ public class ShopEquipScripts : MonoBehaviour
 
     public void EquipInstantiate()
     {
-        if (shopManager.money > equipTable.initEquip[equipIdx].Cost)
+        if (shopManager.money >= equipTable.initEquip[equipIdx].Cost)
         {
             shopManager.money -= equipTable.initEquip[equipIdx].Cost;
             shopManager.GoldRefresh();

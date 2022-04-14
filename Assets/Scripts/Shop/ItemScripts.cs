@@ -199,13 +199,6 @@ public class ItemScripts : MonoBehaviour
                     shopManager.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(false);
                 }
             }
-            for (int i = 0; i < shopManager.inventory.transform.childCount; i++)
-            {
-                if (shopManager.inventory.transform.GetChild(i).transform.gameObject.GetComponent<ItemScripts>().sell > 0)
-                {
-                    shopManager.inventory.transform.GetChild(i).transform.gameObject.GetComponent<ItemScripts>().sell = 0;
-                }
-            }
             sell++;
             if (sell == 2)
             {

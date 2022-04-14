@@ -91,7 +91,7 @@ public class ShopItemScripts : MonoBehaviour
 
     public void ItemInstantiate() //아이템 구매 시 인벤토리에 프리팹을 생성합니다.
     {                                       // 아이템 구매 시 돈이 감소합니다.
-        if (shopManager.money > itemTable.Item_Dictionary[itemIdx].cost)
+        if (shopManager.money >= itemTable.Item_Dictionary[itemIdx].cost)
         {
             shopManager.money -= itemTable.Item_Dictionary[itemIdx].cost;
             shopManager.GoldRefresh();
