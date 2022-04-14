@@ -45,6 +45,9 @@ public class ShopManager : MonoBehaviour
 
     public Text sellPrice;
 
+    public Text shopPriceText;
+    public Text shopPriceTextForBuy;
+
 
     private void Start()
     {
@@ -424,9 +427,9 @@ public class ShopManager : MonoBehaviour
 
     IEnumerator MoneyDelay()
     {
-        popupPanel.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        popupPanel.transform.DOLocalMove(new Vector3(0, 450, 0), 1.5f);
+        popupPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1.5f);
     }
 
     public void GoldRefresh()

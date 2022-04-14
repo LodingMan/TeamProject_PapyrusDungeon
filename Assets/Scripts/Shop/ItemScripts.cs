@@ -188,8 +188,10 @@ public class ItemScripts : MonoBehaviour
         if (twMgr.isShop)
         {
             useBtn.gameObject.SetActive(false);
+            shopManager.shopPriceTextForBuy.gameObject.SetActive(false);
             shopManager.sellPrice.gameObject.SetActive(true);
-            shopManager.sellPrice.text = "판매가 : " + item.cost * 0.5f + "G";
+            shopManager.shopPriceText.gameObject.SetActive(true);
+            shopManager.sellPrice.text = item.cost * 0.5f + "G";
             for (int i = 0; i < shopManager.shopPanel.transform.childCount; i++)
             {
                 if (shopManager.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.activeSelf)
@@ -220,6 +222,7 @@ public class ItemScripts : MonoBehaviour
                 useBtn.gameObject.SetActive(false);
                 Debug.Log("판매 완료");
                 shopManager.sellPrice.gameObject.SetActive(false);
+                shopManager.shopPriceText.gameObject.SetActive(false);
                 shopManager.SellItemSave();
                 Destroy(gameObject);
 
