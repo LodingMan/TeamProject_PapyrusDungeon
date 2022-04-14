@@ -437,6 +437,5 @@ public class ShopManager : MonoBehaviour
     {
         money += gold;
         GoldRefresh();
-        ItemSave();
     }
 }
