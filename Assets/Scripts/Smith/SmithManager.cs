@@ -24,6 +24,7 @@ public class SmithManager : MonoBehaviour
     public Text upgradeText;
     public Text upgradeFailText;
     public GameObject upgradeFailPanel;
+    public GameObject[] upgradeEffect = new GameObject[2];
 
     private void Start()
     {
@@ -72,6 +73,12 @@ public class SmithManager : MonoBehaviour
                 equip.Cri = (equip.Cri * 1) + equip.Lv + 1;
                 equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
                 upgradeText.text = " LV " + originalLv + " -> " + " LV " + equip.Lv.ToString();
+                GameObject compliteEffect = Instantiate(upgradeEffect[0]);
+                compliteEffect.transform.position = new Vector3(3.4f, 0.5f, 47);
+                compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
+                compliteEffect.transform.localScale = new Vector3(1, 1, 1);
+                Destroy(compliteEffect, 3f);
+
                 StartCoroutine(UpgradeTextDelay());
                 //Debug.Log("??? ????! ????: "+ equip.Lv +",??? :" + upgradeChance + "%");
 
@@ -90,6 +97,11 @@ public class SmithManager : MonoBehaviour
                 equip.Acc = smithEquipOriginStats.Acc;
                 equip.Cost = smithEquipOriginStats.Cost;
                 upgradeFailText.text = " LV " + originalLv + " -> " + " LV " + equip.Lv.ToString();
+                GameObject compliteEffect = Instantiate(upgradeEffect[1]);
+                compliteEffect.transform.position = new Vector3(3.4f, 0.5f, 47);
+                compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
+                compliteEffect.transform.localScale = new Vector3(1, 1, 1);
+                Destroy(compliteEffect, 3f);
                 StartCoroutine(UpgradeFailed());
                 //Debug.Log("??? ????! ????: " + equip.Lv + ",??? :" + upgradeChance +"%");
 
@@ -141,16 +153,16 @@ public class SmithManager : MonoBehaviour
 
     IEnumerator UpgradeTextDelay()
     {
-        popupPanel.transform.DOLocalMove(new Vector3(215, 300, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        popupPanel.transform.DOLocalMove(new Vector3(215, 450, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
     }
 
     IEnumerator UpgradeFailed()
     {
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(215, 300, 0), 1f);
+        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(215, 450, 0), 1f);
+        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
     }
 
 
