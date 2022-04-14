@@ -38,7 +38,8 @@ public class ShopManager : MonoBehaviour
 
     public Button BuyBtn; // 구매 버튼
 
-    public Text popupText;
+    public GameObject popupPanel;
+    public Text popupValue;
 
     public Text goldText;
 
@@ -415,17 +416,17 @@ public class ShopManager : MonoBehaviour
     }
 
 
-    public void NotEnoughMoney()
+    public void NotEnoughMoney(string str)
     {
+        popupValue.text = str;
         StartCoroutine(MoneyDelay());
     }
 
     IEnumerator MoneyDelay()
     {
-        popupText.text = "재화가 부족합니다!";
-        popupText.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        popupText.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(0, 450, 0), 1.5f);
     }
 
     public void GoldRefresh()
@@ -437,6 +438,5 @@ public class ShopManager : MonoBehaviour
     {
         money += gold;
         GoldRefresh();
-        ItemSave();
     }
 }

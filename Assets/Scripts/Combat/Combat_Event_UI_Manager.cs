@@ -72,12 +72,14 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public float minusPer_Height;
     public Text TestUI;
 
+    public GameObject goldImage;
+
     public List<GameObject> ScaleReFactoring = new List<GameObject>();
     public void Go_Back_On()
     {
         Go_Back_Btn[0].gameObject.SetActive(true);
         Go_Back_Btn[1].gameObject.SetActive(true);
-        if(townManager.Week == 1)
+        if (townManager.Week == 1)
         {
 
         }
@@ -133,7 +135,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             PartyMemberNameList[i].text = CurrentHeroStat.myStat.Name + "  " + CurrentHeroStat.PreviousLv + "  -> " + CurrentHeroStat.myStat.Lv;
         }
 
-        if(combatManager.isGameOver)
+        if (combatManager.isGameOver)
         {
             Debug.Log("게임오버");
             Victory_Fail_Image.sprite = FailSprite;
@@ -146,6 +148,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         }
         if (!combatManager.isGameOver)
         {
+            GameObject GoldPrefab;
+            int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 100); // 던전 클리어 후 얻는 골드량
             for (int i = 0; i < combatManager.DungeonDifficulty; i++)
             {
                 int RndIdx = Random.Range(1, shopManager.equipList.Count);
@@ -155,6 +159,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 CurrentCreateImgae = Instantiate(GameClearReward_Equip_Image);
                 CurrentCreateImgae.GetComponent<Image>().sprite = equipDetailTable.sprite[RndIdx]; // shopManager.equipList[RndIdx].transform.GetChild(1).GetComponent<Image>().sprite;
                 CurrentCreateImgae.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
+                CurrentCreateImgae.transform.localScale = new Vector3(1, 1, 1); // 이미지 사이즈 고정
                 ImageSaveList.Add(CurrentCreateImgae);
 
 
@@ -162,10 +167,15 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 shopManager.hasEquipList.Add(InvantoryCreatePrefab);
                 InvantoryCreatePrefab.transform.SetParent(shopManager.inventory.transform);
                 InvantoryCreatePrefab.transform.localPosition = shopManager.inventory.transform.localPosition;
-
-
                 InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
             }
+
+            goldImage.transform.GetChild(0).GetComponent<Text>().text = RndGold.ToString(); //골드 이미지 출력
+            GoldPrefab = Instantiate(goldImage);
+            GoldPrefab.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
+            GoldPrefab.gameObject.transform.localScale = new Vector3(1, 1, 1);
+
+            shopManager.DungeonClearItemSave(RndGold);  // 보유 골드 업데이트
 
             for (int i = 0; i < shopManager.hasItemList.Count; i++)  // 인벤토리로 아이템 옮기기 Yoon
             {
@@ -179,8 +189,9 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 shopManager.hasEquipList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
                 shopManager.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
             }
+            shopManager.ItemSave(); // 현재 아이템, 장비, 골드 저장 시점 0414 Yoon
         }
-        
+
     }
     public void GameClearPanalUp()
     {

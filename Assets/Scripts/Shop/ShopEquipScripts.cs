@@ -163,7 +163,7 @@ public class ShopEquipScripts : MonoBehaviour
         }
         else if(shopManager.money < equipTable.initEquip[equipIdx].Cost)
         {
-            shopManager.NotEnoughMoney();
+            shopManager.NotEnoughMoney(equipTable.initEquip[equipIdx].Cost + " G ");
         }
     }
     public void SelectImage()
