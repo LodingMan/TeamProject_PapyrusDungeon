@@ -102,7 +102,7 @@ public class ShopItemScripts : MonoBehaviour
         else if(shopManager.money < itemTable.Item_Dictionary[itemIdx].cost)
         {
 
-            shopManager.NotEnoughMoney();
+            shopManager.NotEnoughMoney(itemTable.Item_Dictionary[itemIdx].cost + " G");
         }
 
     }

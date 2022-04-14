@@ -188,14 +188,27 @@ public class ItemScripts : MonoBehaviour
         if (twMgr.isShop)
         {
             useBtn.gameObject.SetActive(false);
-            sell++;
             shopManager.sellPrice.gameObject.SetActive(true);
-            shopManager.sellPrice.text = "판매가 : " + item.cost + "원";
-
+            shopManager.sellPrice.text = "판매가 : " + item.cost * 0.5f + "G";
+            for (int i = 0; i < shopManager.shopPanel.transform.childCount; i++)
+            {
+                if (shopManager.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.activeSelf)
+                {
+                    shopManager.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            for (int i = 0; i < shopManager.inventory.transform.childCount; i++)
+            {
+                if (shopManager.inventory.transform.GetChild(i).transform.gameObject.GetComponent<ItemScripts>().sell > 0)
+                {
+                    shopManager.inventory.transform.GetChild(i).transform.gameObject.GetComponent<ItemScripts>().sell = 0;
+                }
+            }
+            sell++;
             if (sell == 2)
             {
                 isUsed = true;
-                shopManager.money += item.cost;
+                shopManager.money += (int)(item.cost * 0.5f);
                 shopManager.GoldRefresh();
                 for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
                 {

@@ -20,7 +20,10 @@ public class SmithManager : MonoBehaviour
     public bool isActive = false;
     public bool isSlotFull = false;
 
+    public GameObject popupPanel;
     public Text upgradeText;
+    public Text upgradeFailText;
+    public GameObject upgradeFailPanel;
 
     private void Start()
     {
@@ -60,6 +63,7 @@ public class SmithManager : MonoBehaviour
             }
             if (rnd < upgradeChance)
             {
+                int originalLv = equip.Lv;
                 equip.Lv++;
                 equip.Hp = (equip.Hp * 1) + equip.Lv + 1;
                 equip.Mp = (equip.Mp * 1) + equip.Lv + 1;
@@ -67,7 +71,7 @@ public class SmithManager : MonoBehaviour
                 equip.Def = (equip.Def * 1) + equip.Lv + 1;
                 equip.Cri = (equip.Cri * 1) + equip.Lv + 1;
                 equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
-                upgradeText.text = "강화 성공! : 레벨 :" + equip.Lv;
+                upgradeText.text = " LV " + originalLv + " -> " + " LV " + equip.Lv.ToString();
                 StartCoroutine(UpgradeTextDelay());
                 //Debug.Log("??? ????! ????: "+ equip.Lv +",??? :" + upgradeChance + "%");
 
@@ -75,6 +79,7 @@ public class SmithManager : MonoBehaviour
             }
             else
             {
+                int originalLv = equip.Lv;
                 Equip smithEquipOriginStats = smithEquip.GetComponent<EquipScripts_ysg>().equipTable.initEquip[equipIndex];
                 equip.Lv = 1;
                 equip.Hp = smithEquipOriginStats.Hp;
@@ -84,8 +89,8 @@ public class SmithManager : MonoBehaviour
                 equip.Cri = smithEquipOriginStats.Cri;
                 equip.Acc = smithEquipOriginStats.Acc;
                 equip.Cost = smithEquipOriginStats.Cost;
-                upgradeText.text = "강화 실패! : 레벨 :" + equip.Lv;
-                StartCoroutine(UpgradeTextDelay());
+                upgradeFailText.text = " LV " + originalLv + " -> " + " LV " + equip.Lv.ToString();
+                StartCoroutine(UpgradeFailed());
                 //Debug.Log("??? ????! ????: " + equip.Lv + ",??? :" + upgradeChance +"%");
 
             }
@@ -93,7 +98,7 @@ public class SmithManager : MonoBehaviour
             smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
             smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
             smithEquip.GetComponent<EquipDataSave>().SaveEquip();
-            shopManager.money -= 10;
+            shopManager.money -= 100 * equip.Lv;
             shopManager.GoldRefresh();
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
@@ -136,9 +141,16 @@ public class SmithManager : MonoBehaviour
 
     IEnumerator UpgradeTextDelay()
     {
-        upgradeText.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        upgradeText.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
+    }
+
+    IEnumerator UpgradeFailed()
+    {
+        upgradeFailPanel.transform.DOLocalMove(new Vector3(0, 300, 0), 1f);
+        yield return new WaitForSeconds(1f);
+        upgradeFailPanel.transform.DOLocalMove(new Vector3(0, 450, 0), 1f);
     }
 
 

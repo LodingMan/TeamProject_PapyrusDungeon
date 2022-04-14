@@ -149,7 +149,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         if (!combatManager.isGameOver)
         {
             GameObject GoldPrefab;
-            int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 10); // 던전 클리어 후 얻는 골드량
+            int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 100); // 던전 클리어 후 얻는 골드량
             for (int i = 0; i < combatManager.DungeonDifficulty; i++)
             {
                 int RndIdx = Random.Range(1, shopManager.equipList.Count);
@@ -174,7 +174,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             GoldPrefab = Instantiate(goldImage);
             GoldPrefab.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
             GoldPrefab.gameObject.transform.localScale = new Vector3(1, 1, 1);
-            
+
             shopManager.DungeonClearItemSave(RndGold);  // 보유 골드 업데이트
 
             for (int i = 0; i < shopManager.hasItemList.Count; i++)  // 인벤토리로 아이템 옮기기 Yoon

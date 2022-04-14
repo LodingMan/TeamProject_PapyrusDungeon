@@ -12,10 +12,10 @@ public class SKillTable
         { 4, new skill(4, "SkillName5", 1, 5, 0, 0 , new int[3] {0,1,-1}, new int[3] {0,1,-1  },2)},
         //Archer
         { 5, new skill(5, "SkillName6", 1, 1, 0, 0  ,new int[3] {0,1,2  }, new int[3] { 0,1,-1 },2)},
-        { 6, new skill(6, "SkillName7", 1, 2, 0, 0 , new int[3] {0,1,-1  }, new int[3] { 0,1,-1 },2)},
+        { 6, new skill(6, "SkillName7", 1, 2, 0, 0 , new int[3] {0,1,2  }, new int[3] { 0,1,-1 },2)},
         { 7, new skill(7, "SkillName8", 1, 3, 1, 5 , new int[3] {0,1,-1  }, new int[3] { 0,1,-1 },2)},
-        { 8, new skill(8, "SkillName9", 1, 4, 0, 0 , new int[3] {0,1,-1  }, new int[3] { 0,1,-1 },2)},
-        { 9, new skill(9, "SkillName10", 1, 5, 0, 0 , new int[3] {0,1,-1  }, new int[3] {0,1,-1  },2)},
+        { 8, new skill(8, "SkillName9", 1, 4, 0, 0 , new int[3] {0,1,2  }, new int[3] { 0,1,-1 },2)},
+        { 9, new skill(9, "SkillName10", 1, 5, 0, 0 , new int[3] {0,1,2  }, new int[3] {0,1,-1  },2)},
         //Babarian
         { 10, new skill(10, "SkillName11", 1, 1, 0, 0  ,new int[3] {0,1,2  }, new int[3] {0,1,-1  },2)},
         { 11, new skill(11, "SkillName12", 1, 2, 0, 0 , new int[3] {0,1,-1  }, new int[3] {0,1,-1  },2)},
