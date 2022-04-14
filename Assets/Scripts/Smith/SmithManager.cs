@@ -77,6 +77,7 @@ public class SmithManager : MonoBehaviour
                 compliteEffect.transform.position = new Vector3(3.4f, 0.5f, 47);
                 compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
                 compliteEffect.transform.localScale = new Vector3(1, 1, 1);
+                shopManager.money -= 100;
                 Destroy(compliteEffect, 3f);
 
                 StartCoroutine(UpgradeTextDelay());
@@ -101,6 +102,8 @@ public class SmithManager : MonoBehaviour
                 compliteEffect.transform.position = new Vector3(3.4f, 0.5f, 47);
                 compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
                 compliteEffect.transform.localScale = new Vector3(1, 1, 1);
+                shopManager.money -= 100;
+
                 Destroy(compliteEffect, 3f);
                 StartCoroutine(UpgradeFailed());
                 //Debug.Log("??? ????! ????: " + equip.Lv + ",??? :" + upgradeChance +"%");
@@ -110,7 +113,6 @@ public class SmithManager : MonoBehaviour
             smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
             smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
             smithEquip.GetComponent<EquipDataSave>().SaveEquip();
-            shopManager.money -= 100 * equip.Lv;
             shopManager.GoldRefresh();
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
