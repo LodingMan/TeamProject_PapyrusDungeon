@@ -141,16 +141,16 @@ public class SmithManager : MonoBehaviour
 
     IEnumerator UpgradeTextDelay()
     {
-        popupPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(215, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        popupPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
+        popupPanel.transform.DOLocalMove(new Vector3(215, 450, 0), 1f);
     }
 
     IEnumerator UpgradeFailed()
     {
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
+        upgradeFailPanel.transform.DOLocalMove(new Vector3(215, 300, 0), 1f);
         yield return new WaitForSeconds(1f);
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
+        upgradeFailPanel.transform.DOLocalMove(new Vector3(215, 450, 0), 1f);
     }
 
 

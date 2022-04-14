@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &365303054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 365303055}
+  - component: {fileID: 365303056}
+  m_Layer: 0
+  m_Name: Japanese
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &365303055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365303054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1317068694}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365303056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365303054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225ec97158446a94d9cb40a9f742a8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationCode: jp
+  cultures:
+  - jp
 --- !u!1 &465718526
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +492,9 @@ MonoBehaviour:
   - Language: English
     Text: Loading...
     Object: {fileID: 0}
+  - Language: Japanese
+    Text: "\u30ED\u30FC\u30C7\u30A3\u30F3\u30B0\u4E2D\u2026"
+    Object: {fileID: 0}
 --- !u!1 &1317068692
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: Korean
+  currentLanguage: Japanese
   detectLanguage: 1
   defaultLanguage: 
   saveLoad: 1
@@ -494,6 +543,7 @@ Transform:
   - {fileID: 465718527}
   - {fileID: 1574345153}
   - {fileID: 1263760305}
+  - {fileID: 365303055}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -859,7 +909,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB85C\uB529 \uC911..."
+  m_Text: "\u30ED\u30FC\u30C7\u30A3\u30F3\u30B0\u4E2D\u2026"
 --- !u!222 &2082037861
 CanvasRenderer:
   m_ObjectHideFlags: 0
