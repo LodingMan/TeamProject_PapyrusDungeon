@@ -508,8 +508,10 @@ public class EquipScripts_ysg : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(false);
             sell++;
+            itemData.shopPriceTextForBuy.gameObject.SetActive(false);
             itemData.sellPrice.gameObject.SetActive(true);
-            itemData.sellPrice.text = "판매가 : " + (equip.Cost * 0.5f) + "G";
+            itemData.shopPriceText.gameObject.SetActive(true);
+            itemData.sellPrice.text = (equip.Cost * 0.5f) + "G";
             for (int i = 0; i < itemData.shopPanel.transform.childCount; i++)
             {
                 if (itemData.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.activeSelf)
@@ -554,6 +556,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 equipBtn.gameObject.SetActive(false);
                 Debug.Log("판매완료");
                 itemData.sellPrice.gameObject.SetActive(false);
+                itemData.shopPriceText.gameObject.SetActive(false);
                 itemData.SellItemSave();
                 Destroy(gameObject);
 

@@ -195,6 +195,8 @@ public class UI_Tweening_Manager : MonoBehaviour
                 UIStack[StackCount - 1] = null;
                 StackCount--;
                 shopMgr.sellPrice.gameObject.SetActive(false);
+                shopMgr.shopPriceText.gameObject.SetActive(false);
+                shopMgr.shopPriceTextForBuy.gameObject.SetActive(false);
                 smithMgr.isActive = false;
                 smithMgr.EquipReturnToInven();
 
