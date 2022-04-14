@@ -668,8 +668,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
-        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 100 * equip.Lv)
+        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 100)
         {
+            itemData.GoldRefresh();
             smithManager.isSlotFull = true;
             smithManager.equip.Index = equip.Index;
             smithManager.equip.Name = equip.Name;
@@ -687,9 +688,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
             equipBtn.gameObject.SetActive(false);
         }
-        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100 * equip.Lv)
+        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100)
         {
-            itemData.NotEnoughMoney((100*equip.Lv) + " G ");
+            itemData.NotEnoughMoney((100) + " G ");
         }
 
 
