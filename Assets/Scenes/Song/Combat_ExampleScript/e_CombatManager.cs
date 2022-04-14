@@ -659,7 +659,7 @@ public class e_CombatManager : MonoBehaviour
 
             GameObject buffeffect = Instantiate(combat_Effect_Manager.buffEffect);
             buffeffect.transform.SetParent(target.transform);
-            buffeffect.transform.localPosition = new Vector3(0, -0.5f, 0);
+            buffeffect.transform.localPosition = new Vector3(0, -0.3f, 0);
 
             Debug.Log("여기서 스탯, HP버프");
             Debug.Log(speedComparisonArray[0] + "이" + target + "에게 버프함.");

@@ -222,10 +222,6 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
 
     public void DungeonInit()
     {
-        if (outline)
-        {
-            outline.enabled = false;
-        }
         partyNum = -1;
         isActive = false;
         stats = null;
