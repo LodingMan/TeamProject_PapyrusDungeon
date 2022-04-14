@@ -6,7 +6,8 @@ public class PassageWall_Rolling : MonoBehaviour
 {
     public GameObject Wall1;
     public GameObject Wall2;
-    public Vector3 SaveVec = new Vector3(-2978f,-0.092f,2.89f);
+    public Vector3 SaveVec;
+    public Vector3 limitVec;
     
     public float Speed = 10;
 
@@ -16,7 +17,7 @@ public class PassageWall_Rolling : MonoBehaviour
     {
         transform.Translate(new Vector3(-Speed * Time.deltaTime, 0, 0));
 
-        if(transform.position.x < -3039.5f)
+        if(transform.position.x <= limitVec.x)
         {
             transform.position = SaveVec;
         }
