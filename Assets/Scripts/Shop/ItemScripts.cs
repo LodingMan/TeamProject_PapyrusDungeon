@@ -188,14 +188,22 @@ public class ItemScripts : MonoBehaviour
         if (twMgr.isShop)
         {
             useBtn.gameObject.SetActive(false);
-            sell++;
+            shopManager.shopPriceTextForBuy.gameObject.SetActive(false);
             shopManager.sellPrice.gameObject.SetActive(true);
-            shopManager.sellPrice.text = "판매가 : " + item.cost + "원";
-
+            shopManager.shopPriceText.gameObject.SetActive(true);
+            shopManager.sellPrice.text = item.cost * 0.5f + "G";
+            for (int i = 0; i < shopManager.shopPanel.transform.childCount; i++)
+            {
+                if (shopManager.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.activeSelf)
+                {
+                    shopManager.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            sell++;
             if (sell == 2)
             {
                 isUsed = true;
-                shopManager.money += item.cost;
+                shopManager.money += (int)(item.cost * 0.5f);
                 shopManager.GoldRefresh();
                 for (int i = shopManager.hasItemList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-28 윤성근
                 {
@@ -207,6 +215,7 @@ public class ItemScripts : MonoBehaviour
                 useBtn.gameObject.SetActive(false);
                 Debug.Log("판매 완료");
                 shopManager.sellPrice.gameObject.SetActive(false);
+                shopManager.shopPriceText.gameObject.SetActive(false);
                 shopManager.SellItemSave();
                 Destroy(gameObject);
 

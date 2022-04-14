@@ -1,8 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using UnityEngine.EventSystems;
 
 //========================================================================================//
 // 해당 스크립트는 길드의 수치와 UI를 한번에 관리하며 CurrentHeroList의 맴버는 여기서 정해집니다//
@@ -135,9 +134,9 @@ namespace Song
         }
 
         #endregion
-        public void UpdateMember(GameObject member)//firefunc가 사람 해고하면 받음.
+        public void FireMember(GameObject member)//firefunc가 사람 해고하면 받음.
         {
-            for(int i = 0; i< Current_Hero_UI_List.Count; i++)
+            for (int i = 0; i < Current_Hero_UI_List.Count; i++)
             {
                 if (Current_Hero_UI_List[i].GetComponent<Current_Hero_UI_Script>().This_Prefab_Object == member)
                 {
@@ -145,9 +144,9 @@ namespace Song
                     Current_Hero_UI_List.RemoveAt(i);
                 }
             }
-            for(int j = 0; j < Party_Hero_UI_List.Count; j++)
+            for (int j = 0; j < Party_Hero_UI_List.Count; j++)
             {
-                if(Party_Hero_UI_List[j].This_Prefab_Object == member)
+                if (Party_Hero_UI_List[j].This_Prefab_Object == member)
                 {
                     Party_Hero_UI_List[j].This_Prefab_Object = null;
 
@@ -157,13 +156,13 @@ namespace Song
                     Party_Hero_UI_List[j].gameObject.transform.GetChild(2).GetComponent<Text>().text = "";
                 }
             }
-            for(int k = 0; k < heroManager.CurrentHeroList.Count; k++)
+            for (int k = 0; k < heroManager.CurrentHeroList.Count; k++)
             {
-                if(heroManager.CurrentHeroList[k] == member)
+                if (heroManager.CurrentHeroList[k] == member)
                 {
                     Destroy(heroManager.CurrentHeroList[k]);
                     heroManager.CurrentHeroList.RemoveAt(k);
-                    
+
                 }
 
             }
@@ -171,8 +170,36 @@ namespace Song
 
         }
 
+
+        public void UpdateMember()//firefunc가 사람 해고하면 받음.
+        {
+
+            for (int j = 0; j < Party_Hero_UI_List.Count; j++)
+            {
+                if(Party_Hero_Member[j] != null)
+                {
+                    Party_Hero_UI_List[j].isParty_Hero_In = true;
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(0).GetComponent<Text>().text = ""
+                        + Party_Hero_Member[j].GetComponent<StatScript>().myStat.Name;
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(1).GetComponent<Text>().text = ""
+                        + Party_Hero_Member[j].GetComponent<StatScript>().myStat.Job;
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(3).GetComponent<Text>().text = "HP : "
+                         + Party_Hero_Member[j].GetComponent<StatScript>().myStat.HP + " / " +
+                         Party_Hero_Member[j].GetComponent<StatScript>().myStat.MAXHP;
+                    Party_Hero_UI_List[j].gameObject.transform.GetChild(4).GetComponent<Text>().text = "MP : "
+                         + Party_Hero_Member[j].GetComponent<StatScript>().myStat.MP + " / " +
+                         Party_Hero_Member[j].GetComponent<StatScript>().myStat.MAXMP; ;
+                    Debug.Log("Update");
+                }
+
+            }
+        }
+
+
     }
 
-
-
 }
+
+
+
+

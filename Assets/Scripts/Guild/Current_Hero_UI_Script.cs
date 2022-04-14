@@ -31,6 +31,8 @@ namespace Song
         public Text MP;
         public Text curStateText;
         public Image heroIcon;
+        public Image state;
+        public Sprite[] stateSprite;
         
 
         private void Start()
@@ -84,14 +86,24 @@ namespace Song
             {
                 curStateText.text = "isHealing";
             }
+
+            switch (curStateText.text)
+            {
+                case "isHealing":
+                    state.sprite = stateSprite[1];
+                    break;
+                case "isTraining":
+                    state.sprite = stateSprite[2];
+                    break;
+                case "isParty":
+                    state.sprite = stateSprite[3];
+                    break;
+                default:
+                    state.sprite = stateSprite[0];
+                    break;
+            }
             HP.text = "HP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.HP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXHP;
             MP.text = "MP : " + This_Prefab_Object.GetComponent<StatScript>().myStat.MP + " / " + This_Prefab_Object.GetComponent<StatScript>().myStat.MAXMP;
-
-            //if (PointerDonwTime > 0.5f)
-            //{
-
-
-            //}
 
 
             if (isPointerDown)

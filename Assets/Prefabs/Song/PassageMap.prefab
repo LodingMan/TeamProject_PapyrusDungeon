@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8660399423347102204}
   m_Layer: 3
   m_Name: PassageMap
-  m_TagString: Untagged
+  m_TagString: Passage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,4 +112,7 @@ MonoBehaviour:
   Renderer: {fileID: 0}
   inGame_Player_Script: {fileID: 0}
   roomNumber: 0
+  isBossRoom: 0
+  isFirstRoom: 0
+  DungeonEventPram: 0
   moveDir: 0

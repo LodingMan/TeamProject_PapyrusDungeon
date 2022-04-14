@@ -121,7 +121,6 @@ public class TownManager : MonoBehaviour
         {
             OnControll[i].SetActive(true);
         }
-
     }
 
     public void UpdateManager_All_ON()
@@ -194,6 +193,7 @@ public class TownManager : MonoBehaviour
         DIB.TentPrefabs.SetActive(false);
         DIB.canvas_Tent.SetActive(false);
         MgrTable.tweenManager.UI_BackGroundPanel_On_Off();
+        guildManager.UpdateMember();
         NextWeek();
         
     }

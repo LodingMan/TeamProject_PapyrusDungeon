@@ -508,14 +508,23 @@ public class EquipScripts_ysg : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(false);
             sell++;
+            itemData.shopPriceTextForBuy.gameObject.SetActive(false);
             itemData.sellPrice.gameObject.SetActive(true);
-            itemData.sellPrice.text = "판매가 : " + equip.Cost + "원";
-            
+            itemData.shopPriceText.gameObject.SetActive(true);
+            itemData.sellPrice.text = (equip.Cost * 0.5f) + "G";
+            for (int i = 0; i < itemData.shopPanel.transform.childCount; i++)
+            {
+                if (itemData.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.activeSelf)
+                {
+                    itemData.shopPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(false);
+                }
+            }
+
 
             if (sell == 2)
             {
                 isSelled = true;
-                itemData.money += equip.Cost;
+                itemData.money += (int)(equip.Cost * 0.5f);
                 itemData.GoldRefresh();
                 for (int i = itemData.hasEquipList.Count - 1; i >= 0; i--) //아이템 사용 후 리스트에 있는 오브젝트 삭제 시 중복으로 삭제되는걸 방지 하기 위해 넣음 03-30 윤성근
                 {
@@ -527,6 +536,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 equipBtn.gameObject.SetActive(false);
                 Debug.Log("판매완료");
                 itemData.sellPrice.gameObject.SetActive(false);
+                itemData.shopPriceText.gameObject.SetActive(false);
                 itemData.SellItemSave();
                 Destroy(gameObject);
 
@@ -658,8 +668,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
-        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 10)
+        if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 100)
         {
+            itemData.GoldRefresh();
             smithManager.isSlotFull = true;
             smithManager.equip.Index = equip.Index;
             smithManager.equip.Name = equip.Name;
@@ -677,9 +688,9 @@ public class EquipScripts_ysg : MonoBehaviour
 
             equipBtn.gameObject.SetActive(false);
         }
-        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 10)
+        else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100)
         {
-            itemData.NotEnoughMoney();
+            itemData.NotEnoughMoney((100) + " G ");
         }
 
 
