@@ -121,7 +121,6 @@ public class TownManager : MonoBehaviour
         {
             OnControll[i].SetActive(true);
         }
-
     }
 
     public void UpdateManager_All_ON()
