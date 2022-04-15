@@ -26,6 +26,11 @@ public class RoomScript : MonoBehaviour
         }
         inGame_Player_Script = GameObject.Find("InGamePlayer").GetComponent<InGame_Player_Script>();
         Renderer = gameObject.GetComponent<MeshRenderer>();
+
+        if (gameObject.tag == "Up" || gameObject.tag == "Right")
+        {
+
+        }
     }
 
 
