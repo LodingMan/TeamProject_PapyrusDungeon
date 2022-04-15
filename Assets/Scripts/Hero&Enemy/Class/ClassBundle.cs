@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class Stat
     public int Acc;
     public int Agi;
     public int Speed;
-
+    [JsonConstructor]
     public Stat(int index, string name, string job, int hp, int maxhp, int mp, int maxmp, int atk, int def, int cri, int acc, int agi, int speed)
     {
         this.Index = index;

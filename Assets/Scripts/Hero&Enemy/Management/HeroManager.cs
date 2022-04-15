@@ -246,6 +246,8 @@ namespace Song
             string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/Stat.Json");
             byte[] bytes = System.Convert.FromBase64String(jdata);
             string reformat = System.Text.Encoding.UTF8.GetString(bytes);
+           // File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", reformat);
+            Debug.Log(reformat);
 
             CurrentHeroDataList = JsonConvert.DeserializeObject<List<HeroSavingData>>(reformat); //�ҷ��� savingdata�� LoadHeroCreate�Լ��� ����� heroObject����
 
