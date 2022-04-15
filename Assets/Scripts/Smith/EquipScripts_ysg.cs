@@ -671,6 +671,13 @@ public class EquipScripts_ysg : MonoBehaviour
         if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 100)
         {
             itemData.GoldRefresh();
+            int upgradeChanceInt = 100 - (equip.Lv * 20);
+            if(upgradeChanceInt <= 0)
+            {
+                upgradeChanceInt = 1;
+            }
+            smithManager.upgradeChanceText.text = upgradeChanceInt.ToString();
+            smithManager.upgradeChanceText.gameObject.SetActive(true);
             smithManager.isSlotFull = true;
             smithManager.equip.Index = equip.Index;
             smithManager.equip.Name = equip.Name;
@@ -691,6 +698,7 @@ public class EquipScripts_ysg : MonoBehaviour
         else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100)
         {
             itemData.NotEnoughMoney((100) + " G ");
+            smithManager.upgradeText.gameObject.SetActive(false);
         }
 
 
