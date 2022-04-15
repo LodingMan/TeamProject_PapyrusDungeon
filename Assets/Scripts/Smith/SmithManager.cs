@@ -54,7 +54,6 @@ public class SmithManager : MonoBehaviour
         if (equip.Name != "" && isSlotFull)
         {
             upgradeChance = 100;
-            isSlotFull = false;
             GameObject smithEquip = smithSlot.GetChild(0).gameObject;
             equip = smithEquip.GetComponent<EquipScripts_ysg>().equip;
             equipIndex = equip.Index;
@@ -75,11 +74,18 @@ public class SmithManager : MonoBehaviour
                 equip.Cri = (equip.Cri * 1) + equip.Lv + 1;
                 equip.Acc = (equip.Acc * 1) + equip.Lv + 1;
                 upgradeText.text = " LV " + originalLv + " -> " + " LV " + equip.Lv.ToString();
+
                 GameObject compliteEffect = Instantiate(upgradeEffect[0]);
                 compliteEffect.transform.position = new Vector3(3.4f, 0.5f, 47);
                 compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
                 compliteEffect.transform.localScale = new Vector3(1, 1, 1);
                 shopManager.money -= 100;
+                smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
+                smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().SaveEquip();
+                shopManager.GoldRefresh();
+                smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
                 Destroy(compliteEffect, 3f);
 
                 StartCoroutine(UpgradeTextDelay());
@@ -104,21 +110,17 @@ public class SmithManager : MonoBehaviour
                 compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
                 compliteEffect.transform.localScale = new Vector3(1, 1, 1);
                 shopManager.money -= 100;
+                smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().SaveEquip();
+                shopManager.GoldRefresh();
+                smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
 
                 Destroy(compliteEffect, 3f);
                 StartCoroutine(UpgradeFailed());
 
 
             }
-            smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
-            smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
-            smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
-            smithEquip.GetComponent<EquipDataSave>().SaveEquip();
-            shopManager.GoldRefresh();
-            smithEquip.transform.SetParent(inventory);
-            smithEquip.transform.localPosition = inventory.localPosition;
-            smithEquip.transform.localScale = new Vector3(1, 1, 1);
-            upgradeChanceText.gameObject.SetActive(false);
             if (shopManager.hasEquipList.Contains(smithEquip))
             {
                 shopManager.hasEquipList.Remove(smithEquip);
@@ -135,9 +137,6 @@ public class SmithManager : MonoBehaviour
 
             }
 
-
-
-
         }
     }
 
@@ -149,10 +148,10 @@ public class SmithManager : MonoBehaviour
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
             smithEquip.transform.localScale = new Vector3(1, 1, 1);
-            upgradeChanceText.gameObject.SetActive(false);
 
         }
         isSlotFull = false;
+        equip = null;
         upgradeChanceText.gameObject.SetActive(false);
 
     }
@@ -173,6 +172,12 @@ public class SmithManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         upgradeFailPanel.transform.DOScale(new Vector3(0, 0, 0), 1f);
         upgradeFailPanel.transform.gameObject.SetActive(false);
+    }
+
+    IEnumerator UpgradeDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        isSlotFull = false;
     }
 
 
