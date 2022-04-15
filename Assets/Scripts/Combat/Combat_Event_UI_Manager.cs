@@ -152,7 +152,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         }
         if (!combatManager.isGameOver)
         {
-            townManager.DungeonClearCount[dungeonSelectManager.DungeonType]++;
+            //townManager.DungeonClearCount[dungeonSelectManager.DungeonType]++; 오류때문에 주석처리
 
             GameObject GoldPrefab;
             int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 100); // 던전 클리어 후 얻는 골드량

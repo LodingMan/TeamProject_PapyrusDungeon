@@ -49,12 +49,8 @@ public class ShopManager : MonoBehaviour
 
     public Text shopPriceText;
     public Text shopPriceTextForBuy;
+    public Song.HeroManager heroManager;
 
-
-    private void Start()
-    {
-        GoldRefresh();
-    }
     public void IsShop()
     {
         isShop = true;
@@ -443,9 +439,10 @@ public class ShopManager : MonoBehaviour
     public void WipeInventory()
     {
         StartCoroutine(WipeInventoryCo());
-        if (File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/MoneySave.Json") && File.Exists(Application.persistentDataPath + "/Resources/GemSave.Json"))
+        if (File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/MoneySave.Json") && File.Exists(Application.persistentDataPath + "/Resources/GemSave.Json")&& File.Exists(Application.persistentDataPath + "/Resources/Stat.Json"))
         {
             ItemLoad();
+           heroManager._Load();
         }
 
 
