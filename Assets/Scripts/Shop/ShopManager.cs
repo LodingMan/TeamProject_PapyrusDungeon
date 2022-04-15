@@ -136,10 +136,23 @@ public class ShopManager : MonoBehaviour
         string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
         string jdata3 = JsonConvert.SerializeObject(money);
         string jdata4 = JsonConvert.SerializeObject(gem);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/MoneySave.Json", jdata3);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/GemSave.Json", jdata4);
+
+        byte[] bytes1 = System.Text.Encoding.UTF8.GetBytes(jdata);
+        string format1 = System.Convert.ToBase64String(bytes1);
+
+        byte[] bytes2 = System.Text.Encoding.UTF8.GetBytes(jdata2);
+        string format2 = System.Convert.ToBase64String(bytes2);
+
+        byte[] bytes3 = System.Text.Encoding.UTF8.GetBytes(jdata3);
+        string format3 = System.Convert.ToBase64String(bytes3);
+
+        byte[] bytes4 = System.Text.Encoding.UTF8.GetBytes(jdata4);
+        string format4 = System.Convert.ToBase64String(bytes4);
+
+        File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", format1);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", format2);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/MoneySave.Json", format3);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/GemSave.Json", format4);
 
 
     }
@@ -160,10 +173,23 @@ public class ShopManager : MonoBehaviour
         string jdata2 = JsonConvert.SerializeObject(equipSavingDatas);
         string jdata3 = JsonConvert.SerializeObject(money);
         string jdata4 = JsonConvert.SerializeObject(gem);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", jdata);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", jdata2);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/MoneySave.Json", jdata3);
-        File.WriteAllText(Application.persistentDataPath + "/Resources/GemSave.Json", jdata4);
+
+        byte[] bytes1 = System.Text.Encoding.UTF8.GetBytes(jdata);
+        string format1 = System.Convert.ToBase64String(bytes1);
+
+        byte[] bytes2 = System.Text.Encoding.UTF8.GetBytes(jdata2);
+        string format2 = System.Convert.ToBase64String(bytes2);
+
+        byte[] bytes3 = System.Text.Encoding.UTF8.GetBytes(jdata3);
+        string format3 = System.Convert.ToBase64String(bytes3);
+
+        byte[] bytes4 = System.Text.Encoding.UTF8.GetBytes(jdata4);
+        string format4 = System.Convert.ToBase64String(bytes4);
+
+        File.WriteAllText(Application.persistentDataPath + "/Resources/ItemSave.Json", format1);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/EquipSave.Json", format2);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/MoneySave.Json", format3);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/GemSave.Json", format4);
 
     }
 
@@ -369,10 +395,24 @@ public class ShopManager : MonoBehaviour
         string jdata2 = File.ReadAllText(Application.persistentDataPath + "/Resources/EquipSave.Json");
         string jdata3 = File.ReadAllText(Application.persistentDataPath + "/Resources/MoneySave.Json");
         string jdata4 = File.ReadAllText(Application.persistentDataPath + "/Resources/GemSave.Json");
-        itemSavingDatas = JsonConvert.DeserializeObject<List<ItemSavingData>>(jdata);
-        equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(jdata2);
-        money = JsonConvert.DeserializeObject<int>(jdata3);
-        gem = JsonConvert.DeserializeObject<int>(jdata4);
+
+        byte[] bytes1 = System.Convert.FromBase64String(jdata);
+        string reformat1 = System.Text.Encoding.UTF8.GetString(bytes1);
+
+        byte[] bytes2 = System.Convert.FromBase64String(jdata2);
+        string reformat2 = System.Text.Encoding.UTF8.GetString(bytes2);
+
+        byte[] bytes3 = System.Convert.FromBase64String(jdata3);
+        string reformat3 = System.Text.Encoding.UTF8.GetString(bytes3);
+
+        byte[] bytes4 = System.Convert.FromBase64String(jdata4);
+        string reformat4 = System.Text.Encoding.UTF8.GetString(bytes4);
+
+        itemSavingDatas = JsonConvert.DeserializeObject<List<ItemSavingData>>(reformat1);
+        equipSavingDatas = JsonConvert.DeserializeObject<List<EquipSavingData>>(reformat2);
+        money = JsonConvert.DeserializeObject<int>(reformat3);
+        gem = JsonConvert.DeserializeObject<int>(reformat4);
+
         if (jdata != "null" && jdata2 != "null")
         {
             for (int i = 0; i < itemSavingDatas.Count; i++)

@@ -232,14 +232,20 @@ namespace Song
                 Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
             }
 
-            string jdata = JsonConvert.SerializeObject(CurrentHeroDataList);
-            File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", jdata);
+            string jdata = JsonConvert.SerializeObject(CurrentHeroDataList); // 암호화 Yoon
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
+            string format = System.Convert.ToBase64String(bytes);
+
+            File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", format);
         }
 
         public void _Load()
         {
             string jdata = File.ReadAllText(Application.dataPath + "/Resources/Stat.Json");
-            CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(jdata); //�ҷ��� savingdata�� LoadHeroCreate�Լ��� ����� heroObject����
+            byte[] bytes = System.Convert.FromBase64String(jdata);
+            string reformat = System.Text.Encoding.UTF8.GetString(bytes);
+
+            CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(reformat); //�ҷ��� savingdata�� LoadHeroCreate�Լ��� ����� heroObject����
 
             for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList�� ���̰� 30 �̹Ƿ� 30�� �ݺ���.
             {
