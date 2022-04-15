@@ -34,7 +34,6 @@ public class EquipScripts_ysg : MonoBehaviour
 
     void Start()
     {
-
         itemUseManager = GameObject.Find("TentManager").GetComponent<ItemUseManager>();
         smithManager = GameObject.Find("SmithManager").GetComponent<SmithManager>();
         smithSlot = smithManager.smithSlot;
@@ -679,17 +678,6 @@ public class EquipScripts_ysg : MonoBehaviour
             }
             smithManager.upgradeChanceText.text = upgradeChanceInt + "%";
             smithManager.isSlotFull = true;
-            smithManager.equip.Index = equip.Index;
-            smithManager.equip.Name = equip.Name;
-            smithManager.equip.Job = equip.Job;
-            smithManager.equip.Lv = equip.Lv;
-            smithManager.equip.Hp = equip.Hp;
-            smithManager.equip.Mp = equip.Mp;
-            smithManager.equip.Atk = equip.Atk;
-            smithManager.equip.Def = equip.Def;
-            smithManager.equip.Cri = equip.Cri;
-            smithManager.equip.Acc = equip.Acc;
-
             gameObject.transform.SetParent(smithSlot);
             gameObject.transform.localPosition = smithSlot.localPosition;
             gameObject.transform.localScale = smithSlot.localScale;
