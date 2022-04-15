@@ -427,9 +427,11 @@ public class ShopManager : MonoBehaviour
 
     IEnumerator MoneyDelay()
     {
-        popupPanel.transform.DOLocalMove(new Vector3(215, 300, 0), 1f);
-        yield return new WaitForSeconds(1f);
-        popupPanel.transform.DOLocalMove(new Vector3(215, 450, 0), 1.5f);
+        popupPanel.transform.gameObject.SetActive(true);
+        popupPanel.transform.DOScale(new Vector3(0.6f,0.6f,0.6f), 1f);
+        yield return new WaitForSeconds(1.5f);
+        popupPanel.transform.DOScale(new Vector3(0,0,0), 1f);
+        popupPanel.transform.gameObject.SetActive(false);
     }
 
     public void GoldRefresh()

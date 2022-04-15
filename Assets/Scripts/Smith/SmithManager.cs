@@ -26,6 +26,8 @@ public class SmithManager : MonoBehaviour
     public GameObject upgradeFailPanel;
     public GameObject[] upgradeEffect = new GameObject[2];
 
+    public Text upgradeChanceText;
+
     private void Start()
     {
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
@@ -57,10 +59,10 @@ public class SmithManager : MonoBehaviour
             equip = smithEquip.GetComponent<EquipScripts_ysg>().equip;
             equipIndex = equip.Index;
             int rnd = Random.Range(0, 100);
-            upgradeChance -= equip.Lv * 10;
+            upgradeChance -= equip.Lv * 20;
             if (upgradeChance < 0)
             {
-                upgradeChance = 0;
+                upgradeChance = 1;
             }
             if (rnd < upgradeChance)
             {
@@ -81,7 +83,6 @@ public class SmithManager : MonoBehaviour
                 Destroy(compliteEffect, 3f);
 
                 StartCoroutine(UpgradeTextDelay());
-                //Debug.Log("??? ????! ????: "+ equip.Lv +",??? :" + upgradeChance + "%");
 
 
             }
@@ -106,7 +107,7 @@ public class SmithManager : MonoBehaviour
 
                 Destroy(compliteEffect, 3f);
                 StartCoroutine(UpgradeFailed());
-                //Debug.Log("??? ????! ????: " + equip.Lv + ",??? :" + upgradeChance +"%");
+
 
             }
             smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
@@ -117,7 +118,7 @@ public class SmithManager : MonoBehaviour
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
             smithEquip.transform.localScale = new Vector3(1, 1, 1);
-
+            upgradeChanceText.gameObject.SetActive(false);
             if (shopManager.hasEquipList.Contains(smithEquip))
             {
                 shopManager.hasEquipList.Remove(smithEquip);
@@ -148,23 +149,30 @@ public class SmithManager : MonoBehaviour
             smithEquip.transform.SetParent(inventory);
             smithEquip.transform.localPosition = inventory.localPosition;
             smithEquip.transform.localScale = new Vector3(1, 1, 1);
+            upgradeChanceText.gameObject.SetActive(false);
 
         }
         isSlotFull = false;
+        upgradeChanceText.gameObject.SetActive(false);
+
     }
 
     IEnumerator UpgradeTextDelay()
     {
-        popupPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
-        yield return new WaitForSeconds(1f);
-        popupPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
+        popupPanel.transform.gameObject.SetActive(true);
+        popupPanel.transform.DOScale(new Vector3(0.6f, 0.6f, 0.6f), 1f);
+        yield return new WaitForSeconds(1.5f);
+        popupPanel.transform.DOScale(new Vector3(0, 0, 0), 1f);
+        popupPanel.transform.gameObject.SetActive(false);
     }
 
     IEnumerator UpgradeFailed()
     {
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
-        yield return new WaitForSeconds(1f);
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
+        upgradeFailPanel.transform.gameObject.SetActive(true);
+        upgradeFailPanel.transform.DOScale(new Vector3(0.6f, 0.6f, 0.6f), 1f);
+        yield return new WaitForSeconds(1.5f);
+        upgradeFailPanel.transform.DOScale(new Vector3(0, 0, 0), 1f);
+        upgradeFailPanel.transform.gameObject.SetActive(false);
     }
 
 
