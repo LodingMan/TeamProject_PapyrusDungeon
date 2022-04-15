@@ -59,7 +59,6 @@ namespace Song
             }
             MgrTable.tweenManager.UI_BackGroundPanel_On_Off();
             soundMgr.PlayClipBtn();
-            MgrTable.heroManager._Save();
             //ī�޶� �̵�
             for (int i = 0; i < buttons.Count; i++)
             {

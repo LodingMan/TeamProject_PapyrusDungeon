@@ -77,6 +77,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public Text TestUI;
 
     public GameObject goldImage;
+    public Song.HeroManager heroManager;
 
     public List<GameObject> ScaleReFactoring = new List<GameObject>();
     public void Go_Back_On()
@@ -196,6 +197,9 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 shopManager.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
             }
             shopManager.ItemSave(); // 현재 아이템, 장비, 골드 저장 시점 0414 Yoon
+            heroManager._Save();
+            PlayerPrefs.SetInt("Week", townManager.Week + 1);
+            
         }
 
     }

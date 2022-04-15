@@ -442,7 +442,8 @@ public class ShopManager : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/Resources/ItemSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/EquipSave.Json") && File.Exists(Application.persistentDataPath + "/Resources/MoneySave.Json") && File.Exists(Application.persistentDataPath + "/Resources/GemSave.Json")&& File.Exists(Application.persistentDataPath + "/Resources/Stat.Json"))
         {
             ItemLoad();
-           heroManager._Load();
+            heroManager._Load();
+            GoldRefresh();
         }
 
 
