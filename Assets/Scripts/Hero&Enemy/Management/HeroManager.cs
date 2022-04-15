@@ -22,8 +22,9 @@ namespace Song
 
         public List<GameObject> CurrentHeroList; // ���� ������ �����
 
-        public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //������ HeroObject�� SavingData�� �ѹ��� ��Ƽ� Save�ϱ� ����
+        //public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //������ HeroObject�� SavingData�� �ѹ��� ��Ƽ� Save�ϱ� ����
                                                                               // Save�ÿ� List�� �����ϰ� �;����� ������, ������ �ƽðų� �˰Եǽź��� ����������... -> ���ϴ� 03/26
+        public List<HeroSavingData> CurrentHeroDataList = new List<HeroSavingData>();
 
 
         public Name_JobTable name_JobTable = new Name_JobTable(); //������ �����̸� �迭�� , �����̸� �迭�� ����ִ� Ŭ����
@@ -224,7 +225,8 @@ namespace Song
         {
             for (int i = 0; i < CurrentHeroList.Count; i++)
             {
-                CurrentHeroDataList[i] = CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData; // �� hero�� savingdata����
+                CurrentHeroDataList.Add(CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData);
+              
             }
 
             if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
@@ -236,20 +238,20 @@ namespace Song
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
             string format = System.Convert.ToBase64String(bytes);
 
-            File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", format);
+            File.WriteAllText(Application.persistentDataPath + "/Resources/Stat.Json", format);
         }
 
         public void _Load()
         {
-            string jdata = File.ReadAllText(Application.dataPath + "/Resources/Stat.Json");
+            string jdata = File.ReadAllText(Application.persistentDataPath + "/Resources/Stat.Json");
             byte[] bytes = System.Convert.FromBase64String(jdata);
             string reformat = System.Text.Encoding.UTF8.GetString(bytes);
 
-            CurrentHeroDataList = JsonConvert.DeserializeObject<HeroSavingData[]>(reformat); //�ҷ��� savingdata�� LoadHeroCreate�Լ��� ����� heroObject����
+            CurrentHeroDataList = JsonConvert.DeserializeObject<List<HeroSavingData>>(reformat); //�ҷ��� savingdata�� LoadHeroCreate�Լ��� ����� heroObject����
 
-            for (int i = 0; i < CurrentHeroDataList.Length; i++) //CurrentHeroDataList�� ���̰� 30 �̹Ƿ� 30�� �ݺ���.
+            for (int i = 0; i < CurrentHeroDataList.Count; i++) //CurrentHeroDataList�� ���̰� 30 �̹Ƿ� 30�� �ݺ���.
             {
-                if (CurrentHeroDataList[i] == null)
+                if (CurrentHeroDataList[i].stat.Name != "")
                 {
                     break;
                 }

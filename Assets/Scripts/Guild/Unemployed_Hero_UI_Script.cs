@@ -19,6 +19,8 @@ namespace Song
         static int Current_Hero_Prefab_Count = 0;
         public Image heroImage; // shin
         public Button hireBtn;
+
+
         private void Start()
         {
             MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();

@@ -85,52 +85,62 @@ namespace Song
         {
             heroManager.CurrentHeroList.Add(unemployedHero[0]); // CurrentHeroListÀÇ ¸É¹ö °áÁ¤µÊ
             unemployedHero[0] = null;
+
             //heroManager.unemployedHeroList.Remove(unemployedHero[0]);
         }
         public void ListBtn1()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[1]);
             unemployedHero[1] = null;
+
         }
         public void ListBtn2()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[2]);
             unemployedHero[2] = null;
+
         }
         public void ListBtn3()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[3]);
             unemployedHero[3] = null;
+
         }
         public void ListBtn4()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[4]);
             unemployedHero[4] = null;
+
         }
         public void ListBtn5()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[5]);
             unemployedHero[5] = null;
+
         }
         public void ListBtn6()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[6]);
             unemployedHero[6] = null;
+
         }
         public void ListBtn7()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[7]);
             unemployedHero[7] = null;
+
         }
         public void ListBtn8()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[8]);
             unemployedHero[8] = null;
+
         }
         public void ListBtn9()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[9]);
             unemployedHero[9] = null;
+
         }
 
         #endregion
