@@ -676,7 +676,7 @@ public class EquipScripts_ysg : MonoBehaviour
             {
                 upgradeChanceInt = 1;
             }
-            smithManager.upgradeChanceText.text = upgradeChanceInt.ToString();
+            smithManager.upgradeChanceText.text = upgradeChanceInt + "%";
             smithManager.upgradeChanceText.gameObject.SetActive(true);
             smithManager.isSlotFull = true;
             smithManager.equip.Index = equip.Index;
