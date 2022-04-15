@@ -34,7 +34,6 @@ public class EquipScripts_ysg : MonoBehaviour
 
     void Start()
     {
-
         itemUseManager = GameObject.Find("TentManager").GetComponent<ItemUseManager>();
         smithManager = GameObject.Find("SmithManager").GetComponent<SmithManager>();
         smithSlot = smithManager.smithSlot;
@@ -668,29 +667,29 @@ public class EquipScripts_ysg : MonoBehaviour
 
     public void UpgradeEquips() // 무기, 장비 강화 함수입니다.
     {
+            gameObject.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
         if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money >= 100)
         {
             itemData.GoldRefresh();
+            int upgradeChanceInt = 100 - (equip.Lv * 20);
+            if(upgradeChanceInt <= 0)
+            {
+                upgradeChanceInt = 1;
+            }
+            smithManager.upgradeChanceText.text = upgradeChanceInt + "%";
             smithManager.isSlotFull = true;
-            smithManager.equip.Index = equip.Index;
-            smithManager.equip.Name = equip.Name;
-            smithManager.equip.Job = equip.Job;
-            smithManager.equip.Lv = equip.Lv;
-            smithManager.equip.Hp = equip.Hp;
-            smithManager.equip.Mp = equip.Mp;
-            smithManager.equip.Atk = equip.Atk;
-            smithManager.equip.Def = equip.Def;
-            smithManager.equip.Cri = equip.Cri;
-            smithManager.equip.Acc = equip.Acc;
             gameObject.transform.SetParent(smithSlot);
             gameObject.transform.localPosition = smithSlot.localPosition;
             gameObject.transform.localScale = smithSlot.localScale;
+            smithManager.upgradeChanceText.gameObject.SetActive(true);
 
             equipBtn.gameObject.SetActive(false);
         }
         else if (!smithManager.isSlotFull && smithManager.isActive && !gameObject.transform.GetChild(3).gameObject.activeSelf && itemData.money < 100)
         {
             itemData.NotEnoughMoney((100) + " G ");
+            smithManager.upgradeChanceText.text = null;
+            smithManager.upgradeText.gameObject.SetActive(false);
         }
 
 

@@ -28,6 +28,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_Tent_Option_Pos;
     public RectTransform UI_QuitPanel_Pos;
     public RectTransform UI_EquipInfo_Pos;
+    public RectTransform UI_BM_Panel;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -52,6 +53,9 @@ public class UI_Tweening_Manager : MonoBehaviour
     public bool isTrain = false;
     public bool isTrainDetail = false;
     public bool isOption = false;
+    public bool isBM = false;
+    public bool isCoin = false;
+    public bool isGem = false;
     public bool isTentOption = false;
     public bool isTentStatus = false;
 
@@ -160,10 +164,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                     if (!isTrainDetail)
                         option_Btn.SetActive(true);
                 }
-
                 StackCountFun();
-
-
             }
         }
         else
@@ -183,6 +184,39 @@ public class UI_Tweening_Manager : MonoBehaviour
             }
         }
 
+        if (UI_isBackground_On == true)
+        {
+            if (!isOption)
+            {
+                UI_BM_Panel.DOAnchorPos(new Vector2(0, 0), 0.5f);
+                isBM = true;
+            }
+            if (isOption)
+            {
+                UI_BM_Panel.DOAnchorPos(new Vector2(-1500, 0), 0.5f);
+                isBM = false;
+            }
+        }
+        else
+        {
+            UI_BM_Panel.DOAnchorPos(new Vector2(-1500, 0), 0.5f);
+            isBM = false;
+        }
+
+        if (isBM)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (isCoin)
+                {
+                    isCoin = false;
+                }
+                if (isGem)
+                {
+                    isGem = false;
+                }
+            }
+        }
     }
 
     public void StackCountFun()

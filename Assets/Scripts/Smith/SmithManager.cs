@@ -26,6 +26,8 @@ public class SmithManager : MonoBehaviour
     public GameObject upgradeFailPanel;
     public GameObject[] upgradeEffect = new GameObject[2];
 
+    public Text upgradeChanceText;
+
     private void Start()
     {
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
@@ -49,23 +51,29 @@ public class SmithManager : MonoBehaviour
 
     public void Upgrade() // ??? ??? ???????.
     {
-        if (equip.Name != "" && isSlotFull)
+        if (isSlotFull)
         {
             upgradeChance = 100;
-            isSlotFull = false;
             GameObject smithEquip = smithSlot.GetChild(0).gameObject;
             equip = smithEquip.GetComponent<EquipScripts_ysg>().equip;
             equipIndex = equip.Index;
             int rnd = Random.Range(0, 100);
-            upgradeChance -= equip.Lv * 10;
+            upgradeChance -= equip.Lv * 20;
             if (upgradeChance < 0)
             {
-                upgradeChance = 0;
+                upgradeChance = 1;
             }
             if (rnd < upgradeChance)
             {
                 int originalLv = equip.Lv;
                 equip.Lv++;
+                smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
+                int upgradeChanceint = 100 - (equip.Lv * 20);
+                if (upgradeChanceint <= 0)
+                {
+                    upgradeChanceint = 1;
+                }
+                upgradeChanceText.text = upgradeChanceint + "%";
                 equip.Hp = (equip.Hp * 1) + equip.Lv + 1;
                 equip.Mp = (equip.Mp * 1) + equip.Lv + 1;
                 equip.Atk = (equip.Atk * 1) + equip.Lv + 1;
@@ -78,10 +86,13 @@ public class SmithManager : MonoBehaviour
                 compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
                 compliteEffect.transform.localScale = new Vector3(1, 1, 1);
                 shopManager.money -= 100;
+                smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().SaveEquip();
+                shopManager.GoldRefresh();
                 Destroy(compliteEffect, 3f);
 
                 StartCoroutine(UpgradeTextDelay());
-                //Debug.Log("??? ????! ????: "+ equip.Lv +",??? :" + upgradeChance + "%");
 
 
             }
@@ -90,6 +101,13 @@ public class SmithManager : MonoBehaviour
                 int originalLv = equip.Lv;
                 Equip smithEquipOriginStats = smithEquip.GetComponent<EquipScripts_ysg>().equipTable.initEquip[equipIndex];
                 equip.Lv = 1;
+                smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
+                int upgradeChanceint = 100 - (equip.Lv * 20);
+                if (upgradeChanceint <= 0)
+                {
+                    upgradeChanceint = 1;
+                }
+                upgradeChanceText.text = upgradeChanceint + "%";
                 equip.Hp = smithEquipOriginStats.Hp;
                 equip.Mp = smithEquipOriginStats.Mp;
                 equip.Atk = smithEquipOriginStats.Atk;
@@ -103,21 +121,17 @@ public class SmithManager : MonoBehaviour
                 compliteEffect.transform.rotation = Quaternion.Euler(11, 0, 0);
                 compliteEffect.transform.localScale = new Vector3(1, 1, 1);
                 shopManager.money -= 100;
+                smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
+                smithEquip.GetComponent<EquipDataSave>().SaveEquip();
+                shopManager.GoldRefresh();
+
 
                 Destroy(compliteEffect, 3f);
                 StartCoroutine(UpgradeFailed());
-                //Debug.Log("??? ????! ????: " + equip.Lv + ",??? :" + upgradeChance +"%");
+
 
             }
-            smithEquip.GetComponent<EquipScripts_ysg>().equip = equip;
-            smithEquip.GetComponent<EquipDataSave>().equipSavingData.equip = equip;
-            smithEquip.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
-            smithEquip.GetComponent<EquipDataSave>().SaveEquip();
-            shopManager.GoldRefresh();
-            smithEquip.transform.SetParent(inventory);
-            smithEquip.transform.localPosition = inventory.localPosition;
-            smithEquip.transform.localScale = new Vector3(1, 1, 1);
-
             if (shopManager.hasEquipList.Contains(smithEquip))
             {
                 shopManager.hasEquipList.Remove(smithEquip);
@@ -136,7 +150,6 @@ public class SmithManager : MonoBehaviour
 
 
 
-
         }
     }
 
@@ -151,20 +164,32 @@ public class SmithManager : MonoBehaviour
 
         }
         isSlotFull = false;
+        upgradeChanceText.gameObject.SetActive(false);
+
     }
 
     IEnumerator UpgradeTextDelay()
     {
-        popupPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
-        yield return new WaitForSeconds(1f);
-        popupPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
+        popupPanel.transform.gameObject.SetActive(true);
+        popupPanel.transform.DOScale(new Vector3(0.6f, 0.6f, 0.6f), 1f);
+        yield return new WaitForSeconds(1.5f);
+        popupPanel.transform.DOScale(new Vector3(0, 0, 0), 1f);
+        popupPanel.transform.gameObject.SetActive(false);
     }
 
     IEnumerator UpgradeFailed()
     {
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 300, 0), 1f);
-        yield return new WaitForSeconds(1f);
-        upgradeFailPanel.transform.DOLocalMove(new Vector3(120, 450, 0), 1f);
+        upgradeFailPanel.transform.gameObject.SetActive(true);
+        upgradeFailPanel.transform.DOScale(new Vector3(0.6f, 0.6f, 0.6f), 1f);
+        yield return new WaitForSeconds(1.5f);
+        upgradeFailPanel.transform.DOScale(new Vector3(0, 0, 0), 1f);
+        upgradeFailPanel.transform.gameObject.SetActive(false);
+    }
+
+    IEnumerator UpgradeDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        isSlotFull = false;
     }
 
 

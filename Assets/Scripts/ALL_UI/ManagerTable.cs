@@ -23,6 +23,7 @@ public class ManagerTable : MonoBehaviour
     public EquipDetailTable equipDetailTable;
     public UI_SoundMgr soundMgr;
     public TutorialManager TutorialMgr;
+    public BMPanelManager bmMgr;
     private void Awake()
     {
         tweenManager = GameObject.Find("TweeningManager").GetComponent<UI_Tweening_Manager>();
@@ -42,6 +43,7 @@ public class ManagerTable : MonoBehaviour
         equipDetailTable = GameObject.Find("Skill_EquipDetailManager").GetComponent<EquipDetailTable>();
         soundMgr = GameObject.Find("UI_SoundMgr").GetComponent<UI_SoundMgr>();
         TutorialMgr = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
+        bmMgr = GameObject.Find("BMPanelManager").GetComponent<BMPanelManager>();
     }
 
 }
