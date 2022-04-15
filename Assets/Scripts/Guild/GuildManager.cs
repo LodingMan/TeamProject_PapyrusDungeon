@@ -85,6 +85,7 @@ namespace Song
         {
             heroManager.CurrentHeroList.Add(unemployedHero[0]); // CurrentHeroListÀÇ ¸É¹ö °áÁ¤µÊ
             unemployedHero[0] = null;
+            heroManager._Save();
 
             //heroManager.unemployedHeroList.Remove(unemployedHero[0]);
         }
@@ -92,54 +93,63 @@ namespace Song
         {
             heroManager.CurrentHeroList.Add(unemployedHero[1]);
             unemployedHero[1] = null;
+            heroManager._Save();
 
         }
         public void ListBtn2()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[2]);
             unemployedHero[2] = null;
+            heroManager._Save();
 
         }
         public void ListBtn3()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[3]);
             unemployedHero[3] = null;
+            heroManager._Save();
 
         }
         public void ListBtn4()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[4]);
             unemployedHero[4] = null;
+            heroManager._Save();
 
         }
         public void ListBtn5()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[5]);
             unemployedHero[5] = null;
+            heroManager._Save();
 
         }
         public void ListBtn6()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[6]);
             unemployedHero[6] = null;
+            heroManager._Save();
 
         }
         public void ListBtn7()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[7]);
             unemployedHero[7] = null;
+            heroManager._Save();
 
         }
         public void ListBtn8()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[8]);
             unemployedHero[8] = null;
+            heroManager._Save();
 
         }
         public void ListBtn9()
         {
             heroManager.CurrentHeroList.Add(unemployedHero[9]);
             unemployedHero[9] = null;
+            heroManager._Save();
 
         }
 
@@ -186,7 +196,7 @@ namespace Song
 
             for (int j = 0; j < Party_Hero_UI_List.Count; j++)
             {
-                if(Party_Hero_Member[j] != null)
+                if (Party_Hero_Member[j] != null)
                 {
                     Party_Hero_UI_List[j].isParty_Hero_In = true;
                     Party_Hero_UI_List[j].gameObject.transform.GetChild(0).GetComponent<Text>().text = ""

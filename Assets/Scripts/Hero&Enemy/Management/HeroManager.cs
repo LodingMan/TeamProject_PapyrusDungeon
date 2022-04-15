@@ -218,6 +218,7 @@ namespace Song
             }
 
             CurrentHeroList.Add(CurrentCreateHero); // �� ����Ʈ�� �������� UI������ ����� ��Ʈ�� 
+            Debug.Log("sibal");
         }
 
 
@@ -225,7 +226,14 @@ namespace Song
         {
             for (int i = 0; i < CurrentHeroList.Count; i++)
             {
-                CurrentHeroDataList.Add(CurrentHeroList[i].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData);
+                if(CurrentHeroDataList != null)
+                {
+                    CurrentHeroDataList.Clear();
+                }
+                for (int j = 0; j < CurrentHeroList.Count; j++)
+                {
+                    CurrentHeroDataList.Add(CurrentHeroList[j].GetComponent<HeroScript_SaveAllDataParam>().heroSavingData);
+                }
               
             }
 
@@ -247,13 +255,13 @@ namespace Song
             byte[] bytes = System.Convert.FromBase64String(jdata);
             string reformat = System.Text.Encoding.UTF8.GetString(bytes);
            // File.WriteAllText(Application.dataPath + "/Resources/Stat.Json", reformat);
-            Debug.Log(reformat);
+            //Debug.Log(reformat);
 
             CurrentHeroDataList = JsonConvert.DeserializeObject<List<HeroSavingData>>(reformat); //�ҷ��� savingdata�� LoadHeroCreate�Լ��� ����� heroObject����
 
             for (int i = 0; i < CurrentHeroDataList.Count; i++) //CurrentHeroDataList�� ���̰� 30 �̹Ƿ� 30�� �ݺ���.
             {
-                if (CurrentHeroDataList[i].stat.Name != "")
+                if (CurrentHeroDataList[i].stat.Name == "")
                 {
                     break;
                 }
