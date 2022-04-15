@@ -159,7 +159,13 @@ public class RoomController : MonoBehaviour
             case 1:
 
             case 2:
+                room_Passage_Event.Passage_AgiUp_Event();
+                Room.GetComponent<RoomScript>().DungeonEventPram = -1;
+                break;
             case 3:
+                room_Passage_Event.Passage_HpUp_Event();
+                Room.GetComponent<RoomScript>().DungeonEventPram = -1;
+                break;
             case 4:
                 room_Passage_Event.Passage_HpDown_Event();
                 Room.GetComponent<RoomScript>().DungeonEventPram = -1;
