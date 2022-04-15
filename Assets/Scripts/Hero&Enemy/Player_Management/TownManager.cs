@@ -11,7 +11,10 @@ public class TownManager : MonoBehaviour
     //�ش� ��ũ��Ʈ���� ���� ����, ���, �� �ǹ��� ������Ȳ
     public int Week = 0;
 
+    public List<int> DungeonClearCount = new List<int>();
 
+
+    public Town_Event_Manager town_Event_Manager;
     public ManagerTable MgrTable;
     public IntroSceneScript introSceneScript;
     public Song.HeroManager heroManager; // inspectorâ�� HeroManager�־���
@@ -84,10 +87,25 @@ public class TownManager : MonoBehaviour
         {
             MgrTable.TutorialMgr.QuestionOn();
         }
+        EventCheck();
+
+        
 
 
 
     } //�������ڸ� TownManager�� HeroManager���� ������ �����϶� �����ϰ�, HeroManager�� Guild���� ��� �����ؾ� �ϴ��� ���� �޾� �����Ѵ�. 
+    public void EventCheck()
+    {
+        if (Week == 1)
+        {
+            town_Event_Manager.Event_Panel_Down();
+
+        }
+        if (Week % 5 == 0)
+        {
+            town_Event_Manager.Event_Panel_Down();
+        }
+    }
 
     public void UpdateManager_All_Off()
     {

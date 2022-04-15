@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Combat_Event_UI_Manager : MonoBehaviour
 {
+    public Song.UI_DungeonSelect_Manager dungeonSelectManager;
     public TownManager townManager;
     public e_CombatManager combatManager;
     public InGame_Player_Script inGame_Player_Script;
@@ -151,6 +152,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         }
         if (!combatManager.isGameOver)
         {
+            townManager.DungeonClearCount[dungeonSelectManager.DungeonType]++;
+
             GameObject GoldPrefab;
             int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 100); // 던전 클리어 후 얻는 골드량
             for (int i = 0; i < combatManager.DungeonDifficulty; i++)
