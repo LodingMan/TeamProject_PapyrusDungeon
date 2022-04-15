@@ -9,6 +9,7 @@ public class UI_SoundMgr : MonoBehaviour
     public AudioClip audioBtn;
     public AudioClip audioOption;
     public AudioClip audioGold;
+    public AudioClip audioGold02;
     public AudioClip audioDungeon;
     public AudioClip audioDungeonFail;
     public AudioClip audioMenu;
@@ -40,6 +41,12 @@ public class UI_SoundMgr : MonoBehaviour
         audioSE.clip = audioGold;
         audioSE.Play();
     }
+
+    public void PlayClipGold02()
+    {
+        audioSE.clip = audioGold02;
+        audioSE.Play();
+    }
     public void PlayClipDungeonSelect()
     {
         audioSE.clip = audioDungeon;
@@ -67,4 +74,6 @@ public class UI_SoundMgr : MonoBehaviour
         audioSE.clip = audioDungeonStart;
         audioSE.Play();
     }
+
+    
 }
