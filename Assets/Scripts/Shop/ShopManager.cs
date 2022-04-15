@@ -443,8 +443,8 @@ public class ShopManager : MonoBehaviour
 
     public void GoldRefresh()
     {
-        goldText.text = money.ToString();
-        gemText.text = gem.ToString();
+        goldText.text = GetThousandCommaText(money).ToString();
+        gemText.text = GetThousandCommaText(gem).ToString();
 
     }
 
@@ -522,5 +522,9 @@ public class ShopManager : MonoBehaviour
             ItemSave();
         }
 
+    }
+
+    public string GetThousandCommaText(int data){
+        return string.Format("{0:#,###}", data);
     }
 }
