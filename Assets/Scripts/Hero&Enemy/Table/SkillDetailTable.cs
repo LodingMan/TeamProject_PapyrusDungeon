@@ -11,6 +11,7 @@ namespace Shin {
         public GameObject leanlocalzation;
         List<Dictionary<string, object>> dataKOR;
         List<Dictionary<string, object>> dataENG;
+        
         public string currentLanguage;
         public List<SkillDetail> skilldetails = new List<SkillDetail>();
         public Sprite[] sprite;
@@ -31,7 +32,7 @@ namespace Shin {
             }
             else if (currentLanguage == "English")
             {
-                for (var i = 1; i < dataKOR.Count + 1; i++)
+                for (var i = 1; i < dataENG.Count + 1; i++)
                 {
                     skilldetails.Add(new SkillDetail(i, dataENG[i - 1]["Name"].ToString(), dataENG[i - 1]["Effect"].ToString()));
                 }
