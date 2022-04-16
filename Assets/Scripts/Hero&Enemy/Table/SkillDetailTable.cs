@@ -78,6 +78,7 @@ namespace Shin
             {
                 for (var i = 1; i < dataJPN.Count + 1; i++)
                 {
+                    Debug.Log("ÀÏº»¾î");
                     skilldetails.Add(new SkillDetail(i, dataJPN[i - 1]["Name"].ToString(), dataJPN[i - 1]["Effect"].ToString()));
                 }
             }
