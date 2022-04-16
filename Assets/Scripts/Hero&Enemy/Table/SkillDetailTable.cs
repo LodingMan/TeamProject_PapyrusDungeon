@@ -42,7 +42,7 @@ namespace Shin
             }
             else if (currentLanguage == "Japanese")
             {
-                for (var i = 1; i < dataKOR.Count + 1; i++)
+                for (var i = 1; i < dataJPN.Count + 1; i++)
                 {
                     skilldetails.Add(new SkillDetail(i, dataJPN[i - 1]["Name"].ToString(), dataJPN[i - 1]["Effect"].ToString()));
                 }
