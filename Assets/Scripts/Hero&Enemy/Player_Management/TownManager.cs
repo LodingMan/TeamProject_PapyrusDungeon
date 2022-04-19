@@ -59,7 +59,6 @@ public class TownManager : MonoBehaviour
         {
             NextWeek(); // -> 1 week    
         }
-
     }
     public void Update()
     {
@@ -72,11 +71,10 @@ public class TownManager : MonoBehaviour
     }
     public void NextWeek() // ���� ���� , ó�� ���� ���� ���� ������ �÷��̾��� ���൵�� �����ַ� �Ѿ.      
     {
-        Week++;          // �ش� �Լ��� ���� �Ǿ����� HeroManager���� ������ ����ŭ Hero�� �������� �����ϴµ� 
-        heroManager.RandomHeroCreate();  // �����Ǵ� ���� HeroManager�� ����Ǿ��ִ� guildManager�� oneDayCreateHeroCount ������ �����Ѵ�.
+        Week++;                 
+        heroManager.RandomHeroCreate(); 
         shopMgr.ItemSpawn();
-        //Combat_Event_UI_Manager CEUM = GameObject.Find("Combat_Event_UI_Manger").GetComponent<Combat_Event_UI_Manager>();
-        
+               
         //// shin ////
         if (Week == 1) // Tutorial start
         {

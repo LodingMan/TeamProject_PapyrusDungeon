@@ -6,30 +6,29 @@ using UnityEngine;
 
 namespace Song
 {
-    public class HeroManager : MonoBehaviour //����ġ ���� �´� ���ο� Hero ���� , ������ ����� �����͸� �����ؼ� ����ߴ� Hero�����
+    public class HeroManager : MonoBehaviour 
     {
-        public Stat initStat; //������ ������Ʈ�� ������ �ӽ÷� �����ϱ����� Ŭ����
+        public Stat initStat; 
 
-        public Item initItem; //���� �̻��
+        public Item initItem;
 
-        public SKillTable skillTable = new SKillTable(); // ��� ��ų ����
+        public SKillTable skillTable = new SKillTable(); 
 
-        public List<GameObject> HeroPrefabs; //HeroManager���� ���� �� ���ִ� HeroObject���
+        public List<GameObject> HeroPrefabs; 
 
-        public GameObject CurrentCreateHero; //�� ������ ����� ������Ʈ�� ���� �����ϱ� ���� ����.
+        public GameObject CurrentCreateHero; 
 
-        public List<GameObject> unemployedHeroList; //������ ������ �̰�� ������ ���� ����Ʈ. ����ϸ� �ش� ����Ʈ���� CurrentHeroList�� �Ű�����.  
+        public List<GameObject> unemployedHeroList;   
 
-        public List<GameObject> CurrentHeroList; // ���� ������ �����
+        public List<GameObject> CurrentHeroList;
 
-        //public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; //������ HeroObject�� SavingData�� �ѹ��� ��Ƽ� Save�ϱ� ����
-                                                                              // Save�ÿ� List�� �����ϰ� �;����� ������, ������ �ƽðų� �˰Եǽź��� ����������... -> ���ϴ� 03/26
+        //public HeroSavingData[] CurrentHeroDataList = new HeroSavingData[30]; 
+        
         public List<HeroSavingData> CurrentHeroDataList = new List<HeroSavingData>();
 
+        public Name_JobTable name_JobTable = new Name_JobTable(); 
 
-        public Name_JobTable name_JobTable = new Name_JobTable(); //������ �����̸� �迭�� , �����̸� �迭�� ����ִ� Ŭ����
-
-        int JobSkillStartIndex; // 0�̸� 0~4�� �ε��� , 5��� 5������ 9�������� �ε����� for������ ������ ��ų���� ������, �ϴ� for�� ����
+        int JobSkillStartIndex; 
         public int HeroColor;
         string heroName = "BasicName";
 
@@ -39,15 +38,15 @@ namespace Song
 
         public void RandomHeroCreate()
         {
-            for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) // ���� ��尡 ����ϴ� ���� ����ŭ ��������
+            for (int i = 0; i < guildManager.oneDayCreateHeroCount; i++) 
             {
-                string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)]; //������ ���� �̸� ������
+                string rndJob = name_JobTable.RandomJobTable[Random.Range(0, name_JobTable.RandomJobTable.Length)];
                 int rndColor = Random.Range(0, 4);
                 FirstHeroCreate(rndJob, rndColor);
                 
             }
-            // 체크용 리스트 remove 해주고, 중복처리용 리스트를 다시 add.
-            name_JobTable.CurrentHeroName.RemoveRange(0, name_JobTable.CurrentHeroName.Count); // 일단 전부 지우고
+           
+            name_JobTable.CurrentHeroName.RemoveRange(0, name_JobTable.CurrentHeroName.Count);
             for (int i = 0; i < CurrentHeroList.Count; i++)
             {
                 name_JobTable.CurrentHeroName.Add(CurrentHeroList[i].name);
@@ -61,7 +60,7 @@ namespace Song
         {
             bool isOver = false;
 
-            if(name_JobTable.CurrentHeroName.Count != 0) // 리스트에 하나라도 들어있으면 중복검사 해야함.
+            if(name_JobTable.CurrentHeroName.Count != 0) 
             {
                 for (int i = 0; i < name_JobTable.CurrentHeroName.Count; i++)
                 {

@@ -39,7 +39,6 @@ public class Stat
         this.Agi = agi;
         this.Speed = speed; // 03 - 25 Speed Ãß°¡
 
-
     }
     public Stat(Stat nStat)
     {
