@@ -54,6 +54,7 @@ public class TownManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
         {
             Week = PlayerPrefs.GetInt("Week");
+            shopMgr.ItemSpawn();
         }
         else // 없으면, 0주차 => game first start
         {
@@ -157,6 +158,11 @@ public class TownManager : MonoBehaviour
 
         CEUM.GameClearPanalUp();
         CCC.BlackFade_In();
+        for (int i = 0; i < CEUM.ClearReward_Create_Point.transform.childCount; i++) //리워드 중복 이미지 삭제
+        {
+            Destroy(CEUM.ClearReward_Create_Point.transform.GetChild(i).gameObject);
+        }
+        
 
         yield return new WaitForSeconds(3);
 

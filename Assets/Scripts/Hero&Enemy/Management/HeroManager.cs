@@ -211,13 +211,12 @@ namespace Song
             CurrentCreateHero.GetComponent<StatScript>().myStat = LodingHeroSavingData.stat;
             CurrentCreateHero.GetComponent<SkillScript>().skills = LodingHeroSavingData.skills;
 
-            if (LodingHeroSavingData.equips != null) // �ҷ����� Hero�� �Ǽ��� ��쿡�� if�� ���� ������ �������� ����
-            {
-                CurrentCreateHero.GetComponent<EquipScript>().myEquip = LodingHeroSavingData.equips;
-            }
+            //if (LodingHeroSavingData.equips != null) // �ҷ����� Hero�� �Ǽ��� ��쿡�� if�� ���� ������ �������� ����
+            //{
+            //    CurrentCreateHero.GetComponent<EquipScript>().myEquip = LodingHeroSavingData.equips;
+            //}
 
             CurrentHeroList.Add(CurrentCreateHero); // �� ����Ʈ�� �������� UI������ ����� ��Ʈ�� 
-            Debug.Log("sibal");
         }
 
 

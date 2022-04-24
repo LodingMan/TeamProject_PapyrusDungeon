@@ -56,7 +56,7 @@ public class ShopManager : MonoBehaviour
         isShop = true;
 
     }
-    public void ItemSpawn() //상점 버튼을 눌렀을 시 아이템을 생성합니다. (나중에 랜덤으로 바꿀 예정) 03-27 윤성근
+    public void ItemSpawn() //상점 버튼을 눌렀을 시 아이템을 생성합니다.
     {
         for (int i = 0; i < shopPanel.transform.childCount; i++)
         {
@@ -481,8 +481,24 @@ public class ShopManager : MonoBehaviour
 
     public void GoldRefresh()
     {
-        goldText.text = GetThousandCommaText(money).ToString();
-        gemText.text = GetThousandCommaText(gem).ToString();
+        if (money < 0)
+        {
+            money = 0;
+            goldText.text = "0";
+        }
+        else
+        {
+            goldText.text = GetThousandCommaText(money).ToString();
+        }
+        if (gem < 0)
+        {
+            gem = 0;
+            gemText.text = "0";
+        }
+        else
+        {
+            gemText.text = GetThousandCommaText(gem).ToString();
+        }
 
     }
 

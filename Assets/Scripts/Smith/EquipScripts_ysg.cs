@@ -46,6 +46,7 @@ public class EquipScripts_ysg : MonoBehaviour
         equipDetailTable = GameObject.Find("HeroManager").transform.GetChild(1).GetComponent<Shin.EquipDetailTable>();
 
 
+
         //itemData.hasEquipList.Add(gameObject);
 
 
@@ -204,10 +205,12 @@ public class EquipScripts_ysg : MonoBehaviour
             equip.Cri = equipTable.initEquip[equipIndex].Cri;
             equip.Acc = equipTable.initEquip[equipIndex].Acc;
             equip.Cost = equipTable.initEquip[equipIndex].Cost;
+            equip.isEquip = equipTable.initEquip[equipIndex].isEquip;
         }
         gameObject.name = equip.Name;
         gameObject.transform.GetChild(4).GetComponent<Text>().text = equip.Lv.ToString();
         equip.Cost = equipTable.initEquip[equipIndex].Cost;
+        equip.isEquip = equipTable.initEquip[equipIndex].isEquip;
     }
 
     public void ArmorEquip()
@@ -568,6 +571,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Def += equip.Def;
                 itemUseManager.equips[0].Cri += equip.Cri;
                 itemUseManager.equips[0].Acc += equip.Acc;
+                itemUseManager.equips[0].isEquip = 1;
                 itemUseManager.InitEquip();
                 equipImg.gameObject.SetActive(true);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
@@ -596,6 +600,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def += equip.Def;
                 itemUseManager.equips[1].Cri += equip.Cri;
                 itemUseManager.equips[1].Acc += equip.Acc;
+                itemUseManager.equips[1].isEquip = 1;
                 itemUseManager.InitEquip();
                 equipImg.gameObject.SetActive(true);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "해제";
@@ -623,6 +628,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[0].Def = 0;
                 itemUseManager.equips[0].Cri = 0;
                 itemUseManager.equips[0].Acc = 0;
+                itemUseManager.equips[0].isEquip = 0;
                 itemUseManager.InitEquip();
                 equipImg.gameObject.SetActive(false);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";
@@ -654,6 +660,7 @@ public class EquipScripts_ysg : MonoBehaviour
                 itemUseManager.equips[1].Def = 0;
                 itemUseManager.equips[1].Cri = 0;
                 itemUseManager.equips[1].Acc = 0;
+                itemUseManager.equips[1].isEquip = 0;
                 itemUseManager.InitEquip();
                 equipImg.gameObject.SetActive(false);
                 equipBtn.transform.GetChild(0).GetComponent<Text>().text = "장착";

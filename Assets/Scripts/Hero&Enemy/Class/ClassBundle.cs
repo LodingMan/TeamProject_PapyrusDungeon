@@ -131,8 +131,9 @@ public class Equip
     public int Cri;
     public int Acc;
     public int Cost;
+    public int isEquip; // 0 ÀÌ¸é ¹ÌÂø¿ë 1ÀÌ¸é Âø¿ë
 
-    public Equip(int index, string name, string job, int lv, int hp, int mp, int atk, int def, int cri, int acc, int cost)
+    public Equip(int index, string name, string job, int lv, int hp, int mp, int atk, int def, int cri, int acc, int cost, int isequip)
     {
         Index = index;
         Name = name;
@@ -145,6 +146,7 @@ public class Equip
         Cri = cri;
         Acc = acc;
         Cost = cost;
+        isEquip = isequip;
     }
 }
 
