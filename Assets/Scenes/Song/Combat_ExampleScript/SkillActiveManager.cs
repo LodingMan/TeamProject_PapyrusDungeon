@@ -10,14 +10,6 @@ public class SkillActiveManager : MonoBehaviour
     public Combat_Guide_Script combat_Guide_Script;
 
 
-    public RectTransform rectTransform;
-    public RectTransform Lever;
-    [Range(10, 150)]
-    public float leverRange;
-    public CanvasGroup canvasGroup;
-
-    public Image Root;
-
     public e_CombatManager combatManager;
     public Target_Panal_Script target_Panal_Script;
     public Combat_Event_UI_Manager combat_Event_UI_Manager;
@@ -25,11 +17,11 @@ public class SkillActiveManager : MonoBehaviour
 
 
     public Sprite[] SkillImages = new Sprite[4];
-    public Text[] SkillText = new Text[4]; // Å×½ºÆ®¿ë º¯¼ö´Ù. ÀÌ¹ÌÁö·Î ´ëÃ¼ÇØ¾ßµÊ 
+    public Text[] SkillText = new Text[4]; // ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½Ø¾ßµï¿½ 
 
     public List<GameObject> Childs;
 
-    public skill[] currentSkills = new skill[3]; //ÀÌ UI°¡ Ãâ·ÂµÉ ´ç½Ã »ç¿ëÇÒ ½ºÅ³µéÀÇ Á¤º¸
+    public skill[] currentSkills = new skill[3]; //ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     public bool isActive = false;
 
@@ -47,7 +39,7 @@ public class SkillActiveManager : MonoBehaviour
 
 
 
-    public void SkillActiveOn(skill[] targetSkills) //½ºÅ³ÀÇ Á¤º¸¸¦ Ãâ·ÂÇÔ
+    public void SkillActiveOn(skill[] targetSkills) //ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         isActive = true;
         gameObject.SetActive(true);
@@ -56,7 +48,7 @@ public class SkillActiveManager : MonoBehaviour
         {
             currentSkills[i] = targetSkills[i];
             SkillImages[i] = skillDetailTable.sprite[currentSkills[i].Index];
-            Childs[i].GetComponent<SpriteRenderer>().sprite = SkillImages[i];
+            Childs[i].GetComponent<Image>().sprite = SkillImages[i];
 
         }
 
@@ -66,7 +58,7 @@ public class SkillActiveManager : MonoBehaviour
             Childs.Add(transform.GetChild(i).gameObject);
             Childs[i].SetActive(true);
             // Childs[i].transform.DOMove(new Vector3(1.2f * i, 0, 0), 0.5);
-            Childs[i].transform.DOMove(transform.position + new Vector3(1.5f * i, 0, 0), 0.5f);
+            Childs[i].transform.DOMove(transform.position + new Vector3(120f * i, 0, 0), 0.5f);
         }
 
 
@@ -88,7 +80,7 @@ public class SkillActiveManager : MonoBehaviour
                         Debug.Log("AttackSkill");
                         target_Panal_Script.EnemyTargetView();
                         gameObject.SetActive(false);
-                        Debug.Log("1¹ø½ºÅ³ »ç¿ë!");
+                        Debug.Log("1ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½!");
                         InfoOut();
 
                         break;
@@ -97,7 +89,7 @@ public class SkillActiveManager : MonoBehaviour
                         target_Panal_Script.PlayerTargetView();
                         gameObject.SetActive(false);
                         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
-                        Debug.Log("1¹ø½ºÅ³ »ç¿ë!");
+                        Debug.Log("1ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½!");
                         InfoOut();
 
 
@@ -108,7 +100,7 @@ public class SkillActiveManager : MonoBehaviour
             }
 
         }
-        Debug.Log("»ç¿ëºÒ°¡");
+        Debug.Log("ï¿½ï¿½ï¿½Ò°ï¿½");
 
     }
     public void Skill1_Info()
@@ -218,7 +210,7 @@ public class SkillActiveManager : MonoBehaviour
                         Debug.Log("AttackSkill");
                         target_Panal_Script.EnemyTargetView();
                         gameObject.SetActive(false);
-                        Debug.Log("2¹ø½ºÅ³ »ç¿ë!");
+                        Debug.Log("2ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½!");
                         InfoOut();
 
                         break;
@@ -227,7 +219,7 @@ public class SkillActiveManager : MonoBehaviour
                         target_Panal_Script.PlayerTargetView();
                         gameObject.SetActive(false);
                         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
-                        Debug.Log("2¹ø½ºÅ³ »ç¿ë!");
+                        Debug.Log("2ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½!");
                         InfoOut();
                         break;
                 }
@@ -235,7 +227,7 @@ public class SkillActiveManager : MonoBehaviour
             }
         }
 
-        Debug.Log("»ç¿ëºÒ°¡");
+        Debug.Log("ï¿½ï¿½ï¿½Ò°ï¿½");
     }
     public void Skill2_Info()
     {
@@ -331,7 +323,7 @@ public class SkillActiveManager : MonoBehaviour
                         Debug.Log("AttackSkill");
                         target_Panal_Script.EnemyTargetView();
                         gameObject.SetActive(false);
-                        Debug.Log("3¹ø½ºÅ³ »ç¿ë!");
+                        Debug.Log("3ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½!");
                         InfoOut();
 
                         break;
@@ -340,7 +332,7 @@ public class SkillActiveManager : MonoBehaviour
                         target_Panal_Script.PlayerTargetView();
                         gameObject.SetActive(false);
                         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
-                        Debug.Log("3¹ø½ºÅ³ »ç¿ë!");
+                        Debug.Log("3ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½!");
                         InfoOut();
 
 
@@ -353,7 +345,7 @@ public class SkillActiveManager : MonoBehaviour
         }
 
 
-        Debug.Log("»ç¿ëºÒ°¡");
+        Debug.Log("ï¿½ï¿½ï¿½Ò°ï¿½");
 
     }
     public void Skill3_Info()

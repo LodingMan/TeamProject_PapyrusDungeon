@@ -20,9 +20,9 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public GameObject HeroStatusInfo_Panel;
     public List<Text> HeroStatInfo_Text = new List<Text>();
-    // 0 ÀÌ¸§ 1 Á÷¾÷ 2 Atk 3 DEF 4 CIR 5 ACC 6 AGI 7 SPEED 8 HP 9 MP
+    // 0 ï¿½Ì¸ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ 2 Atk 3 DEF 4 CIR 5 ACC 6 AGI 7 SPEED 8 HP 9 MP
 
-
+    //HpBarì— ê´€í•œ ë³€ìˆ˜
     public GameObject Bars;
     public List<GameObject> Defalt_Hero_Hp_Bar = new List<GameObject>();
     public List<GameObject> Hero_HP_Bar = new List<GameObject>();
@@ -31,6 +31,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public List<Vector2> Hero_Hp_Bar_Pos = new List<Vector2>();
     public List<Vector2> Enemy_Hp_Bar_Pos = new List<Vector2>();
 
+    //í„´ê³¼ ê´€ë ¨ë¨
     public Text TurnText;
     public GameObject TurnTextImg;
 
@@ -52,11 +53,12 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public GameObject GameClearReward_Equip_Image;
     public List<GameObject> ImageSaveList = new List<GameObject>();
 
+    //ìŠ¹íŒ¨ ê´€ë ¨
     public Image Victory_Fail_Image;
     public Sprite VictorySprite;
     public Sprite FailSprite;
 
-
+    //ë°ë¯¸ì§€ ê´€ë ¨
     public GameObject DamageText;
     public Animator TextAnim;
 
@@ -64,21 +66,16 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
     public GameObject Current_Attack_Unit;
 
+    //ìŠ¤í‚¬Infoê´€ë ¨
     public Image Skill_Info_UI;
-    public List<Text> SkillInfo_Text = new List<Text>(); // 0 ÀÌ¸§ 2 ATK 3 Type 4 pram 5 BuffTime
+    public List<Text> SkillInfo_Text = new List<Text>(); // 0 ï¿½Ì¸ï¿½ 2 ATK 3 Type 4 pram 5 BuffTime
     public List<Image> SKillInfo_Image = new List<Image>();
 
     public GameObject Player_Targeting;
 
 
-    public Vector2 anchorPer;
-    public float minusPer_Width;
-    public float minusPer_Height;
-    public Text TestUI;
-
     public GameObject goldImage;
 
-    public List<GameObject> ScaleReFactoring = new List<GameObject>();
     public void Go_Back_On()
     {
         Go_Back_Btn[0].gameObject.SetActive(true);
@@ -101,7 +98,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             if (inGame_Player_Script.isRoom)
             {
                 IngameText.rectTransform.anchoredPosition = new Vector2(-44, 316);
-                IngameText.text = "´Ù¸¥ Áö¿ªÀ¸·Î ÀÌµ¿À» À§ÇØ ¹Ì´Ï¸ÊÀ» ´­·¯ÁÖ¼¼¿ä";
+                IngameText.text = "ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì´Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½";
             }
 
         }
@@ -110,7 +107,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public void BattleStart()
     {
         IngameText.rectTransform.anchoredPosition = new Vector2(0, 316);
-        IngameText.text = "ÀüÅõ ½ÃÀÛ!";
+        IngameText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!";
     }
 
 
@@ -141,7 +138,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
         if (combatManager.isGameOver)
         {
-            Debug.Log("°ÔÀÓ¿À¹ö");
+            Debug.Log("ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½");
             Victory_Fail_Image.sprite = FailSprite;
 
         }
@@ -152,10 +149,10 @@ public class Combat_Event_UI_Manager : MonoBehaviour
         }
         if (!combatManager.isGameOver)
         {
-            //townManager.DungeonClearCount[dungeonSelectManager.DungeonType]++; ¿À·ù¶§¹®¿¡ ÁÖ¼®Ã³¸®
+            //townManager.DungeonClearCount[dungeonSelectManager.DungeonType]++; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½
 
             GameObject GoldPrefab;
-            int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 100); // ´øÀü Å¬¸®¾î ÈÄ ¾ò´Â °ñµå·®
+            int RndGold = Random.Range(1, combatManager.DungeonDifficulty * 100); // ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½å·®
             for (int i = 0; i < combatManager.DungeonDifficulty; i++)
             {
                 int RndIdx = Random.Range(1, shopManager.equipList.Count);
@@ -165,7 +162,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 CurrentCreateImgae = Instantiate(GameClearReward_Equip_Image);
                 CurrentCreateImgae.GetComponent<Image>().sprite = equipDetailTable.sprite[RndIdx]; // shopManager.equipList[RndIdx].transform.GetChild(1).GetComponent<Image>().sprite;
                 CurrentCreateImgae.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
-                CurrentCreateImgae.transform.localScale = new Vector3(1, 1, 1); // ÀÌ¹ÌÁö »çÀÌÁî °íÁ¤
+                CurrentCreateImgae.transform.localScale = new Vector3(1, 1, 1); // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 ImageSaveList.Add(CurrentCreateImgae);
 
 
@@ -176,14 +173,14 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 InvantoryCreatePrefab.transform.localScale = new Vector3(1, 1, 1);
             }
 
-            goldImage.transform.GetChild(0).GetComponent<Text>().text = RndGold.ToString(); //°ñµå ÀÌ¹ÌÁö Ãâ·Â
+            goldImage.transform.GetChild(0).GetComponent<Text>().text = RndGold.ToString(); //ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             GoldPrefab = Instantiate(goldImage);
             GoldPrefab.gameObject.transform.SetParent(ClearReward_Create_Point.transform);
             GoldPrefab.gameObject.transform.localScale = new Vector3(1, 1, 1);
 
-            shopManager.DungeonClearItemSave(RndGold);  // º¸À¯ °ñµå ¾÷µ¥ÀÌÆ®
+            shopManager.DungeonClearItemSave(RndGold);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
-            for (int i = 0; i < shopManager.hasItemList.Count; i++)  // ÀÎº¥Åä¸®·Î ¾ÆÀÌÅÛ ¿Å±â±â Yoon
+            for (int i = 0; i < shopManager.hasItemList.Count; i++)  // ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½ Yoon
             {
                 shopManager.hasItemList[i].transform.SetParent(shopManager.inventory.transform);
                 shopManager.hasItemList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
@@ -195,7 +192,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
                 shopManager.hasEquipList[i].transform.localPosition = shopManager.inventory.transform.localPosition;
                 shopManager.hasEquipList[i].transform.localScale = new Vector3(1, 1, 1);
             }
-            shopManager.ItemSave(); // ÇöÀç ¾ÆÀÌÅÛ, Àåºñ, °ñµå ÀúÀå ½ÃÁ¡ 0414 Yoon
+            shopManager.ItemSave(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0414 Yoon
             shopManager.heroManager._Save();
             PlayerPrefs.SetInt("Week", townManager.Week + 1);
             
