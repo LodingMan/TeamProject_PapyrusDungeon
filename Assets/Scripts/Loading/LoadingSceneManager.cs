@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingSceneManager : MonoBehaviour
 {
+    public BannerAds ads;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class LoadingSceneManager : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 10)
             {
+                ads.HideBanner();
                 op.allowSceneActivation = true;
             }
             yield return null;
