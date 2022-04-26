@@ -4,19 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+//ì›ë˜ UIë§¤ë‹ˆì ¸ì— ë“¤ì–´ê°€ì•¼ í•˜ì§€ë§Œ ì´ë¯¸ ì‘ì„±ë˜ì—ˆìœ¼ë¯€ë¡œ ì˜ˆì™¸ì ìœ¼ë¡œ ì´ ìŠ¤í¬ë¦½íŠ¸ì— ì²˜ë¦¬í•˜ë„ë¡ í•¨.
+
 public class Target_Panal_Script : MonoBehaviour
 {
     public GameObject[] EnemyTargetUI = new GameObject[3];
     public GameObject[] PlayerTargetUI = new GameObject[3];
-    public GameObject[] TargetUIPos = new GameObject[2];
     public e_CombatManager combatManager;
 
 
     private void Start()
     {
+
         TargetAllOff();
     }
-    public void EnemyTargetView() //°ø°İ°¡´ÉÇÑ ´ë»óÀ» Ç¥½ÃÇØÁÜ ¹°·Ğ UI·Î Ã³¸®ÇÔ. 
+    public void EnemyTargetView() 
     {
        // Debug.Log("Func");
         for (int i = 0; i < combatManager.enemys.Count; i++)
@@ -26,13 +28,11 @@ public class Target_Panal_Script : MonoBehaviour
                 continue;
             }
             EnemyTargetUI[i].SetActive(true);
-            EnemyTargetUI[i].transform.DOMove(TargetUIPos[0].transform.position + new Vector3(2f * i, 0),1f);
             EnemyTargetUI[i].GetComponent<Unit_Target_Script>().This_TargetObject = combatManager.enemys[combatManager.SaveSkill.EnemyPosition[i]];
         }
     }
 
-
-    public void PlayerTargetView() //°ø°İ°¡´ÉÇÑ ´ë»óÀ» Ç¥½ÃÇØÁÜ ¹°·Ğ UI·Î Ã³¸®ÇÔ. 
+    public void PlayerTargetView()
     {
         // Debug.Log("Func");
         for (int i = 0; i < combatManager.myParty.Count; i++)
@@ -42,7 +42,6 @@ public class Target_Panal_Script : MonoBehaviour
                 continue;
             }
             PlayerTargetUI[i].SetActive(true);
-            PlayerTargetUI[i].transform.DOMove(TargetUIPos[1].transform.position + new Vector3(-2f * i, 0), 1f);
             Debug.Log(i);
             PlayerTargetUI[i].GetComponent<Unit_Target_Script>().This_TargetObject = combatManager.myParty[combatManager.SaveSkill.EnemyPosition[i]];
         }

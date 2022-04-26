@@ -31,6 +31,17 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public List<Vector2> Hero_Hp_Bar_Pos = new List<Vector2>();
     public List<Vector2> Enemy_Hp_Bar_Pos = new List<Vector2>();
 
+    //현재 선택 유닛 관련
+    
+    public GameObject Current_Attack_Unit;
+    public List<Vector2> Hero_Current_Attack_UnitPos = new List<Vector2>();
+    public List<Vector2> Enemy_Current_Attack_UnitPos = new List<Vector2>();
+
+    // 적 선택 버튼 관련
+    public List<GameObject> Enemy_Targeting = new List<GameObject> ();
+
+
+
     //턴과 관련됨
     public Text TurnText;
     public GameObject TurnTextImg;
@@ -64,7 +75,6 @@ public class Combat_Event_UI_Manager : MonoBehaviour
 
 
 
-    public GameObject Current_Attack_Unit;
 
     //스킬Info관련
     public Image Skill_Info_UI;
@@ -98,7 +108,7 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             if (inGame_Player_Script.isRoom)
             {
                 IngameText.rectTransform.anchoredPosition = new Vector2(-44, 316);
-                IngameText.text = "�ٸ� �������� �̵��� ���� �̴ϸ��� �����ּ���";
+                IngameText.text = "";
             }
 
         }
@@ -119,7 +129,15 @@ public class Combat_Event_UI_Manager : MonoBehaviour
     public void CurrentAttack_Move()
     {
         // Current_Attack_Unit.rectTransform.anchoredPosition = skillActiveManager.GetComponent<Image>().rectTransform.anchoredPosition;
-        Current_Attack_Unit.transform.position = combatManager.speedComparisonArray[0].transform.position + new Vector3(0, 1.7f, 0);
+        //Current_Attack_Unit.transform.position = combatManager.speedComparisonArray[0].transform.position + new Vector3(0, 1.7f, 0);
+        if(combatManager.speedComparisonArray[0].tag == "Player")
+        {
+            Current_Attack_Unit.GetComponent<Image>().rectTransform.anchoredPosition = Hero_Current_Attack_UnitPos[combatManager.currentActiveUnitIndex];
+        }
+        else
+        {
+            Current_Attack_Unit.GetComponent<Image>().rectTransform.anchoredPosition= Enemy_Current_Attack_UnitPos[combatManager.currentActiveUnitIndex];
+        }
         Current_Attack_Unit.gameObject.SetActive(true);
         Current_Attack_Unit.GetComponent<DOTweenAnimation>().DORestart();
 

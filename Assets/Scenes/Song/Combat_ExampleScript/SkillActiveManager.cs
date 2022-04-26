@@ -58,7 +58,8 @@ public class SkillActiveManager : MonoBehaviour
             Childs.Add(transform.GetChild(i).gameObject);
             Childs[i].SetActive(true);
             // Childs[i].transform.DOMove(new Vector3(1.2f * i, 0, 0), 0.5);
-            Childs[i].transform.DOMove(transform.position + new Vector3(120f * i, 0, 0), 0.5f);
+            //Childs[i].transform.DOMove(transform.position + new Vector3(120f * i, 0, 0), 0.5f);
+            Childs[i].GetComponent<Image>().rectTransform.DOAnchorPos(new Vector3(120f * i, 0, 0), 0.5f);
         }
 
 

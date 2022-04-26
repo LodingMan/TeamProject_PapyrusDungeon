@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,6 +69,9 @@ public class e_CombatManager : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
+    
+
+    
 
     private void Update()
     {
@@ -84,18 +87,6 @@ public class e_CombatManager : MonoBehaviour
                     {
                         switch (hit.transform.gameObject.name)
                         {
-                            case "Skill1":
-                                skillActiveManager.Skill1();
-                                break;
-                            case "Skill2":
-                                skillActiveManager.Skill2();
-                                break;
-                            case "Skill3":
-                                skillActiveManager.Skill3();
-                                break;
-                            case "None":
-                                skillActiveManager.SkillNone();
-                                break;
                             case "Target1":
                                 hit.transform.gameObject.GetComponent<DOTweenAnimation>().DORestart();
                                 StartCoroutine(HeroAttackDlay(hit.transform.gameObject.GetComponent<Unit_Target_Script>().This_TargetObject));
@@ -522,7 +513,13 @@ public class e_CombatManager : MonoBehaviour
         Debug.Log("대상에게 스킬 사용 완료! 대상은 " + myParty[UseIndex]);
         //여기서 사용할 대상 이미지 출력
         combat_Event_UI_Manager.Player_Targeting.SetActive(true);
-        combat_Event_UI_Manager.Player_Targeting.transform.position = myParty[UseIndex].transform.position + new Vector3(0, 1.7f, 0);
+        combat_Event_UI_Manager
+            .Player_Targeting
+            .GetComponent<Image>()
+            .rectTransform
+            .anchoredPosition = combat_Event_UI_Manager
+            .Hero_Current_Attack_UnitPos[UseIndex];
+       // combat_Event_UI_Manager.Player_Targeting.transform.position = myParty[UseIndex].transform.position + new Vector3(0, 1.7f, 0);
         combat_Event_UI_Manager.Player_Targeting.GetComponent<DOTweenAnimation>().DORestart();
         StartCoroutine(EnemyAttack(UseIndex));
 
@@ -875,12 +872,13 @@ public class e_CombatManager : MonoBehaviour
 
 
 
-    void Swap(List<GameObject> arr, int num1, int num2)
-    {
-        GameObject tmp = arr[num1];
-        arr[num1] = arr[num2];
-        arr[num2] = tmp;
-    }
+void Swap(List<GameObject > arr, int num1, int num2) {
+    GameObject tmp = arr[num1];
+    arr[num1] = arr[num2];
+    arr[num2] = tmp;
+}
+
+
 
     IEnumerator SkillUISetting()
     {
@@ -946,7 +944,7 @@ public class e_CombatManager : MonoBehaviour
         combat_Event_UI_Manager.Bars.SetActive(false);
         combat_Event_UI_Manager.EnemySkillNameText.enabled = false;
         combat_Event_UI_Manager.Player_Targeting.SetActive(false);
-        combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
+         combat_Event_UI_Manager.Current_Attack_Unit.gameObject.SetActive(false);
 
 
         Vector3 EnemyPos = speedComparisonArray[0].transform.position;
@@ -1173,5 +1171,11 @@ public class e_CombatManager : MonoBehaviour
             speedComparisonArray[0].GetComponent<StatScript>().myStat.MP
             + "/" + speedComparisonArray[0].GetComponent<StatScript>().myStat.MAXMP;
     }
+
+    public void Target_Coroutine_StartFunc(GameObject Target)
+    {
+        StartCoroutine(HeroAttackDlay(Target));
+    }
+
 
 }
