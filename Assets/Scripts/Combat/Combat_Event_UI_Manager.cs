@@ -213,6 +213,8 @@ public class Combat_Event_UI_Manager : MonoBehaviour
             shopManager.ItemSave(); // ���� ������, ���, ��� ���� ���� 0414 Yoon
             shopManager.heroManager._Save();
             PlayerPrefs.SetInt("Week", townManager.Week + 1);
+            PlayerPrefs.SetInt("reward", 0);
+
             
         }
 

@@ -70,12 +70,15 @@ public class UI_Tweening_Manager : MonoBehaviour
     public Shin.UI_ChurchManager uI_ChurchManager;
     public Shin.UI_TrainingManager uI_TrainingManager;
     public GameObject option_Btn;
+    public RewardAds adsMgr;
+
     private void Update()
     {
         if (!isTuto)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                adsMgr.OnDestroy();
                 if (townMgr.isTent == true)
                 {
                     if (StackCount == 0)

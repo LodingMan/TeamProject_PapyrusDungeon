@@ -490,15 +490,6 @@ public class ShopManager : MonoBehaviour
         {
             goldText.text = GetThousandCommaText(money).ToString();
         }
-        if (gem < 0)
-        {
-            gem = 0;
-            gemText.text = "0";
-        }
-        else
-        {
-            gemText.text = GetThousandCommaText(gem).ToString();
-        }
 
     }
 
@@ -508,75 +499,6 @@ public class ShopManager : MonoBehaviour
         GoldRefresh();
     }
 
-    public void BuyGem1()
-    {
-        gem += 18;
-        GoldRefresh();
-        ItemSave();
-    }
-    public void BuyGem2()
-    {
-        gem += 45;
-        GoldRefresh();
-        ItemSave();
-    }
-    public void BuyGem3()
-    {
-        gem += 100;
-        GoldRefresh();
-        ItemSave();
-    }
-    public void BuyGem4()
-    {
-        gem += 325;
-        GoldRefresh();
-        ItemSave();
-    }
-
-    public void BuyGold1()
-    {
-        if (gem >= 10)
-        {
-            gem -= 10;
-            money += 1250;
-            GoldRefresh();
-            ItemSave();
-        }
-
-    }
-    public void BuyGold2()
-    {
-        if (gem >= 50)
-        {
-            gem -= 50;
-            money += 7875;
-            GoldRefresh();
-            ItemSave();
-        }
-
-    }
-    public void BuyGold3()
-    {
-        if (gem >= 150)
-        {
-            gem -= 150;
-            money += 16500;
-            GoldRefresh();
-            ItemSave();
-        }
-
-    }
-    public void BuyGold4()
-    {
-        if (gem >= 250)
-        {
-            gem -= 250;
-            money += 37500;
-            GoldRefresh();
-            ItemSave();
-        }
-
-    }
 
     public string GetThousandCommaText(int data){
         return string.Format("{0:#,###}", data);

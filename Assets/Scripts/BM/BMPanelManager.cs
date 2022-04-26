@@ -20,9 +20,9 @@ public class BMPanelManager : MonoBehaviour
         MgrTable = GameObject.Find("ManagerTable").GetComponent<ManagerTable>();
         tweenMgr = MgrTable.tweenManager;
         CoinBtn.onClick.AddListener(CoinPanel_On);
-        GemBtn.onClick.AddListener(GemPanel_On);
-        CoinCloseBtn.onClick.AddListener(CoinPanel_Off);
-        GemCloseBtn.onClick.AddListener(GemPanel_Off);
+        //GemBtn.onClick.AddListener(GemPanel_On);
+        //CoinCloseBtn.onClick.AddListener(CoinPanel_Off);
+        //GemCloseBtn.onClick.AddListener(GemPanel_Off);
     }
 
     public void CoinPanel_On()
