@@ -9,12 +9,7 @@ public class Intro_UI_Disable_Script : MonoBehaviour
 {
     public bool isLoaded = false;
     public float timer1 = 0f;
-
-    private void Start()
-    {
-
-    }
-
+    public BannerAds banner;
 
     private void Update()
     {
@@ -30,6 +25,7 @@ public class Intro_UI_Disable_Script : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                banner.HideBannerAd();
                 SceneManager.LoadScene(1);
             }
         }

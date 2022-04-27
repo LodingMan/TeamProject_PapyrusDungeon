@@ -12,7 +12,7 @@ public class RewardAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     void Awake()
     {
         _adUnitId = _androidAdUnitId;
-        Advertisement.Initialize("4723128", true);
+        Advertisement.Initialize("4723128", false);
         _showAdButton.interactable = false;
         if (!PlayerPrefs.HasKey("reward"))
         {

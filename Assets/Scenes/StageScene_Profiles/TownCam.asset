@@ -1,42 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4885223820372205321
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
-  m_Name: AutoExposure
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  filtering:
-    overrideState: 1
-    value: {x: 50, y: 95}
-  minLuminance:
-    overrideState: 1
-    value: 0
-  maxLuminance:
-    overrideState: 1
-    value: 0
-  keyValue:
-    overrideState: 1
-    value: 1
-  eyeAdaptation:
-    overrideState: 0
-    value: 0
-  speedUp:
-    overrideState: 0
-    value: 2
-  speedDown:
-    overrideState: 0
-    value: 1
 --- !u!114 &-4439587109809387668
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -61,19 +24,19 @@ MonoBehaviour:
     value: 0.8
   softKnee:
     overrideState: 1
-    value: 0.5
+    value: 0.81
   clamp:
     overrideState: 1
     value: 65472
   diffusion:
     overrideState: 1
-    value: 7
+    value: 6.68
   anamorphicRatio:
     overrideState: 1
-    value: -0.066
+    value: 0.17
   color:
     overrideState: 1
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   fastMode:
     overrideState: 1
     value: 1
@@ -100,7 +63,6 @@ MonoBehaviour:
   - {fileID: 2340139283661361284}
   - {fileID: -4439587109809387668}
   - {fileID: 2309622805953675200}
-  - {fileID: -4885223820372205321}
 --- !u!114 &2309622805953675200
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -128,13 +90,13 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.5
+    value: 0.369
   smoothness:
     overrideState: 1
-    value: 0.5
+    value: 0.618
   roundness:
     overrideState: 1
-    value: 1
+    value: 0.976
   rounded:
     overrideState: 0
     value: 0
@@ -166,7 +128,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 1.5
+    value: 1
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
