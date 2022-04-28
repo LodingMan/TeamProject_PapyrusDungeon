@@ -47,7 +47,8 @@ namespace Shin
             heroName = transform.GetChild(0).GetComponent<Text>();
             heroImage = transform.GetChild(1).GetComponent<Image>();
 
-            training_Start = GameObject.Find("Btn_Training_Start").GetComponent<Button>();
+
+            training_Start = trainingManager.Btn_Training_Start.GetComponent<Button>();
             training_Start.onClick.AddListener(TrainingStart);
 
             Skill_Btn[0].onClick.AddListener(Click_Btn_Skill00);

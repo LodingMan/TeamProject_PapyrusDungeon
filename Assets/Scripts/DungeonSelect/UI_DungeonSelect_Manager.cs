@@ -76,6 +76,7 @@ namespace Song
                 buttons[i].SetActive(true);
             }
             isDungeonSelect = false;
+            uI_Tweening_Manager.UI_DungeonSelectPanelPos.gameObject.SetActive(false);
 
         }
 

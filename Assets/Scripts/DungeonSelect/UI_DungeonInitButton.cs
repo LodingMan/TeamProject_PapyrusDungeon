@@ -119,10 +119,11 @@ namespace Shin
 
            introSceneScript.audioSS.clip = introSceneScript.audioTent;
            introSceneScript.audioSS.Play();
-
+            loadingPanel.gameObject.SetActive(true);
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
             twMgr.UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
             twMgr.UI_DunGeonEntrance_Pos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+
             
         }
         public IEnumerator TweenLoadingPanelToTown()
@@ -135,8 +136,6 @@ namespace Shin
             
             if (!camera_Tent.activeSelf) camera_Town.SetActive(true); 
             if (!canvas_Tent.activeSelf) canvas_Town.SetActive(true);
-            
-
             loadingPanel.DOAnchorPos(new Vector2(1500, 0), 0.5f);
 
             townMgr.isTown = true;

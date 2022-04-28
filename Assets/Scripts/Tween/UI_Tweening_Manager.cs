@@ -1,8 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 //==================================================================================================//
 //UI�� �������� Tween���� ��Ʈ�� �Ҷ� TweenManager������Ʈ�� �� ������Ʈ�� �ְ� ���� (Stage �������� ���)//
 //==================================================================================================//
@@ -30,7 +28,8 @@ public class UI_Tweening_Manager : MonoBehaviour
     public RectTransform UI_Tent_Option_Pos;
     public RectTransform UI_QuitPanel_Pos;
     public RectTransform UI_EquipInfo_Pos;
-    public RectTransform UI_BM_Panel;
+    //public RectTransform UI_BM_Panel;
+    public GameObject blackscreen;
     public CameraMoving camMove;
 
     public bool UI_isBackground_On = true;
@@ -74,6 +73,11 @@ public class UI_Tweening_Manager : MonoBehaviour
     public GameObject option_Btn;
     public RewardAds adsMgr;
 
+
+    private void Start()
+    {
+        BlackScreenUnenabled();
+    }
     private void Update()
     {
         if (!isTuto)
@@ -92,6 +96,7 @@ public class UI_Tweening_Manager : MonoBehaviour
                         UI_loadingPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
                         StartCoroutine(uI_DungeonInitButton.TweenLoadingPanelToTown());
                         TentInvenToOriginInven();
+                        BlackScreenUnenabled();
                         // 텐트에서 아무 Stack도 없는 상태에서 esc누르면 마을 캔버스로 돌아감.
                     }
                     else
@@ -189,39 +194,39 @@ public class UI_Tweening_Manager : MonoBehaviour
             }
         }
 
-        if (UI_isBackground_On == true)
-        {
-            if (!isOption)
-            {
-                UI_BM_Panel.DOAnchorPos(new Vector2(0, 0), 0.5f);
-                isBM = true;
-            }
-            if (isOption)
-            {
-                UI_BM_Panel.DOAnchorPos(new Vector2(-1500, 0), 0.5f);
-                isBM = false;
-            }
-        }
-        else
-        {
-            UI_BM_Panel.DOAnchorPos(new Vector2(-1500, 0), 0.5f);
-            isBM = false;
-        }
+        //if (UI_isBackground_On == true)
+        //{
+        //    if (!isOption)
+        //    {
+        //        UI_BM_Panel.DOAnchorPos(new Vector2(0, 0), 0.5f);
+        //        isBM = true;
+        //    }
+        //    if (isOption)
+        //    {
+        //        UI_BM_Panel.DOAnchorPos(new Vector2(-1500, 0), 0.5f);
+        //        isBM = false;
+        //    }
+        //}
+        //else
+        //{
+        //    UI_BM_Panel.DOAnchorPos(new Vector2(-1500, 0), 0.5f);
+        //    isBM = false;
+        //}
 
-        if (isBM)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (isCoin)
-                {
-                    isCoin = false;
-                }
-                if (isGem)
-                {
-                    isGem = false;
-                }
-            }
-        }
+        //if (isBM)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Escape))
+        //    {
+        //        if (isCoin)
+        //        {
+        //            isCoin = false;
+        //        }
+        //        if (isGem)
+        //        {
+        //            isGem = false;
+        //        }
+        //    }
+        //}
     }
 
     public void StackCountFun()
@@ -231,6 +236,10 @@ public class UI_Tweening_Manager : MonoBehaviour
             if (UIStack[StackCount - 1] != null)
             {
                 UIStack[StackCount - 1].DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                if (!isTrain)
+                {
+                 OptimizationUI(UIStack[StackCount - 1]); //UI 껏다 켜줌
+                }
                 UIStack[StackCount - 1] = null;
                 StackCount--;
                 shopMgr.sellPrice.gameObject.SetActive(false);
@@ -277,7 +286,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_StatusPanel_On()
     {
-  
+        UI_StatusPanelPos.gameObject.SetActive(true);
         UI_StatusPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_StatusPanelPos;
         StackCount++;
@@ -294,7 +303,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_DungeonSelectPanel_On()
     {
-
+        UI_DungeonSelectPanelPos.gameObject.SetActive(true);
         UI_DungeonSelectPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_DungeonSelectPanelPos;
         StackCount++;
@@ -341,7 +350,7 @@ public class UI_Tweening_Manager : MonoBehaviour
     }
     public void UI_TrainingSecPanel_On()
     {
- 
+
         isTrainDetail = true;
         option_Btn.SetActive(false);
         UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 0), 0.5f);
@@ -458,6 +467,7 @@ public class UI_Tweening_Manager : MonoBehaviour
 
     public void UI_QuitPanel_On()
     {
+        UI_QuitPanel_Pos.gameObject.SetActive(true);
         UI_QuitPanel_Pos.DOAnchorPos(new Vector2(0, 0), 0.5f);
         UIStack[StackCount] = UI_QuitPanel_Pos;
         StackCount++;
@@ -469,6 +479,7 @@ public class UI_Tweening_Manager : MonoBehaviour
             if (UIStack[StackCount - 1] != null)
             {
                 UI_trainingSecPanelPos.DOAnchorPos(new Vector2(0, 1090), 0.5f);
+                UI_QuitPanel_Pos.gameObject.SetActive(false);
                 UIStack[StackCount - 1] = null;
                 StackCount--;
             }
@@ -514,12 +525,25 @@ public class UI_Tweening_Manager : MonoBehaviour
         }
     }
 
-
-
-    IEnumerator OptimizationDelay()
+    public void OptimizationUI(RectTransform target) // UI 껏다 켜줌
     {
-        yield return new WaitForSeconds(2f);
+        UI_inventoryPanelPos.gameObject.SetActive(false);
+        UI_StatusPanelPos.gameObject.SetActive(false);
+        target.gameObject.SetActive(false);
     }
+
+    public void BlackScreenUnenabled() //블랙 스크린 딜레이
+    {
+        StartCoroutine(Delay());
+    }
+
+    IEnumerator Delay()
+    {
+        blackscreen.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5);
+        blackscreen.gameObject.SetActive(false);
+    }
+
 
 
 

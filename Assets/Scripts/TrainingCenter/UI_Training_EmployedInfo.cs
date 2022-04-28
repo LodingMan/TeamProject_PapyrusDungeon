@@ -40,8 +40,9 @@ namespace Shin
             skillScript = GetComponent<SkillScript>();
             heroScript_Current_State = GetComponent<HeroScript_Current_State>();
 
-
-            heroInfo = GameObject.Find("Training_HeroInfo").transform.GetChild(0).GetComponent<Image>();
+            trainingManager.Training_HeroInfo.transform.GetChild(0).gameObject.SetActive(true);
+            heroInfo = trainingManager.Training_HeroInfo.transform.GetChild(0).GetComponent<Image>();
+            //heroInfo = GameObject.Find("Training_HeroInfo").transform.GetChild(0).GetComponent<Image>();
             btn = GetComponent<Button>();
 
             btn.onClick.AddListener(tweenMgr.UI_TrainingSecPanel_On); // 버튼이 눌리면

@@ -24,10 +24,14 @@ namespace Shin
         public Button trainingHero_UI;
 
         public GameObject heroInfo;
+
+        public GameObject Training_HeroInfo;
         public Button[] employedList;
         public Button[] trainingList;
 
         public Button TrainButton;
+
+        public GameObject Btn_Training_Start;
         public bool isWarning = false;
 
         private void Start()

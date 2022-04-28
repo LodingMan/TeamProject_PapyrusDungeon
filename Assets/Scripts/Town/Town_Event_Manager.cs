@@ -56,6 +56,7 @@ public class Town_Event_Manager : MonoBehaviour
     public void Event_Panel_Up()
     {
         TownEvent_Panel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -720), 1f);
+        TownEvent_Panel.gameObject.SetActive(false);
 
     }
 }
