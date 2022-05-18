@@ -779,7 +779,7 @@ PlayerSettings:
     Build: 0
     Collab: 0
     Game Performance: 0
-    Legacy Analytics: 1
+    Legacy Analytics: 0
     Purchasing: 0
     UDP: 0
     UNet: 1
@@ -797,10 +797,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: afcca77f-e8de-44b1-86e1-ed559a250bd2
+  cloudProjectId: 13bf4b60-3890-437e-8a84-87d9770fc19d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: papyrusdungeon
+  projectName: papyrusdungeon (1)
   organizationId: seonggeun1
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

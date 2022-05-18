@@ -34,6 +34,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
     public GameObject heroStat;
     public GameObject statusUI;
     public Text TentText01;
+    public GameObject inven_tent_Panel;
 
     private void Start()
     {
@@ -156,6 +157,7 @@ public class ItemUseManager : MonoBehaviour //영웅을 선택해서 선택한 영웅의 스텟
                         selectHero = hit.transform.gameObject;
                         StartCoroutine(FindIndexMethod());
                         twMgr.UI_Inventory_Tent_PanelPos_On_Off();
+                        inven_tent_Panel.SetActive(true);
                         isActive = true;
                         alreadySelect = true;
                         stats = hit.transform.gameObject.GetComponent<StatScript>().myStat;
