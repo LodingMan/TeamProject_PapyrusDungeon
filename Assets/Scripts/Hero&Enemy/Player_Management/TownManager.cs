@@ -51,6 +51,9 @@ public class TownManager : MonoBehaviour
 
     private void Start()
     {
+        
+        PlayerPrefs.DeleteAll();
+
         if (PlayerPrefs.HasKey("Week")) // Week가 존재하면, 이미 했다는거
         {
             Week = PlayerPrefs.GetInt("Week");
